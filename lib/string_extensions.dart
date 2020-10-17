@@ -10,7 +10,7 @@ extension MiscExtensions on String {
   /// int readTime = foo.readTime() // returns 3 seconds.
   /// ```
   int readTime({int wordsPerMinute = 200}) {
-    var words = split(RegExp(r'(\s+)'));
+    var words = trim().split(RegExp(r'(\s+)'));
     var magicalNumber = words.length / wordsPerMinute;
     return (magicalNumber * 100).toInt();
   }
@@ -34,7 +34,7 @@ extension MiscExtensions on String {
   /// int count = foo.countWords() // returns 7 words.
   /// ```
   int countWords() {
-    var words = split(RegExp(r'(\s+)'));
+    var words = trim().split(RegExp(r'(\s+)'));
     return words.length;
   }
 
@@ -66,7 +66,7 @@ extension MiscExtensions on String {
     return replaceAll(regex, '');
   }
 
-  /// Returns wheter the string is mail or not.
+  /// Returns whether the String is mail or not.
   /// ### Example
   /// ```dart
   /// String foo = 'esentis@esentis.com'
@@ -75,5 +75,22 @@ extension MiscExtensions on String {
   bool isMail() {
     var regex = RegExp(r"(^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)");
     return regex.hasMatch(this);
+  }
+
+  /// Returns the String in camelcase.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'Find max of array';
+  /// String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
+  /// ```
+  String toCamelCase() {
+    var words = trim().split(RegExp(r'(\s+)'));
+    print(words.length);
+    var result = words[0].toLowerCase();
+    for (var i = 1; i < words.length; i++) {
+      result += words[i].substring(0, 1).toUpperCase() +
+          words[i].substring(1).toLowerCase();
+    }
+    return result;
   }
 }
