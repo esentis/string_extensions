@@ -11,6 +11,8 @@
 * removeLetters()
 * charOccurences()
 * mostFrequent()
+* reverse()
+* isIpv4()
 
 ## [0.0.1] - Initial release
 
