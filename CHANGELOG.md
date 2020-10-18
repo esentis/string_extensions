@@ -7,6 +7,10 @@
 ## New extensions
 
 * toCamelCase()
+* onlyNumbers()
+* removeLetters()
+* charOccurences()
+* mostFrequent()
 
 ## [0.0.1] - Initial release
 
