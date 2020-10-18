@@ -93,4 +93,100 @@ extension MiscExtensions on String {
     }
     return result;
   }
+
+  /// Returns only the numbers from the String.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/es4e5523nt1is';
+  /// String letters = foo.onlyNumbers() // returns '455455231'
+  /// ```
+  String onlyNumbers() {
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^0-9]+)');
+    return replaceAll(regex, '');
+  }
+
+  /// Removes only the letters from the String.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'es4e5523nt1is';
+  /// String noNums = foo.removeLetters() // returns '455231'
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '1244e*s*4e*5523n*t*1i*s'
+  /// String noNums = foo.removeLetters() // returns '1244**4*5523**1*'
+  /// ```
+  String removeLetters() {
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([a-zA-Z]+)');
+    return replaceAll(regex, '');
+  }
+
+  /// Finds all character ooccurences and returns count as:
+  /// ```dart
+  /// List<Map<dynamic,dynamic>>
+  /// ```
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'esentis';
+  /// String noNums = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+  /// ```
+  dynamic charOccurences() {
+    var occurences = [];
+    var letters = split('')..sort();
+    var checkingLetter = letters[0];
+    var count = 0;
+    for (var i = 0; i < letters.length; i++) {
+      if (letters[i] == checkingLetter) {
+        count++;
+        if (i == letters.length - 1) {
+          occurences.add({checkingLetter: count});
+          checkingLetter = letters[i];
+        }
+      } else {
+        occurences.add({checkingLetter: count});
+        checkingLetter = letters[i];
+        count = 1;
+      }
+    }
+    return occurences;
+  }
+
+  /// Finds the most frequent character in the String.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String noNums = foo.mostFrequent() // returns 'l'
+  /// ```
+  dynamic mostFrequent() {
+    var occurences = [];
+    var letters = split('')..sort();
+    var checkingLetter = letters[0];
+    var count = 0;
+    for (var i = 0; i < letters.length; i++) {
+      if (letters[i] == checkingLetter) {
+        count++;
+        if (i == letters.length - 1) {
+          occurences.add({checkingLetter: count});
+          checkingLetter = letters[i];
+        }
+      } else {
+        occurences.add({checkingLetter: count});
+        checkingLetter = letters[i];
+        count = 1;
+      }
+    }
+    var mostFrequent = '';
+    var occursCount = -1;
+    occurences.forEach((element) {
+      element.forEach((character, occurs) {
+        if (occurs > occursCount) {
+          mostFrequent = character;
+          occursCount = occurs;
+        }
+      });
+    });
+    return mostFrequent;
+  }
 }
