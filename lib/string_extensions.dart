@@ -10,7 +10,7 @@ extension MiscExtensions on String {
   /// int readTime = foo.readTime() // returns 3 seconds.
   /// ```
   int readTime({int wordsPerMinute = 200}) {
-    var words = split(RegExp(r'(\s+)'));
+    var words = trim().split(RegExp(r'(\s+)'));
     var magicalNumber = words.length / wordsPerMinute;
     return (magicalNumber * 100).toInt();
   }
@@ -34,7 +34,7 @@ extension MiscExtensions on String {
   /// int count = foo.countWords() // returns 7 words.
   /// ```
   int countWords() {
-    var words = split(RegExp(r'(\s+)'));
+    var words = trim().split(RegExp(r'(\s+)'));
     return words.length;
   }
 
@@ -42,12 +42,12 @@ extension MiscExtensions on String {
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
-  /// String noNums = foo.removeNumbers() // returns 'esentis'
+  /// String noNumbers = foo.removeNumbers() // returns 'esentis'
   /// ```
   /// ### Example 2
   /// ```dart
   /// String foo = '1244e*s*4e*5523n*t*1i*s'
-  /// String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+  /// String noNumbers = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
   /// ```
   String removeNumbers() {
     var regex = RegExp(r'(\d+)');
@@ -58,7 +58,7 @@ extension MiscExtensions on String {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String letters = foo.onlyLetters() // returns 'esentis'
+  /// String onlyLetters = foo.onlyLetters() // returns 'esentis'
   /// ```
   String onlyLetters() {
     // ignore: unnecessary_raw_strings
@@ -66,7 +66,7 @@ extension MiscExtensions on String {
     return replaceAll(regex, '');
   }
 
-  /// Returns wheter the string is mail or not.
+  /// Returns whether the String is mail or not.
   /// ### Example
   /// ```dart
   /// String foo = 'esentis@esentis.com'
@@ -74,6 +74,147 @@ extension MiscExtensions on String {
   /// ```
   bool isMail() {
     var regex = RegExp(r"(^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)");
+    return regex.hasMatch(this);
+  }
+
+  /// Returns the String in camelcase.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'Find max of array';
+  /// String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
+  /// ```
+  String toCamelCase() {
+    var words = trim().split(RegExp(r'(\s+)'));
+    print(words.length);
+    var result = words[0].toLowerCase();
+    for (var i = 1; i < words.length; i++) {
+      result += words[i].substring(0, 1).toUpperCase() +
+          words[i].substring(1).toLowerCase();
+    }
+    return result;
+  }
+
+  /// Returns only the numbers from the String.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/es4e5523nt1is';
+  /// String onyNumbers = foo.onlyNumbers() // returns '455455231'
+  /// ```
+  String onlyNumbers() {
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^0-9]+)');
+    return replaceAll(regex, '');
+  }
+
+  /// Removes only the letters from the String.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'es4e5523nt1is';
+  /// String noLetters = foo.removeLetters() // returns '455231'
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '1244e*s*4e*5523n*t*1i*s'
+  /// String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
+  /// ```
+  String removeLetters() {
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([a-zA-Z]+)');
+    return replaceAll(regex, '');
+  }
+
+  /// Finds all character ooccurences and returns count as:
+  /// ```dart
+  /// List<Map<dynamic,dynamic>>
+  /// ```
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'esentis';
+  /// List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+  /// ```
+  dynamic charOccurences() {
+    var occurences = [];
+    var letters = split('')..sort();
+    var checkingLetter = letters[0];
+    var count = 0;
+    for (var i = 0; i < letters.length; i++) {
+      if (letters[i] == checkingLetter) {
+        count++;
+        if (i == letters.length - 1) {
+          occurences.add({checkingLetter: count});
+          checkingLetter = letters[i];
+        }
+      } else {
+        occurences.add({checkingLetter: count});
+        checkingLetter = letters[i];
+        count = 1;
+      }
+    }
+    return occurences;
+  }
+
+  /// Finds the most frequent character in the String.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String mostFrequent = foo.mostFrequent() // returns 'l'
+  /// ```
+  dynamic mostFrequent() {
+    var occurences = [];
+    var letters = split('')..sort();
+    var checkingLetter = letters[0];
+    var count = 0;
+    for (var i = 0; i < letters.length; i++) {
+      if (letters[i] == checkingLetter) {
+        count++;
+        if (i == letters.length - 1) {
+          occurences.add({checkingLetter: count});
+          checkingLetter = letters[i];
+        }
+      } else {
+        occurences.add({checkingLetter: count});
+        checkingLetter = letters[i];
+        count = 1;
+      }
+    }
+    var mostFrequent = '';
+    var occursCount = -1;
+    occurences.forEach((element) {
+      element.forEach((character, occurs) {
+        if (occurs > occursCount) {
+          mostFrequent = character;
+          occursCount = occurs;
+        }
+      });
+    });
+    return mostFrequent;
+  }
+
+  /// Returns the String reversed.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String reversed = foo.reverse() ; // returns 'dlrow olleH'
+  /// ```
+  String reverse() {
+    var letters = split('').toList().reversed;
+    return letters.reduce((current, next) => current + next);
+  }
+
+  /// Returns whether the String is valid IPv4.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = '192.168.1.14';
+  /// bool isIpv4 = foo.isIpv4(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '192.168.1.14.150.1225';
+  /// bool isIpv4 = foo.isIpv4(); // returns false
+  /// ```
+  bool isIpv4() {
+    var regex = RegExp(
+        r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
     return regex.hasMatch(this);
   }
 }
