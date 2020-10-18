@@ -1,4 +1,4 @@
-# string_extensions 0.0.1
+# string_extensions 0.0.2
 
 Useful String extensions to save you time in production.
 
