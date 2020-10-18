@@ -1,4 +1,6 @@
-# string_extensions 0.0.2
+# string_extensions
+
+![asd](https://img.shields.io/pub/v/string_extensions?label=Current%20version&style=flat-square)
 
 Useful String extensions to save you time in production.
 
