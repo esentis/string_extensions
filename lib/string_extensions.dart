@@ -189,4 +189,32 @@ extension MiscExtensions on String {
     });
     return mostFrequent;
   }
+
+  /// Returns the String reversed.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String reversed = foo.reverse() ; // returns 'dlrow olleH'
+  /// ```
+  String reverse() {
+    var letters = split('').toList().reversed;
+    return letters.reduce((current, next) => current + next);
+  }
+
+  /// Returns whether the String is valid IPv4.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = '192.168.1.14';
+  /// bool isIpv4 = foo.isIpv4(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '192.168.1.14.150.1225';
+  /// bool isIpv4 = foo.isIpv4(); // returns false
+  /// ```
+  bool isIpv4() {
+    var regex = RegExp(
+        r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
+    return regex.hasMatch(this);
+  }
 }
