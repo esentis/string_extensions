@@ -42,12 +42,12 @@ extension MiscExtensions on String {
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
-  /// String noNums = foo.removeNumbers() // returns 'esentis'
+  /// String noNumbers = foo.removeNumbers() // returns 'esentis'
   /// ```
   /// ### Example 2
   /// ```dart
   /// String foo = '1244e*s*4e*5523n*t*1i*s'
-  /// String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+  /// String noNumbers = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
   /// ```
   String removeNumbers() {
     var regex = RegExp(r'(\d+)');
@@ -58,7 +58,7 @@ extension MiscExtensions on String {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String letters = foo.onlyLetters() // returns 'esentis'
+  /// String onlyLetters = foo.onlyLetters() // returns 'esentis'
   /// ```
   String onlyLetters() {
     // ignore: unnecessary_raw_strings
@@ -98,7 +98,7 @@ extension MiscExtensions on String {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String letters = foo.onlyNumbers() // returns '455455231'
+  /// String onyNumbers = foo.onlyNumbers() // returns '455455231'
   /// ```
   String onlyNumbers() {
     // ignore: unnecessary_raw_strings
@@ -110,12 +110,12 @@ extension MiscExtensions on String {
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
-  /// String noNums = foo.removeLetters() // returns '455231'
+  /// String noLetters = foo.removeLetters() // returns '455231'
   /// ```
   /// ### Example 2
   /// ```dart
   /// String foo = '1244e*s*4e*5523n*t*1i*s'
-  /// String noNums = foo.removeLetters() // returns '1244**4*5523**1*'
+  /// String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
   /// ```
   String removeLetters() {
     // ignore: unnecessary_raw_strings
@@ -130,7 +130,7 @@ extension MiscExtensions on String {
   /// ### Example 1
   /// ```dart
   /// String foo = 'esentis';
-  /// String noNums = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+  /// List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
   /// ```
   dynamic charOccurences() {
     var occurences = [];
@@ -157,7 +157,7 @@ extension MiscExtensions on String {
   /// ### Example 1
   /// ```dart
   /// String foo = 'Hello World';
-  /// String noNums = foo.mostFrequent() // returns 'l'
+  /// String mostFrequent = foo.mostFrequent() // returns 'l'
   /// ```
   dynamic mostFrequent() {
     var occurences = [];
