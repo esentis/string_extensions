@@ -57,3 +57,62 @@ int count = foo.countWords() // returns 7 words.
 String foo = 'hAckErrR';
 String cFoo = foo.capitalize(); // returns 'Hackerrr'.
 ```
+
+* **toCamelCase()**
+
+```dart
+String foo = 'Find max of array';
+String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
+```
+
+* **onlyNumbers()**
+
+```dart
+String foo = '4*%^55/es4e5523nt1is';
+String onyNumbers = foo.onlyNumbers() // returns '455455231'
+```
+
+* **removeLetters()**
+
+```dart
+String foo = 'es4e5523nt1is';
+String noLetters = foo.removeLetters() // returns '455231'
+```
+
+```dart
+String foo = '1244e*s*4e*5523n*t*1i*s'
+String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
+```
+
+* **charOccurences()**
+
+```dart
+String foo = 'esentis';
+List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+```
+
+* **mostFrequent()**
+
+```dart
+String foo = 'Hello World';
+String mostFrequent = foo.mostFrequent() // returns 'l'
+```
+
+* **reverse()**
+
+```dart
+String foo = 'Hello World';
+String reversed = foo.reverse() ; // returns 'dlrow olleH'
+```
+
+* **isIpv4()**
+
+```dart
+String foo = '192.168.1.14';
+bool isIpv4 = foo.isIpv4(); // returns true
+```
+
+```dart
+String foo = '192.168.1.14.150.1225';
+bool isIpv4 = foo.isIpv4(); // returns false
+```
