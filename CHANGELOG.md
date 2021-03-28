@@ -1,4 +1,14 @@
-# [0.0.2] - New extensions and bug fixes
+# [0.0.3] - New extensions and Null Safety
+
+## News
+
+Migrates library to null safety.
+
+Extension added :
+
+* toTitleCase()
+
+## [0.0.2] - New extensions and bug fixes
 
 ## Bug fixes
 
