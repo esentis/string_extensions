@@ -1,11 +1,11 @@
 name: string_extensions
 description: Useful String extensions to save you time in production. Feel free to contribute with PR.
-version: 0.0.21
+version: 0.0.3
 homepage: 'https://github.com/esentis/string_extensions'
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
