@@ -38,6 +38,21 @@ extension MiscExtensions on String {
     return words.length;
   }
 
+  /// Returns the word title cased.
+  ///
+  /// ```dart
+  /// String foo = 'Hello dear friend how you doing ?';
+  /// Sting titleCased = foo.toTitleCase() // returns 'Hello Dear Friend How You Doing'.
+  /// ```
+  String toTitleCase() {
+    var words = toLowerCase().split(' ');
+    for (var i = 0; i < words.length; i++) {
+      words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
+    }
+
+    return words.join(' ');
+  }
+
   /// Removes only the numbers from the String.
   /// ### Example 1
   /// ```dart
