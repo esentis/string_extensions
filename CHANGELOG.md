@@ -1,4 +1,19 @@
-# [0.0.3] - New extensions and Null Safety
+
+# [0.1.0] - New extensions
+
+```dart
+first({int count})
+```
+
+```dart
+last({int count})
+```
+
+```dart
+toSlug()
+```
+
+## [0.0.3] - New extensions and Null Safety
 
 ## News
 
@@ -6,7 +21,9 @@ Migrates library to null safety.
 
 Extension added :
 
-* toTitleCase()
+```dart
+toTitleCase()
+```
 
 ## [0.0.2] - New extensions and bug fixes
 
@@ -16,21 +33,58 @@ Extension added :
 
 ## New extensions
 
-* toCamelCase()
-* onlyNumbers()
-* removeLetters()
-* charOccurences()
-* mostFrequent()
-* reverse()
-* isIpv4()
+```dart
+toCamelCase()
+```
+
+```dart
+onlyNumbers()
+```
+
+```dart
+removeLetters()
+```
+
+```dart
+charOccurences()
+```
+
+```dart
+mostFrequent()
+```
+
+```dart
+reverse()
+```
+
+```dart
+isIpv4()
+```
 
 ## [0.0.1] - Initial release
 
 ### Extension methods
 
-* readTime()
-* isMail()
-* capitalize()
-* removeNumbers()
-* onlyLetters()
-* countWords()
+```dart
+readTime()
+```
+
+```dart
+isMail()
+```
+
+```dart
+capitalize()
+```
+
+```dart
+removeNumbers()
+```
+
+```dart
+onlyLetters()
+```
+
+```dart
+countWords()
+```
