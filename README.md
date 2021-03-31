@@ -1,6 +1,6 @@
 # string_extensions
 
-![Version](https://img.shields.io/badge/version-0.1.0-orange&style=flat_square)
+![pub package](https://img.shields.io/pub/v/string_extensions.svg)
 
 Useful String extensions to save you time in production.
 
