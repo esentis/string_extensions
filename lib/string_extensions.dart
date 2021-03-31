@@ -228,8 +228,88 @@ extension MiscExtensions on String {
   /// bool isIpv4 = foo.isIpv4(); // returns false
   /// ```
   bool isIpv4() {
+    substring(0, 1);
     var regex = RegExp(
         r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
     return regex.hasMatch(this);
+  }
+
+  /// Returns the first [n] characters of the string.
+  ///
+  /// n is optional, by default it returns the first character of the string.
+  ///
+  /// If [n] provided is longer than the string's length, the string will be returned.
+  ///
+  /// Faster than using
+  /// ```dart
+  /// substring(0,count)
+  /// ```
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'hello world';
+  /// String firstChars = foo.first(); // returns 'h'
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'hello world';
+  /// bool firstChars = foo.first(3); // returns 'hel'
+  /// ```
+  String first({int n = 1}) {
+    if (length < n) {
+      return this;
+    }
+    return substring(0, n);
+  }
+
+  /// Returns the last [n] characters of the string.
+  ///
+  /// [n] is optional, by default it returns the first character of the string.
+  ///
+  /// If [n] provided is longer than the string's length, the string will be returned.
+  ///
+  /// Faster than using
+  /// ```dart
+  /// substring(length-n,length)
+  /// ```
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'hello world';
+  /// String firstChars = foo.last(); // returns 'd'
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'hello world';
+  /// bool firstChars = foo.last(3); // returns 'rld'
+  /// ```
+  String last({int n = 1}) {
+    if (length < n) {
+      return this;
+    }
+    return substring(length - n, length);
+  }
+
+  /// Returns the string to slug case.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'hello world';
+  /// String fooSlug = foo.toSlug(); // returns 'hello_world'
+  /// ```
+  String toSlug() {
+    var words = trim().split(RegExp(r'(\s+)'));
+    var slugWord = '';
+
+    if (length == 1) {
+      return this;
+    }
+
+    for (var i = 0; i < length; i++) {
+      if (i != length - 1) {
+        slugWord += words[i] + '_';
+      } else {
+        slugWord += words[i];
+      }
+    }
+    return slugWord;
   }
 }
