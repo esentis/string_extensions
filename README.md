@@ -1,6 +1,6 @@
 # string_extensions
 
-![asd](https://img.shields.io/pub/v/string_extensions?label=Current%20version&style=flat-square)
+![Version](https://img.shields.io/badge/version-0.1.0-orange&style=flat_square)
 
 Useful String extensions to save you time in production.
 
@@ -117,4 +117,32 @@ bool isIpv4 = foo.isIpv4(); // returns true
 ```dart
 String foo = '192.168.1.14.150.1225';
 bool isIpv4 = foo.isIpv4(); // returns false
+```
+
+* **toTitleCase()**
+
+```dart
+String foo = 'hello world';
+String fooTitled = foo.toTitleCase(); // returns 'Hello World'
+ ```
+
+* **first()**
+
+```dart
+String foo = 'hello world';
+String firstChars = foo.first(); // returns 'h'
+ ```
+
+* **last()**
+
+ ```dart
+String foo = 'hello world';
+String lastChars = foo.last(); // returns 'd'
+```
+
+* **toSlug()**
+
+```dart
+String foo = 'hello world';
+String fooSlug = foo.toSlug(); // returns 'hello_world'
 ```
