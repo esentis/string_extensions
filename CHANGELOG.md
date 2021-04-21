@@ -1,5 +1,13 @@
 
-# [0.1.0] - New extensions
+# [0.1.1] - New extensions
+
+Useful method to normalize greek text for more performant text searches.
+
+```dart
+replaceGreek()
+```
+
+## [0.1.0] - New extensions
 
 ```dart
 first({int count})

@@ -312,4 +312,80 @@ extension MiscExtensions on String {
     }
     return slugWord;
   }
+
+  /// Replaces all greek words with latin. Comes handy when you want to normalize text for search.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'Αριστοτέλης';
+  /// String fooSlug = foo.replaceGreek(); // returns 'aristotelis'
+  /// ```
+  String replaceGreek() {
+    var normalizedWord = replaceAll(RegExp(r'\ευ'), 'ef')
+        .replaceAll(RegExp(r'\εύ'), 'ef')
+        .replaceAll(RegExp(r'\αυ'), 'av')
+        .replaceAll(RegExp(r'\αύ'), 'av')
+        .replaceAll(RegExp(r'\α'), 'a')
+        .replaceAll(RegExp(r'\ά'), 'a')
+        .replaceAll(RegExp(r'\Α'), 'a')
+        .replaceAll(RegExp(r'\Ά'), 'a')
+        .replaceAll(RegExp(r'\β'), 'v')
+        .replaceAll(RegExp(r'\Β'), 'v')
+        .replaceAll(RegExp(r'\γ'), 'g')
+        .replaceAll(RegExp(r'\Γ'), 'g')
+        .replaceAll(RegExp(r'\δ'), 'd')
+        .replaceAll(RegExp(r'\Δ'), 'd')
+        .replaceAll(RegExp(r'\ε'), 'e')
+        .replaceAll(RegExp(r'\έ'), 'e')
+        .replaceAll(RegExp(r'\Έ'), 'e')
+        .replaceAll(RegExp(r'\Ε'), 'e')
+        .replaceAll(RegExp(r'\ζ'), 'z')
+        .replaceAll(RegExp(r'\Ζ'), 'z')
+        .replaceAll(RegExp(r'\ι'), 'i')
+        .replaceAll(RegExp(r'\ί'), 'i')
+        .replaceAll(RegExp(r'\ϊ'), 'i')
+        .replaceAll(RegExp(r'\ΐ'), 'i')
+        .replaceAll(RegExp(r'\Ι'), 'i')
+        .replaceAll(RegExp(r'\Ί'), 'i')
+        .replaceAll(RegExp(r'\Ϊ'), 'i')
+        .replaceAll(RegExp(r'\κ'), 'k')
+        .replaceAll(RegExp(r'\Κ'), 'k')
+        .replaceAll(RegExp(r'\λ'), 'l')
+        .replaceAll(RegExp(r'\Λ'), 'l')
+        .replaceAll(RegExp(r'\μ'), 'm')
+        .replaceAll(RegExp(r'\Μ'), 'm')
+        .replaceAll(RegExp(r'\ξ'), 'ks')
+        .replaceAll(RegExp(r'\Ξ'), 'ks')
+        .replaceAll(RegExp(r'\ο'), 'o')
+        .replaceAll(RegExp(r'\ό'), 'o')
+        .replaceAll(RegExp(r'\Ό'), 'o')
+        .replaceAll(RegExp(r'\Ο'), 'o')
+        .replaceAll(RegExp(r'\π'), 'p')
+        .replaceAll(RegExp(r'\Π'), 'p')
+        .replaceAll(RegExp(r'\ρ'), 'r')
+        .replaceAll(RegExp(r'\Ρ'), 'r')
+        .replaceAll(RegExp(r'\σ'), 's')
+        .replaceAll(RegExp(r'\Σ'), 's')
+        .replaceAll(RegExp(r'\ς'), 's')
+        .replaceAll(RegExp(r'\τ'), 't')
+        .replaceAll(RegExp(r'\Τ'), 't')
+        .replaceAll(RegExp(r'\υ'), 'y')
+        .replaceAll(RegExp(r'\ύ'), 'y')
+        .replaceAll(RegExp(r'\ϋ'), 'y')
+        .replaceAll(RegExp(r'\ΰ'), 'y')
+        .replaceAll(RegExp(r'\Υ'), 'y')
+        .replaceAll(RegExp(r'\Ύ'), 'y')
+        .replaceAll(RegExp(r'\Ϋ'), 'y')
+        .replaceAll(RegExp(r'\φ'), 'f')
+        .replaceAll(RegExp(r'\Φ'), 'f')
+        .replaceAll(RegExp(r'\χ'), 'ch')
+        .replaceAll(RegExp(r'\Χ'), 'ch')
+        .replaceAll(RegExp(r'\ψ'), 'ps')
+        .replaceAll(RegExp(r'\Ψ'), 'ps')
+        .replaceAll(RegExp(r'\ω'), 'o')
+        .replaceAll(RegExp(r'\ώ'), 'o')
+        .replaceAll(RegExp(r'\Ω'), 'o')
+        .replaceAll(RegExp(r'\Ώ'), 'o');
+    return normalizedWord;
+  }
 }

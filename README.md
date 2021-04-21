@@ -145,4 +145,11 @@ String lastChars = foo.last(); // returns 'd'
 ```dart
 String foo = 'hello world';
 String fooSlug = foo.toSlug(); // returns 'hello_world'
-```
+ ```
+
+* **replaceGreek()**
+
+```dart
+ String foo = 'Αριστοτέλης';
+ String fooSlug = foo.replaceGreek(); // returns 'aristotelis'
+ ```
