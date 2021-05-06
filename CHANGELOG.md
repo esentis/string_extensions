@@ -5,7 +5,7 @@
 * Given a string and a pattern, finds the starting indices of all occurrences of the pattern in the string.
 
     ```dart
-    findPatterns({required String pattern})
+    findPattern({required String pattern})
     ```
 
 ## [0.1.1] - New extensions
