@@ -10,6 +10,9 @@ extension MiscExtensions on String {
   /// int readTime = foo.readTime() // returns 3 seconds.
   /// ```
   int readTime({int wordsPerMinute = 200}) {
+    if (isEmpty) {
+      return 0;
+    }
     var words = trim().split(RegExp(r'(\s+)'));
     var magicalNumber = words.length / wordsPerMinute;
     return (magicalNumber * 100).toInt();
@@ -22,6 +25,9 @@ extension MiscExtensions on String {
   /// String cFoo = foo.capitalize(); // returns 'Hackerrr'.
   /// ```
   String capitalize() {
+    if (isEmpty) {
+      return this;
+    }
     return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
 
@@ -34,6 +40,9 @@ extension MiscExtensions on String {
   /// int count = foo.countWords() // returns 7 words.
   /// ```
   int countWords() {
+    if (isEmpty) {
+      return 0;
+    }
     var words = trim().split(RegExp(r'(\s+)'));
     return words.length;
   }
@@ -45,6 +54,9 @@ extension MiscExtensions on String {
   /// Sting titleCased = foo.toTitleCase() // returns 'Hello Dear Friend How You Doing'.
   /// ```
   String toTitleCase() {
+    if (isEmpty) {
+      return this;
+    }
     var words = toLowerCase().split(' ');
     for (var i = 0; i < words.length; i++) {
       words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
@@ -65,6 +77,9 @@ extension MiscExtensions on String {
   /// String noNumbers = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
   /// ```
   String removeNumbers() {
+    if (isEmpty) {
+      return this;
+    }
     var regex = RegExp(r'(\d+)');
     return replaceAll(regex, '');
   }
@@ -76,6 +91,9 @@ extension MiscExtensions on String {
   /// String onlyLetters = foo.onlyLetters() // returns 'esentis'
   /// ```
   String onlyLetters() {
+    if (isEmpty) {
+      return this;
+    }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^a-zA-Z]+)');
     return replaceAll(regex, '');
@@ -88,6 +106,9 @@ extension MiscExtensions on String {
   /// bool isMail = foo.isMail() // returns true
   /// ```
   bool isMail() {
+    if (isEmpty) {
+      return false;
+    }
     var regex = RegExp(r"(^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)");
     return regex.hasMatch(this);
   }
@@ -99,6 +120,9 @@ extension MiscExtensions on String {
   /// String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
   /// ```
   String toCamelCase() {
+    if (isEmpty) {
+      return this;
+    }
     var words = trim().split(RegExp(r'(\s+)'));
     print(words.length);
     var result = words[0].toLowerCase();
@@ -116,6 +140,9 @@ extension MiscExtensions on String {
   /// String onyNumbers = foo.onlyNumbers() // returns '455455231'
   /// ```
   String onlyNumbers() {
+    if (isEmpty) {
+      return this;
+    }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^0-9]+)');
     return replaceAll(regex, '');
@@ -133,6 +160,9 @@ extension MiscExtensions on String {
   /// String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
   /// ```
   String removeLetters() {
+    if (isEmpty) {
+      return this;
+    }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([a-zA-Z]+)');
     return replaceAll(regex, '');
@@ -147,8 +177,12 @@ extension MiscExtensions on String {
   /// String foo = 'esentis';
   /// List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
   /// ```
-  dynamic charOccurences() {
-    var occurences = [];
+  List<Map<String, int>> charOccurences() {
+    if (isEmpty) {
+      return [];
+    }
+    // ignore: omit_local_variable_types
+    List<Map<String, int>> occurences = [];
     var letters = split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
@@ -174,7 +208,11 @@ extension MiscExtensions on String {
   /// String foo = 'Hello World';
   /// String mostFrequent = foo.mostFrequent() // returns 'l'
   /// ```
-  dynamic mostFrequent() {
+  String mostFrequent() {
+    if (isEmpty) {
+      return this;
+    }
+
     var occurences = [];
     var letters = split('')..sort();
     var checkingLetter = letters[0];
@@ -212,6 +250,10 @@ extension MiscExtensions on String {
   /// String reversed = foo.reverse() ; // returns 'dlrow olleH'
   /// ```
   String reverse() {
+    if (isEmpty) {
+      return this;
+    }
+
     var letters = split('').toList().reversed;
     return letters.reduce((current, next) => current + next);
   }
@@ -228,6 +270,10 @@ extension MiscExtensions on String {
   /// bool isIpv4 = foo.isIpv4(); // returns false
   /// ```
   bool isIpv4() {
+    if (isEmpty) {
+      return false;
+    }
+
     substring(0, 1);
     var regex = RegExp(
         r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
@@ -255,6 +301,10 @@ extension MiscExtensions on String {
   /// bool firstChars = foo.first(3); // returns 'hel'
   /// ```
   String first({int n = 1}) {
+    if (isEmpty) {
+      return this;
+    }
+
     if (length < n) {
       return this;
     }
@@ -282,6 +332,10 @@ extension MiscExtensions on String {
   /// bool firstChars = foo.last(3); // returns 'rld'
   /// ```
   String last({int n = 1}) {
+    if (isEmpty) {
+      return this;
+    }
+
     if (length < n) {
       return this;
     }
@@ -298,6 +352,10 @@ extension MiscExtensions on String {
   String toSlug() {
     var words = trim().split(RegExp(r'(\s+)'));
     var slugWord = '';
+
+    if (isEmpty) {
+      return this;
+    }
 
     if (length == 1) {
       return this;
@@ -318,9 +376,12 @@ extension MiscExtensions on String {
   /// ### Example
   /// ```dart
   /// String foo = 'Αριστοτέλης';
-  /// String fooSlug = foo.replaceGreek(); // returns 'aristotelis'
+  /// String fooReplaced = foo.replaceGreek(); // returns 'aristotelis'
   /// ```
   String replaceGreek() {
+    if (isEmpty) {
+      return this;
+    }
     var normalizedWord = replaceAll(RegExp(r'\ευ'), 'ef')
         .replaceAll(RegExp(r'\εύ'), 'ef')
         .replaceAll(RegExp(r'\αυ'), 'av')
@@ -387,5 +448,43 @@ extension MiscExtensions on String {
         .replaceAll(RegExp(r'\Ω'), 'o')
         .replaceAll(RegExp(r'\Ώ'), 'o');
     return normalizedWord;
+  }
+
+  /// Given a pattern returns the starting indices of all occurences of the pattern in the string.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'abracadabra';
+  /// String fooOccs = foo.findPatterns(pattern:'abr'); // returns '[0, 7]'
+  /// ```
+  List<int> findPattern({required String pattern}) {
+    if (isEmpty) {
+      return [];
+    }
+    // ignore: omit_local_variable_types
+    List<int> occurences = [];
+    // How many times the pattern can fit the text provided
+    var fitCount = (length / pattern.length).truncate().toInt();
+
+    if (fitCount > length) {
+      return [];
+    }
+    if (fitCount == 1) {
+      if (this == pattern) {
+        return [0];
+      }
+      return [];
+    }
+
+    for (var i = 0; i <= length; i++) {
+      if (i + pattern.length > length) {
+        return occurences;
+      }
+      if (substring(i, i + pattern.length) == pattern) {
+        occurences.add(i);
+      }
+    }
+
+    return occurences;
   }
 }
