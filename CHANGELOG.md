@@ -1,5 +1,14 @@
+# [0.1.2] - New extensions & Code refactor
 
-# [0.1.1] - New extensions
+* Adds isEmpty checks on all extensions.
+
+* Given a string and a pattern, finds the starting indices of all occurrences of the pattern in the string.
+
+    ```dart
+    findPattern({required String pattern})
+    ```
+
+## [0.1.1] - New extensions
 
 Useful method to normalize greek text for more performant text searches.
 

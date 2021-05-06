@@ -151,5 +151,12 @@ String fooSlug = foo.toSlug(); // returns 'hello_world'
 
 ```dart
  String foo = 'Αριστοτέλης';
- String fooSlug = foo.replaceGreek(); // returns 'aristotelis'
+ String fooReplaced = foo.replaceGreek(); // returns 'aristotelis'
+ ```
+
+* **findPatterns({required String pattern})**
+
+```dart
+String foo = 'abracadabra';
+String fooOccs = foo.findPattern(pattern:'abr'); // returns '[0, 7]'
  ```
