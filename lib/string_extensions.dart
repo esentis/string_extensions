@@ -487,4 +487,64 @@ extension MiscExtensions on String {
 
     return occurences;
   }
+
+  /// Returns a list of the string's characters.
+  ///
+  /// O(n)
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'abracadabra';
+  /// List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
+  /// ```
+  List<String> toStringArray() {
+    if (isEmpty) {
+      return [];
+    }
+    // ignore: omit_local_variable_types
+    List<String> characters = [];
+    for (var i = 0; i < length; i++) {
+      characters.add(substring(i, i + 1));
+    }
+    return characters;
+  }
+
+  /// Strips all HTML code from String.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
+  /// String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
+  /// ```
+  String stripHtml() {
+    if (isEmpty) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'<[^>]*>');
+    return replaceAll(regex, '');
+  }
+
+  /// Returns whether the String is a "strong" password which complies to below rules :
+  ///  * At least 1 uppercase
+  ///  * At least 1 special character
+  ///  * At least 1 number
+  ///  * At least 8 characters in length
+  /// ### Example
+  /// ```dart
+  /// String foo = 'qwerty'
+  /// bool isStrong = foo.isStrongPassword() // returns false
+  /// ```
+  /// ```dart
+  /// String foo = 'IsTh!$Strong'
+  /// bool isStrong = foo.isStrongPassword() // returns true
+  /// ```
+  bool isStrongPassword() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
+    return regex.hasMatch(this);
+  }
 }
