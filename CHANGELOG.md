@@ -1,4 +1,12 @@
-# [0.1.3] - New extensions
+# [0.1.4] - New extension
+
+Method to check whether a string is a valid Guid.
+
+```dart
+isGuid()
+```
+
+## [0.1.3] - New extensions
 
 Method to get a list of characters in a string.
 
