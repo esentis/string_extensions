@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="string_extensions.png" height="160" alt="Feelm" /><br/>
+  <img src="https://i.imgur.com/irnKSr0.png" height="160" alt="Feelm" /><br/>
 </p>
 
 <p align="center">
@@ -176,4 +176,16 @@ List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]
 ```dart
 String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
 String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
+ ```
+
+* **isGuid()**
+
+```dart
+String foo = '6d64-4396-8547-1ec1b86e081e'
+bool isGuid = foo.isGuid() // returns false
+ ```
+
+```dart
+String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
+bool isGuid = foo.isGuid() // returns true
  ```

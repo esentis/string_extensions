@@ -547,4 +547,24 @@ extension MiscExtensions on String {
         r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
     return regex.hasMatch(this);
   }
+
+  /// Returns whether the String is a valid Guid.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = '6d64-4396-8547-1ec1b86e081e'
+  /// bool isGuid = foo.isGuid() // returns false
+  /// ```
+  /// ```dart
+  /// String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
+  /// bool isGuid = foo.isGuid() // returns true
+  /// ```
+  bool isGuid() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
+    return regex.hasMatch(this);
+  }
 }
