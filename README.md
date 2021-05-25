@@ -1,12 +1,15 @@
-# string_extensions
+<p align="center">
+  <img src="string_extensions.png" height="160" alt="Feelm" /><br/>
+</p>
 
-![pub package](https://img.shields.io/pub/v/string_extensions.svg)
+<p align="center">
+ <img src="https://img.shields.io/pub/v/string_extensions?color=637d0d&style=for-the-badge" alt="Version" /></br>
+</p>
 
-Useful String extensions to save you time in production.
+---
 
-## Getting Started
 
-Current String extensions :
+## Current Methods
 
 * **readTime()**
 
@@ -159,4 +162,18 @@ String fooSlug = foo.toSlug(); // returns 'hello_world'
 ```dart
 String foo = 'abracadabra';
 String fooOccs = foo.findPattern(pattern:'abr'); // returns '[0, 7]'
+ ```
+
+* **toStringArray()**
+
+```dart
+String foo = 'abracadabra';
+List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
+ ```
+
+* **stripHtml()**
+
+```dart
+String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
+String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
  ```

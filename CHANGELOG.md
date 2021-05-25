@@ -1,4 +1,24 @@
-# [0.1.2] - New extensions & Code refactor
+# [0.1.3] - New extensions
+
+Method to get a list of characters in a string.
+
+```dart
+toStringArray()
+```
+
+Method to strip all HTML code from a string.
+
+```dart
+stripHtml()
+```
+
+Method to check whether a string is a strong password.
+
+```dart
+isStrongPassword()
+```
+
+## [0.1.2] - New extensions & Code refactor
 
 * Adds isEmpty checks on all extensions.
 
