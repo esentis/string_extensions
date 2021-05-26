@@ -124,7 +124,6 @@ extension MiscExtensions on String {
       return this;
     }
     var words = trim().split(RegExp(r'(\s+)'));
-    print(words.length);
     var result = words[0].toLowerCase();
     for (var i = 1; i < words.length; i++) {
       result += words[i].substring(0, 1).toUpperCase() +
@@ -360,12 +359,11 @@ extension MiscExtensions on String {
     if (length == 1) {
       return this;
     }
-
-    for (var i = 0; i < length; i++) {
-      if (i != length - 1) {
-        slugWord += words[i] + '_';
-      } else {
+    for (var i = 0; i <= words.length - 1; i++) {
+      if (i == words.length - 1) {
         slugWord += words[i];
+      } else {
+        slugWord += words[i] + '_';
       }
     }
     return slugWord;
@@ -403,6 +401,10 @@ extension MiscExtensions on String {
         .replaceAll(RegExp(r'\ζ'), 'z')
         .replaceAll(RegExp(r'\Ζ'), 'z')
         .replaceAll(RegExp(r'\ι'), 'i')
+        .replaceAll(RegExp(r'\Η'), 'i')
+        .replaceAll(RegExp(r'\Ή'), 'i')
+        .replaceAll(RegExp(r'\η'), 'i')
+        .replaceAll(RegExp(r'\ή'), 'i')
         .replaceAll(RegExp(r'\ί'), 'i')
         .replaceAll(RegExp(r'\ϊ'), 'i')
         .replaceAll(RegExp(r'\ΐ'), 'i')
