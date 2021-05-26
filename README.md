@@ -4,6 +4,9 @@
 
 <p align="center">
  <img src="https://img.shields.io/pub/v/string_extensions?color=637d0d&style=for-the-badge" alt="Version" /></br>
+ <img src="https://travis-ci.com/esentis/string_extensions.svg?branch=master" alt="Version" />
+ <a href='https://coveralls.io/github/esentis/string_extensions?branch=master'><img src='https://coveralls.io/repos/github/esentis/string_extensions/badge.svg?branch=master' alt='Coverage Status' /></a>
+</br>
 </p>
 
 ---
