@@ -1,4 +1,8 @@
-# [0.2.0] - Adds tests
+# [0.2.1] - Downgrade test library version
+
+Some projects were breaking due to they depending on test_api:3.0.0 version.
+
+## [0.2.0] - Adds tests
 
 ## [0.1.4] - New extension
 
