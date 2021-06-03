@@ -1,4 +1,30 @@
-# [0.2.1] - Downgrade test library version
+# [0.2.2] - New extensions
+
+Repeats a string x times
+
+```dart
+repeat(int x);
+```
+
+Check if the string is a valid Ipv6
+
+```dart
+isIpv6();
+```
+
+Check if the string is a number
+
+```dart
+isNumber();
+```
+
+An extension that makes easier handling empty strings.
+
+```dart
+ifEmpty(()=>print('The string is empty'));
+```
+
+## [0.2.1] - Downgrade test library version
 
 Some projects were breaking due to they depending on test_api:3.0.0 version.
 
