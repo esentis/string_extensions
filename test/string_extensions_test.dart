@@ -70,6 +70,34 @@ void main() {
     var string2 = '192.168.1.14.5223';
     expect(string2.isIpv4(), false);
   });
+  test('Checks if a string is a valid Ipv6', () {
+    var string1 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
+    expect(string1.isIpv6(), true);
+
+    var string2 = '192.168.1.14';
+    expect(string2.isIpv6(), false);
+  });
+  test('Checks if a string is a number', () {
+    var string1 = '45';
+    expect(string1.isNumber(), true);
+
+    var string2 = '45s';
+    expect(string2.isNumber(), false);
+  });
+  test('Do something if string is empty', () {
+    var string1 = '45';
+    expect(string1.ifEmpty(() => 'empty'), '45');
+
+    var string2 = '';
+    expect(string2.ifEmpty(() => 'empty'), 'empty');
+  });
+  test('Repeats the string X times', () {
+    var string1 = 'foo';
+    expect(string1.repeat(0), 'foo');
+
+    var string2 = 'foo';
+    expect(string2.repeat(3), 'foofoofoo');
+  });
   test('Returns first character of the string', () {
     var string = '192.168.1.14';
     expect(string.first(), '1');

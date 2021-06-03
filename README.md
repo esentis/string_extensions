@@ -11,15 +11,19 @@
 
 ---
 
-
 ## Current Methods
 
-* **readTime()**
+* **isGuid()**
 
 ```dart
-String foo =  'Hello dear friend how you doing ?';
-int readTime = foo.readTime() // returns 3 seconds.
-```
+String foo = '6d64-4396-8547-1ec1b86e081e'
+bool isGuid = foo.isGuid() // returns false
+ ```
+
+```dart
+String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
+bool isGuid = foo.isGuid() // returns true
+ ```
 
 * **isMail()**
 
@@ -33,51 +37,115 @@ String foo = 'esentis@esentis'
 bool isMail = foo.isMail() // returns false
 ```
 
-* **onyLetters()**
+* **isIpv4()**
 
 ```dart
-String foo = '4*%^55/es4e5523nt1is';
-String letters = foo.onlyLetters() // returns 'esentis';
-```
-
-* **removeNumbers()**
-
-```dart
-String foo = 'es4e5523nt1is';
-String noNums = foo.removeNumbers() // returns 'esentis'
+String foo = '192.168.1.14';
+bool isIpv4 = foo.isIpv4(); // returns true
 ```
 
 ```dart
-String foo = '1244e*s*4e*5523n*t*1i*s'
-String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+String foo = '192.168.1.14.150.1225';
+bool isIpv4 = foo.isIpv4(); // returns false
 ```
 
-* **countWords()**
+* **isIpv6()**
 
 ```dart
-String foo = 'Hello dear friend how you doing ?';
-int count = foo.countWords() // returns 7 words.
+String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
+bool isIpv6 = foo.isIpv6(); // returns true
 ```
-
-* **capitalize()**
 
 ```dart
-String foo = 'hAckErrR';
-String cFoo = foo.capitalize(); // returns 'Hackerrr'.
+String foo = '92.168.1.14';
+bool isIpv6 = foo.isIpv6(); // returns false
 ```
+
+* **isNumber()**
+
+```dart
+String foo = '44';
+bool isNumber = foo.isNumber(); // returns true
+```
+
+```dart
+String foo = '92.168.1.14';
+bool isNumber = foo.isNumber(); // returns false
+```
+
+* **toStringArray()**
+
+```dart
+String foo = 'abracadabra';
+List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
+ ```
 
 * **toCamelCase()**
 
 ```dart
 String foo = 'Find max of array';
 String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
-```
+ ```
+
+* **toTitleCase()**
+
+```dart
+String foo = 'hello world';
+String fooTitled = foo.toTitleCase(); // returns 'Hello World'
+ ```
+
+* **toSlug()**
+
+```dart
+String foo = 'hello world';
+String fooSlug = foo.toSlug(); // returns 'hello_world'
+ ```
+
+* **onyLetters()**
+
+```dart
+String foo = '4*%^55/es4e5523nt1is';
+String letters = foo.onlyLetters() // returns 'esentis';
+ ```
 
 * **onlyNumbers()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
 String onyNumbers = foo.onlyNumbers() // returns '455455231'
+ ```
+
+* **readTime()**
+
+```dart
+String foo =  'Hello dear friend how you doing ?';
+int readTime = foo.readTime() // returns 3 seconds.
+ ```
+
+* **removeNumbers()**
+
+```dart
+String foo = 'es4e5523nt1is';
+String noNums = foo.removeNumbers() // returns 'esentis'
+ ```
+
+```dart
+String foo = '1244e*s*4e*5523n*t*1i*s'
+String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+ ```
+
+* **countWords()**
+
+```dart
+String foo = 'Hello dear friend how you doing ?';
+int count = foo.countWords() // returns 7 words.
+ ```
+
+* **capitalize()**
+
+```dart
+String foo = 'hAckErrR';
+String cFoo = foo.capitalize(); // returns 'Hackerrr'.
 ```
 
 * **removeLetters()**
@@ -113,25 +181,6 @@ String foo = 'Hello World';
 String reversed = foo.reverse() ; // returns 'dlrow olleH'
 ```
 
-* **isIpv4()**
-
-```dart
-String foo = '192.168.1.14';
-bool isIpv4 = foo.isIpv4(); // returns true
-```
-
-```dart
-String foo = '192.168.1.14.150.1225';
-bool isIpv4 = foo.isIpv4(); // returns false
-```
-
-* **toTitleCase()**
-
-```dart
-String foo = 'hello world';
-String fooTitled = foo.toTitleCase(); // returns 'Hello World'
- ```
-
 * **first()**
 
 ```dart
@@ -145,13 +194,6 @@ String firstChars = foo.first(); // returns 'h'
 String foo = 'hello world';
 String lastChars = foo.last(); // returns 'd'
 ```
-
-* **toSlug()**
-
-```dart
-String foo = 'hello world';
-String fooSlug = foo.toSlug(); // returns 'hello_world'
- ```
 
 * **replaceGreek()**
 
@@ -167,13 +209,6 @@ String foo = 'abracadabra';
 String fooOccs = foo.findPattern(pattern:'abr'); // returns '[0, 7]'
  ```
 
-* **toStringArray()**
-
-```dart
-String foo = 'abracadabra';
-List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
- ```
-
 * **stripHtml()**
 
 ```dart
@@ -181,14 +216,9 @@ String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="
 String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
  ```
 
-* **isGuid()**
+* **repeat(int x)**
 
 ```dart
-String foo = '6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid() // returns false
- ```
-
-```dart
-String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid() // returns true
+String string = 'foo';
+String stripped = foo.repeat(2); // returns 'foofoo'
  ```
