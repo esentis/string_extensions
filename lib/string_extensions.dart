@@ -99,6 +99,48 @@ extension MiscExtensions on String {
     return replaceAll(regex, '');
   }
 
+  /// Returns whether the String is valid IPv4.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = '192.168.1.14';
+  /// bool isIpv4 = foo.isIpv4(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '192.168.1.14.150.1225';
+  /// bool isIpv4 = foo.isIpv4(); // returns false
+  /// ```
+  bool isIpv4() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
+    return regex.hasMatch(this);
+  }
+
+  /// Returns whether the String is valid IPv6.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
+  /// bool isIpv6 = foo.isIpv6(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = '192.168.1.14.150.1225';
+  /// bool isIpv6 = foo.isIpv6(); // returns false
+  /// ```
+  bool isIpv6() {
+    if (isEmpty) {
+      return false;
+    }
+
+    substring(0, 1);
+    var regex = RegExp(
+        r'(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))');
+    return regex.hasMatch(this);
+  }
+
   /// Returns whether the String is mail or not.
   /// ### Example
   /// ```dart
@@ -110,6 +152,66 @@ extension MiscExtensions on String {
       return false;
     }
     var regex = RegExp(r"(^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)");
+    return regex.hasMatch(this);
+  }
+
+  /// Returns whether the String is a number.
+  /// ### Example
+  /// ```dart
+  /// String foo = '45';
+  /// bool isNumber = foo.isNumber(); // returns true
+  /// ```
+  /// ```dart
+  /// String foo = '45s';
+  /// String isNumber = foo.isNumber() // returns false
+  bool isNumber() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(r'^\d+$');
+    return regex.hasMatch(this);
+  }
+
+  /// Returns whether the String is a "strong" password which complies to below rules :
+  ///  * At least 1 uppercase
+  ///  * At least 1 special character
+  ///  * At least 1 number
+  ///  * At least 8 characters in length
+  /// ### Example
+  /// ```dart
+  /// String foo = 'qwerty'
+  /// bool isStrong = foo.isStrongPassword() // returns false
+  /// ```
+  /// ```dart
+  /// String foo = 'IsTh!$Strong'
+  /// bool isStrong = foo.isStrongPassword() // returns true
+  /// ```
+  bool isStrongPassword() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
+    return regex.hasMatch(this);
+  }
+
+  /// Returns whether the String is a valid Guid.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = '6d64-4396-8547-1ec1b86e081e'
+  /// bool isGuid = foo.isGuid() // returns false
+  /// ```
+  /// ```dart
+  /// String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
+  /// bool isGuid = foo.isGuid() // returns true
+  /// ```
+  bool isGuid() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
     return regex.hasMatch(this);
   }
 
@@ -255,28 +357,6 @@ extension MiscExtensions on String {
 
     var letters = split('').toList().reversed;
     return letters.reduce((current, next) => current + next);
-  }
-
-  /// Returns whether the String is valid IPv4.
-  /// ### Example 1
-  /// ```dart
-  /// String foo = '192.168.1.14';
-  /// bool isIpv4 = foo.isIpv4(); // returns true
-  /// ```
-  /// ### Example 2
-  /// ```dart
-  /// String foo = '192.168.1.14.150.1225';
-  /// bool isIpv4 = foo.isIpv4(); // returns false
-  /// ```
-  bool isIpv4() {
-    if (isEmpty) {
-      return false;
-    }
-
-    substring(0, 1);
-    var regex = RegExp(
-        r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
-    return regex.hasMatch(this);
   }
 
   /// Returns the first [n] characters of the string.
@@ -527,46 +607,32 @@ extension MiscExtensions on String {
     return replaceAll(regex, '');
   }
 
-  /// Returns whether the String is a "strong" password which complies to below rules :
-  ///  * At least 1 uppercase
-  ///  * At least 1 special character
-  ///  * At least 1 number
-  ///  * At least 8 characters in length
-  /// ### Example
-  /// ```dart
-  /// String foo = 'qwerty'
-  /// bool isStrong = foo.isStrongPassword() // returns false
-  /// ```
-  /// ```dart
-  /// String foo = 'IsTh!$Strong'
-  /// bool isStrong = foo.isStrongPassword() // returns true
-  /// ```
-  bool isStrongPassword() {
-    if (isEmpty) {
-      return false;
-    }
-    var regex = RegExp(
-        r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
-    return regex.hasMatch(this);
-  }
-
-  /// Returns whether the String is a valid Guid.
+  /// If the provided string is empty do something.
   ///
   /// ### Example
   /// ```dart
-  /// String foo = '6d64-4396-8547-1ec1b86e081e'
-  /// bool isGuid = foo.isGuid() // returns false
+  /// String foo = ''
+  /// foo.ifEmpty(()=>print('String is empty'));
   /// ```
+  String? ifEmpty(Function act) {
+    return isEmpty ? act() : this;
+  }
+
+  /// Repeats a string [count] times.
+  ///
+  /// ### Example
   /// ```dart
-  /// String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
-  /// bool isGuid = foo.isGuid() // returns true
+  /// String foo = 'foo'
+  /// String fooRepeated = foo.repeat(5) // 'foofoofoofoofoo';
   /// ```
-  bool isGuid() {
-    if (isEmpty) {
-      return false;
+  String repeat(int count) {
+    if (isEmpty || count <= 0) {
+      return this;
     }
-    var regex = RegExp(
-        r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
-    return regex.hasMatch(this);
+    var repeated = this;
+    for (var i = 0; i < count - 1; i++) {
+      repeated += this;
+    }
+    return repeated;
   }
 }
