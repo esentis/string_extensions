@@ -143,4 +143,31 @@ void main() {
     var string2 = '887b7923-6d64-4396-8547-1ec1b86e081e';
     expect(string2.isGuid(), true);
   });
+  test('Squeezes a string to a specific character', () {
+    var string1 = 'employee';
+    expect(string1.squeeze('e'), 'employe');
+
+    var string2 = '8recommmmmmendation';
+    expect(string2.squeeze('m'), '8recomendation');
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.squeeze('8'), '8recommmmmmendation');
+
+    var string4 = '8recommmmmmendation                                     ';
+    expect(string4.squeeze(' '), '8recommmmmmendation ');
+  });
+
+  test('Checks if string consisted of same characters', () {
+    var string1 = 'employee';
+    expect(string1.hasSameCharacters(), false);
+
+    var string2 = '1111111';
+    expect(string2.hasSameCharacters(), true);
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.hasSameCharacters(), false);
+
+    var string4 = 'kkkKKKKkkkKKkKkkkkKKK';
+    expect(string4.hasSameCharacters(), true);
+  });
 }

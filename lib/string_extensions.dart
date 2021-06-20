@@ -635,4 +635,47 @@ extension MiscExtensions on String {
     }
     return repeated;
   }
+
+  /// Squeezes the string by removing repeats of a given character.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'foofoofoofoofoo'
+  /// String fooSqueezed = foo.squeeze('o') // 'fofofofofo';
+  /// ```
+  String squeeze(String char) {
+    var sb = '';
+    for (var i = 0; i < length; i++) {
+      if (i == 0 ||
+          this[i - 1] != this[i] ||
+          (this[i - 1] == this[i] && this[i] != char)) {
+        sb += this[i];
+      }
+    }
+    return sb;
+  }
+
+  /// Checks if the string is consisted of same characters (ignores cases).
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'ttttttt'
+  /// bool hasSame1 = foo.hasSameCharacters() // true;
+  /// ```
+  /// ```dart
+  /// String foo = 'ttttttt12'
+  /// bool hasSame2 = foo.hasSameCharacters() // false;
+  /// ```
+  bool hasSameCharacters() {
+    if (length > 1) {
+      var b = this[0].toLowerCase();
+      for (var i = 1; i < length; i++) {
+        var c = this[i].toLowerCase();
+        if (c != b) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 }
