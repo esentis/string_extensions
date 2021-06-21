@@ -183,4 +183,37 @@ void main() {
     var string4 = 'dffasdasd';
     expect(string4.getLevenshtein('employee'), 9);
   });
+  test('Checks if a string is valid URL', () {
+    var string1 = 'employee';
+    expect(string1.isUrl(), false);
+
+    var string2 = '1111111.com';
+    expect(string2.isUrl(), true);
+
+    var string3 = 'http://8recommmmmmendation';
+    expect(string3.isUrl(), false);
+
+    var string4 = 'www.google.com';
+    expect(string4.isUrl(), true);
+
+    var string5 = 'ftp://www.google.com';
+    expect(string5.isUrl(), true);
+  });
+
+  test('Checks if a string is valid Date format', () {
+    var string1 = 'employee';
+    expect(string1.isDate(), false);
+
+    var string2 = '02-02-2020';
+    expect(string2.isDate(), true);
+
+    var string3 = '2020-04-06';
+    expect(string3.isDate(), true);
+
+    var string4 = '02-13-2020';
+    expect(string4.isDate(), false);
+
+    var string5 = '20120227T132700';
+    expect(string5.isDate(), true);
+  });
 }
