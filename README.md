@@ -27,14 +27,11 @@ String foo = 'esentis';
 bool isUrl = foo.isUrl() // 'false';
 ```
 
+- **isDate()**
+
 ```dart
 String foo = 'esentis';
 bool isDate = foo.isDate() // 'false';
-```
-
-```dart
-String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid() // returns true
 ```
 
 - **isMail()**
