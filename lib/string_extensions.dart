@@ -1,3 +1,5 @@
+import 'dart:math';
+
 extension MiscExtensions on String {
   /// Returns the average read time duration of the given String in seconds.
   ///
@@ -99,7 +101,7 @@ extension MiscExtensions on String {
     return replaceAll(regex, '');
   }
 
-  /// Returns whether the String is valid IPv4.
+  /// Checks whether the String is valid IPv4.
   /// ### Example 1
   /// ```dart
   /// String foo = '192.168.1.14';
@@ -119,7 +121,7 @@ extension MiscExtensions on String {
     return regex.hasMatch(this);
   }
 
-  /// Returns whether the String is valid IPv6.
+  /// Checks whether the String is valid IPv6.
   /// ### Example 1
   /// ```dart
   /// String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
@@ -141,7 +143,61 @@ extension MiscExtensions on String {
     return regex.hasMatch(this);
   }
 
-  /// Returns whether the String is mail or not.
+  /// Checks whether the String is valid URL.
+  /// ### Example 1
+  /// ```dart
+  /// String foo = 'foo.1com';
+  /// bool isUrl = foo.isUrl(); // returns false
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'google.com';
+  /// bool isUrl = foo.isUrl(); // returns true
+  /// ```
+  bool isUrl() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
+    return regex.hasMatch(this);
+  }
+
+  /// Checks whether the String is valid Date:
+  ///
+  /// ### Valid formats
+  ///
+  /// * dd/mm/yyyy
+  /// * dd-mm-yyyyy
+  /// * dd.mm.yyyy
+  /// * yyyy-mm-dd
+  /// * yyyy-mm-dd hrs
+  /// * 20120227 13:27:00
+  /// * 20120227T132700
+  /// * 20120227
+  /// * +20120227
+  /// * 2012-02-27T14Z
+  /// * 2012-02-27T14+00:00
+  /// * -123450101 00:00:00 Z": in the year -12345
+  /// * 2002-02-27T14:00:00-0500": Same as "2002-02-27T19:00:00Z
+  bool isDate() {
+    if (isEmpty) {
+      return false;
+    }
+    var regex = RegExp(
+        r'^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$');
+    if (regex.hasMatch(this)) {
+      return true;
+    }
+    try {
+      DateTime.parse(this);
+      return true;
+    } on FormatException {
+      return false;
+    }
+  }
+
+  /// Checks whether the String is a valid mail.
   /// ### Example
   /// ```dart
   /// String foo = 'esentis@esentis.com'
@@ -155,7 +211,7 @@ extension MiscExtensions on String {
     return regex.hasMatch(this);
   }
 
-  /// Returns whether the String is a number.
+  /// Checks whether the String is a number.
   /// ### Example
   /// ```dart
   /// String foo = '45';
@@ -172,7 +228,7 @@ extension MiscExtensions on String {
     return regex.hasMatch(this);
   }
 
-  /// Returns whether the String is a "strong" password which complies to below rules :
+  /// Checks whether the String is a "strong" password which complies to below rules :
   ///  * At least 1 uppercase
   ///  * At least 1 special character
   ///  * At least 1 number
@@ -195,7 +251,7 @@ extension MiscExtensions on String {
     return regex.hasMatch(this);
   }
 
-  /// Returns whether the String is a valid Guid.
+  /// Checks whether the String is a valid Guid.
   ///
   /// ### Example
   /// ```dart
@@ -634,5 +690,93 @@ extension MiscExtensions on String {
       repeated += this;
     }
     return repeated;
+  }
+
+  /// Squeezes the string by removing repeats of a given character.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'foofoofoofoofoo'
+  /// String fooSqueezed = foo.squeeze('o') // 'fofofofofo';
+  /// ```
+  String squeeze(String char) {
+    var sb = '';
+    for (var i = 0; i < length; i++) {
+      if (i == 0 ||
+          this[i - 1] != this[i] ||
+          (this[i - 1] == this[i] && this[i] != char)) {
+        sb += this[i];
+      }
+    }
+    return sb;
+  }
+
+  /// Checks if the string is consisted of same characters (ignores cases).
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'ttttttt'
+  /// bool hasSame1 = foo.hasSameCharacters() // true;
+  /// ```
+  /// ```dart
+  /// String foo = 'ttttttt12'
+  /// bool hasSame2 = foo.hasSameCharacters() // false;
+  /// ```
+  bool hasSameCharacters() {
+    if (length > 1) {
+      var b = this[0].toLowerCase();
+      for (var i = 1; i < length; i++) {
+        var c = this[i].toLowerCase();
+        if (c != b) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  /// Shuffles the given string characters.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'esentis'
+  /// String shuffled = foo.shuffle() // 'tsniees';
+  /// ```
+  String shuffle() {
+    var stringArray = toStringArray();
+    stringArray.shuffle();
+    return stringArray.join();
+  }
+
+  /// The Levenshtein distance between two words is the minimum number of single-character
+  ///
+  /// edits (insertions, deletions or substitutions) required to change one word into the other.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'esentis';
+  /// int dist = foo.getLevenshtein('esentis2') // 1;
+  /// ```
+  int getLevenshtein(String b) {
+    var a = toLowerCase();
+    b = b.toLowerCase();
+    // i == 0
+    var costs = List.filled(b.length + 1, 0);
+    for (var j = 0; j < costs.length; j++) {
+      costs[j] = j;
+    }
+    for (var i = 1; i <= a.length; i++) {
+      // j == 0; nw = lev(i - 1, j)
+      costs[0] = i;
+      var nw = i - 1;
+      for (var j = 1; j <= b.length; j++) {
+        // ignore: omit_local_variable_types
+        int cj = min(1 + min(costs[j], costs[j - 1]),
+            a[i - 1] == b[j - 1] ? nw : nw + 1);
+        nw = costs[j];
+        costs[j] = cj;
+      }
+    }
+    return costs[b.length];
   }
 }

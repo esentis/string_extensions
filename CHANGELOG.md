@@ -1,4 +1,42 @@
-# [0.2.2] - New extensions
+# [0.2.3] - New extensions
+
+Squeezes a string to a character
+
+```dart
+squeeze(String x);
+```
+
+Check if the string is consisted of same characters.
+
+```dart
+hasSameCharacters();
+```
+
+Shuffles the word's letters.
+
+```dart
+shuffle();
+```
+
+Gets the Levenshtein distance of two strings
+
+```dart
+getLevenshtein();
+```
+
+Checks if a string is a valid Url.
+
+```dart
+isUrl();
+```
+
+Checks if a string is a valid Date.
+
+```dart
+isDate();
+```
+
+## [0.2.2] - New extensions
 
 Repeats a string x times
 
@@ -60,13 +98,13 @@ isStrongPassword()
 
 ## [0.1.2] - New extensions & Code refactor
 
-* Adds isEmpty checks on all extensions.
+- Adds isEmpty checks on all extensions.
 
-* Given a string and a pattern, finds the starting indices of all occurrences of the pattern in the string.
+- Given a string and a pattern, finds the starting indices of all occurrences of the pattern in the string.
 
-    ```dart
-    findPattern({required String pattern})
-    ```
+  ```dart
+  findPattern({required String pattern})
+  ```
 
 ## [0.1.1] - New extensions
 
@@ -106,7 +144,7 @@ toTitleCase()
 
 ## Bug fixes
 
-* Methods now correctly remove trailing and leading whitespaces from strings.
+- Methods now correctly remove trailing and leading whitespaces from strings.
 
 ## New extensions
 

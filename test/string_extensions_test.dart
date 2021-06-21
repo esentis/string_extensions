@@ -143,4 +143,77 @@ void main() {
     var string2 = '887b7923-6d64-4396-8547-1ec1b86e081e';
     expect(string2.isGuid(), true);
   });
+  test('Squeezes a string to a specific character', () {
+    var string1 = 'employee';
+    expect(string1.squeeze('e'), 'employe');
+
+    var string2 = '8recommmmmmendation';
+    expect(string2.squeeze('m'), '8recomendation');
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.squeeze('8'), '8recommmmmmendation');
+
+    var string4 = '8recommmmmmendation                                     ';
+    expect(string4.squeeze(' '), '8recommmmmmendation ');
+  });
+
+  test('Checks if string consisted of same characters', () {
+    var string1 = 'employee';
+    expect(string1.hasSameCharacters(), false);
+
+    var string2 = '1111111';
+    expect(string2.hasSameCharacters(), true);
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.hasSameCharacters(), false);
+
+    var string4 = 'kkkKKKKkkkKKkKkkkkKKK';
+    expect(string4.hasSameCharacters(), true);
+  });
+  test('Gets the Levenshtein distance of two strings', () {
+    var string1 = 'employee';
+    expect(string1.getLevenshtein('employee'), 0);
+
+    var string2 = '1111111';
+    expect(string2.getLevenshtein('11111112'), 1);
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.getLevenshtein('8recoammgnmendation'), 3);
+
+    var string4 = 'dffasdasd';
+    expect(string4.getLevenshtein('employee'), 9);
+  });
+  test('Checks if a string is valid URL', () {
+    var string1 = 'employee';
+    expect(string1.isUrl(), false);
+
+    var string2 = '1111111.com';
+    expect(string2.isUrl(), true);
+
+    var string3 = 'http://8recommmmmmendation';
+    expect(string3.isUrl(), false);
+
+    var string4 = 'www.google.com';
+    expect(string4.isUrl(), true);
+
+    var string5 = 'ftp://www.google.com';
+    expect(string5.isUrl(), true);
+  });
+
+  test('Checks if a string is valid Date format', () {
+    var string1 = 'employee';
+    expect(string1.isDate(), false);
+
+    var string2 = '02-02-2020';
+    expect(string2.isDate(), true);
+
+    var string3 = '2020-04-06';
+    expect(string3.isDate(), true);
+
+    var string4 = '02-13-2020';
+    expect(string4.isDate(), false);
+
+    var string5 = '20120227T132700';
+    expect(string5.isDate(), true);
+  });
 }
