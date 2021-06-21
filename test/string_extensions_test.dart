@@ -170,4 +170,17 @@ void main() {
     var string4 = 'kkkKKKKkkkKKkKkkkkKKK';
     expect(string4.hasSameCharacters(), true);
   });
+  test('Gets the Levenshtein distance of two strings', () {
+    var string1 = 'employee';
+    expect(string1.getLevenshtein('employee'), 0);
+
+    var string2 = '1111111';
+    expect(string2.getLevenshtein('11111112'), 1);
+
+    var string3 = '8recommmmmmendation';
+    expect(string3.getLevenshtein('8recoammgnmendation'), 3);
+
+    var string4 = 'dffasdasd';
+    expect(string4.getLevenshtein('employee'), 9);
+  });
 }

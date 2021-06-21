@@ -1,3 +1,5 @@
+import 'dart:math';
+
 extension MiscExtensions on String {
   /// Returns the average read time duration of the given String in seconds.
   ///
@@ -677,5 +679,50 @@ extension MiscExtensions on String {
       }
     }
     return true;
+  }
+
+  /// Shuffles the given string characters.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'esentis'
+  /// String shuffled = foo.shuffle() // 'tsniees';
+  /// ```
+  String shuffle() {
+    var stringArray = toStringArray();
+    stringArray.shuffle();
+    return stringArray.join();
+  }
+
+  /// The Levenshtein distance between two words is the minimum number of single-character
+  ///
+  /// edits (insertions, deletions or substitutions) required to change one word into the other.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'esentis';
+  /// int dist = foo.getLevenshtein('esentis2') // 1;
+  /// ```
+  int getLevenshtein(String b) {
+    var a = toLowerCase();
+    b = b.toLowerCase();
+    // i == 0
+    var costs = List.filled(b.length + 1, 0);
+    for (var j = 0; j < costs.length; j++) {
+      costs[j] = j;
+    }
+    for (var i = 1; i <= a.length; i++) {
+      // j == 0; nw = lev(i - 1, j)
+      costs[0] = i;
+      var nw = i - 1;
+      for (var j = 1; j <= b.length; j++) {
+        // ignore: omit_local_variable_types
+        int cj = min(1 + min(costs[j], costs[j - 1]),
+            a[i - 1] == b[j - 1] ? nw : nw + 1);
+        nw = costs[j];
+        costs[j] = cj;
+      }
+    }
+    return costs[b.length];
   }
 }
