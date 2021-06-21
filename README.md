@@ -13,19 +13,31 @@
 
 ## Current Methods
 
-* **isGuid()**
+- **isGuid()**
 
 ```dart
 String foo = '6d64-4396-8547-1ec1b86e081e'
 bool isGuid = foo.isGuid() // returns false
- ```
+```
+
+- **isUrl()**
+
+```dart
+String foo = 'esentis';
+bool isUrl = foo.isUrl() // 'false';
+```
+
+```dart
+String foo = 'esentis';
+bool isDate = foo.isDate() // 'false';
+```
 
 ```dart
 String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
 bool isGuid = foo.isGuid() // returns true
- ```
+```
 
-* **isMail()**
+- **isMail()**
 
 ```dart
 String foo = 'esentis@esentis.com'
@@ -37,7 +49,7 @@ String foo = 'esentis@esentis'
 bool isMail = foo.isMail() // returns false
 ```
 
-* **isIpv4()**
+- **isIpv4()**
 
 ```dart
 String foo = '192.168.1.14';
@@ -49,7 +61,7 @@ String foo = '192.168.1.14.150.1225';
 bool isIpv4 = foo.isIpv4(); // returns false
 ```
 
-* **isIpv6()**
+- **isIpv6()**
 
 ```dart
 String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
@@ -61,7 +73,7 @@ String foo = '92.168.1.14';
 bool isIpv6 = foo.isIpv6(); // returns false
 ```
 
-* **isNumber()**
+- **isNumber()**
 
 ```dart
 String foo = '44';
@@ -73,82 +85,82 @@ String foo = '92.168.1.14';
 bool isNumber = foo.isNumber(); // returns false
 ```
 
-* **toStringArray()**
+- **toStringArray()**
 
 ```dart
 String foo = 'abracadabra';
 List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
- ```
+```
 
-* **toCamelCase()**
+- **toCamelCase()**
 
 ```dart
 String foo = 'Find max of array';
 String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
- ```
+```
 
-* **toTitleCase()**
+- **toTitleCase()**
 
 ```dart
 String foo = 'hello world';
 String fooTitled = foo.toTitleCase(); // returns 'Hello World'
- ```
+```
 
-* **toSlug()**
+- **toSlug()**
 
 ```dart
 String foo = 'hello world';
 String fooSlug = foo.toSlug(); // returns 'hello_world'
- ```
+```
 
-* **onyLetters()**
+- **onyLetters()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
 String letters = foo.onlyLetters() // returns 'esentis';
- ```
+```
 
-* **onlyNumbers()**
+- **onlyNumbers()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
 String onyNumbers = foo.onlyNumbers() // returns '455455231'
- ```
+```
 
-* **readTime()**
+- **readTime()**
 
 ```dart
 String foo =  'Hello dear friend how you doing ?';
 int readTime = foo.readTime() // returns 3 seconds.
- ```
+```
 
-* **removeNumbers()**
+- **removeNumbers()**
 
 ```dart
 String foo = 'es4e5523nt1is';
 String noNums = foo.removeNumbers() // returns 'esentis'
- ```
+```
 
 ```dart
 String foo = '1244e*s*4e*5523n*t*1i*s'
 String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
- ```
+```
 
-* **countWords()**
+- **countWords()**
 
 ```dart
 String foo = 'Hello dear friend how you doing ?';
 int count = foo.countWords() // returns 7 words.
- ```
+```
 
-* **capitalize()**
+- **capitalize()**
 
 ```dart
 String foo = 'hAckErrR';
 String cFoo = foo.capitalize(); // returns 'Hackerrr'.
 ```
 
-* **removeLetters()**
+- **removeLetters()**
 
 ```dart
 String foo = 'es4e5523nt1is';
@@ -160,65 +172,89 @@ String foo = '1244e*s*4e*5523n*t*1i*s'
 String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
 ```
 
-* **charOccurences()**
+- **charOccurences()**
 
 ```dart
 String foo = 'esentis';
 List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
 ```
 
-* **mostFrequent()**
+- **mostFrequent()**
 
 ```dart
 String foo = 'Hello World';
 String mostFrequent = foo.mostFrequent() // returns 'l'
 ```
 
-* **reverse()**
+- **reverse()**
 
 ```dart
 String foo = 'Hello World';
 String reversed = foo.reverse() ; // returns 'dlrow olleH'
 ```
 
-* **first()**
+- **first()**
 
 ```dart
 String foo = 'hello world';
 String firstChars = foo.first(); // returns 'h'
- ```
+```
 
-* **last()**
+- **last()**
 
- ```dart
+```dart
 String foo = 'hello world';
 String lastChars = foo.last(); // returns 'd'
 ```
 
-* **replaceGreek()**
+- **replaceGreek()**
 
 ```dart
  String foo = 'Αριστοτέλης';
  String fooReplaced = foo.replaceGreek(); // returns 'aristotelis'
- ```
+```
 
-* **findPatterns({required String pattern})**
+- **findPatterns({required String pattern})**
 
 ```dart
 String foo = 'abracadabra';
 String fooOccs = foo.findPattern(pattern:'abr'); // returns '[0, 7]'
- ```
+```
 
-* **stripHtml()**
+- **stripHtml()**
 
 ```dart
 String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
 String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
- ```
+```
 
-* **repeat(int x)**
+- **repeat(int x)**
 
 ```dart
 String string = 'foo';
 String stripped = foo.repeat(2); // returns 'foofoo'
- ```
+```
+
+- **squeeze(String x)**
+
+```dart
+String foo = 'foofoofoofoofoo';
+String fooSqueezed = foo.squeeze('o') // 'fofofofofo';
+```
+
+- **hasSameCharacters()**
+
+```dart
+String foo1 = 'ttttttt';
+bool hasSame1 = foo.hasSameCharacters() // true;
+
+String foo = 'ttttttt12'
+bool hasSame2 = foo.hasSameCharacters() // false;
+```
+
+- **shuffle()**
+
+```dart
+String foo = 'esentis';
+String fooSqueezed = foo.shuffle() // 'teienss';
+```
