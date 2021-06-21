@@ -225,6 +225,13 @@ String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="
 String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
 ```
 
+- **toStringArray()**
+
+```dart
+String word = 'esentis';
+List<String> letters = foo.toStringArray(); // returns '[e,s,e,n,t,i,s]'
+```
+
 - **repeat(int x)**
 
 ```dart
@@ -254,4 +261,11 @@ bool hasSame2 = foo.hasSameCharacters() // false;
 ```dart
 String foo = 'esentis';
 String fooSqueezed = foo.shuffle() // 'teienss';
+```
+
+- **getLevenshtein(String word)**
+
+```dart
+String foo = 'esentis';
+int distance = foo.getLevenshtein('esen') // '3';
 ```
