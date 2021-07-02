@@ -1,4 +1,14 @@
-# [0.2.3] - New extensions
+# [0.2.4] - New extensions
+
+Improves and renames toStringArray (toArray now)
+
+Adds a new extension that counts specific charater occurences in a string.
+
+```dart
+charCount(String char)
+```
+
+## [0.2.3] - New extensions
 
 Squeezes a string to a character
 

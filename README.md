@@ -269,3 +269,10 @@ String fooSqueezed = foo.shuffle() // 'teienss';
 String foo = 'esentis';
 int distance = foo.getLevenshtein('esen') // '3';
 ```
+
+- **charCount(String char)**
+
+```dart
+String foo = 'esentis';
+int distance = foo.charCount('e') // '2';
+```
