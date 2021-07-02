@@ -121,8 +121,12 @@ void main() {
   });
   test('Transforms string to string array', () {
     var string = 'abracadabra';
-    expect(string.toStringArray(),
+    expect(string.toArray(),
         ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
+  });
+  test("Counts a specific character's occurences in a string", () {
+    var string = 'abracadabra';
+    expect(string.charCount('a'), 5);
   });
   test('Strips all html code', () {
     var string =

@@ -359,6 +359,18 @@ extension MiscExtensions on String {
     return occurences;
   }
 
+  /// Finds a specific's character occurence in a string
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'foo';
+  /// int occ = foo.charCount('o') // returns 2
+  /// ```
+  int charCount(String char) {
+    return split('').fold<int>(
+        0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
+  }
+
   /// Finds the most frequent character in the String.
   /// ### Example 1
   /// ```dart
@@ -635,16 +647,11 @@ extension MiscExtensions on String {
   /// String foo = 'abracadabra';
   /// List<String> fooArray = foo.toStringArray(); // returns '[a,b,r,a,c,a,d,a,b,r,a]'
   /// ```
-  List<String> toStringArray() {
+  List<String> toArray() {
     if (isEmpty) {
       return [];
     }
-    // ignore: omit_local_variable_types
-    List<String> characters = [];
-    for (var i = 0; i < length; i++) {
-      characters.add(substring(i, i + 1));
-    }
-    return characters;
+    return split('');
   }
 
   /// Strips all HTML code from String.
@@ -743,7 +750,7 @@ extension MiscExtensions on String {
   /// String shuffled = foo.shuffle() // 'tsniees';
   /// ```
   String shuffle() {
-    var stringArray = toStringArray();
+    var stringArray = toArray();
     stringArray.shuffle();
     return stringArray.join();
   }
