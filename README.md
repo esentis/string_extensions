@@ -27,14 +27,11 @@ String foo = 'esentis';
 bool isUrl = foo.isUrl() // 'false';
 ```
 
+- **isDate()**
+
 ```dart
 String foo = 'esentis';
 bool isDate = foo.isDate() // 'false';
-```
-
-```dart
-String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid() // returns true
 ```
 
 - **isMail()**
@@ -228,6 +225,13 @@ String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="
 String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
 ```
 
+- **toStringArray()**
+
+```dart
+String word = 'esentis';
+List<String> letters = foo.toStringArray(); // returns '[e,s,e,n,t,i,s]'
+```
+
 - **repeat(int x)**
 
 ```dart
@@ -257,4 +261,18 @@ bool hasSame2 = foo.hasSameCharacters() // false;
 ```dart
 String foo = 'esentis';
 String fooSqueezed = foo.shuffle() // 'teienss';
+```
+
+- **getLevenshtein(String word)**
+
+```dart
+String foo = 'esentis';
+int distance = foo.getLevenshtein('esen') // '3';
+```
+
+- **charCount(String char)**
+
+```dart
+String foo = 'esentis';
+int distance = foo.charCount('e') // '2';
 ```
