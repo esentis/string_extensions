@@ -83,6 +83,9 @@ void main() {
 
     var string2 = '45s';
     expect(string2.isNumber(), false);
+
+    var string3 = '45.5';
+    expect(string3.isNumber(), true);
   });
   test('Do something if string is empty', () {
     var string1 = '45';
@@ -109,6 +112,48 @@ void main() {
   test('String should be slug cased', () {
     var string = 'hello world this is esentis';
     expect(string.toSlug(), 'hello_world_this_is_esentis');
+  });
+  test('Converts the string to num', () {
+    var string = '5';
+    expect(string.toNum(), 5);
+
+    var string2 = '5.0';
+    expect(string2.toNum(), 5.0);
+
+    var string3 = '5.0f';
+    expect(string3.toNum(), null);
+
+    var string5 = 'esentis';
+    expect(string5.toNum(), null);
+  });
+  test('Converts the string to int', () {
+    var string = '5';
+    expect(string.toInt(), 5);
+
+    var string2 = '5.4';
+    expect(string2.toInt(), 5);
+
+    var string3 = '5.0f';
+    expect(string3.toInt(), null);
+
+    var string5 = 'esentis';
+    expect(string5.toInt(), null);
+
+    var string6 = '5.6';
+    expect(string6.toInt(), 5);
+  });
+  test('Converts the string to double', () {
+    var string = '5';
+    expect(string.toDouble(), 5.0);
+
+    var string2 = '5.0';
+    expect(string2.toDouble(), 5.0);
+
+    var string3 = '5.0f';
+    expect(string3.toDouble(), null);
+
+    var string5 = 'esentis';
+    expect(string5.toDouble(), null);
   });
   test('Normalizes greek word', () {
     var string = 'Αριστοτέλης';
