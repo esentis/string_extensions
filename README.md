@@ -110,6 +110,45 @@ String foo = 'hello world';
 String fooSlug = foo.toSlug(); // returns 'hello_world'
 ```
 
+- **toNum()**
+
+```dart
+String foo = '5.5';
+double fooNum = foo.toNum(); // returns 5.5
+
+String foo2 = '5';
+int fooNum2 = foo.toNum(); // returns 5
+
+String foo3 = '5f';
+var fooNum2 = foo.toNum(); // returns null
+```
+
+- **toInt()**
+
+```dart
+String foo = '5.6';
+int fooInt = foo.toInt(); // returns  5
+
+String foo2 = '5';
+int fooNum2 = foo.toInt(); // returns 5
+
+String foo3 = '5f';
+var fooNum2 = foo.toInt(); // returns null
+```
+
+- **toDouble()**
+
+```dart
+String foo = '5';
+double fooDouble = foo.toDouble(); // returns 5.0
+
+String foo = '5.5';
+double fooDouble = foo.toDouble(); // returns 5.5
+
+String foo = '5f';
+var fooDouble = foo.toDouble(); // returns null
+```
+
 - **onyLetters()**
 
 ```dart
