@@ -1,4 +1,29 @@
-# [0.2.4] - New extensions
+# [0.3.0] - New extensions & Code improvements
+
+Successfully converts library to extend String? from String.
+Further code optimization and bug fixes.
+
+#### New extensions
+
+Converts the string to a numeric value if possible, else returns null.
+
+```dart
+toNum()
+```
+
+Converts the string to int if possible, else returns null.
+
+```dart
+toInt()
+```
+
+Converts the string to double if possible, else returns null.
+
+```dart
+toDouble()
+```
+
+## [0.2.4] - New extensions
 
 Improves and renames toStringArray (toArray now)
 
