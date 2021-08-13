@@ -1,23 +1,37 @@
-# [0.3.0] - New extensions & Code improvements
+# [0.3.1] - New extensions
 
-Successfully converts library to extend String? from String.
+Checks if a give string is in an `Iterable<String>`.
+
+```dart
+isIn(Iterable<String>)
+```
+
+Formats a `String` with a specific mask.
+
+```dart
+formatWithMask(String mask)
+```
+
+## [0.3.0] - New extensions & Code improvements
+
+Successfully converts library to extend `String?` from `String`.
 Further code optimization and bug fixes.
 
 #### New extensions
 
-Converts the string to a numeric value if possible, else returns null.
+Converts the `String` to a `num` value if possible, else returns `null`.
 
 ```dart
 toNum()
 ```
 
-Converts the string to int if possible, else returns null.
+Converts the `String` to `int` if possible, else returns `null`.
 
 ```dart
 toInt()
 ```
 
-Converts the string to double if possible, else returns null.
+Converts the `String` to `double` if possible, else returns `null`.
 
 ```dart
 toDouble()
@@ -27,7 +41,7 @@ toDouble()
 
 Improves and renames toStringArray (toArray now)
 
-Adds a new extension that counts specific charater occurences in a string.
+Adds a new extension that counts specific charater occurences in a `String`.
 
 ```dart
 charCount(String char)
@@ -35,13 +49,13 @@ charCount(String char)
 
 ## [0.2.3] - New extensions
 
-Squeezes a string to a character
+Squeezes a `String` to a character
 
 ```dart
 squeeze(String x);
 ```
 
-Check if the string is consisted of same characters.
+Check if the `String` is consisted of same characters.
 
 ```dart
 hasSameCharacters();
@@ -53,19 +67,19 @@ Shuffles the word's letters.
 shuffle();
 ```
 
-Gets the Levenshtein distance of two strings
+Gets the Levenshtein distance of two `String`
 
 ```dart
 getLevenshtein();
 ```
 
-Checks if a string is a valid Url.
+Checks if a `String` is a valid `Url`.
 
 ```dart
 isUrl();
 ```
 
-Checks if a string is a valid Date.
+Checks if a `String` is a valid `Date`.
 
 ```dart
 isDate();
@@ -73,19 +87,19 @@ isDate();
 
 ## [0.2.2] - New extensions
 
-Repeats a string x times
+Repeats a `String` x times
 
 ```dart
 repeat(int x);
 ```
 
-Check if the string is a valid Ipv6
+Check if the `String` is a valid Ipv6
 
 ```dart
 isIpv6();
 ```
 
-Check if the string is a number
+Check if the `String` is a `num`
 
 ```dart
 isNumber();
@@ -105,7 +119,7 @@ Some projects were breaking due to they depending on test_api:3.0.0 version.
 
 ## [0.1.4] - New extension
 
-Method to check whether a string is a valid Guid.
+Method to check whether a `String` is a valid `Guid`.
 
 ```dart
 isGuid()
@@ -113,19 +127,19 @@ isGuid()
 
 ## [0.1.3] - New extensions
 
-Method to get a list of characters in a string.
+Method to get a `List<String>` from a `String`.
 
 ```dart
 toStringArray()
 ```
 
-Method to strip all HTML code from a string.
+Method to strip all `HTML` code from a `String`.
 
 ```dart
 stripHtml()
 ```
 
-Method to check whether a string is a strong password.
+Method to check whether a `String` is a strong password.
 
 ```dart
 isStrongPassword()
@@ -135,7 +149,7 @@ isStrongPassword()
 
 - Adds isEmpty checks on all extensions.
 
-- Given a string and a pattern, finds the starting indices of all occurrences of the pattern in the string.
+- Given a `String` and a pattern, finds the starting indices of all occurrences of the pattern in the `String`.
 
   ```dart
   findPattern({required String pattern})
@@ -167,7 +181,7 @@ toSlug()
 
 ## News
 
-Migrates library to null safety.
+Migrates library to `null` safety.
 
 Extension added :
 

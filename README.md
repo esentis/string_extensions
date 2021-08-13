@@ -82,6 +82,14 @@ String foo = '92.168.1.14';
 bool isNumber = foo.isNumber(); // returns false
 ```
 
+- **isIn()**
+
+```dart
+String foo = '6d64-4396-8547-1ec1b86e081e';
+var iterable = ['fff','gasd'];
+bool isIn = foo.isIn(iterable) // returns false
+```
+
 - **toStringArray()**
 
 ```dart
@@ -314,4 +322,12 @@ int distance = foo.getLevenshtein('esen') // '3';
 ```dart
 String foo = 'esentis';
 int distance = foo.charCount('e') // '2';
+```
+
+- **formatWithMask(String mask)**
+
+```dart
+String string = 'esentisgreece';;
+String mask = 'Hello ####### you are from ######';
+String masked = string3.formatWithMask(mask); // returns 'Hello esentis you are from greece'
 ```
