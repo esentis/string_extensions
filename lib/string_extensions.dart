@@ -291,6 +291,23 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
+  /// Checks if the String exists in a given `Iterable<String>`
+  /// ### Example
+  /// ```dart
+  /// String foo = '6d64-4396-8547-1ec1b86e081e'
+  /// var iterable = ['fff','gasd'];
+  /// bool isIn = foo.isIn(iterable) // returns false
+  /// ```
+  bool? isIn(Iterable<String> strings) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return null;
+    }
+    return strings.contains(this);
+  }
+
   /// Returns only the numbers from the String.
   /// ### Example
   /// ```dart
@@ -975,5 +992,39 @@ extension MiscExtensions on String? {
       }
     }
     return costs[b.length];
+  }
+
+  /// Inspired from Vincent van Proosdij
+  /// Formats a String with a specific mask
+  ///
+  /// ### Example
+  /// ```dart
+  ///var string3 = 'esentisgreece';
+  ///var mask3 = 'Hello ####### you are from ######';
+  ///var masked3 = string3.formatWithMask(mask3); // returns 'Hello esentis you are from greece'
+  /// ```
+  String? formatWithMask(String mask) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return null;
+    }
+
+    //var buffer = StringBuffer();
+    var maskChars = mask.toArray();
+    var index = 0;
+    var out = '';
+    for (var m in maskChars!) {
+      if (m == '#') {
+        if (index < this!.length) {
+          out += this![index];
+          index++;
+        }
+      } else {
+        out += m;
+      }
+    }
+    return out;
   }
 }
