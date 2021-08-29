@@ -13,6 +13,17 @@
 
 ## Current Methods
 
+- **You can use `>, >=, <, <=` operators, to compare `String` lengths.**
+
+```dart
+String s1 = 'esentis';
+Stromg s2 = 'dev';
+print(s1 > s2); // prints true
+print(s1 >= s2); // prints true
+print(s1 < s2); // prints false
+print(s1 <= s2); // prints false
+```
+
 - **isGuid()**
 
 ```dart

@@ -1,6 +1,8 @@
 # [0.3.1] - New extensions
 
-Checks if a give string is in an `Iterable<String>`.
+Added `String?` operators `>, >=, <, <=` to compare `String` lengths.
+
+Checks if a given `String` is in an `Iterable<String>`.
 
 ```dart
 isIn(Iterable<String>)
