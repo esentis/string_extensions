@@ -1,6 +1,6 @@
 // Import the test package and Counter class
-import 'package:test/test.dart';
 import 'package:string_extensions/string_extensions.dart';
+import 'package:test/test.dart';
 
 void main() {
   test(
@@ -406,6 +406,17 @@ void main() {
       var mask3 = 'Hello ####### you are from ######';
       expect(
           string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+    },
+  );
+  test(
+    'String operator tests',
+    () {
+      var string1 = 'three';
+      var string2 = 'two';
+      expect(string1 > string2, true);
+      expect(string1 < string2, false);
+      expect(string1 >= string2, true);
+      expect(string1 <= string2, false);
     },
   );
 }

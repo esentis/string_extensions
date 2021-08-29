@@ -1,6 +1,50 @@
 import 'dart:math';
 
 extension MiscExtensions on String? {
+  /// Checks if the [length!] of the String is more than [s]
+  bool? operator >(String s) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return false;
+    }
+    return this!.length > s.length;
+  }
+
+  /// Checks if the [length!] of the String is more or equal to [s]
+  bool? operator >=(String s) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return false;
+    }
+    return this!.length >= s.length;
+  }
+
+  /// Checks if the [length!] of the String is less than [s]
+  bool? operator <(String s) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return false;
+    }
+    return this!.length < s.length;
+  }
+
+  /// Checks if the [length!] of the String is less or equal to [s]
+  bool? operator <=(String s) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return false;
+    }
+    return this!.length <= s.length;
+  }
+
   /// Returns the average read time duration of the given String in seconds.
   ///
   /// The default calculation is based on 200 words per minute.
