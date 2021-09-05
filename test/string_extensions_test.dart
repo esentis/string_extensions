@@ -6,8 +6,8 @@ void main() {
   test(
     'String words are correctly counted',
     () {
-      var string = 'Hello world';
-      expect(string.countWords(), 2);
+      var string = 'Hello world ! dear 4asd';
+      expect(string.countWords(), 4);
     },
   );
   test(

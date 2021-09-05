@@ -89,7 +89,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'Hello dear friend how you doing ?';
-  /// int count = foo.countWords() // returns 7 words.
+  /// int count = foo.countWords() // returns 6 words.
   /// ```
   int? countWords() {
     if (this == null) {
@@ -99,7 +99,9 @@ extension MiscExtensions on String? {
       return 0;
     }
     var words = this!.trim().split(RegExp(r'(\s+)'));
-    return words.length;
+    // We filter out symbols and numbers from the word count
+    var filteredWords = words.where((e) => e.onlyLetters()!.isNotEmpty);
+    return filteredWords.length;
   }
 
   /// Removes only the numbers from the String.
