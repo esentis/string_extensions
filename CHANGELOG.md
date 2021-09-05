@@ -1,18 +1,16 @@
-# [0.3.1] - New extensions
+# [0.3.2] - Bug Fixes
 
-Added `String?` operators `>, >=, <, <=` to compare `String` lengths.
+### Bug fixes
 
-Checks if a given `String` is in an `Iterable<String>`.
+- The `countWords` extension now correctly counts only words, excluding numbers and symbols from words. For example, `Hello 5 2asd friend !` word count will return 3 words.
 
-```dart
-isIn(Iterable<String>)
-```
+## [0.3.1] - New extensions
 
-Formats a `String` with a specific mask.
+- Added `String?` operators `>, >=, <, <=` to compare `String` lengths.
 
-```dart
-formatWithMask(String mask)
-```
+- `isIn(Iterable<String>)`, checks if a given `String` is in an `Iterable<String>`.
+
+- `formatWithMask(String mask)`, formats a `String` with a specific mask.
 
 ## [0.3.0] - New extensions & Code improvements
 
@@ -21,19 +19,19 @@ Further code optimization and bug fixes.
 
 #### New extensions
 
-Converts the `String` to a `num` value if possible, else returns `null`.
+- Converts the `String` to a `num` value if possible, else returns `null`.
 
 ```dart
 toNum()
 ```
 
-Converts the `String` to `int` if possible, else returns `null`.
+- Converts the `String` to `int` if possible, else returns `null`.
 
 ```dart
 toInt()
 ```
 
-Converts the `String` to `double` if possible, else returns `null`.
+- Converts the `String` to `double` if possible, else returns `null`.
 
 ```dart
 toDouble()
@@ -51,37 +49,37 @@ charCount(String char)
 
 ## [0.2.3] - New extensions
 
-Squeezes a `String` to a character
+- Squeezes a `String` to a character
 
 ```dart
 squeeze(String x);
 ```
 
-Check if the `String` is consisted of same characters.
+- Check if the `String` is consisted of same characters.
 
 ```dart
 hasSameCharacters();
 ```
 
-Shuffles the word's letters.
+- Shuffles the word's letters.
 
 ```dart
 shuffle();
 ```
 
-Gets the Levenshtein distance of two `String`
+- Gets the Levenshtein distance of two `String`
 
 ```dart
 getLevenshtein();
 ```
 
-Checks if a `String` is a valid `Url`.
+- Checks if a `String` is a valid `Url`.
 
 ```dart
 isUrl();
 ```
 
-Checks if a `String` is a valid `Date`.
+- Checks if a `String` is a valid `Date`.
 
 ```dart
 isDate();
@@ -89,25 +87,25 @@ isDate();
 
 ## [0.2.2] - New extensions
 
-Repeats a `String` x times
+- Repeats a `String` x times
 
 ```dart
 repeat(int x);
 ```
 
-Check if the `String` is a valid Ipv6
+- Check if the `String` is a valid Ipv6
 
 ```dart
 isIpv6();
 ```
 
-Check if the `String` is a `num`
+- Check if the `String` is a `num`
 
 ```dart
 isNumber();
 ```
 
-An extension that makes easier handling empty strings.
+- An extension that makes easier handling empty strings.
 
 ```dart
 ifEmpty(()=>print('The string is empty'));
@@ -129,19 +127,19 @@ isGuid()
 
 ## [0.1.3] - New extensions
 
-Method to get a `List<String>` from a `String`.
+- Method to get a `List<String>` from a `String`.
 
 ```dart
 toStringArray()
 ```
 
-Method to strip all `HTML` code from a `String`.
+- Method to strip all `HTML` code from a `String`.
 
 ```dart
 stripHtml()
 ```
 
-Method to check whether a `String` is a strong password.
+- Method to check whether a `String` is a strong password.
 
 ```dart
 isStrongPassword()

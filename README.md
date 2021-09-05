@@ -205,7 +205,7 @@ String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
 
 ```dart
 String foo = 'Hello dear friend how you doing ?';
-int count = foo.countWords() // returns 7 words.
+int count = foo.countWords() // returns 6 words.
 ```
 
 - **capitalize()**
