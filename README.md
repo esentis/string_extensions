@@ -17,7 +17,7 @@
 
 ```dart
 String s1 = 'esentis';
-Stromg s2 = 'dev';
+String s2 = 'dev';
 print(s1 > s2); // prints true
 print(s1 >= s2); // prints true
 print(s1 < s2); // prints false
@@ -168,11 +168,18 @@ String foo = '5f';
 var fooDouble = foo.toDouble(); // returns null
 ```
 
-- **onyLetters()**
+- **onlyLatin()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
-String letters = foo.onlyLetters() // returns 'esentis';
+String letters = foo.onlyLatin() // returns 'esentis';
+```
+
+- **onlyGreek()**
+
+```dart
+String foo = '4*%^55/σοφί4e5523nt1isα';
+String letters = foo.onlyLatin() // returns 'σοφία';
 ```
 
 - **onlyNumbers()**
@@ -205,7 +212,7 @@ String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
 
 ```dart
 String foo = 'Hello dear friend how you doing ?';
-int count = foo.countWords() // returns 7 words.
+int count = foo.countWords() // returns 6 words.
 ```
 
 - **capitalize()**

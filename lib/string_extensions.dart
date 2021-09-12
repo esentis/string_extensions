@@ -89,7 +89,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'Hello dear friend how you doing ?';
-  /// int count = foo.countWords() // returns 7 words.
+  /// int count = foo.countWords() // returns 6 words.
   /// ```
   int? countWords() {
     if (this == null) {
@@ -99,7 +99,9 @@ extension MiscExtensions on String? {
       return 0;
     }
     var words = this!.trim().split(RegExp(r'(\s+)'));
-    return words.length;
+    // We filter out symbols and numbers from the word count
+    var filteredWords = words.where((e) => e.onlyLatin()!.isNotEmpty);
+    return filteredWords.length;
   }
 
   /// Removes only the numbers from the String.
@@ -124,13 +126,13 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the letters from the String.
+  /// Returns only the latin characters from the String.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String onlyLetters = foo.onlyLetters() // returns 'esentis'
+  /// String onlyLatin = foo.onlyLatin() // returns 'esentis'
   /// ```
-  String? onlyLetters() {
+  String? onlyLatin() {
     if (this == null) {
       return null;
     }
@@ -138,7 +140,27 @@ extension MiscExtensions on String? {
       return this;
     }
     // ignore: unnecessary_raw_strings
-    var regex = RegExp(r'([^a-zA-Z]+)');
+    var regex = RegExp(r'([^a-zA-Z\s]+)');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Returns only the latin characters from the String.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/σοφ4e5523ια';
+  /// String onlyGreek = foo.onlyGreek() // returns 'σοφια'
+  /// String foo2 = '4*%^55/σοφ4e5523ια aaggαγάπ112η';
+  /// String onlyGreek2 = foo2.onlyGreek(); // returns 'σοφια αγάπη'
+  /// ```
+  String? onlyGreek() {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
     return this!.replaceAll(regex, '');
   }
 
@@ -350,6 +372,42 @@ extension MiscExtensions on String? {
       return null;
     }
     return strings.contains(this);
+  }
+
+  /// Checks if the String has only Latin characters.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'this is a τεστ';
+  /// bool isLatin = foo.isLatin(); // returns false
+  /// String foo2 = 'this is hello world';
+  /// bool isLatin2 = foo2.isLatin(); // returns true
+  /// ```
+  bool? isLatin() {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return null;
+    }
+    return RegExp(r'^[a-zA-Z\s]+$').hasMatch(this!);
+  }
+
+  /// Checks if the String has only Greek characters.
+  /// ### Example
+  /// ```dart
+  /// String foo = 'this is a τεστ';
+  /// bool isLatin = foo.isLatin(); // returns false
+  /// String foo2 = 'Τα αγαθά κόποις κτώνται';
+  /// bool isLatin2 = foo2.isLatin(); // returns true
+  /// ```
+  bool? isGreek() {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return null;
+    }
+    return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
   }
 
   /// Returns only the numbers from the String.
