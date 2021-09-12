@@ -39,10 +39,26 @@ void main() {
     },
   );
   test(
-    'Removes everything but letters',
+    'Removes everything but latin characters',
     () {
       var string = '4*%^55/es4e55?:"///23nt1is';
-      expect(string.onlyLetters(), 'esentis');
+      expect(string.onlyLatin(), 'esentis');
+
+      var string2 = '4*%^55/es4e55?:"///23nt1isαβδα';
+      expect(string2.onlyLatin(), 'esentis');
+
+      var string3 = '4*%^55/es4e55?:"///23nt1isαβδα ma455 ma2231n';
+      expect(string3.onlyLatin(), 'esentis ma man');
+    },
+  );
+  test(
+    'Removes everything but greek characters',
+    () {
+      var string = '4*%^σοφ55ία/es4e55?:"///23nt1is';
+      expect(string.onlyGreek(), 'σοφία');
+
+      var string2 = '4*%^σοφ55ία/es4e55?:"///23nt1is αγάπη';
+      expect(string2.onlyGreek(), 'σοφία αγάπη');
     },
   );
   test(
@@ -149,6 +165,32 @@ void main() {
       var string3 = 'test';
       var array3 = {'45', '66', 'ffff', '2123', 'test'};
       expect(string3.isIn(array3), true);
+    },
+  );
+  test(
+    'Checks if the string has only latin characters',
+    () {
+      var string1 = 'hello friend Γιωργο';
+      expect(string1.isLatin(), false);
+
+      var string2 = 'test world';
+      expect(string2.isLatin(), true);
+
+      var string3 = 'testworld';
+      expect(string3.isLatin(), true);
+    },
+  );
+  test(
+    'Checks if the string has only greek characters',
+    () {
+      var string1 = 'hello friend Γιωργο';
+      expect(string1.isGreek(), false);
+
+      var string2 = 'Τα αγαθα κοποις κτωνται';
+      expect(string2.isGreek(), true);
+
+      var string3 = 'Τα αγαθά κόποις κτώνται';
+      expect(string3.isGreek(), true);
     },
   );
   test(
