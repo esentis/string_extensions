@@ -126,7 +126,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the latin characters from the String.
+  /// Returns only the Latin characters from the String.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
@@ -144,7 +144,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the latin characters from the String.
+  /// Returns only the Greek characters from the String.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/σοφ4e5523ια';
