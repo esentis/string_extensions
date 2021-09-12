@@ -1,7 +1,26 @@
-# [0.3.2] - Bug Fixes
+# [0.3.2] - Bug Fixes & New Extensions
 
-### Bug fixes
+### Bug fixes & New Extensions
 
+- Returns only the Greek characters of the `String`.
+
+```dart
+onlyGreek()
+```
+
+- Checkes whether the `String` has only Latin characters.
+
+```dart
+isLatin()
+```
+
+- Checkes whether the `String` has only Greek characters.
+
+```dart
+isGreek()
+```
+
+- `onlyLetters()` is now `onlyLatin()` characters.
 - The `countWords` extension now correctly counts only words, excluding numbers and symbols from words. For example, `Hello 5 2asd friend !` word count will return 3 words.
 
 ## [0.3.1] - New extensions

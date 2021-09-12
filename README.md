@@ -168,11 +168,18 @@ String foo = '5f';
 var fooDouble = foo.toDouble(); // returns null
 ```
 
-- **onyLetters()**
+- **onlyLatin()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
-String letters = foo.onlyLetters() // returns 'esentis';
+String letters = foo.onlyLatin() // returns 'esentis';
+```
+
+- **onlyGreek()**
+
+```dart
+String foo = '4*%^55/σοφί4e5523nt1isα';
+String letters = foo.onlyLatin() // returns 'σοφία';
 ```
 
 - **onlyNumbers()**
