@@ -345,7 +345,28 @@ int distance = foo.charCount('e') // '2';
 - **formatWithMask(String mask)**
 
 ```dart
-String string = 'esentisgreece';;
+String string = 'esentisgreece';
 String mask = 'Hello ####### you are from ######';
 String masked = string3.formatWithMask(mask); // returns 'Hello esentis you are from greece'
+```
+
+- **removeFirst(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.removeFirst(3) // 'ntis';
+```
+
+- **removeLast(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.removeLast(3) // 'esen';
+```
+
+- **maxChars(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.maxChars(3) // 'esen';
 ```
