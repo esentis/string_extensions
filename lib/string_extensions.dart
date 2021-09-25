@@ -1129,4 +1129,73 @@ extension MiscExtensions on String? {
     }
     return out;
   }
+
+  /// Removes the first [n] characters of the `String`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.removeFirst(3) // 'ntis';
+  /// ```
+  String? removeFirst(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return this;
+    }
+    if (n >= this!.length) {
+      return '';
+    }
+    return this!.substring(n, this!.length);
+  }
+
+  /// Removes the last [n] characters of the `String`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.removeLast(3) // 'esen';
+  /// ```
+  String? removeLast(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return this;
+    }
+    if (n >= this!.length) {
+      return '';
+    }
+    return this!.substring(0, this!.length - n);
+  }
+
+  /// Trims the `String` to have maximum [n] characters.`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.maxChars(3) // 'esen';
+  /// ```
+  String? maxChars(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return '';
+    }
+    if (n >= this!.length) {
+      return this;
+    }
+    return this!.substring(0, n);
+  }
 }

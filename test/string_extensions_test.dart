@@ -461,4 +461,34 @@ void main() {
       expect(string1 <= string2, false);
     },
   );
+  test(
+    'Removes the first n characters of the string',
+    () {
+      var string1 = 'three';
+      expect(string1.removeFirst(3), 'ee');
+      expect(string1.removeFirst(0), 'three');
+      expect(string1.removeFirst(-5), 'three');
+      expect(string1.removeFirst(6), '');
+    },
+  );
+  test(
+    'Removes the last n characters of the string',
+    () {
+      var string1 = 'three';
+      expect(string1.removeLast(3), 'th');
+      expect(string1.removeLast(0), 'three');
+      expect(string1.removeLast(-5), 'three');
+      expect(string1.removeLast(6), '');
+    },
+  );
+  test(
+    'Removes the last n characters of the string',
+    () {
+      var string1 = 'three';
+      expect(string1.maxChars(3), 'thr');
+      expect(string1.maxChars(0), '');
+      expect(string1.maxChars(-5), '');
+      expect(string1.maxChars(6), 'three');
+    },
+  );
 }
