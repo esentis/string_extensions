@@ -1,4 +1,24 @@
-# [0.3.2] - Bug Fixes & New Extensions
+# [0.3.1] - New Extensions
+
+- Removes the first `n` characters of the `String`.
+
+```dart
+removeFirst(int n)
+```
+
+- Removes the last `n` characters of the `String`.
+
+```dart
+removeLast(int n)
+```
+
+- Trims the `String` to have exactly `n` characters. If `n` is larger than the `String` length, the same `String` is returned.
+
+```dart
+maxChars(int n)
+```
+
+## [0.3.2] - Bug Fixes & New Extensions
 
 ### Bug fixes & New Extensions
 
