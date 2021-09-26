@@ -370,3 +370,13 @@ String newFoo = foo.removeLast(3) // 'esen';
 String foo = 'esentis';
 String newFoo = foo.maxChars(3) // 'esen';
 ```
+
+- **reverseSlash(int direction)**
+
+```dart
+String foo1 = 'C:/Documents/user/test';
+String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+
+String foo2 = 'C:\\Documents\\user\\test';
+String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+```

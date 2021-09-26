@@ -18,6 +18,12 @@ removeLast(int n)
 maxChars(int n)
 ```
 
+- Reverses slash provided the slash direction (`int`). 0 for / to \ and 1 for \ to /.
+
+```dart
+reverseSlash(int direction)
+```
+
 ## [0.3.2] - Bug Fixes & New Extensions
 
 ### Bug fixes & New Extensions
