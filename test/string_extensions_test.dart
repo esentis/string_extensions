@@ -491,4 +491,20 @@ void main() {
       expect(string1.maxChars(6), 'three');
     },
   );
+  test(
+    'Reverses slash by providing direction',
+    () {
+      var string1 = 'C:/Documents/user/test';
+      var string2 = 'C:\\Documents\\user\\test';
+      expect(string1.reverseSlash(0), 'C:\\Documents\\user\\test');
+      expect(string1.reverseSlash(1), 'C:/Documents/user/test');
+      expect(string1.reverseSlash(-5), 'C:/Documents/user/test');
+      expect(string1.reverseSlash(6), 'C:/Documents/user/test');
+
+      expect(string2.reverseSlash(0), 'C:\\Documents\\user\\test');
+      expect(string2.reverseSlash(1), 'C:/Documents/user/test');
+      expect(string2.reverseSlash(-5), 'C:\\Documents\\user\\test');
+      expect(string2.reverseSlash(6), 'C:\\Documents\\user\\test');
+    },
+  );
 }

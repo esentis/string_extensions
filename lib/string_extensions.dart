@@ -1198,4 +1198,35 @@ extension MiscExtensions on String? {
     }
     return this!.substring(0, n);
   }
+
+  /// Reverses slash by providing [direction],
+  ///
+  /// `0 = / -> \\`
+  ///
+  /// `1 = \\-> /`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'C:/Documents/user/test';
+  /// String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+  ///
+  /// String foo2 = 'C:\\Documents\\user\\test';
+  /// String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+  /// ```
+  String? reverseSlash(int direction) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    switch (direction) {
+      case 0:
+        return this!.replaceAll('/', '\\');
+      case 1:
+        return this!.replaceAll('\\', '/');
+      default:
+        return this;
+    }
+  }
 }
