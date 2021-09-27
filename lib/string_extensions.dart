@@ -1229,4 +1229,31 @@ extension MiscExtensions on String? {
         return this;
     }
   }
+
+  /// Returns the character at [index]
+  ///
+  /// ###Example
+  ///
+  /// ```dart
+  /// String foo1 = 'esentis';
+  /// String char1 = foo1.charAt(0) // returns 'e'
+  ///
+  /// String foo2 = 'esentis';
+  /// String char2 = foo1.charAt(4) // returns 'n'
+  /// ```
+  String? charAt(int index) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (index > this!.length) {
+      return '';
+    }
+    if (index < 0) {
+      return '';
+    }
+    return this!.split('')[index];
+  }
 }
