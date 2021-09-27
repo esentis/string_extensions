@@ -1,4 +1,4 @@
-# [0.3.1] - New Extensions
+# [0.3.3] - New Extensions
 
 - Removes the first `n` characters of the `String`.
 
