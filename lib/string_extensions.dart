@@ -1236,10 +1236,10 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo1 = 'esentis';
-  /// String char1 = foo1.charAt(0) // returns 'e'
-  ///
-  /// String foo2 = 'esentis';
-  /// String char2 = foo1.charAt(4) // returns 'n'
+  /// String char1 = foo1.charAt(0); // returns 'e'
+  /// String char2 = foo1.charAt(4); // returns 'n'
+  /// String? char3 = foo1.charAt(-20); // returns null
+  /// String? char4 = foo1.charAt(20); // returns null
   /// ```
   String? charAt(int index) {
     if (this == null) {
