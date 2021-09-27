@@ -1249,10 +1249,10 @@ extension MiscExtensions on String? {
       return this;
     }
     if (index > this!.length) {
-      return '';
+      return null;
     }
     if (index < 0) {
-      return '';
+      return null;
     }
     return this!.split('')[index];
   }

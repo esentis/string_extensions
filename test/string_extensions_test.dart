@@ -513,9 +513,9 @@ void main() {
       var string1 = 'esentis';
       expect(string1.charAt(0), 'e');
       expect(string1.charAt(1), 's');
-      expect(string1.charAt(-5), '');
+      expect(string1.charAt(-5), null);
       expect(string1.charAt(6), 's');
-      expect(string1.charAt(12), '');
+      expect(string1.charAt(12), null);
     },
   );
 }
