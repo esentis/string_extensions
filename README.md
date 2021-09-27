@@ -380,3 +380,10 @@ String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
 String foo2 = 'C:\\Documents\\user\\test';
 String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
 ```
+
+- **charAt(int index)**
+
+```dart
+String foo1 = 'esentis';
+String char1 = foo1.charAt(0); // returns 'e'
+```

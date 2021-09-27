@@ -24,6 +24,12 @@ maxChars(int n)
 reverseSlash(int direction)
 ```
 
+- Returns the character at `index`.
+
+```dart
+charAt(int index)
+```
+
 ## [0.3.2] - Bug Fixes & New Extensions
 
 ### Bug fixes & New Extensions
