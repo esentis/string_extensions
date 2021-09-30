@@ -31,6 +31,13 @@ String foo = '6d64-4396-8547-1ec1b86e081e'
 bool isGuid = foo.isGuid() // returns false
 ```
 
+- **isNull()**
+
+```dart
+String foo;
+bool isNull = foo.isNull() // returns true
+```
+
 - **isUrl()**
 
 ```dart
@@ -386,4 +393,32 @@ String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
 ```dart
 String foo1 = 'esentis';
 String char1 = foo1.charAt(0); // returns 'e'
+```
+
+- **ifEmpty(Function act)**
+
+```dart
+String foo1 = '';
+foo1.ifEmpty(()=>'string is empty');
+```
+
+- **ifNull(Function act)**
+
+```dart
+String foo1;
+foo1.ifEmpty(()=>'string is null');
+```
+
+- **append(String suffix)**
+
+```dart
+String foo1 = 'Hello';
+foo1.append(' World'); // returns 'Hello World'
+```
+
+- **toPriceAmount({String? currencySymbol})**
+
+```dart
+String? s2 = '123333333';
+String formatted = s2.toPriceAmount(currencySymbol: '€'); // returns '123.333.333,00 €'
 ```

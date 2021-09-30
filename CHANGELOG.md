@@ -30,6 +30,36 @@ reverseSlash(int direction)
 charAt(int index)
 ```
 
+- Checks if a string is `null`.
+
+```dart
+isNull()
+```
+
+- Do something if a string is `null`.
+
+```dart
+ifNull(Function())
+```
+
+- Provide default value if a string is `null`.
+
+```dart
+defaultValue(String defaultValue)
+```
+
+- Append a `String` at the end of your `String`.
+
+```dart
+append(String suffix)
+```
+
+- Formats the `String` to properly show currency amount.
+
+```dart
+toPriceFormat({String? currencySymbol})
+```
+
 ## [0.3.2] - Bug Fixes & New Extensions
 
 ### Bug fixes & New Extensions
