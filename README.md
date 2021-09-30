@@ -31,6 +31,13 @@ String foo = '6d64-4396-8547-1ec1b86e081e'
 bool isGuid = foo.isGuid() // returns false
 ```
 
+- **isNull()**
+
+```dart
+String foo;
+bool isNull = foo.isNull() // returns true
+```
+
 - **isUrl()**
 
 ```dart
@@ -345,7 +352,73 @@ int distance = foo.charCount('e') // '2';
 - **formatWithMask(String mask)**
 
 ```dart
-String string = 'esentisgreece';;
+String string = 'esentisgreece';
 String mask = 'Hello ####### you are from ######';
 String masked = string3.formatWithMask(mask); // returns 'Hello esentis you are from greece'
+```
+
+- **removeFirst(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.removeFirst(3) // 'ntis';
+```
+
+- **removeLast(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.removeLast(3) // 'esen';
+```
+
+- **maxChars(int n)**
+
+```dart
+String foo = 'esentis';
+String newFoo = foo.maxChars(3) // 'esen';
+```
+
+- **reverseSlash(int direction)**
+
+```dart
+String foo1 = 'C:/Documents/user/test';
+String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+
+String foo2 = 'C:\\Documents\\user\\test';
+String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+```
+
+- **charAt(int index)**
+
+```dart
+String foo1 = 'esentis';
+String char1 = foo1.charAt(0); // returns 'e'
+```
+
+- **ifEmpty(Function act)**
+
+```dart
+String foo1 = '';
+foo1.ifEmpty(()=>'string is empty');
+```
+
+- **ifNull(Function act)**
+
+```dart
+String foo1;
+foo1.ifEmpty(()=>'string is null');
+```
+
+- **append(String suffix)**
+
+```dart
+String foo1 = 'Hello';
+foo1.append(' World'); // returns 'Hello World'
+```
+
+- **toPriceAmount({String? currencySymbol})**
+
+```dart
+String? s2 = '123333333';
+String formatted = s2.toPriceAmount(currencySymbol: '€'); // returns '123.333.333,00 €'
 ```

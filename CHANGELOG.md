@@ -1,4 +1,66 @@
-# [0.3.2] - Bug Fixes & New Extensions
+# [0.3.3] - New Extensions
+
+- Removes the first `n` characters of the `String`.
+
+```dart
+removeFirst(int n)
+```
+
+- Removes the last `n` characters of the `String`.
+
+```dart
+removeLast(int n)
+```
+
+- Trims the `String` to have exactly `n` characters. If `n` is larger than the `String` length, the same `String` is returned.
+
+```dart
+maxChars(int n)
+```
+
+- Reverses slash provided the slash direction (`int`). 0 for / to \ and 1 for \ to /.
+
+```dart
+reverseSlash(int direction)
+```
+
+- Returns the character at `index`.
+
+```dart
+charAt(int index)
+```
+
+- Checks if a string is `null`.
+
+```dart
+isNull()
+```
+
+- Do something if a string is `null`.
+
+```dart
+ifNull(Function())
+```
+
+- Provide default value if a string is `null`.
+
+```dart
+defaultValue(String defaultValue)
+```
+
+- Append a `String` at the end of your `String`.
+
+```dart
+append(String suffix)
+```
+
+- Formats the `String` to properly show currency amount.
+
+```dart
+toPriceFormat({String? currencySymbol})
+```
+
+## [0.3.2] - Bug Fixes & New Extensions
 
 ### Bug fixes & New Extensions
 

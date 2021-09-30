@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
+
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the String is more than [s]
   bool? operator >(String s) {
@@ -126,7 +128,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the latin characters from the String.
+  /// Returns only the Latin characters from the String.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
@@ -144,7 +146,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the latin characters from the String.
+  /// Returns only the Greek characters from the String.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/σοφ4e5523ια';
@@ -162,6 +164,21 @@ extension MiscExtensions on String? {
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
     return this!.replaceAll(regex, '');
+  }
+
+  /// Checks whether the `String` is `null`.
+  /// ### Example 1
+  /// ```dart
+  /// String? foo;
+  /// bool isNull = foo.isNull(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'fff';
+  /// bool isNull = foo.isNull(); // returns false
+  /// ```
+  bool isNull() {
+    return this == null;
   }
 
   /// Checks whether the String is valid IPv4.
@@ -364,7 +381,7 @@ extension MiscExtensions on String? {
   /// var iterable = ['fff','gasd'];
   /// bool isIn = foo.isIn(iterable) // returns false
   /// ```
-  bool? isIn(Iterable<String> strings) {
+  bool? isIn(Iterable<String?> strings) {
     if (this == null) {
       return null;
     }
@@ -962,6 +979,35 @@ extension MiscExtensions on String? {
     return this!.isEmpty ? act() : this;
   }
 
+  /// If the provided `String` is `null` do something.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = ''
+  /// foo.ifEmpty(()=>print('String is null'));
+  /// ```
+  String? ifNull(Function act) {
+    if (this != null) {
+      return this;
+    }
+
+    return act();
+  }
+
+  /// Provide default value if the `String` is `null`.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String? foo = null;
+  /// foo.ifNull('dont be null'); // returns 'dont be null'
+  /// ```
+  String? defaultValue(String defautlValue) {
+    if (this != null) {
+      return this;
+    }
+    return defautlValue;
+  }
+
   /// Repeats a string [count] times.
   ///
   /// ### Example
@@ -1128,5 +1174,180 @@ extension MiscExtensions on String? {
       }
     }
     return out;
+  }
+
+  /// Removes the first [n] characters of the `String`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.removeFirst(3) // 'ntis';
+  /// ```
+  String? removeFirst(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return this;
+    }
+    if (n >= this!.length) {
+      return '';
+    }
+    return this!.substring(n, this!.length);
+  }
+
+  /// Removes the last [n] characters of the `String`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.removeLast(3) // 'esen';
+  /// ```
+  String? removeLast(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return this;
+    }
+    if (n >= this!.length) {
+      return '';
+    }
+    return this!.substring(0, this!.length - n);
+  }
+
+  /// Trims the `String` to have maximum [n] characters.`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'esentis'
+  /// String newFoo = foo.maxChars(3) // 'esen';
+  /// ```
+  String? maxChars(int n) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (n <= 0) {
+      return '';
+    }
+    if (n >= this!.length) {
+      return this;
+    }
+    return this!.substring(0, n);
+  }
+
+  /// Reverses slash by providing [direction],
+  ///
+  /// `0 = / -> \\`
+  ///
+  /// `1 = \\-> /`
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo1 = 'C:/Documents/user/test';
+  /// String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+  ///
+  /// String foo2 = 'C:\\Documents\\user\\test';
+  /// String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+  /// ```
+  String? reverseSlash(int direction) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    switch (direction) {
+      case 0:
+        return this!.replaceAll('/', '\\');
+      case 1:
+        return this!.replaceAll('\\', '/');
+      default:
+        return this;
+    }
+  }
+
+  /// Returns the character at [index]
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo1 = 'esentis';
+  /// String char1 = foo1.charAt(0); // returns 'e'
+  /// String char2 = foo1.charAt(4); // returns 'n'
+  /// String? char3 = foo1.charAt(-20); // returns null
+  /// String? char4 = foo1.charAt(20); // returns null
+  /// ```
+  String? charAt(int index) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (index > this!.length) {
+      return null;
+    }
+    if (index < 0) {
+      return null;
+    }
+    return this!.split('')[index];
+  }
+
+  /// Appends a [suffix] to the `String`
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'hello';
+  /// String newFoo = foo1.append(' world'); // returns 'hello world'
+  /// ```
+  String? append(String suffix) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    return this! + suffix;
+  }
+
+  /// Tries to format the current `String` to price amount. You can pass
+  ///
+  /// you can optionally pass the [currencySymbol] to append a symbol to the formatted text.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String price = '1234567';
+  /// String formattedPrice = foo1.toPriceAmount(currencySymbol: '€'); // returns '12.345,67 €'
+  /// ```
+  String? toPriceAmount({String? currencySymbol}) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    try {
+      var f = NumberFormat.currency(locale: 'el_GR');
+
+      return f
+          .format(double.tryParse(this!.replaceAll(',', '.')))
+          .replaceAll('EUR', '')
+          .trim()
+          .append(currencySymbol == null ? '' : ' $currencySymbol');
+    } catch (e) {
+      return null;
+    }
   }
 }
