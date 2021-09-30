@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
+
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the String is more than [s]
   bool? operator >(String s) {
@@ -162,6 +164,21 @@ extension MiscExtensions on String? {
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
     return this!.replaceAll(regex, '');
+  }
+
+  /// Checks whether the `String` is `null`.
+  /// ### Example 1
+  /// ```dart
+  /// String? foo;
+  /// bool isNull = foo.isNull(); // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'fff';
+  /// bool isNull = foo.isNull(); // returns false
+  /// ```
+  bool isNull() {
+    return this == null;
   }
 
   /// Checks whether the String is valid IPv4.
@@ -364,7 +381,7 @@ extension MiscExtensions on String? {
   /// var iterable = ['fff','gasd'];
   /// bool isIn = foo.isIn(iterable) // returns false
   /// ```
-  bool? isIn(Iterable<String> strings) {
+  bool? isIn(Iterable<String?> strings) {
     if (this == null) {
       return null;
     }
@@ -962,6 +979,35 @@ extension MiscExtensions on String? {
     return this!.isEmpty ? act() : this;
   }
 
+  /// If the provided `String` is `null` do something.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = ''
+  /// foo.ifEmpty(()=>print('String is null'));
+  /// ```
+  String? ifNull(Function act) {
+    if (this != null) {
+      return this;
+    }
+
+    return act();
+  }
+
+  /// Provide default value if the `String` is `null`.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String? foo = null;
+  /// foo.ifNull('dont be null'); // returns 'dont be null'
+  /// ```
+  String? defaultValue(String defautlValue) {
+    if (this != null) {
+      return this;
+    }
+    return defautlValue;
+  }
+
   /// Repeats a string [count] times.
   ///
   /// ### Example
@@ -1232,7 +1278,7 @@ extension MiscExtensions on String? {
 
   /// Returns the character at [index]
   ///
-  /// ###Example
+  /// ### Example
   ///
   /// ```dart
   /// String foo1 = 'esentis';
@@ -1255,5 +1301,53 @@ extension MiscExtensions on String? {
       return null;
     }
     return this!.split('')[index];
+  }
+
+  /// Appends a [suffix] to the `String`
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'hello';
+  /// String newFoo = foo1.append(' world'); // returns 'hello world'
+  /// ```
+  String? append(String suffix) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    return this! + suffix;
+  }
+
+  /// Tries to format the current `String` to price amount. You can pass
+  ///
+  /// you can optionally pass the [currencySymbol] to append a symbol to the formatted text.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String price = '1234567';
+  /// String formattedPrice = foo1.toPriceAmount(currencySymbol: '€'); // returns '12.345,67 €'
+  /// ```
+  String? toPriceAmount({String? currencySymbol}) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    try {
+      var f = NumberFormat.currency(locale: 'el_GR');
+
+      return f
+          .format(double.tryParse(this!.replaceAll(',', '.')))
+          .replaceAll('EUR', '')
+          .trim()
+          .append(currencySymbol == null ? '' : ' $currencySymbol');
+    } catch (e) {
+      return null;
+    }
   }
 }
