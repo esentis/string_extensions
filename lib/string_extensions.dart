@@ -1321,6 +1321,24 @@ extension MiscExtensions on String? {
     return this! + suffix;
   }
 
+  /// Prepends a [prefix] to the `String`
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'world';
+  /// String newFoo = foo1.prepend('hello '); // returns 'hello world'
+  /// ```
+  String? prepend(String prefix) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    return prefix + this!;
+  }
+
   /// Tries to format the current `String` to price amount. You can pass
   ///
   /// you can optionally pass the [currencySymbol] to append a symbol to the formatted text.

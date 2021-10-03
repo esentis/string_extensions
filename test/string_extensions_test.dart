@@ -558,6 +558,13 @@ void main() {
     },
   );
   test(
+    'Prepends a specific text to string',
+    () {
+      String? string1 = ' is trying to be a developer';
+      expect(string1.prepend('esentis'), 'esentis is trying to be a developer');
+    },
+  );
+  test(
     'Formats the string to price amount',
     () {
       String? s1 = '123';
