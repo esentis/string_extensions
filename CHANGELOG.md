@@ -1,4 +1,12 @@
-# [0.3.3] - New Extensions
+# [0.3.4] - New Extensions
+
+- Add a `String` at the beginning of your `String`.
+
+```dart
+prepend(String prefix)
+```
+
+## [0.3.3] - New Extensions
 
 - Removes the first `n` characters of the `String`.
 

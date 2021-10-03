@@ -416,6 +416,13 @@ String foo1 = 'Hello';
 foo1.append(' World'); // returns 'Hello World'
 ```
 
+- **prepend(String prefix)**
+
+```dart
+String foo1 = 'World';
+foo1.prepend('Hello'); // returns 'Hello World'
+```
+
 - **toPriceAmount({String? currencySymbol})**
 
 ```dart
