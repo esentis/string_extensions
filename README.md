@@ -28,35 +28,35 @@ print(s1 <= s2); // prints false
 
 ```dart
 String foo = '6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid() // returns false
+bool isGuid = foo.isGuid(); // returns false
 ```
 
 - **isNull()**
 
 ```dart
 String foo;
-bool isNull = foo.isNull() // returns true
+bool isNull = foo.isNull(); // returns true
 ```
 
 - **isUrl()**
 
 ```dart
 String foo = 'esentis';
-bool isUrl = foo.isUrl() // 'false';
+bool isUrl = foo.isUrl(); // 'false';
 ```
 
 - **isDate()**
 
 ```dart
 String foo = 'esentis';
-bool isDate = foo.isDate() // 'false';
+bool isDate = foo.isDate(); // 'false';
 ```
 
 - **isMail()**
 
 ```dart
-String foo = 'esentis@esentis.com'
-bool isMail = foo.isMail() // returns true
+String foo = 'esentis@esentis.com';
+bool isMail = foo.isMail(); // returns true
 ```
 
 ```dart
@@ -105,7 +105,7 @@ bool isNumber = foo.isNumber(); // returns false
 ```dart
 String foo = '6d64-4396-8547-1ec1b86e081e';
 var iterable = ['fff','gasd'];
-bool isIn = foo.isIn(iterable) // returns false
+bool isIn = foo.isIn(iterable); // returns false
 ```
 
 - **toStringArray()**
@@ -179,87 +179,87 @@ var fooDouble = foo.toDouble(); // returns null
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
-String letters = foo.onlyLatin() // returns 'esentis';
+String letters = foo.onlyLatin(); // returns 'esentis';
 ```
 
 - **onlyGreek()**
 
 ```dart
 String foo = '4*%^55/σοφί4e5523nt1isα';
-String letters = foo.onlyLatin() // returns 'σοφία';
+String letters = foo.onlyLatin(); // returns 'σοφία';
 ```
 
 - **onlyNumbers()**
 
 ```dart
 String foo = '4*%^55/es4e5523nt1is';
-String onyNumbers = foo.onlyNumbers() // returns '455455231'
+String onyNumbers = foo.onlyNumbers(); // returns '455455231'
 ```
 
 - **readTime()**
 
 ```dart
 String foo =  'Hello dear friend how you doing ?';
-int readTime = foo.readTime() // returns 3 seconds.
+int readTime = foo.readTime(); // returns 3 seconds.
 ```
 
 - **removeNumbers()**
 
 ```dart
 String foo = 'es4e5523nt1is';
-String noNums = foo.removeNumbers() // returns 'esentis'
+String noNums = foo.removeNumbers(); // returns 'esentis'
 ```
 
 ```dart
-String foo = '1244e*s*4e*5523n*t*1i*s'
-String noNums = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+String foo = '1244e*s*4e*5523n*t*1i*s';
+String noNums = foo.removeNumbers(); // returns 'e*s*e*n*t*i*s'
 ```
 
 - **countWords()**
 
 ```dart
 String foo = 'Hello dear friend how you doing ?';
-int count = foo.countWords() // returns 6 words.
+int count = foo.countWords(); // returns 6 words.
 ```
 
 - **capitalize()**
 
 ```dart
 String foo = 'hAckErrR';
-String cFoo = foo.capitalize(); // returns 'Hackerrr'.
+String cFoo = foo.capitalize();; // returns 'Hackerrr'.
 ```
 
 - **removeLetters()**
 
 ```dart
 String foo = 'es4e5523nt1is';
-String noLetters = foo.removeLetters() // returns '455231'
+String noLetters = foo.removeLetters(); // returns '455231'
 ```
 
 ```dart
-String foo = '1244e*s*4e*5523n*t*1i*s'
-String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
+String foo = '1244e*s*4e*5523n*t*1i*s';
+String noLetters = foo.removeLetters();// returns '1244**4*5523**1*'
 ```
 
 - **charOccurences()**
 
 ```dart
 String foo = 'esentis';
-List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+List occurences = foo.charOccurences(); // returns '[{e:2},{i:1},{n:1},{s:2},]'
 ```
 
 - **mostFrequent()**
 
 ```dart
 String foo = 'Hello World';
-String mostFrequent = foo.mostFrequent() // returns 'l'
+String mostFrequent = foo.mostFrequent(); // returns 'l'
 ```
 
 - **reverse()**
 
 ```dart
 String foo = 'Hello World';
-String reversed = foo.reverse() ; // returns 'dlrow olleH'
+String reversed = foo.reverse(); // returns 'dlrow olleH'
 ```
 
 - **first()**
@@ -315,38 +315,38 @@ String stripped = foo.repeat(2); // returns 'foofoo'
 
 ```dart
 String foo = 'foofoofoofoofoo';
-String fooSqueezed = foo.squeeze('o') // 'fofofofofo';
+String fooSqueezed = foo.squeeze('o'); // 'fofofofofo';
 ```
 
 - **hasSameCharacters()**
 
 ```dart
 String foo1 = 'ttttttt';
-bool hasSame1 = foo.hasSameCharacters() // true;
+bool hasSame1 = foo.hasSameCharacters(); // true;
 
 String foo = 'ttttttt12'
-bool hasSame2 = foo.hasSameCharacters() // false;
+bool hasSame2 = foo.hasSameCharacters(); // false;
 ```
 
 - **shuffle()**
 
 ```dart
 String foo = 'esentis';
-String fooSqueezed = foo.shuffle() // 'teienss';
+String fooSqueezed = foo.shuffle(); // 'teienss';
 ```
 
 - **getLevenshtein(String word)**
 
 ```dart
 String foo = 'esentis';
-int distance = foo.getLevenshtein('esen') // '3';
+int distance = foo.getLevenshtein('esen'); // '3';
 ```
 
 - **charCount(String char)**
 
 ```dart
 String foo = 'esentis';
-int distance = foo.charCount('e') // '2';
+int distance = foo.charCount('e'); // '2';
 ```
 
 - **formatWithMask(String mask)**
@@ -361,31 +361,31 @@ String masked = string3.formatWithMask(mask); // returns 'Hello esentis you are 
 
 ```dart
 String foo = 'esentis';
-String newFoo = foo.removeFirst(3) // 'ntis';
+String newFoo = foo.removeFirst(3); // 'ntis';
 ```
 
 - **removeLast(int n)**
 
 ```dart
 String foo = 'esentis';
-String newFoo = foo.removeLast(3) // 'esen';
+String newFoo = foo.removeLast(3); // 'esen';
 ```
 
 - **maxChars(int n)**
 
 ```dart
 String foo = 'esentis';
-String newFoo = foo.maxChars(3) // 'esen';
+String newFoo = foo.maxChars(3); // 'esen';
 ```
 
 - **reverseSlash(int direction)**
 
 ```dart
 String foo1 = 'C:/Documents/user/test';
-String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+String revFoo1 = foo1.reverseSlash(0); // returns 'C:\Documents\user\test'
 
 String foo2 = 'C:\\Documents\\user\\test';
-String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+String revFoo2 = foo1.reverseSlash(1); // returns 'C:/Documents/user/test'
 ```
 
 - **charAt(int index)**
