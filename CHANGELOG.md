@@ -1,5 +1,7 @@
 # [0.3.4] - New Extensions
 
+- `formatWithMask` now accepts optional parameter `specialChar` which defaults to '#'
+
 - Add a `String` at the beginning of your `String`.
 
 ```dart
