@@ -479,6 +479,11 @@ void main() {
       String? mask3 = 'Hello ####### you are from ######';
       expect(
           string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+
+      String? string4 = '1234567812345678';
+      String? mask4 = '**** **** **** ****';
+      expect(string4.formatWithMask(mask4, specialChar: '*'),
+          '1234 5678 1234 5678');
     },
   );
   test(

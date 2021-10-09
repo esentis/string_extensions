@@ -1143,7 +1143,9 @@ extension MiscExtensions on String? {
   }
 
   /// Inspired from Vincent van Proosdij
-  /// Formats a String with a specific mask
+  /// Formats a String with a specific mask.
+  ///
+  /// You can assign your own [specialChar], defaults to '#'.
   ///
   /// ### Example
   /// ```dart
@@ -1151,7 +1153,7 @@ extension MiscExtensions on String? {
   ///var mask3 = 'Hello ####### you are from ######';
   ///var masked3 = string3.formatWithMask(mask3); // returns 'Hello esentis you are from greece'
   /// ```
-  String? formatWithMask(String mask) {
+  String? formatWithMask(String mask, {String specialChar = '#'}) {
     if (this == null) {
       return null;
     }
@@ -1164,7 +1166,7 @@ extension MiscExtensions on String? {
     var index = 0;
     var out = '';
     for (var m in maskChars!) {
-      if (m == '#') {
+      if (m == specialChar) {
         if (index < this!.length) {
           out += this![index];
           index++;
