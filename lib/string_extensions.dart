@@ -55,7 +55,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo =  'Hello dear friend how you doing ?';
-  /// int readTime = foo.readTime() // returns 3 seconds.
+  /// int readTime = foo.readTime(); // returns 3 seconds.
   /// ```
   int? readTime({int wordsPerMinute = 200}) {
     if (this == null) {
@@ -91,7 +91,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'Hello dear friend how you doing ?';
-  /// int count = foo.countWords() // returns 6 words.
+  /// int count = foo.countWords(); // returns 6 words.
   /// ```
   int? countWords() {
     if (this == null) {
@@ -110,12 +110,12 @@ extension MiscExtensions on String? {
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
-  /// String noNumbers = foo.removeNumbers() // returns 'esentis'
+  /// String noNumbers = foo.removeNumbers(); // returns 'esentis'
   /// ```
   /// ### Example 2
   /// ```dart
-  /// String foo = '1244e*s*4e*5523n*t*1i*s'
-  /// String noNumbers = foo.removeNumbers() // returns 'e*s*e*n*t*i*s'
+  /// String foo = '1244e*s*4e*5523n*t*1i*s';
+  /// String noNumbers = foo.removeNumbers(); // returns 'e*s*e*n*t*i*s'
   /// ```
   String? removeNumbers() {
     if (this == null) {
@@ -132,7 +132,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String onlyLatin = foo.onlyLatin() // returns 'esentis'
+  /// String onlyLatin = foo.onlyLatin(); // returns 'esentis'
   /// ```
   String? onlyLatin() {
     if (this == null) {
@@ -150,7 +150,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/σοφ4e5523ια';
-  /// String onlyGreek = foo.onlyGreek() // returns 'σοφια'
+  /// String onlyGreek = foo.onlyGreek(); // returns 'σοφια'
   /// String foo2 = '4*%^55/σοφ4e5523ια aaggαγάπ112η';
   /// String onlyGreek2 = foo2.onlyGreek(); // returns 'σοφια αγάπη'
   /// ```
@@ -292,8 +292,8 @@ extension MiscExtensions on String? {
   /// Checks whether the String is a valid mail.
   /// ### Example
   /// ```dart
-  /// String foo = 'esentis@esentis.com'
-  /// bool isMail = foo.isMail() // returns true
+  /// String foo = 'esentis@esentis.com';
+  /// bool isMail = foo.isMail(); // returns true
   /// ```
   bool? isMail() {
     if (this == null) {
@@ -314,7 +314,7 @@ extension MiscExtensions on String? {
   /// ```
   /// ```dart
   /// String foo = '45s';
-  /// String isNumber = foo.isNumber() // returns false
+  /// String isNumber = foo.isNumber(); // returns false
   bool? isNumber() {
     if (this == null) {
       return null;
@@ -332,12 +332,12 @@ extension MiscExtensions on String? {
   ///  * At least 8 characters in length
   /// ### Example
   /// ```dart
-  /// String foo = 'qwerty'
-  /// bool isStrong = foo.isStrongPassword() // returns false
+  /// String foo = 'qwerty';
+  /// bool isStrong = foo.isStrongPassword(); // returns false
   /// ```
   /// ```dart
-  /// String foo = 'IsTh!$Strong'
-  /// bool isStrong = foo.isStrongPassword() // returns true
+  /// String foo = 'IsTh!$Strong';
+  /// bool isStrong = foo.isStrongPassword(); // returns true
   /// ```
   bool? isStrongPassword() {
     if (this == null) {
@@ -355,12 +355,12 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = '6d64-4396-8547-1ec1b86e081e'
-  /// bool isGuid = foo.isGuid() // returns false
+  /// String foo = '6d64-4396-8547-1ec1b86e081e';
+  /// bool isGuid = foo.isGuid(); // returns false
   /// ```
   /// ```dart
-  /// String foo = '887b7923-6d64-4396-8547-1ec1b86e081e'
-  /// bool isGuid = foo.isGuid() // returns true
+  /// String foo = '887b7923-6d64-4396-8547-1ec1b86e081e';
+  /// bool isGuid = foo.isGuid(); // returns true
   /// ```
   bool? isGuid() {
     if (this == null) {
@@ -377,9 +377,9 @@ extension MiscExtensions on String? {
   /// Checks if the String exists in a given `Iterable<String>`
   /// ### Example
   /// ```dart
-  /// String foo = '6d64-4396-8547-1ec1b86e081e'
+  /// String foo = '6d64-4396-8547-1ec1b86e081e';
   /// var iterable = ['fff','gasd'];
-  /// bool isIn = foo.isIn(iterable) // returns false
+  /// bool isIn = foo.isIn(iterable); // returns false
   /// ```
   bool? isIn(Iterable<String?> strings) {
     if (this == null) {
@@ -431,7 +431,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
-  /// String onyNumbers = foo.onlyNumbers() // returns '455455231'
+  /// String onyNumbers = foo.onlyNumbers(); // returns '455455231'
   /// ```
   String? onlyNumbers() {
     if (this == null) {
@@ -449,12 +449,12 @@ extension MiscExtensions on String? {
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
-  /// String noLetters = foo.removeLetters() // returns '455231'
+  /// String noLetters = foo.removeLetters(); // returns '455231'
   /// ```
   /// ### Example 2
   /// ```dart
-  /// String foo = '1244e*s*4e*5523n*t*1i*s'
-  /// String noLetters = foo.removeLetters() // returns '1244**4*5523**1*'
+  /// String foo = '1244e*s*4e*5523n*t*1i*s';
+  /// String noLetters = foo.removeLetters(); // returns '1244**4*5523**1*'
   /// ```
   String? removeLetters() {
     if (this == null) {
@@ -475,7 +475,7 @@ extension MiscExtensions on String? {
   /// ### Example 1
   /// ```dart
   /// String foo = 'esentis';
-  /// List occurences = foo.charOccurences() // returns '[{e:2},{i:1},{n:1},{s:2},]'
+  /// List occurences = foo.charOccurences(); // returns '[{e:2},{i:1},{n:1},{s:2},]'
   /// ```
   List<Map<String, int>>? charOccurences() {
     if (this == null) {
@@ -511,7 +511,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'foo';
-  /// int occ = foo.charCount('o') // returns 2
+  /// int occ = foo.charCount('o'); // returns 2
   /// ```
   int? charCount(String char) {
     if (this == null) {
@@ -528,7 +528,7 @@ extension MiscExtensions on String? {
   /// ### Example 1
   /// ```dart
   /// String foo = 'Hello World';
-  /// String mostFrequent = foo.mostFrequent() // returns 'l'
+  /// String mostFrequent = foo.mostFrequent(); // returns 'l'
   /// ```
   String? mostFrequent() {
     if (this == null) {
@@ -571,7 +571,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'Hello World';
-  /// String reversed = foo.reverse() ; // returns 'dlrow olleH'
+  /// String reversed = foo.reverse(); // returns 'dlrow olleH'
   /// ```
   String? reverse() {
     if (this == null) {
@@ -686,7 +686,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'Find max of array';
-  /// String camelCase = foo.toCamelCase() // returns 'findMaxOfArray'
+  /// String camelCase = foo.toCamelCase(); // returns 'findMaxOfArray'
   /// ```
   String? toCamelCase() {
     if (this == null) {
@@ -708,7 +708,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = 'Hello dear friend how you doing ?';
-  /// Sting titleCased = foo.toTitleCase() // returns 'Hello Dear Friend How You Doing'.
+  /// Sting titleCased = foo.toTitleCase(); // returns 'Hello Dear Friend How You Doing'.
   /// ```
   String? toTitleCase() {
     if (this == null) {
@@ -950,7 +950,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
-  /// String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.'
+  /// String stripped = foo.stripHtml(); // returns 'Hacky hacky. Here is some text. This is bold.';
   /// ```
   String? stripHtml() {
     if (this == null) {
@@ -968,7 +968,7 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = ''
+  /// String foo = '';
   /// foo.ifEmpty(()=>print('String is empty'));
   /// ```
   String? ifEmpty(Function act) {
@@ -1012,8 +1012,8 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = 'foo'
-  /// String fooRepeated = foo.repeat(5) // 'foofoofoofoofoo';
+  /// String foo = 'foo';
+  /// String fooRepeated = foo.repeat(5); // 'foofoofoofoofoo'
   /// ```
   String? repeat(int count) {
     if (this == null) {
@@ -1034,8 +1034,8 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = 'foofoofoofoofoo'
-  /// String fooSqueezed = foo.squeeze('o') // 'fofofofofo';
+  /// String foo = 'foofoofoofoofoo';
+  /// String fooSqueezed = foo.squeeze('o'); // 'fofofofofo';
   /// ```
   String? squeeze(String char) {
     if (this == null) {
@@ -1060,11 +1060,11 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo1 = 'ttttttt'
-  /// bool hasSame1 = foo.hasSameCharacters() // true;
+  /// bool hasSame1 = foo.hasSameCharacters(); // true;
   /// ```
   /// ```dart
   /// String foo = 'ttttttt12'
-  /// bool hasSame2 = foo.hasSameCharacters() // false;
+  /// bool hasSame2 = foo.hasSameCharacters();  // false;
   /// ```
   bool? hasSameCharacters() {
     if (this == null) {
@@ -1089,8 +1089,8 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo1 = 'esentis'
-  /// String shuffled = foo.shuffle() // 'tsniees';
+  /// String foo1 = 'esentis';
+  /// String shuffled = foo.shuffle(); // 'tsniees'
   /// ```
   String? shuffle() {
     if (this == null) {
@@ -1111,7 +1111,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo1 = 'esentis';
-  /// int dist = foo.getLevenshtein('esentis2') // 1;
+  /// int dist = foo.getLevenshtein('esentis2'); // 1
   /// ```
   int? getLevenshtein(String b) {
     if (this == null) {
@@ -1205,8 +1205,8 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = 'esentis'
-  /// String newFoo = foo.removeLast(3) // 'esen';
+  /// String foo = 'esentis';
+  /// String newFoo = foo.removeLast(3); // 'esen';
   /// ```
   String? removeLast(int n) {
     if (this == null) {
@@ -1228,8 +1228,8 @@ extension MiscExtensions on String? {
   ///
   /// ### Example
   /// ```dart
-  /// String foo = 'esentis'
-  /// String newFoo = foo.maxChars(3) // 'esen';
+  /// String foo = 'esentis';
+  /// String newFoo = foo.maxChars(3); // 'esen';
   /// ```
   String? maxChars(int n) {
     if (this == null) {
@@ -1256,10 +1256,10 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo1 = 'C:/Documents/user/test';
-  /// String revFoo1 = foo1.reverseSlash(0) // returns 'C:\Documents\user\test'
+  /// String revFoo1 = foo1.reverseSlash(0); // returns 'C:\Documents\user\test'
   ///
   /// String foo2 = 'C:\\Documents\\user\\test';
-  /// String revFoo2 = foo1.reverseSlash(1) // returns 'C:/Documents/user/test'
+  /// String revFoo2 = foo1.reverseSlash(1); // returns 'C:/Documents/user/test'
   /// ```
   String? reverseSlash(int direction) {
     if (this == null) {
