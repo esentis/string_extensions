@@ -14,7 +14,7 @@
 
 ## Current Methods
 
-- **You can use `>, >=, <, <=` operators, to compare `String` lengths.**
+- **You can use `>, >=, <, <=` operators, to compare `String` lengths. Also `-` to subtract a text from a `String`**
 
 ```dart
 String s1 = 'esentis';
@@ -23,6 +23,7 @@ print(s1 > s2); // prints true
 print(s1 >= s2); // prints true
 print(s1 < s2); // prints false
 print(s1 <= s2); // prints false
+print(s1-'tis'); // prints 'esen'
 ```
 
 - **isGuid()**
