@@ -47,6 +47,17 @@ extension MiscExtensions on String? {
     return this!.length <= s.length;
   }
 
+  /// Subtracts-removes a text from a `String`
+  String? operator -(String s) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    return this!.replaceAll(s, '');
+  }
+
   /// Returns the average read time duration of the given String in seconds.
   ///
   /// The default calculation is based on 200 words per minute.

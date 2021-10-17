@@ -491,10 +491,15 @@ void main() {
     () {
       String? string1 = 'three';
       String? string2 = 'two';
+      String? string3 = 'esentis is the best';
+
       expect(string1 > string2, true);
       expect(string1 < string2, false);
       expect(string1 >= string2, true);
       expect(string1 <= string2, false);
+      expect(string3 - 'esentis', ' is the best');
+      expect('esentis' - 'esen', 'tis');
+      expect('esen' - 'esentis', 'esen');
     },
   );
   test(
