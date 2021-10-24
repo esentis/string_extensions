@@ -479,6 +479,11 @@ void main() {
       String? mask3 = 'Hello ####### you are from ######';
       expect(
           string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+
+      String? string4 = '1234567812345678';
+      String? mask4 = '**** **** **** ****';
+      expect(string4.formatWithMask(mask4, specialChar: '*'),
+          '1234 5678 1234 5678');
     },
   );
   test(
@@ -486,10 +491,15 @@ void main() {
     () {
       String? string1 = 'three';
       String? string2 = 'two';
+      String? string3 = 'esentis is the best';
+
       expect(string1 > string2, true);
       expect(string1 < string2, false);
       expect(string1 >= string2, true);
       expect(string1 <= string2, false);
+      expect(string3 - 'esentis', ' is the best');
+      expect('esentis' - 'esen', 'tis');
+      expect('esen' - 'esentis', 'esen');
     },
   );
   test(
@@ -558,6 +568,13 @@ void main() {
     },
   );
   test(
+    'Prepends a specific text to string',
+    () {
+      String? string1 = ' is trying to be a developer';
+      expect(string1.prepend('esentis'), 'esentis is trying to be a developer');
+    },
+  );
+  test(
     'Formats the string to price amount',
     () {
       String? s1 = '123';
@@ -580,6 +597,17 @@ void main() {
       expect(s9.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
       String? s10 = '-01245';
       expect(s10.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
+    },
+  );
+  test(
+    'Gets the day name of the date',
+    () {
+      String date1 = DateTime(1988, 8, 27).toString();
+      expect(date1.getDayFromDate(), 'Saturday');
+      expect(date1.getDayFromDate(locale: 'el'), 'Σάββατο');
+      expect(date1.getDayFromDate(locale: 'es'), 'sábado');
+      expect(date1.getDayFromDate(locale: 'az'), 'şənbə');
+      expect(date1.getDayFromDate(locale: 'ka'), 'შაბათი');
     },
   );
 }
