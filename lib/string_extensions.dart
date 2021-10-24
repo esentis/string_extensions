@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
@@ -1380,5 +1381,35 @@ extension MiscExtensions on String? {
     } catch (e) {
       return null;
     }
+  }
+
+  /// Returns the day name of the date provided.
+  ///
+  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
+  ///
+  /// You can provide the [locale] to filter the result to a specific language.
+  ///
+  /// Defaults to 'en-US'.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String date = '2021-10-23';
+  /// String day = date.getDayFromDate(); // returns 'Saturday'
+  /// String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
+  /// ```
+  String? getDayFromDate({String locale = 'en'}) {
+    initializeDateFormatting(locale);
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    var date = DateTime.tryParse(this!);
+    if (date == null) {
+      return null;
+    }
+    return DateFormat('EEEE', locale).format(date).toString();
   }
 }

@@ -599,4 +599,15 @@ void main() {
       expect(s10.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
     },
   );
+  test(
+    'Gets the day name of the date',
+    () {
+      String date1 = DateTime(1988, 8, 27).toString();
+      expect(date1.getDayFromDate(), 'Saturday');
+      expect(date1.getDayFromDate(locale: 'el'), 'Σάββατο');
+      expect(date1.getDayFromDate(locale: 'es'), 'sábado');
+      expect(date1.getDayFromDate(locale: 'az'), 'şənbə');
+      expect(date1.getDayFromDate(locale: 'ka'), 'შაბათი');
+    },
+  );
 }
