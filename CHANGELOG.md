@@ -9,6 +9,13 @@ prepend(String prefix)
 ```
 
 - Adds `-` operator subtracting a text from a `String`
+- Returns the day name of the `DateTime` (in `String` format).
+
+```dart
+String date = '2021-10-23';
+String day = date.getDayFromDate(); // returns 'Saturday'
+String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
+```
 
 ## [0.3.3] - New Extensions
 

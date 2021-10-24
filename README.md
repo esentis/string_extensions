@@ -430,3 +430,11 @@ foo1.prepend('Hello'); // returns 'Hello World'
 String? s2 = '123333333';
 String formatted = s2.toPriceAmount(currencySymbol: '€'); // returns '123.333.333,00 €'
 ```
+
+- **getDayFromDate({String locale})**
+
+```dart
+String date = '2021-10-23';
+String day = date.getDayFromDate(); // returns 'Saturday'
+String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
+```
