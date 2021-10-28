@@ -438,3 +438,11 @@ String date = '2021-10-23';
 String day = date.getDayFromDate(); // returns 'Saturday'
 String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
 ```
+
+- **getMonthFromDate({String locale})**
+
+```dart
+String date = '2021-10-23';
+String month = date.getMonthFromDate(); // returns 'Octomber'
+String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Οκτωμβρίου'
+```

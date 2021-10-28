@@ -1,4 +1,12 @@
-# [0.3.4] - New Extensions
+# [0.3.5] - New Extensions
+
+- Returns the month name of the `DateTime` (in `String` format).
+
+```dart
+getMonthFromDate(locale:'en')
+```
+
+## [0.3.4] - New Extensions
 
 - `formatWithMask` now accepts optional parameter `specialChar` which defaults to '#'
 
