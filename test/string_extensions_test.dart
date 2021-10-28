@@ -610,4 +610,15 @@ void main() {
       expect(date1.getDayFromDate(locale: 'ka'), 'შაბათი');
     },
   );
+  test(
+    'Gets the month name of the date',
+    () {
+      String date1 = DateTime(1988, 8, 27).toString();
+      expect(date1.getMonthFromDate(), 'August');
+      expect(date1.getMonthFromDate(locale: 'el'), 'Αυγούστου');
+      expect(date1.getMonthFromDate(locale: 'es'), 'agosto');
+      expect(date1.getMonthFromDate(locale: 'az'), 'Avqust');
+      expect(date1.getMonthFromDate(locale: 'ka'), 'აგვისტო');
+    },
+  );
 }

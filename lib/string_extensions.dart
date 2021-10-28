@@ -1412,4 +1412,34 @@ extension MiscExtensions on String? {
     }
     return DateFormat('EEEE', locale).format(date).toString();
   }
+
+  /// Returns the month name of the date provided.
+  ///
+  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
+  ///
+  /// You can provide the [locale] to filter the result to a specific language.
+  ///
+  /// Defaults to 'en-US'.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String date = '2021-10-23';
+  /// String month = date.getMonthFromDate(); // returns 'August'
+  /// String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Αυγούστου'
+  /// ```
+  String? getMonthFromDate({String locale = 'en'}) {
+    initializeDateFormatting(locale);
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    var date = DateTime.tryParse(this!);
+    if (date == null) {
+      return null;
+    }
+    return DateFormat('MMMM', locale).format(date).toString();
+  }
 }
