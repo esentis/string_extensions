@@ -21,7 +21,11 @@ void main() {
     'String should be capitalized',
     () {
       String? string = 'hAckErrR';
+      String? string2 = 'για 5 Ημέρες';
+      String? string3 = 'για 5 Ημέρες Ολα θα πάνε καλά ';
       expect(string.capitalize(), 'Hackerrr');
+      expect(string2.capitalize(), 'Για 5 ημέρες');
+      expect(string3.capitalize(), 'Για 5 ημέρες ολα θα πάνε καλά ');
     },
   );
   test(
