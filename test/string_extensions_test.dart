@@ -625,4 +625,44 @@ void main() {
       expect(date1.getMonthFromDate(locale: 'ka'), 'აგვისტო');
     },
   );
+  test(
+    'Gets the first day of the date',
+    () {
+      String date1 = DateTime(2021, 11, 27).toString();
+      expect(date1.firstDayOfDate(), 'Monday');
+      expect(date1.firstDayOfDate(locale: 'el'), 'Δευτέρα');
+      expect(date1.firstDayOfDate(locale: 'es'), 'lunes');
+      expect(date1.firstDayOfDate(locale: 'az'), 'bazar ertəsi');
+      expect(date1.firstDayOfDate(locale: 'ka'), 'ორშაბათი');
+    },
+  );
+  test(
+    'Gets the last day of the date',
+    () {
+      String date1 = DateTime(2021, 11, 27).toString();
+      expect(date1.lastDayOfDate(), 'Tuesday');
+      expect(date1.lastDayOfDate(locale: 'el'), 'Τρίτη');
+      expect(date1.lastDayOfDate(locale: 'es'), 'martes');
+      expect(date1.lastDayOfDate(locale: 'az'), 'çərşənbə axşamı');
+      expect(date1.lastDayOfDate(locale: 'ka'), 'სამშაბათი');
+    },
+  );
+  test(
+    'Get the left side of the string from a specific character',
+    () {
+      String t1 = 'peanut-10-butter';
+      String t2 = 'peanutbutter';
+      expect(t1.leftOf('-10-'), 'peanut');
+      expect(t2.leftOf('peanut'), '');
+    },
+  );
+  test(
+    'Get the right side of the string from a specific character',
+    () {
+      String t1 = 'peanut-10-butter';
+      String t2 = 'peanut is the best of the best';
+      expect(t1.rightOf('-10-'), 'butter');
+      expect(t2.rightOf('the'), ' best of the best');
+    },
+  );
 }
