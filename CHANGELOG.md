@@ -6,6 +6,30 @@
 getMonthFromDate(locale:'en')
 ```
 
+- Returns the first day of the `DateTime` (in `String` format).
+
+```dart
+firstDayOfMonth(locale:'en')
+```
+
+- Returns the last day of the `DateTime` (in `String` format).
+
+```dart
+latDayOfMonth(locale:'en')
+```
+
+- Returns left side of the `String` starting from `char`.
+
+```dart
+leftOf(String char)
+```
+
+- Returns right side of the `String` starting from `char`.
+
+```dart
+rightOf(String char)
+```
+
 ## [0.3.4] - New Extensions
 
 - `formatWithMask` now accepts optional parameter `specialChar` which defaults to '#'

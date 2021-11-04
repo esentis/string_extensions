@@ -446,3 +446,33 @@ String date = '2021-10-23';
 String month = date.getMonthFromDate(); // returns 'Octomber'
 String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Οκτωμβρίου'
 ```
+
+- **firstDayOfMonth({String locale})**
+
+```dart
+String date = '2021-10-23';
+String day = date.firstDayOfMonth(); // returns 'Friday'
+String grDay = date.firstDayOfMonth(locale:'el'); // returns 'Παρασκευή'
+```
+
+- **lastDayOfMonth({String locale})**
+
+```dart
+String date = '2021-10-23';
+String day = date.lastDayOfMonth(); // returns 'Sunday'
+String grDay = date.lastDayOfMonth(locale:'el'); // returns 'Κυριακή'
+```
+
+- **leftOf(String char)**
+
+```dart
+String t = 'peanutbutter';
+String left = date.leftOf('butter'); // returns 'peanut'
+```
+
+- **rightOf(String char)**
+
+```dart
+String t = 'peanutbutter';
+String left = date.rightOf('peanut'); // returns 'butter'
+```
