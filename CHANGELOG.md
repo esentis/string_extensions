@@ -6,13 +6,13 @@
 getMonthFromDate(locale:'en')
 ```
 
-- Returns the first day of the `DateTime` (in `String` format).
+- Returns the first day of the month from the provided `DateTime` (in `String` format).
 
 ```dart
 firstDayOfMonth(locale:'en')
 ```
 
-- Returns the last day of the `DateTime` (in `String` format).
+- Returns the last day of the month from the provided `DateTime` (in `String` format).
 
 ```dart
 latDayOfMonth(locale:'en')

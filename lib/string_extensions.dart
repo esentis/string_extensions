@@ -1443,7 +1443,7 @@ extension MiscExtensions on String? {
     return DateFormat('MMMM', locale).format(date).toString();
   }
 
-  /// Returns the day name of the date provided.
+  /// Returns the first day of the month from the provided `DateTime`.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1458,7 +1458,7 @@ extension MiscExtensions on String? {
   /// String day = date.firstDayOfDate(); // returns 'Friday'
   /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
   /// ```
-  String? firstDayOfDate({String locale = 'en'}) {
+  String? firstDayOfMonth({String locale = 'en'}) {
     initializeDateFormatting(locale);
     if (this == null) {
       return null;
@@ -1475,7 +1475,7 @@ extension MiscExtensions on String? {
         .toString();
   }
 
-  /// Returns the day name of the date provided.
+  /// Returns the last day of the month from the provided `DateTime`.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1490,7 +1490,7 @@ extension MiscExtensions on String? {
   /// String day = date.firstDayOfDate(); // returns 'Friday'
   /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
   /// ```
-  String? lastDayOfDate({String locale = 'en'}) {
+  String? lastDayOfMonth({String locale = 'en'}) {
     initializeDateFormatting(locale);
     if (this == null) {
       return null;

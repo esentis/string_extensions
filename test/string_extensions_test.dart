@@ -629,22 +629,22 @@ void main() {
     'Gets the first day of the date',
     () {
       String date1 = DateTime(2021, 11, 27).toString();
-      expect(date1.firstDayOfDate(), 'Monday');
-      expect(date1.firstDayOfDate(locale: 'el'), 'Δευτέρα');
-      expect(date1.firstDayOfDate(locale: 'es'), 'lunes');
-      expect(date1.firstDayOfDate(locale: 'az'), 'bazar ertəsi');
-      expect(date1.firstDayOfDate(locale: 'ka'), 'ორშაბათი');
+      expect(date1.firstDayOfMonth(), 'Monday');
+      expect(date1.firstDayOfMonth(locale: 'el'), 'Δευτέρα');
+      expect(date1.firstDayOfMonth(locale: 'es'), 'lunes');
+      expect(date1.firstDayOfMonth(locale: 'az'), 'bazar ertəsi');
+      expect(date1.firstDayOfMonth(locale: 'ka'), 'ორშაბათი');
     },
   );
   test(
     'Gets the last day of the date',
     () {
       String date1 = DateTime(2021, 11, 27).toString();
-      expect(date1.lastDayOfDate(), 'Tuesday');
-      expect(date1.lastDayOfDate(locale: 'el'), 'Τρίτη');
-      expect(date1.lastDayOfDate(locale: 'es'), 'martes');
-      expect(date1.lastDayOfDate(locale: 'az'), 'çərşənbə axşamı');
-      expect(date1.lastDayOfDate(locale: 'ka'), 'სამშაბათი');
+      expect(date1.lastDayOfMonth(), 'Tuesday');
+      expect(date1.lastDayOfMonth(locale: 'el'), 'Τρίτη');
+      expect(date1.lastDayOfMonth(locale: 'es'), 'martes');
+      expect(date1.lastDayOfMonth(locale: 'az'), 'çərşənbə axşamı');
+      expect(date1.lastDayOfMonth(locale: 'ka'), 'სამშაბათი');
     },
   );
   test(
