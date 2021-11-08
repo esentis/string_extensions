@@ -21,7 +21,11 @@ void main() {
     'String should be capitalized',
     () {
       String? string = 'hAckErrR';
+      String? string2 = 'για 5 Ημέρες';
+      String? string3 = 'για 5 Ημέρες Ολα θα πάνε καλά ';
       expect(string.capitalize(), 'Hackerrr');
+      expect(string2.capitalize(), 'Για 5 ημέρες');
+      expect(string3.capitalize(), 'Για 5 ημέρες ολα θα πάνε καλά ');
     },
   );
   test(
@@ -608,6 +612,57 @@ void main() {
       expect(date1.getDayFromDate(locale: 'es'), 'sábado');
       expect(date1.getDayFromDate(locale: 'az'), 'şənbə');
       expect(date1.getDayFromDate(locale: 'ka'), 'შაბათი');
+    },
+  );
+  test(
+    'Gets the month name of the date',
+    () {
+      String date1 = DateTime(1988, 8, 27).toString();
+      expect(date1.getMonthFromDate(), 'August');
+      expect(date1.getMonthFromDate(locale: 'el'), 'Αυγούστου');
+      expect(date1.getMonthFromDate(locale: 'es'), 'agosto');
+      expect(date1.getMonthFromDate(locale: 'az'), 'Avqust');
+      expect(date1.getMonthFromDate(locale: 'ka'), 'აგვისტო');
+    },
+  );
+  test(
+    'Gets the first day of the date',
+    () {
+      String date1 = DateTime(2021, 11, 27).toString();
+      expect(date1.firstDayOfMonth(), 'Monday');
+      expect(date1.firstDayOfMonth(locale: 'el'), 'Δευτέρα');
+      expect(date1.firstDayOfMonth(locale: 'es'), 'lunes');
+      expect(date1.firstDayOfMonth(locale: 'az'), 'bazar ertəsi');
+      expect(date1.firstDayOfMonth(locale: 'ka'), 'ორშაბათი');
+    },
+  );
+  test(
+    'Gets the last day of the date',
+    () {
+      String date1 = DateTime(2021, 11, 27).toString();
+      expect(date1.lastDayOfMonth(), 'Tuesday');
+      expect(date1.lastDayOfMonth(locale: 'el'), 'Τρίτη');
+      expect(date1.lastDayOfMonth(locale: 'es'), 'martes');
+      expect(date1.lastDayOfMonth(locale: 'az'), 'çərşənbə axşamı');
+      expect(date1.lastDayOfMonth(locale: 'ka'), 'სამშაბათი');
+    },
+  );
+  test(
+    'Get the left side of the string from a specific character',
+    () {
+      String t1 = 'peanut-10-butter';
+      String t2 = 'peanutbutter';
+      expect(t1.leftOf('-10-'), 'peanut');
+      expect(t2.leftOf('peanut'), '');
+    },
+  );
+  test(
+    'Get the right side of the string from a specific character',
+    () {
+      String t1 = 'peanut-10-butter';
+      String t2 = 'peanut is the best of the best';
+      expect(t1.rightOf('-10-'), 'butter');
+      expect(t2.rightOf('the'), ' best of the best');
     },
   );
 }

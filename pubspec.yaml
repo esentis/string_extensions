@@ -1,7 +1,7 @@
 name: string_extensions
 description: Useful String extensions to save you time in production. Feel free
   to contribute with PR.
-version: 0.3.4
+version: 0.3.5
 homepage: "https://github.com/esentis/string_extensions"
 
 environment:

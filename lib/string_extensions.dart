@@ -1412,4 +1412,141 @@ extension MiscExtensions on String? {
     }
     return DateFormat('EEEE', locale).format(date).toString();
   }
+
+  /// Returns the month name of the date provided.
+  ///
+  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
+  ///
+  /// You can provide the [locale] to filter the result to a specific language.
+  ///
+  /// Defaults to 'en-US'.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String date = '2021-10-23';
+  /// String month = date.getMonthFromDate(); // returns 'August'
+  /// String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Αυγούστου'
+  /// ```
+  String? getMonthFromDate({String locale = 'en'}) {
+    initializeDateFormatting(locale);
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    var date = DateTime.tryParse(this!);
+    if (date == null) {
+      return null;
+    }
+    return DateFormat('MMMM', locale).format(date).toString();
+  }
+
+  /// Returns the first day of the month from the provided `DateTime`.
+  ///
+  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
+  ///
+  /// You can provide the [locale] to filter the result to a specific language.
+  ///
+  /// Defaults to 'en-US'.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String date = '2021-10-23';
+  /// String day = date.firstDayOfDate(); // returns 'Friday'
+  /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
+  /// ```
+  String? firstDayOfMonth({String locale = 'en'}) {
+    initializeDateFormatting(locale);
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    var date = DateTime.tryParse(this!);
+    if (date == null) {
+      return null;
+    }
+    return DateFormat('EEEE', locale)
+        .format(DateTime(date.year, date.month, 1))
+        .toString();
+  }
+
+  /// Returns the last day of the month from the provided `DateTime`.
+  ///
+  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
+  ///
+  /// You can provide the [locale] to filter the result to a specific language.
+  ///
+  /// Defaults to 'en-US'.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String date = '2021-10-23';
+  /// String day = date.firstDayOfDate(); // returns 'Friday'
+  /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
+  /// ```
+  String? lastDayOfMonth({String locale = 'en'}) {
+    initializeDateFormatting(locale);
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    var date = DateTime.tryParse(this!);
+    if (date == null) {
+      return null;
+    }
+    return DateFormat('EEEE', locale)
+        .format(
+          DateTime(date.year, date.month + 1, 1).add(
+            const Duration(days: -1),
+          ),
+        )
+        .toString();
+  }
+
+  /// Returns the left side of the `String` starting from [char]
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  ///  String s = 'peanutbutter';
+  ///  String foo = s.leftOf('butter'); // returns 'peanut'
+  /// ```
+  String? leftOf(String char) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+
+    int index = this!.indexOf(char);
+    return this!.substring(0, index);
+  }
+
+  /// Returns the right side of the `String` starting from [char]
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  ///  String s = 'peanutbutter';
+  ///  String foo = s.rightOf('peanut'); // returns 'butter'
+  String? rightOf(String char) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+
+    int index = this!.indexOf(char);
+    return this!.substring(index + char.length, this!.length);
+  }
 }
