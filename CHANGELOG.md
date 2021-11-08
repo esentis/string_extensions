@@ -15,7 +15,7 @@ firstDayOfMonth(locale:'en')
 - Returns the last day of the month from the provided `DateTime` (in `String` format).
 
 ```dart
-latDayOfMonth(locale:'en')
+latsDayOfMonth(locale:'en')
 ```
 
 - Returns left side of the `String` starting from `char`.
