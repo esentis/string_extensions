@@ -1,4 +1,38 @@
-# [0.3.5] - New Extensions
+# [0.4.0] - New Extensions
+
+Following extension methods are now created using `get` and can now being accessed without `()`.
+
+- capitalize
+- countWords
+- removeNumbers
+- onlyLatin
+- onlyGreek
+- isNull
+- isIpv4
+- isIpv6
+- isUrl
+- isDate
+- isMail
+- isNumber
+- isStrongPassword
+- isGuid
+- isLatin
+- isGreek
+- onlyNumbers
+- removeLetters
+- charOccurences
+- mostFrequent
+- reverse
+- toSlug
+- toCamelCase
+- toTitleCase
+- toArray
+- replaceGreek
+- stripHtml
+- hasSameCharacters
+- shuffle
+
+### [0.3.5] - New Extensions
 
 - Returns the month name of the `DateTime` (in `String` format).
 
