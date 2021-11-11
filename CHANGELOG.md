@@ -1,4 +1,4 @@
-# [0.4.0] - New Extensions
+# [0.4.0] - Breaking Changes & New Extensions
 
 Following extension methods are now created using `get` and can now being accessed without `()`.
 

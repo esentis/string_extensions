@@ -29,21 +29,21 @@ print(s1-'tis'); // prints 'esen'
 
 ```dart
 String foo = '6d64-4396-8547-1ec1b86e081e'
-bool isGuid = foo.isGuid(); // returns false
+bool isGuid = foo.isGuid; // returns false
 ```
 
 - **isNull**
 
 ```dart
 String foo;
-bool isNull = foo.isNull(); // returns true
+bool isNull = foo.isNull; // returns true
 ```
 
 - **isUrl**
 
 ```dart
 String foo = 'esentis';
-bool isUrl = foo.isUrl(); // 'false';
+bool isUrl = foo.isUrl; // 'false';
 ```
 
 - **isDate**
