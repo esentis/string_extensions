@@ -197,7 +197,7 @@ String foo = '4*%^55/es4e5523nt1is';
 String onyNumbers = foo.onlyNumbers; // returns '455455231'
 ```
 
-- **readTime()**
+- **readTime({int wordsPerMinute})**
 
 ```dart
 String foo =  'Hello dear friend how you doing ?';
