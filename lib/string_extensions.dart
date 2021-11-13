@@ -927,6 +927,7 @@ extension MiscExtensions on String? {
     if (this == null) {
       return null;
     }
+
     if (this!.isEmpty) {
       return [];
     }
@@ -1548,5 +1549,32 @@ extension MiscExtensions on String? {
 
     int index = this!.indexOf(char);
     return this!.substring(index + char.length, this!.length);
+  }
+
+  /// Truncates a `String` with more than `length` characters.
+  ///
+  /// [length] must be more than 0.
+  ///
+  /// If [length] > String.length the same `String` is returned without truncation.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String f = 'congratulations';
+  /// String truncated = f.truncate(3); // Returns 'con...'
+  String? truncate(int length) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (length <= 0) {
+      return this;
+    }
+    if (length > this!.length) {
+      return this;
+    }
+    return '${this!.substring(0, length)}...';
   }
 }

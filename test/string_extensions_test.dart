@@ -664,4 +664,15 @@ void main() {
       expect(t2.rightOf('the'), ' best of the best');
     },
   );
+  test(
+    'Truncates the string ton n characters adding "..." ',
+    () {
+      String t1 = 'peanutbutter';
+      expect(t1.truncate(3), 'pea...');
+      expect(t1.truncate(0), 'peanutbutter');
+      expect(t1.truncate(10), 'peanutbutt...');
+      expect(t1.truncate(13), 'peanutbutter');
+      expect(t1.truncate(-13), 'peanutbutter');
+    },
+  );
 }
