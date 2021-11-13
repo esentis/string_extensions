@@ -469,3 +469,10 @@ String left = date.leftOf('butter'); // returns 'peanut'
 String t = 'peanutbutter';
 String left = date.rightOf('peanut'); // returns 'butter'
 ```
+
+- **truncate(int length)**
+
+```dart
+String t = 'esentis';
+String small = t.truncate(4); // returns 'esen...'
+```

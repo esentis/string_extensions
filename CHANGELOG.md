@@ -1,5 +1,7 @@
 # [0.4.0] - Breaking Changes & New Extensions
 
+### Breaking changes
+
 Following extension methods are now created using `get` and can now being accessed without `()`.
 
 - capitalize
@@ -31,6 +33,14 @@ Following extension methods are now created using `get` and can now being access
 - stripHtml
 - hasSameCharacters
 - shuffle
+
+#### New Extensions
+
+- Truncates `String` with more than `n` characters with "...".
+
+```dart
+truncate(int length)
+```
 
 ### [0.3.5] - New Extensions
 
