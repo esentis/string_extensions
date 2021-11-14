@@ -36,10 +36,16 @@ Following extension methods are now created using `get` and can now being access
 
 #### New Extensions
 
-- Truncates `String` with more than `n` characters with "...".
+- Truncates `String` with "..." when more than `n` characters.
 
 ```dart
-truncate(int length)
+truncate(int maxChars)
+```
+
+- Truncates `String` in the middle with "..." keeping max `n` characters.
+
+```dart
+truncateMiddle(int maxChars)
 ```
 
 ### [0.3.5] - New Extensions

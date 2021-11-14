@@ -470,9 +470,16 @@ String t = 'peanutbutter';
 String left = date.rightOf('peanut'); // returns 'butter'
 ```
 
-- **truncate(int length)**
+- **truncate(int maxChars)**
 
 ```dart
 String t = 'esentis';
 String small = t.truncate(4); // returns 'esen...'
+```
+
+- **truncateMiddle(int maxChars)**
+
+```dart
+String t = 'esentis';
+String small = t.truncateMiddle(4); // returns 'esen...'
 ```
