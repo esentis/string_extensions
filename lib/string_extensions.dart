@@ -1577,4 +1577,34 @@ extension MiscExtensions on String? {
     }
     return '${this!.substring(0, length)}...';
   }
+
+  /// Truncates a long `String` in the middle while retaining the beginning and the end.
+  ///
+  /// [maxChars] must be more than 0.
+  ///
+  /// If [maxChars] > String.length the same `String` is returned without truncation.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String f = 'congratulations';
+  /// String truncated = f.truncateMiddle(5); // Returns 'con...ns'
+  String? truncateMiddle(int maxChars) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (maxChars <= 0) {
+      return this;
+    }
+    if (maxChars > this!.length) {
+      return this;
+    }
+
+    int leftChars = (maxChars / 2).ceil();
+    int rightChars = maxChars - leftChars;
+    return '${this!.first(n: leftChars)}...${this!.last(n: rightChars)}';
+  }
 }

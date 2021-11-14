@@ -675,4 +675,17 @@ void main() {
       expect(t1.truncate(-13), 'peanutbutter');
     },
   );
+  test(
+    'Truncates the string in the middle with "..." keeping start and ending the same',
+    () {
+      String t1 = 'peanutbutter';
+      expect(t1.truncateMiddle(3), 'pe...r');
+      expect(t1.truncateMiddle(0), 'peanutbutter');
+      expect(t1.truncateMiddle(4), 'pe...er');
+      expect(t1.truncateMiddle(2), 'p...r');
+      expect(t1.truncateMiddle(1), 'p...');
+      expect(t1.truncateMiddle(13), 'peanutbutter');
+      expect(t1.truncateMiddle(-13), 'peanutbutter');
+    },
+  );
 }
