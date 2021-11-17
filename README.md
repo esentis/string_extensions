@@ -481,5 +481,12 @@ String small = t.truncate(4); // returns 'esen...'
 
 ```dart
 String t = 'esentis';
-String small = t.truncateMiddle(4); // returns 'esen...'
+String small = t.truncateMiddle(2); // returns 'e...n'
+```
+
+- **quote**
+
+```dart
+String t = 'esentis';
+String quote = t.quote; // returns "esentis"
 ```

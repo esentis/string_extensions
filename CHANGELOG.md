@@ -48,6 +48,12 @@ truncate(int maxChars)
 truncateMiddle(int maxChars)
 ```
 
+- Quotes a `String` adding " at the start & at the end.
+
+```dart
+quote
+```
+
 ### [0.3.5] - New Extensions
 
 - Returns the month name of the `DateTime` (in `String` format).
