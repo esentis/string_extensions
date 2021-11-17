@@ -1607,4 +1607,26 @@ extension MiscExtensions on String? {
     int rightChars = maxChars - leftChars;
     return '${this!.first(n: leftChars)}...${this!.last(n: rightChars)}';
   }
+
+  /// Quotes the `String` adding "" at the start & at the end.
+  ///
+  /// Removes all " characters from the `String` before adding the quotes.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = '"""Is this real"';
+  /// String quote = text.quote; // "Is this real"
+  /// ```
+  String? get quote {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    String normalizedString = this!.replaceAll('"', '');
+
+    return normalizedString.append('"').prepend('"');
+  }
 }

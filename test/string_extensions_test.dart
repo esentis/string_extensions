@@ -688,4 +688,15 @@ void main() {
       expect(t1.truncateMiddle(-13), 'peanutbutter');
     },
   );
+  test(
+    'Quotes a string with " "',
+    () {
+      String t1 = 'Is this reality';
+      String t2 = '""Is this reality';
+      String t3 = 'Is this reality"';
+      expect(t1.quote, '"Is this reality"');
+      expect(t2.quote, '"Is this reality"');
+      // expect(t3.quote, '"Is this reality"');
+    },
+  );
 }
