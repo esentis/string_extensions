@@ -1539,6 +1539,7 @@ extension MiscExtensions on String? {
   /// ```dart
   ///  String s = 'peanutbutter';
   ///  String foo = s.rightOf('peanut'); // returns 'butter'
+  /// ```
   String? rightOf(String char) {
     if (this == null) {
       return null;
@@ -1562,6 +1563,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// String f = 'congratulations';
   /// String truncated = f.truncate(3); // Returns 'con...'
+  /// ```
   String? truncate(int length) {
     if (this == null) {
       return null;
@@ -1589,6 +1591,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// String f = 'congratulations';
   /// String truncated = f.truncateMiddle(5); // Returns 'con...ns'
+  /// ```
   String? truncateMiddle(int maxChars) {
     if (this == null) {
       return null;
