@@ -693,10 +693,16 @@ void main() {
     () {
       String t1 = 'Is this reality';
       String t2 = '""Is this reality';
-      String t3 = 'Is this reality"';
       expect(t1.quote, '"Is this reality"');
       expect(t2.quote, '"Is this reality"');
       // expect(t3.quote, '"Is this reality"');
+    },
+  );
+  test(
+    'Trims leading and trailing spaces, so as extra spaces in between words.',
+    () {
+      String t1 = '      Is        this        reality     ';
+      expect(t1.trimAll, 'Is this reality');
     },
   );
 }

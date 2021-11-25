@@ -1632,4 +1632,22 @@ extension MiscExtensions on String? {
 
     return normalizedString.append('"').prepend('"');
   }
+
+  /// Trims leading and trailing spaces, so as extra spaces in between words.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = '    esentis    thinks   ';
+  /// String trimmed = text.trimAll ; // returns 'esentis thinks'
+  /// ```
+  String? get trimAll {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    return this!.trim().replaceAll(RegExp(' +'), ' ');
+  }
 }
