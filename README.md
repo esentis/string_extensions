@@ -490,3 +490,10 @@ String small = t.truncateMiddle(2); // returns 'e...n'
 String t = 'esentis';
 String quote = t.quote; // returns "esentis"
 ```
+
+- **trimAll**
+
+```dart
+String t = '     is       this     reality      ?';
+String quote = t.trimAll; // returns "is this reality ?"
+```

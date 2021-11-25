@@ -54,6 +54,12 @@ truncateMiddle(int maxChars)
 quote
 ```
 
+- Trims leading and trailing spaces, so as extra spaces in between words.
+
+```dart
+trimAll
+```
+
 ### [0.3.5] - New Extensions
 
 - Returns the month name of the `DateTime` (in `String` format).
