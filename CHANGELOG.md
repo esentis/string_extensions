@@ -1,4 +1,66 @@
-# [0.3.5] - New Extensions
+# [0.4.0] - Breaking Changes & New Extensions
+
+### Breaking changes
+
+Following extension methods are now created using `get` and can now being accessed without `()`.
+
+- capitalize
+- countWords
+- removeNumbers
+- onlyLatin
+- onlyGreek
+- isNull
+- isIpv4
+- isIpv6
+- isUrl
+- isDate
+- isMail
+- isNumber
+- isStrongPassword
+- isGuid
+- isLatin
+- isGreek
+- onlyNumbers
+- removeLetters
+- charOccurences
+- mostFrequent
+- reverse
+- toSlug
+- toCamelCase
+- toTitleCase
+- toArray
+- replaceGreek
+- stripHtml
+- hasSameCharacters
+- shuffle
+
+#### New Extensions
+
+- Truncates `String` with "..." when more than `n` characters.
+
+```dart
+truncate(int maxChars)
+```
+
+- Truncates `String` in the middle with "..." keeping max `n` characters.
+
+```dart
+truncateMiddle(int maxChars)
+```
+
+- Quotes a `String` adding " at the start & at the end.
+
+```dart
+quote
+```
+
+- Trims leading and trailing spaces, so as extra spaces in between words.
+
+```dart
+trimAll
+```
+
+### [0.3.5] - New Extensions
 
 - Returns the month name of the `DateTime` (in `String` format).
 

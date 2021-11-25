@@ -7,7 +7,7 @@ void main() {
     'String words are correctly counted',
     () {
       String? string = 'Hello world ! dear 4asd';
-      expect(string.countWords(), 4);
+      expect(string.countWords, 4);
     },
   );
   test(
@@ -23,74 +23,74 @@ void main() {
       String? string = 'hAckErrR';
       String? string2 = 'για 5 Ημέρες';
       String? string3 = 'για 5 Ημέρες Ολα θα πάνε καλά ';
-      expect(string.capitalize(), 'Hackerrr');
-      expect(string2.capitalize(), 'Για 5 ημέρες');
-      expect(string3.capitalize(), 'Για 5 ημέρες ολα θα πάνε καλά ');
+      expect(string.capitalize, 'Hackerrr');
+      expect(string2.capitalize, 'Για 5 ημέρες');
+      expect(string3.capitalize, 'Για 5 ημέρες ολα θα πάνε καλά ');
     },
   );
   test(
     'String should be title cased',
     () {
       String? string = 'Hello dear friend how you doing ?';
-      expect(string.toTitleCase(), 'Hello Dear Friend How You Doing ?');
+      expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
     },
   );
   test(
     'Removes all numbers from the string',
     () {
       String? string = '234112731235es4234123e5523nt1is';
-      expect(string.removeNumbers(), 'esentis');
+      expect(string.removeNumbers, 'esentis');
     },
   );
   test(
     'Removes everything but latin characters',
     () {
       String? string = '4*%^55/es4e55?:"///23nt1is';
-      expect(string.onlyLatin(), 'esentis');
+      expect(string.onlyLatin, 'esentis');
 
       String? string2 = '4*%^55/es4e55?:"///23nt1isαβδα';
-      expect(string2.onlyLatin(), 'esentis');
+      expect(string2.onlyLatin, 'esentis');
 
       String? string3 = '4*%^55/es4e55?:"///23nt1isαβδα ma455 ma2231n';
-      expect(string3.onlyLatin(), 'esentis ma man');
+      expect(string3.onlyLatin, 'esentis ma man');
     },
   );
   test(
     'Removes everything but greek characters',
     () {
       String? string = '4*%^σοφ55ία/es4e55?:"///23nt1is';
-      expect(string.onlyGreek(), 'σοφία');
+      expect(string.onlyGreek, 'σοφία');
 
       String? string2 = '4*%^σοφ55ία/es4e55?:"///23nt1is αγάπη';
-      expect(string2.onlyGreek(), 'σοφία αγάπη');
+      expect(string2.onlyGreek, 'σοφία αγάπη');
     },
   );
   test(
     'String should be camel cased',
     () {
       String? string = 'Find max of array';
-      expect(string.toCamelCase(), 'findMaxOfArray');
+      expect(string.toCamelCase, 'findMaxOfArray');
     },
   );
   test(
     'Removes everything but numbers',
     () {
       String? string = '4*%^55/es4e5523nt1is';
-      expect(string.onlyNumbers(), '455455231');
+      expect(string.onlyNumbers, '455455231');
     },
   );
   test(
     'Removes all letters',
     () {
       String? string = '1244e*s*4e*5523n*t*1i*s';
-      expect(string.removeLetters(), '1244**4*5523**1*');
+      expect(string.removeLetters, '1244**4*5523**1*');
     },
   );
   test(
     'Correctly finds character occurances',
     () {
       String? string = 'esssssentis';
-      expect(string.charOccurences(), [
+      expect(string.charOccurences, [
         {'e': 2},
         {'i': 1},
         {'n': 1},
@@ -102,57 +102,57 @@ void main() {
     'Correctly finds most frequent character',
     () {
       String? string = 'esssssentis';
-      expect(string.mostFrequent(), 's');
+      expect(string.mostFrequent, 's');
     },
   );
   test(
     'Reverses a string',
     () {
       String? string = 'Hello World';
-      expect(string.reverse(), 'dlroW olleH');
+      expect(string.reverse, 'dlroW olleH');
     },
   );
   test(
     'Checks if a string is a valid mail',
     () {
       String? string1 = 'esentis@esentis.com';
-      expect(string1.isMail(), true);
+      expect(string1.isMail, true);
 
       String? string2 = 'esentisesentis.com';
-      expect(string2.isMail(), false);
+      expect(string2.isMail, false);
     },
   );
   test(
     'Checks if a string is a valid Ipv4',
     () {
       String? string1 = '192.168.1.14';
-      expect(string1.isIpv4(), true);
+      expect(string1.isIpv4, true);
 
       String? string2 = '192.168.1.14.5223';
-      expect(string2.isIpv4(), false);
+      expect(string2.isIpv4, false);
     },
   );
   test(
     'Checks if a string is a valid Ipv6',
     () {
       String? string1 = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
-      expect(string1.isIpv6(), true);
+      expect(string1.isIpv6, true);
 
       String? string2 = '192.168.1.14';
-      expect(string2.isIpv6(), false);
+      expect(string2.isIpv6, false);
     },
   );
   test(
     'Checks if a string is a number',
     () {
       String? string1 = '45';
-      expect(string1.isNumber(), true);
+      expect(string1.isNumber, true);
 
       String? string2 = '45s';
-      expect(string2.isNumber(), false);
+      expect(string2.isNumber, false);
 
       String? string3 = '45.5';
-      expect(string3.isNumber(), true);
+      expect(string3.isNumber, true);
     },
   );
   test(
@@ -175,26 +175,26 @@ void main() {
     'Checks if the string has only latin characters',
     () {
       String? string1 = 'hello friend Γιωργο';
-      expect(string1.isLatin(), false);
+      expect(string1.isLatin, false);
 
       String? string2 = 'test world';
-      expect(string2.isLatin(), true);
+      expect(string2.isLatin, true);
 
       String? string3 = 'testworld';
-      expect(string3.isLatin(), true);
+      expect(string3.isLatin, true);
     },
   );
   test(
     'Checks if the string has only greek characters',
     () {
       String? string1 = 'hello friend Γιωργο';
-      expect(string1.isGreek(), false);
+      expect(string1.isGreek, false);
 
       String? string2 = 'Τα αγαθα κοποις κτωνται';
-      expect(string2.isGreek(), true);
+      expect(string2.isGreek, true);
 
       String? string3 = 'Τα αγαθά κόποις κτώνται';
-      expect(string3.isGreek(), true);
+      expect(string3.isGreek, true);
     },
   );
   test(
@@ -231,7 +231,7 @@ void main() {
     'Check if a string is null',
     () {
       String? string1;
-      expect(string1.isNull(), true);
+      expect(string1.isNull, true);
 
       String? string2 = 'esentis';
       expect(string2.defaultValue('no null please'), 'esentis');
@@ -265,7 +265,7 @@ void main() {
     'String should be slug cased',
     () {
       String? string = 'hello world this is esentis';
-      expect(string.toSlug(), 'hello_world_this_is_esentis');
+      expect(string.toSlug, 'hello_world_this_is_esentis');
     },
   );
   test(
@@ -323,7 +323,7 @@ void main() {
     'Normalizes greek word',
     () {
       String? string = 'Αριστοτέλης';
-      expect(string.replaceGreek(), 'aristotelis');
+      expect(string.replaceGreek, 'aristotelis');
     },
   );
   test(
@@ -338,7 +338,7 @@ void main() {
     'Transforms string to string array',
     () {
       String? string = 'abracadabra';
-      expect(string.toArray(),
+      expect(string.toArray,
           ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
     },
   );
@@ -354,28 +354,27 @@ void main() {
     () {
       String? string =
           '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
-      expect(
-          string.stripHtml(), 'Hacky hacky. Here is some text. This is bold.');
+      expect(string.stripHtml, 'Hacky hacky. Here is some text. This is bold.');
     },
   );
   test(
     'Checks if string is strong password',
     () {
       String? string1 = 'qwerty';
-      expect(string1.isStrongPassword(), false);
+      expect(string1.isStrongPassword, false);
 
       String? string2 = 'Is1!thisStrong';
-      expect(string2.isStrongPassword(), true);
+      expect(string2.isStrongPassword, true);
     },
   );
   test(
     'Checks if string is a valid Guid',
     () {
       String? string1 = '6d64-4396-8547-1ec1b86e081e';
-      expect(string1.isGuid(), false);
+      expect(string1.isGuid, false);
 
       String? string2 = '887b7923-6d64-4396-8547-1ec1b86e081e';
-      expect(string2.isGuid(), true);
+      expect(string2.isGuid, true);
     },
   );
   test(
@@ -400,16 +399,16 @@ void main() {
     'Checks if string consisted of same characters',
     () {
       String? string1 = 'employee';
-      expect(string1.hasSameCharacters(), false);
+      expect(string1.hasSameCharacters, false);
 
       String? string2 = '1111111';
-      expect(string2.hasSameCharacters(), true);
+      expect(string2.hasSameCharacters, true);
 
       String? string3 = '8recommmmmmendation';
-      expect(string3.hasSameCharacters(), false);
+      expect(string3.hasSameCharacters, false);
 
       String? string4 = 'kkkKKKKkkkKKkKkkkkKKK';
-      expect(string4.hasSameCharacters(), true);
+      expect(string4.hasSameCharacters, true);
     },
   );
   test(
@@ -432,19 +431,19 @@ void main() {
     'Checks if a string is valid URL',
     () {
       String? string1 = 'employee';
-      expect(string1.isUrl(), false);
+      expect(string1.isUrl, false);
 
       String? string2 = '1111111.com';
-      expect(string2.isUrl(), true);
+      expect(string2.isUrl, true);
 
       String? string3 = 'http://8recommmmmmendation';
-      expect(string3.isUrl(), false);
+      expect(string3.isUrl, false);
 
       String? string4 = 'www.google.com';
-      expect(string4.isUrl(), true);
+      expect(string4.isUrl, true);
 
       String? string5 = 'ftp://www.google.com';
-      expect(string5.isUrl(), true);
+      expect(string5.isUrl, true);
     },
   );
 
@@ -452,19 +451,19 @@ void main() {
     'Checks if a string is valid Date format',
     () {
       String? string1 = 'employee';
-      expect(string1.isDate(), false);
+      expect(string1.isDate, false);
 
       String? string2 = '02-02-2020';
-      expect(string2.isDate(), true);
+      expect(string2.isDate, true);
 
       String? string3 = '2020-04-06';
-      expect(string3.isDate(), true);
+      expect(string3.isDate, true);
 
       String? string4 = '02-13-2020';
-      expect(string4.isDate(), false);
+      expect(string4.isDate, false);
 
       String? string5 = '20120227T132700';
-      expect(string5.isDate(), true);
+      expect(string5.isDate, true);
     },
   );
   test(
@@ -663,6 +662,47 @@ void main() {
       String t2 = 'peanut is the best of the best';
       expect(t1.rightOf('-10-'), 'butter');
       expect(t2.rightOf('the'), ' best of the best');
+    },
+  );
+  test(
+    'Truncates the string ton n characters adding "..." ',
+    () {
+      String t1 = 'peanutbutter';
+      expect(t1.truncate(3), 'pea...');
+      expect(t1.truncate(0), 'peanutbutter');
+      expect(t1.truncate(10), 'peanutbutt...');
+      expect(t1.truncate(13), 'peanutbutter');
+      expect(t1.truncate(-13), 'peanutbutter');
+    },
+  );
+  test(
+    'Truncates the string in the middle with "..." keeping start and ending the same',
+    () {
+      String t1 = 'peanutbutter';
+      expect(t1.truncateMiddle(3), 'pe...r');
+      expect(t1.truncateMiddle(0), 'peanutbutter');
+      expect(t1.truncateMiddle(4), 'pe...er');
+      expect(t1.truncateMiddle(2), 'p...r');
+      expect(t1.truncateMiddle(1), 'p...');
+      expect(t1.truncateMiddle(13), 'peanutbutter');
+      expect(t1.truncateMiddle(-13), 'peanutbutter');
+    },
+  );
+  test(
+    'Quotes a string with " "',
+    () {
+      String t1 = 'Is this reality';
+      String t2 = '""Is this reality';
+      expect(t1.quote, '"Is this reality"');
+      expect(t2.quote, '"Is this reality"');
+      // expect(t3.quote, '"Is this reality"');
+    },
+  );
+  test(
+    'Trims leading and trailing spaces, so as extra spaces in between words.',
+    () {
+      String t1 = '      Is        this        reality     ';
+      expect(t1.trimAll, 'Is this reality');
     },
   );
 }
