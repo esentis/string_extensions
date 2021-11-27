@@ -4,7 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
-  /// Checks if the [length!] of the String is more than [s]
+  /// Checks if the [length!] of the String is more than [s].
   bool? operator >(String s) {
     if (this == null) {
       return null;
@@ -15,7 +15,7 @@ extension MiscExtensions on String? {
     return this!.length > s.length;
   }
 
-  /// Checks if the [length!] of the String is more or equal to [s]
+  /// Checks if the [length!] of the String is more or equal to [s].
   bool? operator >=(String s) {
     if (this == null) {
       return null;
@@ -26,7 +26,7 @@ extension MiscExtensions on String? {
     return this!.length >= s.length;
   }
 
-  /// Checks if the [length!] of the String is less than [s]
+  /// Checks if the [length!] of the String is less than [s].
   bool? operator <(String s) {
     if (this == null) {
       return null;
@@ -37,7 +37,7 @@ extension MiscExtensions on String? {
     return this!.length < s.length;
   }
 
-  /// Checks if the [length!] of the String is less or equal to [s]
+  /// Checks if the [length!] of the String is less or equal to [s].
   bool? operator <=(String s) {
     if (this == null) {
       return null;
@@ -48,7 +48,7 @@ extension MiscExtensions on String? {
     return this!.length <= s.length;
   }
 
-  /// Subtracts-removes a text from a `String`
+  /// Subtracts-removes a text from a `String`.
   String? operator -(String s) {
     if (this == null) {
       return null;
