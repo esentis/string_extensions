@@ -518,7 +518,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Finds a specific's character occurence in a string
+  /// Finds a specific's character occurence in a string.
   ///
   /// ### Example
   /// ```dart
@@ -1191,7 +1191,7 @@ extension MiscExtensions on String? {
     return out;
   }
 
-  /// Removes the first [n] characters of the `String`
+  /// Removes the first [n] characters of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1214,7 +1214,7 @@ extension MiscExtensions on String? {
     return this!.substring(n, this!.length);
   }
 
-  /// Removes the last [n] characters of the `String`
+  /// Removes the last [n] characters of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1237,7 +1237,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, this!.length - n);
   }
 
-  /// Trims the `String` to have maximum [n] characters.`
+  /// Trims the `String` to have maximum [n] characters.
   ///
   /// ### Example
   /// ```dart
@@ -1291,7 +1291,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the character at [index]
+  /// Returns the character at [index].
   ///
   /// ### Example
   ///
@@ -1318,7 +1318,7 @@ extension MiscExtensions on String? {
     return this!.split('')[index];
   }
 
-  /// Appends a [suffix] to the `String`
+  /// Appends a [suffix] to the `String`.
   ///
   /// ### Example
   ///
@@ -1336,7 +1336,7 @@ extension MiscExtensions on String? {
     return this! + suffix;
   }
 
-  /// Prepends a [prefix] to the `String`
+  /// Prepends a [prefix] to the `String`.
   ///
   /// ### Example
   ///
@@ -1512,7 +1512,7 @@ extension MiscExtensions on String? {
         .toString();
   }
 
-  /// Returns the left side of the `String` starting from [char]
+  /// Returns the left side of the `String` starting from [char].
   ///
   /// ### Example
   ///
@@ -1532,7 +1532,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, index);
   }
 
-  /// Returns the right side of the `String` starting from [char]
+  /// Returns the right side of the `String` starting from [char].
   ///
   /// ### Example
   ///
