@@ -4,7 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
-  /// Checks if the [length!] of the String is more than [s]
+  /// Checks if the [length!] of the String is more than [s].
   bool? operator >(String s) {
     if (this == null) {
       return null;
@@ -15,7 +15,7 @@ extension MiscExtensions on String? {
     return this!.length > s.length;
   }
 
-  /// Checks if the [length!] of the String is more or equal to [s]
+  /// Checks if the [length!] of the String is more or equal to [s].
   bool? operator >=(String s) {
     if (this == null) {
       return null;
@@ -26,7 +26,7 @@ extension MiscExtensions on String? {
     return this!.length >= s.length;
   }
 
-  /// Checks if the [length!] of the String is less than [s]
+  /// Checks if the [length!] of the String is less than [s].
   bool? operator <(String s) {
     if (this == null) {
       return null;
@@ -37,7 +37,7 @@ extension MiscExtensions on String? {
     return this!.length < s.length;
   }
 
-  /// Checks if the [length!] of the String is less or equal to [s]
+  /// Checks if the [length!] of the String is less or equal to [s].
   bool? operator <=(String s) {
     if (this == null) {
       return null;
@@ -48,7 +48,7 @@ extension MiscExtensions on String? {
     return this!.length <= s.length;
   }
 
-  /// Subtracts-removes a text from a `String`
+  /// Subtracts-removes a text from a `String`.
   String? operator -(String s) {
     if (this == null) {
       return null;
@@ -518,7 +518,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Finds a specific's character occurence in a string
+  /// Finds a specific's character occurence in a string.
   ///
   /// ### Example
   /// ```dart
@@ -1191,7 +1191,7 @@ extension MiscExtensions on String? {
     return out;
   }
 
-  /// Removes the first [n] characters of the `String`
+  /// Removes the first [n] characters of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1214,7 +1214,7 @@ extension MiscExtensions on String? {
     return this!.substring(n, this!.length);
   }
 
-  /// Removes the last [n] characters of the `String`
+  /// Removes the last [n] characters of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1237,7 +1237,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, this!.length - n);
   }
 
-  /// Trims the `String` to have maximum [n] characters.`
+  /// Trims the `String` to have maximum [n] characters.
   ///
   /// ### Example
   /// ```dart
@@ -1291,7 +1291,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the character at [index]
+  /// Returns the character at [index].
   ///
   /// ### Example
   ///
@@ -1318,7 +1318,7 @@ extension MiscExtensions on String? {
     return this!.split('')[index];
   }
 
-  /// Appends a [suffix] to the `String`
+  /// Appends a [suffix] to the `String`.
   ///
   /// ### Example
   ///
@@ -1336,7 +1336,7 @@ extension MiscExtensions on String? {
     return this! + suffix;
   }
 
-  /// Prepends a [prefix] to the `String`
+  /// Prepends a [prefix] to the `String`.
   ///
   /// ### Example
   ///
@@ -1512,7 +1512,7 @@ extension MiscExtensions on String? {
         .toString();
   }
 
-  /// Returns the left side of the `String` starting from [char]
+  /// Returns the left side of the `String` starting from [char].
   ///
   /// ### Example
   ///
@@ -1532,7 +1532,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, index);
   }
 
-  /// Returns the right side of the `String` starting from [char]
+  /// Returns the right side of the `String` starting from [char].
   ///
   /// ### Example
   ///
@@ -1649,5 +1649,23 @@ extension MiscExtensions on String? {
       return this;
     }
     return this!.trim().replaceAll(RegExp(' +'), ' ');
+  }
+
+  /// Checks the `String` and maps the value to a `bool` if possible
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'yes';
+  /// bool? textBool = text.toBool ; // returns true
+  /// ```
+  bool? get toBool {
+    if (this?.toLowerCase() == 'true' || this?.toLowerCase() == 'yes') {
+      return true;
+    }
+    if (this?.toLowerCase() == 'false' || this?.toLowerCase() == 'no') {
+      return false;
+    }
+    return null;
   }
 }

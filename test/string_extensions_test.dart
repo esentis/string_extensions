@@ -4,21 +4,21 @@ import 'package:test/test.dart';
 
 void main() {
   test(
-    'String words are correctly counted',
+    'Counts the words of the String',
     () {
       String? string = 'Hello world ! dear 4asd';
       expect(string.countWords, 4);
     },
   );
   test(
-    'Returns the read time of the string',
+    'Returns the read time of the String',
     () {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.readTime(), 3);
     },
   );
   test(
-    'String should be capitalized',
+    'Capitalizes the first letter of the String',
     () {
       String? string = 'hAckErrR';
       String? string2 = 'για 5 Ημέρες';
@@ -29,7 +29,7 @@ void main() {
     },
   );
   test(
-    'String should be title cased',
+    "Capitalizes each word's first letter",
     () {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
@@ -66,7 +66,7 @@ void main() {
     },
   );
   test(
-    'String should be camel cased',
+    'Converts the string to camel case',
     () {
       String? string = 'Find max of array';
       expect(string.toCamelCase, 'findMaxOfArray');
@@ -87,7 +87,7 @@ void main() {
     },
   );
   test(
-    'Correctly finds character occurances',
+    'Finds character occurences',
     () {
       String? string = 'esssssentis';
       expect(string.charOccurences, [
@@ -99,7 +99,7 @@ void main() {
     },
   );
   test(
-    'Correctly finds most frequent character',
+    'Finds the most frequent character',
     () {
       String? string = 'esssssentis';
       expect(string.mostFrequent, 's');
@@ -228,7 +228,7 @@ void main() {
     },
   );
   test(
-    'Check if a string is null',
+    'Checks if a string is null',
     () {
       String? string1;
       expect(string1.isNull, true);
@@ -327,7 +327,7 @@ void main() {
     },
   );
   test(
-    'Correctly finds given pattern occurences',
+    'Finds given pattern occurences',
     () {
       String? string = 'abracadabra';
       String? pattern = 'abr';
@@ -703,6 +703,20 @@ void main() {
     () {
       String t1 = '      Is        this        reality     ';
       expect(t1.trimAll, 'Is this reality');
+    },
+  );
+
+  test(
+    'Converts the string to a boolean value if possible',
+    () {
+      String t1 = 'true';
+      String t2 = 'false';
+      String t3 = 'yes';
+      String t4 = 'no';
+      expect(t1.toBool, true);
+      expect(t2.toBool, false);
+      expect(t3.toBool, true);
+      expect(t4.toBool, false);
     },
   );
 }

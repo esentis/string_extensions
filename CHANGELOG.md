@@ -1,4 +1,12 @@
-# [0.4.0] - Breaking Changes & New Extensions
+# [0.4.1] - Minor improvements & New Extensions
+
+- Converts the `String` to a `bool` value if possible.
+
+```dart
+tooBool
+```
+
+## [0.4.0] - Breaking Changes & New Extensions
 
 ### Breaking changes
 
