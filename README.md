@@ -176,6 +176,13 @@ String foo = '5f';
 var fooDouble = foo.toDouble(); // returns null
 ```
 
+- **toBool**
+
+```dart
+String t = 'yes';
+bool? bool = t.toBool; // returns true
+```
+
 - **onlyLatin**
 
 ```dart
