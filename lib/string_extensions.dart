@@ -1650,4 +1650,22 @@ extension MiscExtensions on String? {
     }
     return this!.trim().replaceAll(RegExp(' +'), ' ');
   }
+
+  /// Checks the `String` and maps the value to a `bool` if possible
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'yes';
+  /// bool? textBool = text.toBool ; // returns true
+  /// ```
+  bool? get toBool {
+    if (this?.toLowerCase() == 'true' || this?.toLowerCase() == 'yes') {
+      return true;
+    }
+    if (this?.toLowerCase() == 'false' || this?.toLowerCase() == 'no') {
+      return false;
+    }
+    return null;
+  }
 }

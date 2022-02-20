@@ -705,4 +705,18 @@ void main() {
       expect(t1.trimAll, 'Is this reality');
     },
   );
+
+  test(
+    'Converts the string to a boolean value if possible',
+    () {
+      String t1 = 'true';
+      String t2 = 'false';
+      String t3 = 'yes';
+      String t4 = 'no';
+      expect(t1.toBool, true);
+      expect(t2.toBool, false);
+      expect(t3.toBool, true);
+      expect(t4.toBool, false);
+    },
+  );
 }
