@@ -1668,4 +1668,38 @@ extension MiscExtensions on String? {
     }
     return null;
   }
+
+  /// Returns the `String` after a specific character
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.after('brother'); // returns ' what a day today'
+  /// ```
+  String? after(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(
+        indexOfLastPatternWord + patternWords.last.length, this!.length);
+  }
 }

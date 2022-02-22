@@ -719,4 +719,16 @@ void main() {
       expect(t4.toBool, false);
     },
   );
+
+  test('Returns the string after a specific character / word', () {
+    String t1 = 'Hello brother what a wonderful day';
+
+    expect(t1.after('brother'), ' what a wonderful day');
+    expect(t1.after('what'), ' a wonderful day');
+    expect(t1.after('  '), '');
+    expect(t1.after(''), '');
+    expect(t1.after(' b'), 'rother what a wonderful day');
+    expect(t1.after('wonderful'), ' day');
+    expect(t1.after('12345'), '');
+  });
 }
