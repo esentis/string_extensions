@@ -1702,4 +1702,40 @@ extension MiscExtensions on String? {
     return this!.substring(
         indexOfLastPatternWord + patternWords.last.length, this!.length);
   }
+
+  /// Returns the `String` before a specific character
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String test = 'brother what a day today';
+  /// String beforeString = test.before('brother'); // returns 'hello '
+  /// ```
+  String? before(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(
+      0,
+      indexOfFirstPatternWord,
+    );
+  }
 }

@@ -731,4 +731,16 @@ void main() {
     expect(t1.after('wonderful'), ' day');
     expect(t1.after('12345'), '');
   });
+
+  test('Returns the string before a specific character / word', () {
+    String t1 = 'Hello brother what a wonderful day';
+
+    expect(t1.before('brother'), 'Hello ');
+    expect(t1.before('what'), 'Hello brother ');
+    expect(t1.before('  '), '');
+    expect(t1.before(''), '');
+    expect(t1.before('b'), 'Hello ');
+    expect(t1.before('wonderful'), 'Hello brother what a ');
+    expect(t1.before('12345'), '');
+  });
 }
