@@ -1,4 +1,18 @@
-# [0.4.1] - Minor improvements & New Extensions
+# [0.4.2] - Minor improvements & New Extensions
+
+- Returns the `String` after a character / word.
+
+```dart
+after(String pattern)
+```
+
+- Returns the `String` before a character / word.
+
+```dart
+before(String pattern)
+```
+
+## [0.4.1] - Minor improvements & New Extensions
 
 - Converts the `String` to a `bool` value if possible.
 

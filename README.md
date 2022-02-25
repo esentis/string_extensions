@@ -504,3 +504,17 @@ String quote = t.quote; // returns "esentis"
 String t = '     is       this     reality      ?';
 String quote = t.trimAll; // returns "is this reality ?"
 ```
+
+- **before(String pattern)**
+
+```dart
+String test = 'brother what a day today';
+String beforeString = test.before('brother'); // returns 'hello '
+```
+
+- **after(String pattern)**
+
+```dart
+String test = 'brother what a day today';
+String beforeString = test.after('brother'); // returns ' what a day today'
+```
