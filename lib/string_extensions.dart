@@ -1260,7 +1260,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, n);
   }
 
-  /// Reverses slash by providing [direction],
+  /// Reverses slash in the `String`, by providing [direction],
   ///
   /// `0 = / -> \\`
   ///
@@ -1291,7 +1291,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the character at [index].
+  /// Returns the character at [index] of the `String`.
   ///
   /// ### Example
   ///
@@ -1354,9 +1354,9 @@ extension MiscExtensions on String? {
     return prefix + this!;
   }
 
-  /// Tries to format the current `String` to price amount. You can pass
+  /// Tries to format the current `String` to price amount.
   ///
-  /// you can optionally pass the [currencySymbol] to append a symbol to the formatted text.
+  /// You can optionally pass the [currencySymbol] to append a symbol to the formatted text.
   ///
   /// ### Example
   ///
@@ -1384,7 +1384,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the day name of the date provided.
+  /// Returns the day name of the date provided in `String` format..
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1414,7 +1414,7 @@ extension MiscExtensions on String? {
     return DateFormat('EEEE', locale).format(date).toString();
   }
 
-  /// Returns the month name of the date provided.
+  /// Returns the month name of the date provided in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1444,7 +1444,7 @@ extension MiscExtensions on String? {
     return DateFormat('MMMM', locale).format(date).toString();
   }
 
-  /// Returns the first day of the month from the provided `DateTime`.
+  /// Returns the first day of the month from the provided `DateTime` in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1476,7 +1476,7 @@ extension MiscExtensions on String? {
         .toString();
   }
 
-  /// Returns the last day of the month from the provided `DateTime`.
+  /// Returns the last day of the month from the provided `DateTime` in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1633,7 +1633,7 @@ extension MiscExtensions on String? {
     return normalizedString.append('"').prepend('"');
   }
 
-  /// Trims leading and trailing spaces, so as extra spaces in between words.
+  /// Trims leading and trailing spaces from the `String`, so as extra spaces in between words.
   ///
   /// ### Example
   ///
