@@ -12,6 +12,12 @@ after(String pattern)
 before(String pattern)
 ```
 
+- Gets Jaro distance to check `String` similarity. The higher the number the similar the two `String`s/
+
+```dart
+getJaro(String wordToCompare)
+```
+
 ## [0.4.1] - Minor improvements & New Extensions
 
 - Converts the `String` to a `bool` value if possible.

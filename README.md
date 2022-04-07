@@ -343,6 +343,14 @@ String foo = 'esentis';
 int distance = foo.getLevenshtein('esen'); // '3';
 ```
 
+- **getJaro(String word)**
+
+```dart
+String t1 = 'esentis';
+String t2 = 'esen';
+double = t1.getJaro(t2); // returns 0.8571428571428571
+```
+
 - **charCount(String char)**
 
 ```dart
