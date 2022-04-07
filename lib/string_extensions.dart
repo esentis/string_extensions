@@ -1738,4 +1738,70 @@ extension MiscExtensions on String? {
       indexOfFirstPatternWord,
     );
   }
+
+  /// The Jaro distance is a measure of edit distance between two strings;
+  ///
+  /// its inverse, called the Jaro similarity, is a measure of two strings' similarity:
+  ///
+  /// the higher the value, the more similar the strings are.
+  ///
+  /// ### example
+  ///
+  /// ```dart
+  /// String t1 = 'esentis';
+  /// String t2 = 'esen';
+  /// print(t1.getJaro(t2)); // prints 0.8571428571428571
+  /// ```
+  double? getJaro(String t) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return 1;
+    }
+
+    final int sLen = this!.length;
+    final int tLen = t.length;
+
+    if (sLen == 0 && tLen == 0) return 1;
+
+    final int matchDistance = (max(sLen, tLen) / 2 - 1).toInt();
+
+    final List<bool> sMatches = List<bool>.filled(sLen, false);
+    final List<bool> tMatches = List<bool>.filled(tLen, false);
+
+    int matches = 0;
+    int transpositions = 0;
+
+    for (int i = 0; i < sLen; i++) {
+      final int start = max(0, i - matchDistance);
+      final int end = min(i + matchDistance + 1, tLen);
+
+      for (int j = start; j < end; j++) {
+        if (tMatches[j]) continue;
+        if (this!.charAt(i) != t.charAt(j)) continue;
+        sMatches[i] = true;
+        tMatches[j] = true;
+        matches++;
+        break;
+      }
+    }
+
+    if (matches == 0) return 0;
+
+    int k = 0;
+    for (int i = 0; i < sLen; i++) {
+      if (!sMatches[i]) continue;
+      while (!tMatches[k]) {
+        k++;
+      }
+      if (this!.charAt(i) != t.charAt(k)) transpositions++;
+      k++;
+    }
+
+    return ((matches / sLen) +
+            (matches / tLen) +
+            ((matches - transpositions / 2.0) / matches)) /
+        3.0;
+  }
 }

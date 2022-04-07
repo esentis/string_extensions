@@ -743,4 +743,11 @@ void main() {
     expect(t1.before('wonderful'), 'Hello brother what a ');
     expect(t1.before('12345'), '');
   });
+
+  test('Returns the Jaro distance', () {
+    String t1 = 'esentis';
+    String t2 = 'esen';
+
+    expect(t1.getJaro(t2), 0.8571428571428571);
+  });
 }
