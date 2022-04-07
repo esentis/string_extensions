@@ -343,6 +343,14 @@ String foo = 'esentis';
 int distance = foo.getLevenshtein('esen'); // '3';
 ```
 
+- **getJaro(String word)**
+
+```dart
+String t1 = 'esentis';
+String t2 = 'esen';
+double = t1.getJaro(t2); // returns 0.8571428571428571
+```
+
 - **charCount(String char)**
 
 ```dart
@@ -503,4 +511,18 @@ String quote = t.quote; // returns "esentis"
 ```dart
 String t = '     is       this     reality      ?';
 String quote = t.trimAll; // returns "is this reality ?"
+```
+
+- **before(String pattern)**
+
+```dart
+String test = 'brother what a day today';
+String beforeString = test.before('brother'); // returns 'hello '
+```
+
+- **after(String pattern)**
+
+```dart
+String test = 'brother what a day today';
+String beforeString = test.after('brother'); // returns ' what a day today'
 ```

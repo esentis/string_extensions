@@ -719,4 +719,35 @@ void main() {
       expect(t4.toBool, false);
     },
   );
+
+  test('Returns the string after a specific character / word', () {
+    String t1 = 'Hello brother what a wonderful day';
+
+    expect(t1.after('brother'), ' what a wonderful day');
+    expect(t1.after('what'), ' a wonderful day');
+    expect(t1.after('  '), '');
+    expect(t1.after(''), '');
+    expect(t1.after(' b'), 'rother what a wonderful day');
+    expect(t1.after('wonderful'), ' day');
+    expect(t1.after('12345'), '');
+  });
+
+  test('Returns the string before a specific character / word', () {
+    String t1 = 'Hello brother what a wonderful day';
+
+    expect(t1.before('brother'), 'Hello ');
+    expect(t1.before('what'), 'Hello brother ');
+    expect(t1.before('  '), '');
+    expect(t1.before(''), '');
+    expect(t1.before('b'), 'Hello ');
+    expect(t1.before('wonderful'), 'Hello brother what a ');
+    expect(t1.before('12345'), '');
+  });
+
+  test('Returns the Jaro distance', () {
+    String t1 = 'esentis';
+    String t2 = 'esen';
+
+    expect(t1.getJaro(t2), 0.8571428571428571);
+  });
 }

@@ -4,7 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
-  /// Checks if the [length!] of the String is more than [s].
+  /// Checks if the [length!] of the `String` is more than the length of [s].
   bool? operator >(String s) {
     if (this == null) {
       return null;
@@ -15,7 +15,7 @@ extension MiscExtensions on String? {
     return this!.length > s.length;
   }
 
-  /// Checks if the [length!] of the String is more or equal to [s].
+  /// Checks if the [length!] of the `String` is more or equal than the length of [s].
   bool? operator >=(String s) {
     if (this == null) {
       return null;
@@ -26,7 +26,7 @@ extension MiscExtensions on String? {
     return this!.length >= s.length;
   }
 
-  /// Checks if the [length!] of the String is less than [s].
+  /// Checks if the [length!] of the `String` is less than the length of [s].
   bool? operator <(String s) {
     if (this == null) {
       return null;
@@ -37,7 +37,7 @@ extension MiscExtensions on String? {
     return this!.length < s.length;
   }
 
-  /// Checks if the [length!] of the String is less or equal to [s].
+  /// Checks if the [length!] of the `String` is less or equal than the length of [s].
   bool? operator <=(String s) {
     if (this == null) {
       return null;
@@ -59,7 +59,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(s, '');
   }
 
-  /// Returns the average read time duration of the given String in seconds.
+  /// Returns the average read time duration of the given `String` in seconds.
   ///
   /// The default calculation is based on 200 words per minute.
   ///
@@ -81,7 +81,7 @@ extension MiscExtensions on String? {
     return (magicalNumber * 100).toInt();
   }
 
-  /// Capitalizes the string in normal form.
+  /// Capitalizes the `String` in normal form.
   /// ### Example
   /// ```dart
   /// String foo = 'hAckErrR';
@@ -97,7 +97,7 @@ extension MiscExtensions on String? {
     return '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}';
   }
 
-  /// Returns the word count in the given string.
+  /// Returns the word count in the given `String`.
   ///
   /// The pattern is based on spaces.
   /// ### Example
@@ -118,7 +118,7 @@ extension MiscExtensions on String? {
     return filteredWords.length;
   }
 
-  /// Removes only the numbers from the String.
+  /// Removes only the numbers from the `String`.
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
@@ -140,7 +140,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the Latin characters from the String.
+  /// Returns only the Latin characters from the `String`.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
@@ -158,7 +158,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Returns only the Greek characters from the String.
+  /// Returns only the Greek characters from the `String`.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/σοφ4e5523ια';
@@ -193,7 +193,7 @@ extension MiscExtensions on String? {
     return this == null;
   }
 
-  /// Checks whether the String is valid IPv4.
+  /// Checks whether the `String` is valid IPv4.
   /// ### Example 1
   /// ```dart
   /// String foo = '192.168.1.14';
@@ -216,7 +216,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the String is valid IPv6.
+  /// Checks whether the `String` is valid IPv6.
   /// ### Example 1
   /// ```dart
   /// String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
@@ -241,7 +241,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the String is valid URL.
+  /// Checks whether the `String` is valid URL.
   /// ### Example 1
   /// ```dart
   /// String foo = 'foo.1com';
@@ -264,7 +264,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the String is valid Date:
+  /// Checks whether the `String` is valid Date:
   ///
   /// ### Valid formats
   ///
@@ -301,7 +301,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Checks whether the String is a valid mail.
+  /// Checks whether the `String` is a valid mail.
   /// ### Example
   /// ```dart
   /// String foo = 'esentis@esentis.com';
@@ -318,7 +318,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the String is a number.
+  /// Checks whether the `String` is a number.
   /// ### Example
   /// ```dart
   /// String foo = '45';
@@ -337,7 +337,7 @@ extension MiscExtensions on String? {
     return num.tryParse(this!) != null;
   }
 
-  /// Checks whether the String is a "strong" password which complies to below rules :
+  /// Checks whether the `String` is a "strong" password which complies to below rules :
   ///  * At least 1 uppercase
   ///  * At least 1 special character
   ///  * At least 1 number
@@ -363,7 +363,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the String is a valid Guid.
+  /// Checks whether the `String` is a valid Guid.
   ///
   /// ### Example
   /// ```dart
@@ -386,7 +386,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks if the String exists in a given `Iterable<String>`
+  /// Checks if the `String` exists in a given `Iterable<String>`
   /// ### Example
   /// ```dart
   /// String foo = '6d64-4396-8547-1ec1b86e081e';
@@ -403,7 +403,7 @@ extension MiscExtensions on String? {
     return strings.contains(this);
   }
 
-  /// Checks if the String has only Latin characters.
+  /// Checks if the `String` has only Latin characters.
   /// ### Example
   /// ```dart
   /// String foo = 'this is a τεστ';
@@ -421,7 +421,7 @@ extension MiscExtensions on String? {
     return RegExp(r'^[a-zA-Z\s]+$').hasMatch(this!);
   }
 
-  /// Checks if the String has only Greek characters.
+  /// Checks if the `String` has only Greek characters.
   /// ### Example
   /// ```dart
   /// String foo = 'this is a τεστ';
@@ -439,7 +439,7 @@ extension MiscExtensions on String? {
     return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
   }
 
-  /// Returns only the numbers from the String.
+  /// Returns only the numbers from the `String`.
   /// ### Example
   /// ```dart
   /// String foo = '4*%^55/es4e5523nt1is';
@@ -457,7 +457,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Removes only the letters from the String.
+  /// Removes only the letters from the `String`.
   /// ### Example 1
   /// ```dart
   /// String foo = 'es4e5523nt1is';
@@ -518,7 +518,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Finds a specific's character occurence in a string.
+  /// Finds a specific's character occurence in a `String`.
   ///
   /// ### Example
   /// ```dart
@@ -536,7 +536,7 @@ extension MiscExtensions on String? {
         0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
   }
 
-  /// Finds the most frequent character in the String.
+  /// Finds the most frequent character in the `String`.
   /// ### Example 1
   /// ```dart
   /// String foo = 'Hello World';
@@ -579,7 +579,7 @@ extension MiscExtensions on String? {
     return mostFrequent;
   }
 
-  /// Returns the String reversed.
+  /// Returns the `String` reversed.
   /// ### Example
   /// ```dart
   /// String foo = 'Hello World';
@@ -596,11 +596,11 @@ extension MiscExtensions on String? {
     return letters.reduce((current, next) => current + next);
   }
 
-  /// Returns the first [n] characters of the string.
+  /// Returns the first [n] characters of the `String`.
   ///
-  /// n is optional, by default it returns the first character of the string.
+  /// n is optional, by default it returns the first character of the `String`.
   ///
-  /// If [n] provided is longer than the string's length, the string will be returned.
+  /// If [n] provided is longer than the `String`'s length, the string will be returned.
   ///
   /// Faster than using
   /// ```dart
@@ -630,11 +630,11 @@ extension MiscExtensions on String? {
     return this!.substring(0, n);
   }
 
-  /// Returns the last [n] characters of the string.
+  /// Returns the last [n] characters of the `String`.
   ///
-  /// [n] is optional, by default it returns the first character of the string.
+  /// [n] is optional, by default it returns the first character of the `String`.
   ///
-  /// If [n] provided is longer than the string's length, the string will be returned.
+  /// If [n] provided is longer than the `String`'s length, the string will be returned.
   ///
   /// Faster than using
   /// ```dart
@@ -663,7 +663,7 @@ extension MiscExtensions on String? {
     return this!.substring(this!.length - n, this!.length);
   }
 
-  /// Returns the string to slug case.
+  /// Returns the `String` to slug case.
   ///
   /// ### Example
   /// ```dart
@@ -694,7 +694,7 @@ extension MiscExtensions on String? {
     return slugWord;
   }
 
-  /// Returns the String in camelcase.
+  /// Returns the `String` in camelcase.
   /// ### Example
   /// ```dart
   /// String foo = 'Find max of array';
@@ -716,7 +716,7 @@ extension MiscExtensions on String? {
     return result;
   }
 
-  /// Returns the word title cased.
+  /// Returns the `String` title cased.
   ///
   /// ```dart
   /// String foo = 'Hello dear friend how you doing ?';
@@ -737,7 +737,7 @@ extension MiscExtensions on String? {
     return words.join(' ');
   }
 
-  /// Returns a list of the string's characters.
+  /// Returns a list of the `String`'s characters.
   ///
   /// O(n)
   ///
@@ -756,7 +756,7 @@ extension MiscExtensions on String? {
     return this!.split('');
   }
 
-  /// Converts a `string` to a numeric value if possible.
+  /// Converts a `String` to a numeric value if possible.
   ///
   /// If conversion fails, `null` is returned.
   ///
@@ -779,7 +779,7 @@ extension MiscExtensions on String? {
     return num.tryParse(this!);
   }
 
-  /// Converts a `string` to`int` if possible.
+  /// Converts a `String` to`int` if possible.
   ///
   /// If conversion fails, `null` is returned.
   ///
@@ -806,7 +806,7 @@ extension MiscExtensions on String? {
     return int.tryParse(this!) ?? double.tryParse(this!)?.floor();
   }
 
-  /// Converts a `string` to`double` if possible.
+  /// Converts a `String` to`double` if possible.
   ///
   /// If conversion fails, `null` is returned.
   ///
@@ -829,7 +829,7 @@ extension MiscExtensions on String? {
     return double.tryParse(this!);
   }
 
-  /// Replaces all greek words with latin. Comes handy when you want to normalize text for search.
+  /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
   ///
   /// ### Example
   /// ```dart
@@ -916,7 +916,7 @@ extension MiscExtensions on String? {
     return normalizedWord;
   }
 
-  /// Given a pattern returns the starting indices of all occurences of the pattern in the string.
+  /// Given a pattern returns the starting indices of all occurences of the pattern in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -958,7 +958,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Strips all HTML code from String.
+  /// Strips all HTML code from `String`.
   ///
   /// ### Example
   /// ```dart
@@ -977,7 +977,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// If the provided string is empty do something.
+  /// If the provided `String` is empty do something.
   ///
   /// ### Example
   /// ```dart
@@ -1021,7 +1021,7 @@ extension MiscExtensions on String? {
     return defautlValue;
   }
 
-  /// Repeats a string [count] times.
+  /// Repeats a `String` [count] times.
   ///
   /// ### Example
   /// ```dart
@@ -1043,7 +1043,7 @@ extension MiscExtensions on String? {
     return repeated;
   }
 
-  /// Squeezes the string by removing repeats of a given character.
+  /// Squeezes the `String` by removing repeats of a given character.
   ///
   /// ### Example
   /// ```dart
@@ -1068,7 +1068,7 @@ extension MiscExtensions on String? {
     return sb;
   }
 
-  /// Checks if the string is consisted of same characters (ignores cases).
+  /// Checks if the `String` is consisted of same characters (ignores cases).
   ///
   /// ### Example
   /// ```dart
@@ -1098,7 +1098,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Shuffles the given string characters.
+  /// Shuffles the given `String` characters.
   ///
   /// ### Example
   /// ```dart
@@ -1156,7 +1156,7 @@ extension MiscExtensions on String? {
   }
 
   /// Inspired from Vincent van Proosdij
-  /// Formats a String with a specific mask.
+  /// Formats a `String` with a specific mask.
   ///
   /// You can assign your own [specialChar], defaults to '#'.
   ///
@@ -1260,7 +1260,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, n);
   }
 
-  /// Reverses slash by providing [direction],
+  /// Reverses slash in the `String`, by providing [direction],
   ///
   /// `0 = / -> \\`
   ///
@@ -1291,7 +1291,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the character at [index].
+  /// Returns the character at [index] of the `String`.
   ///
   /// ### Example
   ///
@@ -1354,9 +1354,9 @@ extension MiscExtensions on String? {
     return prefix + this!;
   }
 
-  /// Tries to format the current `String` to price amount. You can pass
+  /// Tries to format the current `String` to price amount.
   ///
-  /// you can optionally pass the [currencySymbol] to append a symbol to the formatted text.
+  /// You can optionally pass the [currencySymbol] to append a symbol to the formatted text.
   ///
   /// ### Example
   ///
@@ -1384,7 +1384,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the day name of the date provided.
+  /// Returns the day name of the date provided in `String` format..
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1414,7 +1414,7 @@ extension MiscExtensions on String? {
     return DateFormat('EEEE', locale).format(date).toString();
   }
 
-  /// Returns the month name of the date provided.
+  /// Returns the month name of the date provided in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1444,7 +1444,7 @@ extension MiscExtensions on String? {
     return DateFormat('MMMM', locale).format(date).toString();
   }
 
-  /// Returns the first day of the month from the provided `DateTime`.
+  /// Returns the first day of the month from the provided `DateTime` in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1476,7 +1476,7 @@ extension MiscExtensions on String? {
         .toString();
   }
 
-  /// Returns the last day of the month from the provided `DateTime`.
+  /// Returns the last day of the month from the provided `DateTime` in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1633,7 +1633,7 @@ extension MiscExtensions on String? {
     return normalizedString.append('"').prepend('"');
   }
 
-  /// Trims leading and trailing spaces, so as extra spaces in between words.
+  /// Trims leading and trailing spaces from the `String`, so as extra spaces in between words.
   ///
   /// ### Example
   ///
@@ -1667,5 +1667,141 @@ extension MiscExtensions on String? {
       return false;
     }
     return null;
+  }
+
+  /// Returns the `String` after a specific character
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.after('brother'); // returns ' what a day today'
+  /// ```
+  String? after(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(
+        indexOfLastPatternWord + patternWords.last.length, this!.length);
+  }
+
+  /// Returns the `String` before a specific character
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String test = 'brother what a day today';
+  /// String beforeString = test.before('brother'); // returns 'hello '
+  /// ```
+  String? before(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(
+      0,
+      indexOfFirstPatternWord,
+    );
+  }
+
+  /// The Jaro distance is a measure of edit distance between two strings;
+  ///
+  /// its inverse, called the Jaro similarity, is a measure of two strings' similarity:
+  ///
+  /// the higher the value, the more similar the strings are.
+  ///
+  /// ### example
+  ///
+  /// ```dart
+  /// String t1 = 'esentis';
+  /// String t2 = 'esen';
+  /// print(t1.getJaro(t2)); // prints 0.8571428571428571
+  /// ```
+  double? getJaro(String t) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return 1;
+    }
+
+    final int sLen = this!.length;
+    final int tLen = t.length;
+
+    if (sLen == 0 && tLen == 0) return 1;
+
+    final int matchDistance = (max(sLen, tLen) / 2 - 1).toInt();
+
+    final List<bool> sMatches = List<bool>.filled(sLen, false);
+    final List<bool> tMatches = List<bool>.filled(tLen, false);
+
+    int matches = 0;
+    int transpositions = 0;
+
+    for (int i = 0; i < sLen; i++) {
+      final int start = max(0, i - matchDistance);
+      final int end = min(i + matchDistance + 1, tLen);
+
+      for (int j = start; j < end; j++) {
+        if (tMatches[j]) continue;
+        if (this!.charAt(i) != t.charAt(j)) continue;
+        sMatches[i] = true;
+        tMatches[j] = true;
+        matches++;
+        break;
+      }
+    }
+
+    if (matches == 0) return 0;
+
+    int k = 0;
+    for (int i = 0; i < sLen; i++) {
+      if (!sMatches[i]) continue;
+      while (!tMatches[k]) {
+        k++;
+      }
+      if (this!.charAt(i) != t.charAt(k)) transpositions++;
+      k++;
+    }
+
+    return ((matches / sLen) +
+            (matches / tLen) +
+            ((matches - transpositions / 2.0) / matches)) /
+        3.0;
   }
 }
