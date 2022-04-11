@@ -4,6 +4,21 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
+  
+ 
+  ///Check if a string is Blank (null, empty or only white spaces)
+  bool get isBlank => this?.trim().isEmpty ?? true;
+
+  ///Check if a string is  not Blank (bull, empty or only white spaces)
+  bool get isNotBlank => isBlank == false;
+
+  /// Return [this] if not blank. Otherwise return [newString]
+  String ifBlank(String newString) => asIf((s) => s.isBlank(), this ?? "", newString);
+
+  /// compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString]
+  String asIf(bool Function(String) comparison, String trueString, String falseString) => this != null && comparison(this!) ? trueString : falseString;
+
+  
   /// Checks if the [length!] of the `String` is more than the length of [s].
   bool? operator >(String s) {
     if (this == null) {
