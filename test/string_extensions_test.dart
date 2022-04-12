@@ -797,7 +797,6 @@ void main() {
     expect(s2, equals("new string"));
   });
 
-  
   test('getOppositeChar - return the opposite char', () {
     expect("(".getOppositeChar(), ")");
     expect("{".getOppositeChar(), "}");
@@ -827,7 +826,9 @@ void main() {
     expect("`".isCloseWrapChar(), true);
     expect("other".isOpenWrapChar(), false);
   });
-  test('wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]', () {
+  test(
+      'wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]',
+      () {
     expect("string".wrap("{"), "{string}");
     expect("string".wrap("("), "(string)");
     expect("string".wrap(null), "string");
