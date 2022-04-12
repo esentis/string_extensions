@@ -232,14 +232,9 @@ void main() {
     () {
       String? string1;
       expect(string1.isNull, true);
-    },
-  );
 
-  test(
-    'Checks if a string is not null',
-    () {
-      String? string1;
-      expect(string1.isNotNull, false);
+      String? string2 = 'esentis';
+      expect(string2.defaultValue('no null please'), 'esentis');
     },
   );
   test(
@@ -782,40 +777,10 @@ void main() {
     expect(s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
   });
 
-  test('ifBlank - check if string is null, empty or contains only whitespaces and if true return a second string; ', () {
+  test('ifBlank - check if string is null, empty or contains only whitespaces; ', () {
     String? s1 = "hello".ifBlank("new string");
     String? s2 = "".ifBlank("new string");
     expect(s1, equals("hello"));
     expect(s2, equals("new string"));
-  });
-
-  test('getOppositeChar - return the opposite char', () {
-    var s = "(".getOppositeChar();
-    expect(s, ")");
-  });
-
-  test('isOpenWrapChar - check is string is open wrap char', () {
-    expect("(".isOpenWrapChar(), true);
-    expect("{".isOpenWrapChar(), true);
-    expect("[".isOpenWrapChar(), true);
-    expect('"'.isOpenWrapChar(), true);
-    expect("'".isOpenWrapChar(), true);
-    expect("`".isOpenWrapChar(), true);
-    expect("other".isOpenWrapChar(), false);
-  });
-
-  test('isCloseWrapChar - check is string is close wrap char', () {
-    expect(")".isCloseWrapChar(), true);
-    expect("}".isCloseWrapChar(), true);
-    expect("]".isCloseWrapChar(), true);
-    expect('"'.isCloseWrapChar(), true);
-    expect("'".isCloseWrapChar(), true);
-    expect("`".isCloseWrapChar(), true);
-    expect("other".isOpenWrapChar(), false);
-  });
-  test('wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]', () {
-    expect("string".wrap("{"), "{string}");
-    expect("string".wrap("("), "(string)");
-    expect("string".wrap("AA", after: "BB"), "AAstringBB");
   });
 }
