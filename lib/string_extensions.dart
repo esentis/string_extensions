@@ -189,9 +189,20 @@ extension MiscExtensions on String? {
   /// String foo = 'fff';
   /// bool isNull = foo.isNull; // returns false
   /// ```
-  bool get isNull {
-    return this == null;
-  }
+  bool get isNull => this == null;
+
+  /// Checks whether the `String` is not `null`.
+  /// ### Example 1
+  /// ```dart
+  /// String? foo;
+  /// bool isNull = foo.isNotNull; // returns false
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'fff';
+  /// bool isNull = foo.isNotNull; // returns true
+  /// ```
+  bool get isNotNull => isNull == false;
 
   /// Checks whether the `String` is valid IPv4.
   /// ### Example 1
@@ -1005,7 +1016,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String? foo = null;
-  /// foo.ifNull('dont be null'); // returns 'dont be null'
+  /// foo.defaultValue('dont be null'); // returns 'dont be null'
   /// ```
   String? defaultValue(String defautlValue) {
     if (this != null) {
@@ -1786,14 +1797,74 @@ extension MiscExtensions on String? {
   }
 
   ///Check if a string is Blank (null, empty or only white spaces)
-  bool get isBlank => this?.trim().isEmpty ?? true;
+  bool get isBlank => this.isNull || "$this".trim().isEmpty;
 
   ///Check if a string is  not Blank (null, empty or only white spaces)
   bool get isNotBlank => isBlank == false;
 
-  /// Return [this] if not blank. Otherwise return [newString]
+  /// Provide default value if the `String` is blank (null, empty or only white spaces).
+  ///
+  /// ### Example
+  /// ```dart
+  /// String? foo = ' ';
+  /// foo.ifBlank('dont be blank'); // returns 'dont be blank'
+  /// ```
   String? ifBlank(String? newString) => asIf((s) => s.isNotBlank, this, newString);
 
   /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString]
   String? asIf(bool Function(String?) comparison, String? trueString, String? falseString) => comparison(this) ? trueString : falseString;
+
+  /// wrap a string between two strings. If [before] is a wrap char and [after] is blank, the method resolve [after] using [getOppositeChar]
+  String? wrap(String? before, {String? after}) {
+    if (after.isBlank) {
+      if (before.isCloseWrapChar()) {
+        before = before.getOppositeChar();
+      }
+      after = before.getOppositeChar();
+    }
+
+    return "$before${this}${after.ifBlank(before)}";
+  }
+
+  /// Return the Opposite wrap char of string
+  String? getOppositeChar() {
+    switch (this) {
+      case "(":
+        return ")";
+      case ")":
+        return "(";
+      case "[":
+        return "]";
+      case "]":
+        return "[";
+      case "{":
+        return "}";
+      case "}":
+        return "{";
+      case "<":
+        return ">";
+      case ">":
+        return "<";
+      case "\\":
+        return "/";
+      case "/":
+        return "\\";
+      case "¿":
+        return "?";
+      case "?":
+        return "¿";
+      case "!":
+        return "¡";
+      case "¡":
+        return "!";
+      default:
+        return this;
+    }
+  }
+
+  /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`
+  bool isOpenWrapChar() => this.isNotNull ? "`<{(['\"".toArray?.contains(this) ?? false : false;
+
+  /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`
+  bool isCloseWrapChar() => this.isNotNull ? "`>})]'\"".toArray?.contains(this) ?? false : false;
 }
