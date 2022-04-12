@@ -338,8 +338,7 @@ void main() {
     'Transforms string to string array',
     () {
       String? string = 'abracadabra';
-      expect(string.toArray,
-          ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
+      expect(string.toArray, ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
     },
   );
   test(
@@ -352,8 +351,7 @@ void main() {
   test(
     'Strips all html code',
     () {
-      String? string =
-          '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
+      String? string = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
       expect(string.stripHtml, 'Hacky hacky. Here is some text. This is bold.');
     },
   );
@@ -389,8 +387,7 @@ void main() {
       String? string3 = '8recommmmmmendation';
       expect(string3.squeeze('8'), '8recommmmmmendation');
 
-      String? string4 =
-          '8recommmmmmendation                                     ';
+      String? string4 = '8recommmmmmendation                                     ';
       expect(string4.squeeze(' '), '8recommmmmmendation ');
     },
   );
@@ -471,8 +468,7 @@ void main() {
     () {
       String? string1 = 'aaaaaaaabbbbccccddddeeeeeeeeeeee';
       String? mask1 = 'Hello ########-#A###-####-####-############ Oww';
-      expect(string1.formatWithMask(mask1),
-          'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
+      expect(string1.formatWithMask(mask1), 'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
 
       String? string2 = 'esenti';
       String? mask2 = 'Hello #######';
@@ -480,13 +476,11 @@ void main() {
 
       String? string3 = 'esentisgreece';
       String? mask3 = 'Hello ####### you are from ######';
-      expect(
-          string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+      expect(string3.formatWithMask(mask3), 'Hello esentis you are from greece');
 
       String? string4 = '1234567812345678';
       String? mask4 = '**** **** **** ****';
-      expect(string4.formatWithMask(mask4, specialChar: '*'),
-          '1234 5678 1234 5678');
+      expect(string4.formatWithMask(mask4, specialChar: '*'), '1234 5678 1234 5678');
     },
   );
   test(
@@ -566,8 +560,7 @@ void main() {
     'Appends a specific text to string',
     () {
       String? string1 = 'esentis';
-      expect(string1.append(' is trying to be a developer'),
-          'esentis is trying to be a developer');
+      expect(string1.append(' is trying to be a developer'), 'esentis is trying to be a developer');
     },
   );
   test(
@@ -751,8 +744,7 @@ void main() {
     expect(t1.getJaro(t2), 0.8571428571428571);
   });
 
-  test('isBlank - check if string is null, empty or contains only whitespaces ',
-      () {
+  test('isBlank - check if string is null, empty or contains only whitespaces ', () {
     String? string1 = "   ";
     String? string2;
     String? string3 = "not blank";
@@ -765,9 +757,7 @@ void main() {
     expect(string5.isBlank, true);
   });
 
-  test(
-      'isNotBlank - check if string is not null, empty or contains only whitespaces ',
-      () {
+  test('isNotBlank - check if string is not null, empty or contains only whitespaces ', () {
     String? string1 = "   ";
     String? string2;
     String? string3 = "not blank";
@@ -780,14 +770,11 @@ void main() {
     expect(string5.isNotBlank, false);
   });
 
-  test(
-      'asIf - compares a string using a function and returns first string if true, otherwise return second string',
-      () {
+  test('asIf - compares a string using a function and returns first string if true, otherwise return second string', () {
     String? s1 = "OK";
     String? s2 = "ERROR";
     expect(s1.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
-    expect(
-        s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
+    expect(s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
   });
 
   test('ifBlank - check if string is blank give it a default value.', () {
@@ -826,13 +813,40 @@ void main() {
     expect("`".isCloseWrapChar(), true);
     expect("other".isOpenWrapChar(), false);
   });
-  test(
-      'wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]',
-      () {
+  test('wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]', () {
     expect("string".wrap("{"), "{string}");
     expect("string".wrap("("), "(string)");
     expect("string".wrap(null), "string");
     expect("string".wrap(""), "string");
     expect("string".wrap("AA", after: "BB"), "AAstringBB");
+  });
+
+  test('removeLastEqual - Remove a string from the end of other string if equal [pattern]', () {
+    expect("string".removeLastEqual("ing"), "str");
+  });
+  test('removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]', () {
+    expect("string".removeLastEqual("str"), "ing");
+  });
+
+  test('removeLastAny - Continuously removes from the end of a `string` any string contained in [patterns]', () {
+    expect("string".removeLastAny(["s", "ng"]), "stri");
+  });
+
+  test('removeFirstAny - Continuously removes from the beginning of a `string` any string contained in [patterns]', () {
+    expect("string".removeFirstAny(["s", "ng"]), "tring");
+  });
+  test('removeFirstAndLastEqual - Continuously removes from the beginning and end of a `string` if equal [pattern]', () {
+    expect("abracadabra".removeFirstAndLastEqual("a"), "bracadabr");
+  });
+  test('containsAny - Check if `String` contains all `String`s of [list]', () {
+    expect("abracadabra".containsAny(["a", "p"]), true);
+    expect("string".containsAny(["str", "int"]), true);
+    expect("string".containsAny(["abra", "cadabra"]), false);
+  });
+
+  test('containsAll - Check if `String` contains all `String`s of [list]', () {
+    expect("abracadabra".containsAll(["abra", "cadabra"]), true);
+    expect("abracadabra".containsAll(["a", "c"]), true);
+    expect("abracadabra".containsAll(["abra", "kazan"]), false);
   });
 }

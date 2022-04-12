@@ -1881,7 +1881,7 @@ extension MiscExtensions on String? {
     return from;
   }
 
-  /// Continuously removes from the end of a `string` any string contained in [patterns]
+  /// Continuously removes from the end of a `string` any `string` contained in [patterns]
   String? removeLastAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
@@ -1896,13 +1896,16 @@ extension MiscExtensions on String? {
     return from;
   }
 
+  /// Continuously removes from the beggining and end of a `string` any `string` contained in [patterns]
+  String? removeFirstAndLastAny(List<String?> patterns) => removeFirstAny(patterns).removeLastAny(patterns);
+
   /// Remove a string from the end of other string if equal [pattern]
   String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
   /// Remove a string in the beginning of other string if equal [pattern]
   String? removeFirstEqual(String? pattern) => removeFirstAny([pattern]);
 
-  /// Remove string from the beginning and  the end of string if equal [pattern]
+  /// Remove string from the beginning and  the end of `string` if equal [pattern]
   String? removeFirstAndLastEqual(String? pattern) => removeFirstEqual(pattern).removeLastEqual(pattern);
 
   /// Check if `String` contains any `String`s of [list]
