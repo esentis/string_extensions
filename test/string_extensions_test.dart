@@ -338,8 +338,7 @@ void main() {
     'Transforms string to string array',
     () {
       String? string = 'abracadabra';
-      expect(string.toArray,
-          ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
+      expect(string.toArray, ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
     },
   );
   test(
@@ -352,8 +351,7 @@ void main() {
   test(
     'Strips all html code',
     () {
-      String? string =
-          '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
+      String? string = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
       expect(string.stripHtml, 'Hacky hacky. Here is some text. This is bold.');
     },
   );
@@ -389,8 +387,7 @@ void main() {
       String? string3 = '8recommmmmmendation';
       expect(string3.squeeze('8'), '8recommmmmmendation');
 
-      String? string4 =
-          '8recommmmmmendation                                     ';
+      String? string4 = '8recommmmmmendation                                     ';
       expect(string4.squeeze(' '), '8recommmmmmendation ');
     },
   );
@@ -471,8 +468,7 @@ void main() {
     () {
       String? string1 = 'aaaaaaaabbbbccccddddeeeeeeeeeeee';
       String? mask1 = 'Hello ########-#A###-####-####-############ Oww';
-      expect(string1.formatWithMask(mask1),
-          'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
+      expect(string1.formatWithMask(mask1), 'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
 
       String? string2 = 'esenti';
       String? mask2 = 'Hello #######';
@@ -480,13 +476,11 @@ void main() {
 
       String? string3 = 'esentisgreece';
       String? mask3 = 'Hello ####### you are from ######';
-      expect(
-          string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+      expect(string3.formatWithMask(mask3), 'Hello esentis you are from greece');
 
       String? string4 = '1234567812345678';
       String? mask4 = '**** **** **** ****';
-      expect(string4.formatWithMask(mask4, specialChar: '*'),
-          '1234 5678 1234 5678');
+      expect(string4.formatWithMask(mask4, specialChar: '*'), '1234 5678 1234 5678');
     },
   );
   test(
@@ -566,8 +560,7 @@ void main() {
     'Appends a specific text to string',
     () {
       String? string1 = 'esentis';
-      expect(string1.append(' is trying to be a developer'),
-          'esentis is trying to be a developer');
+      expect(string1.append(' is trying to be a developer'), 'esentis is trying to be a developer');
     },
   );
   test(
@@ -749,5 +742,45 @@ void main() {
     String t2 = 'esen';
 
     expect(t1.getJaro(t2), 0.8571428571428571);
+  });
+
+  test('isBlank - check if string is null, empty or contains only whitespaces; ', () {
+    String? string1 = "   ";
+    String? string2;
+    String? string3 = "not blank";
+    String? string4 = "";
+    String? string5 = "\r\n";
+    expect(string1.isBlank, true);
+    expect(string2.isBlank, true);
+    expect(string3.isBlank, false);
+    expect(string4.isBlank, true);
+    expect(string5.isBlank, true);
+  });
+
+  test('isNotBlank - check if string is not null, empty or contains only whitespaces; ', () {
+    String? string1 = "   ";
+    String? string2;
+    String? string3 = "not blank";
+    String? string4 = "";
+    String? string5 = "\r\n";
+    expect(string1.isNotBlank, false);
+    expect(string2.isNotBlank, false);
+    expect(string3.isNotBlank, true);
+    expect(string4.isNotBlank, false);
+    expect(string5.isNotBlank, false);
+  });
+
+  test('asIf - compares a string using a function and returns first string if true, otherwise return second string;', () {
+    String? s1 = "OK";
+    String? s2 = "ERROR";
+    expect(s1.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
+    expect(s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
+  });
+
+  test('ifBlank - check if string is null, empty or contains only whitespaces; ', () {
+    String? s1 = "hello".ifBlank("new string");
+    String? s2 = "".ifBlank("new string");
+    expect(s1, equals("hello"));
+    expect(s2, equals("new string"));
   });
 }
