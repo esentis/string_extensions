@@ -750,4 +750,50 @@ void main() {
 
     expect(t1.getJaro(t2), 0.8571428571428571);
   });
+
+  test('isBlank - check if string is null, empty or contains only whitespaces ',
+      () {
+    String? string1 = "   ";
+    String? string2;
+    String? string3 = "not blank";
+    String? string4 = "";
+    String? string5 = "\r\n";
+    expect(string1.isBlank, true);
+    expect(string2.isBlank, true);
+    expect(string3.isBlank, false);
+    expect(string4.isBlank, true);
+    expect(string5.isBlank, true);
+  });
+
+  test(
+      'isNotBlank - check if string is not null, empty or contains only whitespaces ',
+      () {
+    String? string1 = "   ";
+    String? string2;
+    String? string3 = "not blank";
+    String? string4 = "";
+    String? string5 = "\r\n";
+    expect(string1.isNotBlank, false);
+    expect(string2.isNotBlank, false);
+    expect(string3.isNotBlank, true);
+    expect(string4.isNotBlank, false);
+    expect(string5.isNotBlank, false);
+  });
+
+  test(
+      'asIf - compares a string using a function and returns first string if true, otherwise return second string',
+      () {
+    String? s1 = "OK";
+    String? s2 = "ERROR";
+    expect(s1.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
+    expect(
+        s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
+  });
+
+  test('ifBlank - check if string is blank give it a default value.', () {
+    String? s1 = "hello".ifBlank("new string");
+    String? s2 = "".ifBlank("new string");
+    expect(s1, equals("hello"));
+    expect(s2, equals("new string"));
+  });
 }

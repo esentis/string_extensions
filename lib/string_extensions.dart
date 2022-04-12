@@ -1804,4 +1804,19 @@ extension MiscExtensions on String? {
             ((matches - transpositions / 2.0) / matches)) /
         3.0;
   }
+
+  ///Check if a string is Blank (null, empty or only white spaces)
+  bool get isBlank => this?.trim().isEmpty ?? true;
+
+  ///Check if a string is  not Blank (null, empty or only white spaces)
+  bool get isNotBlank => isBlank == false;
+
+  /// Return [this] if not blank. Otherwise return [newString]
+  String? ifBlank(String? newString) =>
+      asIf((s) => s.isNotBlank, this, newString);
+
+  /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString]
+  String? asIf(bool Function(String?) comparison, String? trueString,
+          String? falseString) =>
+      comparison(this) ? trueString : falseString;
 }
