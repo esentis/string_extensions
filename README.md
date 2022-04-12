@@ -7,8 +7,7 @@
  <img src="https://travis-ci.com/esentis/string_extensions.svg?branch=master" alt="Version" />
  <a href='https://coveralls.io/github/esentis/string_extensions?branch=master'><img src='https://coveralls.io/repos/github/esentis/string_extensions/badge.svg?branch=master' alt='Coverage Status' /></a>
 </br>
+  <a href='https://pub.dev/documentation/string_extensions/latest/string_extensions/MiscExtensions.html'><img src="https://img.shields.io/badge/Check-Documentation-blue?style=for-the-badge&logo=readthedocs" alt="Documentation" /></a>
 </p>
 
 ---
-
-### Check [documentation](https://pub.dev/documentation/string_extensions/latest/string_extensions/MiscExtensions.html) for all the available methods
