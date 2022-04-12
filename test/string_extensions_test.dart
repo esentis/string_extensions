@@ -825,7 +825,7 @@ void main() {
     expect("string".removeLastEqual("ing"), "str");
   });
   test('removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]', () {
-    expect("string".removeLastEqual("str"), "ing");
+    expect("string".removeFirstEqual("str"), "ing");
   });
 
   test('removeLastAny - Continuously removes from the end of a `string` any string contained in [patterns]', () {
