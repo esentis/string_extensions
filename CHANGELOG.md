@@ -1,4 +1,16 @@
-# [0.4.3] - New Extensions
+# [0.4.4] - New Extensions
+
+Thanks to [zonaro](https://github.com/zonaro)
+
+- `wrap` : Wraps a `String` between two `String`.
+
+- `getOppositeChar` : Returns the opposite wrap char of the `String`.
+
+- `isOpenWrapChar` : Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
+
+- `isCloseWrapChar` : Checks if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
+
+## [0.4.3] - New Extensions
 
 Thanks to [zonaro](https://github.com/zonaro)
 
@@ -8,7 +20,7 @@ Thanks to [zonaro](https://github.com/zonaro)
 
 - `asIf` : Compares a `String` to another and returns the first if equal, otherwise returns the second one.
 
-- `ifBlank(String default)` : CHecks if a `String` is blank and gives it a default value.
+- `ifBlank(String default)` : Checks if a `String` is blank and gives it a default value.
 
 ## [0.4.2] - Minor improvements & New Extensions
 

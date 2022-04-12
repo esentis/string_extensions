@@ -1835,7 +1835,7 @@ extension MiscExtensions on String? {
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar]
+  /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar]
   String? wrap(String? before, {String? after}) {
     before = before.ifBlank("");
     if (after.isBlank) {
