@@ -1,4 +1,16 @@
-# [0.4.2] - Minor improvements & New Extensions
+# [0.4.3] - New Extensions
+
+Thanks to [zonaro](https://github.com/zonaro)
+
+- `isBlank` : Checks if a `String` is `null` empty or contains only whitespaces.
+
+- `isNotBlank` : Checks if a `String` is NOT `null` empty or contains only whitespaces.
+
+- `asIf` : Compares a `String` to another and returns the first if equal, otherwise returns the second one.
+
+- `ifBlank(String default)` : CHecks if a `String` is blank and gives it a default value.
+
+## [0.4.2] - Minor improvements & New Extensions
 
 - Returns the `String` after a character / word.
 
