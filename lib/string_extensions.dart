@@ -1666,7 +1666,7 @@ extension MiscExtensions on String? {
     return this!.trim().replaceAll(RegExp(' +'), ' ');
   }
 
-  /// Checks the `String` and maps the value to a `bool` if possible
+  /// Checks the `String` and maps the value to a `bool` if possible.
   ///
   /// ### Example
   ///
@@ -1684,7 +1684,7 @@ extension MiscExtensions on String? {
     return null;
   }
 
-  /// Returns the `String` after a specific character
+  /// Returns the `String` after a specific character.
   ///
   /// ### Example
   ///
@@ -1754,7 +1754,7 @@ extension MiscExtensions on String? {
     );
   }
 
-  /// The Jaro distance is a measure of edit distance between two strings;
+  /// The Jaro distance is a measure of edit distance between two strings
   ///
   /// its inverse, called the Jaro similarity, is a measure of two strings' similarity:
   ///
@@ -1820,10 +1820,10 @@ extension MiscExtensions on String? {
         3.0;
   }
 
-  ///Check if a string is Blank (null, empty or only white spaces)
+  /// Check if a string is Blank (null, empty or only white spaces)
   bool get isBlank => this?.trim().isEmpty ?? true;
 
-  ///Check if a string is  not Blank (null, empty or only white spaces)
+  /// Check if a string is  not Blank (null, empty or only white spaces)
   bool get isNotBlank => isBlank == false;
 
   /// Return [this] if not blank. Otherwise return [newString]
@@ -1934,6 +1934,73 @@ extension MiscExtensions on String? {
   /// Remove string from the beginning and  the end of `string` if equal [pattern]
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
+
+  /// Removes everything in the `String` after the first occurence of a specific pattern.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.removeAfter('brother'); // returns 'hello '
+  /// ```
+  String? removeAfter(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(0, indexOfLastPatternWord);
+  }
+
+  /// Removes everything in the `String` before the first occurence of a specific pattern.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today'
+  /// ```
+  String? removeBefore(String pattern) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(
+      indexOfFirstPatternWord + 1,
+      this!.length,
+    );
+  }
 
   /// Check if `String` contains any `String`s of [list]
   bool containsAny(List<String?> list) {

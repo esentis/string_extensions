@@ -874,4 +874,18 @@ void main() {
     expect("abracadabra".containsAll(["a", "c"]), true);
     expect("abracadabra".containsAll(["abra", "kazan"]), false);
   });
+
+  test(
+      'removeAfter - Removes everything after first occurence of a specific pattern',
+      () {
+    expect("0:00:00.11".removeAfter('.'), '0:00:00');
+    expect("0.:00:00.11".removeAfter('.'), '0');
+  });
+
+  test(
+      'removeBefore - Removes everything before first occurence of a specific pattern',
+      () {
+    expect("0:00:00.11".removeBefore('.'), '11');
+    expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
+  });
 }
