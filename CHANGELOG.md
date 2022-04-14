@@ -1,5 +1,9 @@
 # [0.4.4] - New Extensions
 
+- `removeAfter` : Removes everything after the first occurence of a specific pattern.
+
+- `removeBefore` : Removes everything before the first occurence of a specific pattern.
+
 Thanks to [zonaro](https://github.com/zonaro)
 
 - `wrap` : Wraps a `String` between two `String`s.
