@@ -1,4 +1,36 @@
-# [0.4.3] - New Extensions
+# [0.4.4] - New Extensions
+
+- `removeAfter` : Removes everything after the first occurence of a specific pattern.
+
+- `removeBefore` : Removes everything before the first occurence of a specific pattern.
+
+Thanks to [zonaro](https://github.com/zonaro)
+
+- `wrap` : Wraps a `String` between two `String`s.
+
+- `getOppositeChar` : Returns the opposite wrap char of the `String`.
+
+- `isOpenWrapChar` : Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
+
+- `isCloseWrapChar` : Checks if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
+
+- `removeFirstAny` : Continuously removes from the beginning of a `String` any `String` contained in [patterns].
+
+- `removeLastAny` : Continuously removes from the end of a `String` any `String` contained in [patterns].
+
+- `removeFirstAndLastAny` : Continuously removes from the beggining and end of a `String` any `String` contained in [patterns].
+
+- `removeLastEqual` : Remove a `String` from the end of other string if equal [pattern].
+
+- `removeFirstEqual` : Remove a `String` in the beginning of other string if equal [pattern].
+
+- `removeFirstAndLastEqual` : Remove `String` from the beginning and the end of `String` if equal [pattern].
+
+- `containsAny` : Check if `String` contains any `String`s of [list].
+
+- `containsAll` : Check if `String` contains all `String`s of [list].
+
+## [0.4.3] - New Extensions
 
 Thanks to [zonaro](https://github.com/zonaro)
 
@@ -8,7 +40,7 @@ Thanks to [zonaro](https://github.com/zonaro)
 
 - `asIf` : Compares a `String` to another and returns the first if equal, otherwise returns the second one.
 
-- `ifBlank(String default)` : CHecks if a `String` is blank and gives it a default value.
+- `ifBlank(String default)` : Checks if a `String` is blank and gives it a default value.
 
 ## [0.4.2] - Minor improvements & New Extensions
 

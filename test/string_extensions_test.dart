@@ -796,4 +796,96 @@ void main() {
     expect(s1, equals("hello"));
     expect(s2, equals("new string"));
   });
+
+  test('getOppositeChar - return the opposite char', () {
+    expect("(".getOppositeChar(), ")");
+    expect("{".getOppositeChar(), "}");
+    expect("[".getOppositeChar(), "]");
+    expect("AA".getOppositeChar(), "AA");
+    expect("".getOppositeChar(), "");
+    String? s;
+    expect(s.getOppositeChar(), null);
+  });
+
+  test('isOpenWrapChar - check is string is open wrap char', () {
+    expect("(".isOpenWrapChar(), true);
+    expect("{".isOpenWrapChar(), true);
+    expect("[".isOpenWrapChar(), true);
+    expect('"'.isOpenWrapChar(), true);
+    expect("'".isOpenWrapChar(), true);
+    expect("`".isOpenWrapChar(), true);
+    expect("other".isOpenWrapChar(), false);
+  });
+
+  test('isCloseWrapChar - check is string is close wrap char', () {
+    expect(")".isCloseWrapChar(), true);
+    expect("}".isCloseWrapChar(), true);
+    expect("]".isCloseWrapChar(), true);
+    expect('"'.isCloseWrapChar(), true);
+    expect("'".isCloseWrapChar(), true);
+    expect("`".isCloseWrapChar(), true);
+    expect("other".isOpenWrapChar(), false);
+  });
+  test(
+      'wrap - wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve after using [getOppositeChar]',
+      () {
+    expect("string".wrap("{"), "{string}");
+    expect("string".wrap("("), "(string)");
+    expect("string".wrap(null), "string");
+    expect("string".wrap(""), "string");
+    expect("string".wrap("AA", after: "BB"), "AAstringBB");
+  });
+
+  test(
+      'removeLastEqual - Remove a string from the end of other string if equal [pattern]',
+      () {
+    expect("string".removeLastEqual("ing"), "str");
+  });
+  test(
+      'removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]',
+      () {
+    expect("string".removeFirstEqual("str"), "ing");
+  });
+
+  test(
+      'removeLastAny - Continuously removes from the end of a `string` any string contained in [patterns]',
+      () {
+    expect("string".removeLastAny(["s", "ng"]), "stri");
+  });
+
+  test(
+      'removeFirstAny - Continuously removes from the beginning of a `string` any string contained in [patterns]',
+      () {
+    expect("string".removeFirstAny(["s", "ng"]), "tring");
+  });
+  test(
+      'removeFirstAndLastEqual - Continuously removes from the beginning and end of a `string` if equal [pattern]',
+      () {
+    expect("abracadabra".removeFirstAndLastEqual("a"), "bracadabr");
+  });
+  test('containsAny - Check if `String` contains all `String`s of [list]', () {
+    expect("abracadabra".containsAny(["a", "p"]), true);
+    expect("string".containsAny(["str", "int"]), true);
+    expect("string".containsAny(["abra", "cadabra"]), false);
+  });
+
+  test('containsAll - Check if `String` contains all `String`s of [list]', () {
+    expect("abracadabra".containsAll(["abra", "cadabra"]), true);
+    expect("abracadabra".containsAll(["a", "c"]), true);
+    expect("abracadabra".containsAll(["abra", "kazan"]), false);
+  });
+
+  test(
+      'removeAfter - Removes everything after first occurence of a specific pattern',
+      () {
+    expect("0:00:00.11".removeAfter('.'), '0:00:00');
+    expect("0.:00:00.11".removeAfter('.'), '0');
+  });
+
+  test(
+      'removeBefore - Removes everything before first occurence of a specific pattern',
+      () {
+    expect("0:00:00.11".removeBefore('.'), '11');
+    expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
+  });
 }
