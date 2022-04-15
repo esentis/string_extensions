@@ -1,4 +1,9 @@
-# [0.4.4] - New Extensions
+# [0.4.5] - New Extnsions
+
+- `addAfter` : Adds a `String` after the first occurence of a specific pattern.
+- `addBefore` : Adds a `String` before the first occurence of a specific pattern.
+
+## [0.4.4] - New Extensions
 
 - `removeAfter` : Removes everything after the first occurence of a specific pattern.
 
