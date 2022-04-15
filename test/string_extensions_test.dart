@@ -888,4 +888,16 @@ void main() {
     expect("0:00:00.11".removeBefore('.'), '11');
     expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
   });
+  test('addAfter - Adds a String after first occurence of a specific pattern',
+      () {
+    expect("0:00:00.11".addAfter('.', '5'), '0:00:00.511');
+    expect("hello".addAfter('o', ' there'), 'hello there');
+  }); // expect('hello brother what a day today', matcher)
+
+  test('addBefore - Adds a String before first occurence of a specific pattern',
+      () {
+    expect('hello brother what a day today'.addBefore('brother', 'big '),
+        'hello big brother what a day today');
+    expect('world'.addBefore('w', 'hello '), 'hello world');
+  });
 }

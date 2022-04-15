@@ -2002,6 +2002,77 @@ extension MiscExtensions on String? {
     );
   }
 
+  /// Adds a `String` after the first occurence of a specific pattern. Pattern should not be empty.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today '
+  /// ```
+  String? addAfter(String pattern, String adition) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(0, indexOfLastPatternWord + 1) +
+        adition +
+        this!.substring(indexOfLastPatternWord + 1, this!.length);
+  }
+
+  /// Adds a `String` before the first occurence of a specific pattern. Pattern should not be empty.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String test = 'hello brother what a day today';
+  /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today'
+  /// ```
+  String? addBefore(String pattern, String adition) {
+    if (this == null) {
+      return null;
+    }
+    if (this!.isEmpty) {
+      return this;
+    }
+    if (!this!.contains(pattern)) {
+      return '';
+    }
+
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return '';
+    }
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
+
+    if (patternWords.last.length == 0) {
+      return '';
+    }
+
+    return this!.substring(0, indexOfFirstPatternWord) +
+        adition +
+        this!.substring(
+          indexOfFirstPatternWord,
+          this!.length,
+        );
+  }
+
   /// Check if `String` contains any `String`s of [list]
   bool containsAny(List<String?> list) {
     if (this.isNotBlank) {
