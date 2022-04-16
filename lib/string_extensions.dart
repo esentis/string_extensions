@@ -1760,7 +1760,7 @@ extension MiscExtensions on String? {
   ///
   /// the higher the value, the more similar the strings are.
   ///
-  /// ### example
+  /// ### Example
   ///
   /// ```dart
   /// String t1 = 'esentis';
@@ -1847,7 +1847,14 @@ extension MiscExtensions on String? {
     return "$before${this}${after.ifBlank(before)}";
   }
 
-  /// Return the opposite wrap char of `String`
+  /// Return the opposite wrap char of a `String` if possible, otherwise returns the same `String`.
+  ///
+  /// ## Example
+  ///
+  /// ```dart
+  /// String foo = '(';
+  /// String oppositeFood = foo.getOppositeChar(); // returns ')';
+  /// ```
   String? getOppositeChar() {
     switch (this) {
       case "(":
@@ -1883,11 +1890,11 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`
+  /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
   bool isOpenWrapChar() =>
       this.isNotNull ? "`<{(['\"".toArray?.contains(this) ?? false : false;
 
-  /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`
+  /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   bool isCloseWrapChar() =>
       this.isNotNull ? "`>})]'\"".toArray?.contains(this) ?? false : false;
 
