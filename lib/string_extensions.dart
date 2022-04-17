@@ -1898,7 +1898,7 @@ extension MiscExtensions on String? {
   bool isCloseWrapChar() =>
       this.isNotNull ? "`>})]'\"".toArray?.contains(this) ?? false : false;
 
-  /// Continuously removes from the beginning of a `string` any string contained in [patterns]
+  /// Continuously removes from the beginning of a `String` any string contained in a `List` of [patterns].
   String? removeFirstAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
@@ -1913,7 +1913,7 @@ extension MiscExtensions on String? {
     return from;
   }
 
-  /// Continuously removes from the end of a `string` any `string` contained in [patterns]
+  /// Continuously removes from the end of a `String` any `String` contained in a `List` of [patterns].
   String? removeLastAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
@@ -1928,17 +1928,17 @@ extension MiscExtensions on String? {
     return from;
   }
 
-  /// Continuously removes from the beggining and end of a `string` any `string` contained in [patterns]
+  /// Continuously removes from the beggining and end of a `String` any `String` contained in a `List` of [patterns].
   String? removeFirstAndLastAny(List<String?> patterns) =>
       removeFirstAny(patterns).removeLastAny(patterns);
 
-  /// Remove a string from the end of other string if equal [pattern]
+  /// Removes a `String` from the end of other `String` if equal to the [pattern].
   String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
-  /// Remove a string in the beginning of other string if equal [pattern]
+  /// Removes a `String` in the beginning of other `String` if equal to the [pattern].
   String? removeFirstEqual(String? pattern) => removeFirstAny([pattern]);
 
-  /// Remove string from the beginning and  the end of `string` if equal [pattern]
+  /// Removes a `String` from the beginning and the end of `String` if equal to the [pattern].
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
 
