@@ -2092,7 +2092,7 @@ extension MiscExtensions on String? {
     return false;
   }
 
-  /// Check if `String` contains all `String`s of [list]
+  /// Check if a `String` contains all `String`s in a [List] of `String`s.
   bool containsAll(List<String?> list) {
     for (String? item in list.where((element) => element.isNotBlank)) {
       if (this.isBlank || this!.contains(item!) == false) {
