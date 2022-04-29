@@ -1,4 +1,9 @@
-# [0.4.5] - New Extnsions
+# [0.5.0] - Breaking Changes & New extensions
+
+- All methods will now trim the `String` before operations.
+- `toSnakeCase` : Converts a `String` to snake case format.
+
+## [0.4.5] - New extensions
 
 - `addAfter` : Adds a `String` after the first occurence of a specific pattern.
 - `addBefore` : Adds a `String` before the first occurence of a specific pattern.
