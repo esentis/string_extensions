@@ -47,6 +47,7 @@ void main() {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
       expect('G'.toTitleCase, 'G');
+      expect('despoina '.toTitleCase, 'Despoina');
       expect('g'.toTitleCase, 'G');
       expect('gg'.toTitleCase, 'Gg');
       expect(''.toTitleCase, '');
