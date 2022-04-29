@@ -8,6 +8,10 @@ void main() {
     () {
       String? string = 'Hello world ! dear 4asd';
       expect(string.countWords, 4);
+
+      expect(null.countWords, 0);
+      expect(''.countWords, 0);
+      expect(' '.countWords, 0);
     },
   );
   test(
@@ -15,6 +19,10 @@ void main() {
     () {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.readTime(), 3);
+
+      expect(null.readTime(), 0);
+      expect(''.readTime(), 0);
+      expect(' '.readTime(), 0);
     },
   );
   test(
@@ -26,6 +34,11 @@ void main() {
       expect(string.capitalize, 'Hackerrr');
       expect(string2.capitalize, 'Για 5 ημέρες');
       expect(string3.capitalize, 'Για 5 ημέρες ολα θα πάνε καλά ');
+
+      expect(null.capitalize, null);
+      expect(''.capitalize, '');
+      expect(' '.capitalize, ' ');
+      expect('  '.capitalize, '  ');
     },
   );
   test(
@@ -33,6 +46,13 @@ void main() {
     () {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
+      expect('G'.toTitleCase, 'G');
+      expect('g'.toTitleCase, 'G');
+      expect('gg'.toTitleCase, 'Gg');
+      expect(''.toTitleCase, '');
+      expect(' '.toTitleCase, ' ');
+      expect('  '.toTitleCase, '  ');
+      expect(null.toTitleCase, null);
     },
   );
   test(
@@ -40,6 +60,10 @@ void main() {
     () {
       String? string = '234112731235es4234123e5523nt1is';
       expect(string.removeNumbers, 'esentis');
+
+      expect(null.removeNumbers, null);
+      expect(''.removeNumbers, '');
+      expect(' '.removeNumbers, ' ');
     },
   );
   test(
@@ -53,6 +77,10 @@ void main() {
 
       String? string3 = '4*%^55/es4e55?:"///23nt1isαβδα ma455 ma2231n';
       expect(string3.onlyLatin, 'esentis ma man');
+
+      expect(null.onlyLatin, null);
+      expect(''.onlyLatin, '');
+      expect(' '.onlyLatin, ' ');
     },
   );
   test(
@@ -63,6 +91,10 @@ void main() {
 
       String? string2 = '4*%^σοφ55ία/es4e55?:"///23nt1is αγάπη';
       expect(string2.onlyGreek, 'σοφία αγάπη');
+
+      expect(null.onlyGreek, null);
+      expect(''.onlyGreek, '');
+      expect(' '.onlyGreek, ' ');
     },
   );
   test(
@@ -70,6 +102,10 @@ void main() {
     () {
       String? string = 'Find max of array';
       expect(string.toCamelCase, 'findMaxOfArray');
+
+      expect(null.toCamelCase, null);
+      expect(''.toCamelCase, '');
+      expect(' '.toCamelCase, ' ');
     },
   );
   test(
@@ -77,6 +113,10 @@ void main() {
     () {
       String? string = '4*%^55/es4e5523nt1is';
       expect(string.onlyNumbers, '455455231');
+
+      expect(null.onlyNumbers, null);
+      expect(''.onlyNumbers, '');
+      expect(' '.onlyNumbers, ' ');
     },
   );
   test(
@@ -84,6 +124,10 @@ void main() {
     () {
       String? string = '1244e*s*4e*5523n*t*1i*s';
       expect(string.removeLetters, '1244**4*5523**1*');
+
+      expect(null.removeLetters, null);
+      expect(''.removeLetters, '');
+      expect(' '.removeLetters, ' ');
     },
   );
   test(
@@ -96,6 +140,10 @@ void main() {
         {'n': 1},
         {'s': 6},
       ]);
+
+      expect(null.charOccurences, []);
+      expect(''.charOccurences, []);
+      expect(' '.charOccurences, []);
     },
   );
   test(
@@ -103,6 +151,10 @@ void main() {
     () {
       String? string = 'esssssentis';
       expect(string.mostFrequent, 's');
+
+      expect(null.mostFrequent, null);
+      expect(''.mostFrequent, '');
+      expect(' '.mostFrequent, ' ');
     },
   );
   test(
@@ -110,6 +162,10 @@ void main() {
     () {
       String? string = 'Hello World';
       expect(string.reverse, 'dlroW olleH');
+
+      expect(null.reverse, null);
+      expect(''.reverse, '');
+      expect(' '.reverse, ' ');
     },
   );
   test(
@@ -120,6 +176,10 @@ void main() {
 
       String? string2 = 'esentisesentis.com';
       expect(string2.isMail, false);
+
+      expect(null.isMail, false);
+      expect(''.isMail, false);
+      expect(' '.isMail, false);
     },
   );
   test(
@@ -130,6 +190,10 @@ void main() {
 
       String? string2 = '192.168.1.14.5223';
       expect(string2.isIpv4, false);
+
+      expect(null.isIpv4, false);
+      expect(''.isIpv4, false);
+      expect(' '.isIpv4, false);
     },
   );
   test(
@@ -140,6 +204,10 @@ void main() {
 
       String? string2 = '192.168.1.14';
       expect(string2.isIpv6, false);
+
+      expect(null.isIpv6, false);
+      expect(''.isIpv6, false);
+      expect(' '.isIpv6, false);
     },
   );
   test(
@@ -153,6 +221,10 @@ void main() {
 
       String? string3 = '45.5';
       expect(string3.isNumber, true);
+
+      expect(null.isNumber, false);
+      expect(''.isNumber, false);
+      expect(' '.isNumber, false);
     },
   );
   test(
@@ -169,6 +241,10 @@ void main() {
       String? string3 = 'test';
       List<String?> array3 = ['45', '66', 'ffff', '2123', 'test'];
       expect(string3.isIn(array3), true);
+
+      expect(null.isIn(array3), false);
+      expect(''.isIn(array3), false);
+      expect(' '.isIn(array3), false);
     },
   );
   test(
@@ -182,6 +258,10 @@ void main() {
 
       String? string3 = 'testworld';
       expect(string3.isLatin, true);
+
+      expect(null.isLatin, false);
+      expect(''.isLatin, false);
+      expect(' '.isLatin, false);
     },
   );
   test(
@@ -195,6 +275,10 @@ void main() {
 
       String? string3 = 'Τα αγαθά κόποις κτώνται';
       expect(string3.isGreek, true);
+
+      expect(null.isGreek, false);
+      expect(''.isGreek, false);
+      expect(' '.isGreek, false);
     },
   );
   test(
@@ -205,6 +289,11 @@ void main() {
 
       String? string2 = '';
       expect(string2.ifEmpty(() => 'empty'), 'empty');
+
+      expect(
+        null.ifEmpty(() => 'empty'),
+        null,
+      );
     },
   );
   test(
@@ -225,6 +314,10 @@ void main() {
 
       String? string2 = 'esentis';
       expect(string2.defaultValue('no null please'), 'esentis');
+
+      expect(null.defaultValue('no null please'), 'no null please');
+      expect(''.defaultValue('no null please'), '');
+      expect(' '.defaultValue('no null please'), ' ');
     },
   );
   test(
@@ -235,6 +328,22 @@ void main() {
 
       String? string2 = 'esentis';
       expect(string2.defaultValue('no null please'), 'esentis');
+
+      expect(''.isNull, false);
+      expect(' '.isNull, false);
+    },
+  );
+  test(
+    'Checks if a string is NOT null',
+    () {
+      String? string1;
+      expect(string1.isNotNull, false);
+
+      String? string2 = 'esentis';
+      expect(string2.isNotNull, true);
+
+      expect(''.isNotNull, true);
+      expect(' '.isNotNull, true);
     },
   );
   test(
@@ -245,13 +354,28 @@ void main() {
 
       String? string2 = 'foo';
       expect(string2.repeat(3), 'foofoofoo');
+
+      expect('esen'.repeat(2), 'esenesen');
+      expect('esen'.repeat(-1), 'esen');
+      expect(' '.repeat(2), ' ');
+      expect(''.repeat(2), '');
+      expect(null.repeat(2), null);
     },
   );
   test(
-    'Returns first character of the string',
+    'Returns first N characters of the string',
     () {
       String? string = '192.168.1.14';
       expect(string.first(), '1');
+      expect(string.first(n: 0), '');
+      expect(string.first(n: 1), '1');
+      expect(string.first(n: 5), '192.1');
+      expect(string.first(n: 15), '192.168.1.14');
+      expect(string.first(n: -15), '192.168.1.14');
+
+      expect(null.first(), null);
+      expect(''.first(), '');
+      expect(' '.first(), ' ');
     },
   );
   test(
@@ -259,6 +383,15 @@ void main() {
     () {
       String? string = '192.168.1.14';
       expect(string.last(), '4');
+      expect(string.last(n: 0), '');
+      expect(string.last(n: 1), '4');
+      expect(string.last(n: 5), '.1.14');
+      expect(string.last(n: 15), '192.168.1.14');
+      expect(string.last(n: -15), '192.168.1.14');
+
+      expect(null.last(), null);
+      expect(''.last(), '');
+      expect(' '.last(), ' ');
     },
   );
   test(
@@ -266,6 +399,25 @@ void main() {
     () {
       String? string = 'hello world this is esentis';
       expect(string.toSlug, 'hello_world_this_is_esentis');
+
+      expect('heLLo BrothEr'.toSlug, 'heLLo_BrothEr');
+
+      expect(null.toSlug, null);
+      expect(''.toSlug, '');
+      expect(' '.toSlug, ' ');
+    },
+  );
+  test(
+    'String should be snake cased',
+    () {
+      String? string = 'hello world this is esentis';
+      expect(string.toSnakeCase, 'hello_world_this_is_esentis');
+
+      expect('heLLo BrothEr'.toSnakeCase, 'hello_brother');
+
+      expect(null.toSnakeCase, null);
+      expect(''.toSnakeCase, '');
+      expect(' '.toSnakeCase, ' ');
     },
   );
   test(
@@ -282,6 +434,10 @@ void main() {
 
       String? string5 = 'esentis';
       expect(string5.toNum(), null);
+
+      expect(null.toNum(), null);
+      expect(''.toNum(), null);
+      expect(' '.toNum(), null);
     },
   );
   test(
@@ -301,6 +457,10 @@ void main() {
 
       String? string6 = '5.6';
       expect(string6.toInt(), 5);
+
+      expect(null.toInt(), null);
+      expect(''.toInt(), null);
+      expect(' '.toInt(), null);
     },
   );
   test(
@@ -317,6 +477,10 @@ void main() {
 
       String? string5 = 'esentis';
       expect(string5.toDouble(), null);
+
+      expect(null.toDouble(), null);
+      expect(''.toDouble(), null);
+      expect(' '.toDouble(), null);
     },
   );
   test(
@@ -324,6 +488,10 @@ void main() {
     () {
       String? string = 'Αριστοτέλης';
       expect(string.replaceGreek, 'aristotelis');
+
+      expect(null.replaceGreek, null);
+      expect(''.replaceGreek, '');
+      expect(' '.replaceGreek, ' ');
     },
   );
   test(
@@ -332,6 +500,10 @@ void main() {
       String? string = 'abracadabra';
       String? pattern = 'abr';
       expect(string.findPattern(pattern: pattern), [0, 7]);
+
+      expect(null.findPattern(pattern: pattern), []);
+      expect(''.findPattern(pattern: pattern), []);
+      expect(' '.findPattern(pattern: pattern), []);
     },
   );
   test(
@@ -340,6 +512,10 @@ void main() {
       String? string = 'abracadabra';
       expect(string.toArray,
           ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
+
+      expect(null.toArray, []);
+      expect(''.toArray, []);
+      expect(' '.toArray, []);
     },
   );
   test(
@@ -347,6 +523,10 @@ void main() {
     () {
       String? string = 'abracadabra';
       expect(string.charCount('a'), 5);
+
+      expect(null.charCount('a'), 0);
+      expect(''.charCount('a'), 0);
+      expect(' '.charCount('a'), 0);
     },
   );
   test(
@@ -355,6 +535,10 @@ void main() {
       String? string =
           '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
       expect(string.stripHtml, 'Hacky hacky. Here is some text. This is bold.');
+
+      expect(null.stripHtml, null);
+      expect(''.stripHtml, '');
+      expect(' '.stripHtml, ' ');
     },
   );
   test(
@@ -365,6 +549,10 @@ void main() {
 
       String? string2 = 'Is1!thisStrong';
       expect(string2.isStrongPassword, true);
+
+      expect(null.isStrongPassword, false);
+      expect(''.isStrongPassword, false);
+      expect(' '.isStrongPassword, false);
     },
   );
   test(
@@ -375,6 +563,10 @@ void main() {
 
       String? string2 = '887b7923-6d64-4396-8547-1ec1b86e081e';
       expect(string2.isGuid, true);
+
+      expect(null.isGuid, false);
+      expect(''.isGuid, false);
+      expect(' '.isGuid, false);
     },
   );
   test(
@@ -392,6 +584,10 @@ void main() {
       String? string4 =
           '8recommmmmmendation                                     ';
       expect(string4.squeeze(' '), '8recommmmmmendation ');
+
+      expect(null.squeeze('8'), null);
+      expect(''.squeeze('8'), '');
+      expect(' '.squeeze('8'), ' ');
     },
   );
 
@@ -409,6 +605,10 @@ void main() {
 
       String? string4 = 'kkkKKKKkkkKKkKkkkkKKK';
       expect(string4.hasSameCharacters, true);
+
+      expect(null.hasSameCharacters, false);
+      expect(''.hasSameCharacters, false);
+      expect(' '.hasSameCharacters, false);
     },
   );
   test(
@@ -425,6 +625,10 @@ void main() {
 
       String? string4 = 'dffasdasd';
       expect(string4.getLevenshtein('employee'), 9);
+
+      expect(null.getLevenshtein('employee'), null);
+      expect(''.getLevenshtein('employee'), null);
+      expect(' '.getLevenshtein('employee'), null);
     },
   );
   test(
@@ -444,6 +648,10 @@ void main() {
 
       String? string5 = 'ftp://www.google.com';
       expect(string5.isUrl, true);
+
+      expect(null.isUrl, false);
+      expect(''.isUrl, false);
+      expect(' '.isUrl, false);
     },
   );
 
@@ -464,6 +672,10 @@ void main() {
 
       String? string5 = '20120227T132700';
       expect(string5.isDate, true);
+
+      expect(null.isDate, false);
+      expect(''.isDate, false);
+      expect(' '.isDate, false);
     },
   );
   test(
@@ -487,6 +699,10 @@ void main() {
       String? mask4 = '**** **** **** ****';
       expect(string4.formatWithMask(mask4, specialChar: '*'),
           '1234 5678 1234 5678');
+
+      expect(null.formatWithMask(mask4, specialChar: '*'), null);
+      expect(''.formatWithMask(mask4, specialChar: '*'), '');
+      expect(' '.formatWithMask(mask4, specialChar: '*'), ' ');
     },
   );
   test(
@@ -503,6 +719,35 @@ void main() {
       expect(string3 - 'esentis', ' is the best');
       expect('esentis' - 'esen', 'tis');
       expect('esen' - 'esentis', 'esen');
+
+      expect(
+          ' ' -
+              '5'
+                  '5',
+          '');
+      expect(
+          null -
+              '5'
+                  '5',
+          '');
+      expect(
+          '  ' -
+              '5'
+                  '5',
+          '');
+
+      expect(
+        '5' - null,
+        '5',
+      );
+      expect(
+        '5' - '',
+        '5',
+      );
+      expect(
+        '5' - ' ',
+        '5',
+      );
     },
   );
   test(
@@ -513,6 +758,10 @@ void main() {
       expect(string1.removeFirst(0), 'three');
       expect(string1.removeFirst(-5), 'three');
       expect(string1.removeFirst(6), '');
+
+      expect(null.removeFirst(6), null);
+      expect(''.removeFirst(6), '');
+      expect(' '.removeFirst(6), ' ');
     },
   );
   test(
@@ -523,16 +772,24 @@ void main() {
       expect(string1.removeLast(0), 'three');
       expect(string1.removeLast(-5), 'three');
       expect(string1.removeLast(6), '');
+
+      expect(null.removeLast(6), null);
+      expect(''.removeLast(6), '');
+      expect(' '.removeLast(6), ' ');
     },
   );
   test(
-    'Removes the last n characters of the string',
+    'Keeps max X characters',
     () {
       String? string1 = 'three';
       expect(string1.maxChars(3), 'thr');
       expect(string1.maxChars(0), '');
       expect(string1.maxChars(-5), '');
       expect(string1.maxChars(6), 'three');
+
+      expect(null.maxChars(6), null);
+      expect(''.maxChars(6), '');
+      expect(' '.maxChars(6), ' ');
     },
   );
   test(
@@ -549,6 +806,10 @@ void main() {
       expect(string2.reverseSlash(1), 'C:/Documents/user/test');
       expect(string2.reverseSlash(-5), 'C:\\Documents\\user\\test');
       expect(string2.reverseSlash(6), 'C:\\Documents\\user\\test');
+
+      expect(null.reverseSlash(0), null);
+      expect(''.reverseSlash(0), '');
+      expect(' '.reverseSlash(0), ' ');
     },
   );
   test(
@@ -560,6 +821,10 @@ void main() {
       expect(string1.charAt(-5), null);
       expect(string1.charAt(6), 's');
       expect(string1.charAt(12), null);
+
+      expect(null.charAt(12), null);
+      expect(''.charAt(12), '');
+      expect(' '.charAt(12), ' ');
     },
   );
   test(
@@ -568,6 +833,13 @@ void main() {
       String? string1 = 'esentis';
       expect(string1.append(' is trying to be a developer'),
           'esentis is trying to be a developer');
+
+      expect(null.append(' is trying to be a developer'),
+          ' is trying to be a developer');
+      expect(''.append(' is trying to be a developer'),
+          ' is trying to be a developer');
+      expect(' '.append(' is trying to be a developer'),
+          ' is trying to be a developer');
     },
   );
   test(
@@ -575,6 +847,10 @@ void main() {
     () {
       String? string1 = ' is trying to be a developer';
       expect(string1.prepend('esentis'), 'esentis is trying to be a developer');
+
+      expect(null.prepend('esentis'), 'esentis');
+      expect(''.prepend('esentis'), 'esentis');
+      expect(' '.prepend('esentis'), 'esentis');
     },
   );
   test(
@@ -600,6 +876,10 @@ void main() {
       expect(s9.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
       String? s10 = '-01245';
       expect(s10.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
+
+      expect(null.toPriceAmount(currencySymbol: '€'), null);
+      expect(''.toPriceAmount(currencySymbol: '€'), '');
+      expect(' '.toPriceAmount(currencySymbol: '€'), ' ');
     },
   );
   test(
@@ -673,6 +953,9 @@ void main() {
       expect(t1.truncate(10), 'peanutbutt...');
       expect(t1.truncate(13), 'peanutbutter');
       expect(t1.truncate(-13), 'peanutbutter');
+      expect('George'.truncate(8), 'George');
+      expect(''.truncate(8), '');
+      expect(' '.truncate(8), ' ');
     },
   );
   test(
