@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
-  bool? operator >(String s) {
+  bool operator >(String s) {
     if (this.isBlank) {
       return false;
     }
@@ -13,7 +13,7 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is more or equal than the length of [s].
-  bool? operator >=(String s) {
+  bool operator >=(String s) {
     if (this.isBlank) {
       return false;
     }
@@ -21,7 +21,7 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less than the length of [s].
-  bool? operator <(String s) {
+  bool operator <(String s) {
     if (this.isBlank) {
       return false;
     }
@@ -29,7 +29,7 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less or equal than the length of [s].
-  bool? operator <=(String s) {
+  bool operator <=(String s) {
     if (this.isBlank) {
       return false;
     }
@@ -37,12 +37,12 @@ extension MiscExtensions on String? {
   }
 
   /// Subtracts-removes a text from a `String`.
-  String? operator -(String? s) {
+  String operator -(String? s) {
     if (this.isBlank) {
       return '';
     }
     if (s.isBlank) {
-      return this;
+      return this!;
     }
     return this!.replaceAll(s!, '');
   }
@@ -57,7 +57,7 @@ extension MiscExtensions on String? {
   /// String foo =  'Hello dear friend how you doing ?';
   /// int readTime = foo.readTime(); // returns 3 seconds.
   /// ```
-  int? readTime({int wordsPerMinute = 200}) {
+  int readTime({int wordsPerMinute = 200}) {
     if (this.isBlank) {
       return 0;
     }
@@ -87,7 +87,7 @@ extension MiscExtensions on String? {
   /// String foo = 'Hello dear friend how you doing ?';
   /// int count = foo.countWords; // returns 6 words.
   /// ```
-  int? get countWords {
+  int get countWords {
     if (this.isBlank) {
       return 0;
     }
@@ -435,7 +435,7 @@ extension MiscExtensions on String? {
   /// String foo = 'esentis';
   /// List occurences = foo.charOccurences; // returns '[{e:2},{i:1},{n:1},{s:2},]'
   /// ```
-  List<Map<String, int>>? get charOccurences {
+  List<Map<String, int>> get charOccurences {
     if (this.isBlank) {
       return [];
     }
@@ -467,7 +467,7 @@ extension MiscExtensions on String? {
   /// String foo = 'foo';
   /// int occ = foo.charCount('o'); // returns 2
   /// ```
-  int? charCount(String char) {
+  int charCount(String char) {
     if (this.isBlank) {
       return 0;
     }
@@ -691,7 +691,7 @@ extension MiscExtensions on String? {
   /// String foo = 'abracadabra';
   /// List<String> fooArray = foo.toArray; // returns '[a,b,r,a,c,a,d,a,b,r,a]'
   /// ```
-  List<String>? get toArray {
+  List<String> get toArray {
     if (this.isBlank) {
       return [];
     }
@@ -858,7 +858,7 @@ extension MiscExtensions on String? {
   /// String foo = 'abracadabra';
   /// String fooOccs = foo.findPatterns(pattern:'abr'); // returns '[0, 7]'
   /// ```
-  List<int>? findPattern({required String pattern}) {
+  List<int> findPattern({required String pattern}) {
     if (this.isBlank) {
       return [];
     }
@@ -929,9 +929,9 @@ extension MiscExtensions on String? {
   /// String foo = ''
   /// foo.ifEmpty(()=>print('String is null'));
   /// ```
-  String? ifNull(Function act) {
+  String ifNull(Function act) {
     if (this != null) {
-      return this;
+      return this!;
     }
 
     return act();
@@ -1003,7 +1003,7 @@ extension MiscExtensions on String? {
   /// String foo = 'ttttttt12'
   /// bool hasSame2 = foo.hasSameCharacters();  // false;
   /// ```
-  bool? get hasSameCharacters {
+  bool get hasSameCharacters {
     if (this.isBlank) {
       return false;
     }
@@ -1033,7 +1033,7 @@ extension MiscExtensions on String? {
     }
 
     var stringArray = toArray;
-    stringArray!.shuffle();
+    stringArray.shuffle();
     return stringArray.join();
   }
 
@@ -1093,7 +1093,7 @@ extension MiscExtensions on String? {
     var maskChars = mask.toArray;
     var index = 0;
     var out = '';
-    for (var m in maskChars!) {
+    for (var m in maskChars) {
       if (m == specialChar) {
         if (index < this!.length) {
           out += this![index];
@@ -1226,7 +1226,7 @@ extension MiscExtensions on String? {
   /// String foo = 'hello';
   /// String newFoo = foo1.append(' world'); // returns 'hello world'
   /// ```
-  String? append(String suffix) {
+  String append(String suffix) {
     if (this.isBlank) {
       return suffix;
     }
@@ -1242,7 +1242,7 @@ extension MiscExtensions on String? {
   /// String foo = 'world';
   /// String newFoo = foo1.prepend('hello '); // returns 'hello world'
   /// ```
-  String? prepend(String prefix) {
+  String prepend(String prefix) {
     if (this.isBlank) {
       return prefix;
     }
@@ -1611,7 +1611,7 @@ extension MiscExtensions on String? {
   /// String t2 = 'esen';
   /// print(t1.getJaro(t2)); // prints 0.8571428571428571
   /// ```
-  double? getJaro(String t) {
+  double getJaro(String t) {
     if (this.isBlank) {
       return 1;
     }
@@ -1677,7 +1677,7 @@ extension MiscExtensions on String? {
       comparison(this) ? trueString : falseString;
 
   /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar]
-  String? wrap(String? before, {String? after}) {
+  String wrap(String? before, {String? after}) {
     before = before.ifBlank("");
     if (after.isBlank) {
       if (before.isCloseWrapChar()) {
@@ -1733,11 +1733,11 @@ extension MiscExtensions on String? {
 
   /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
   bool isOpenWrapChar() =>
-      this.isNotNull ? "`<{(['\"".toArray?.contains(this) ?? false : false;
+      this.isNotNull ? "`<{(['\"".toArray.contains(this) : false;
 
   /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   bool isCloseWrapChar() =>
-      this.isNotNull ? "`>})]'\"".toArray?.contains(this) ?? false : false;
+      this.isNotNull ? "`>})]'\"".toArray.contains(this) : false;
 
   /// Continuously removes from the beginning of a `String` any string contained in a `List` of [patterns].
   String? removeFirstAny(List<String?> patterns) {
@@ -1791,12 +1791,10 @@ extension MiscExtensions on String? {
   /// String afterString = test.removeAfter('brother'); // returns 'hello '
   /// ```
   String? removeAfter(String pattern) {
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
+    if (this.isBlank) {
       return this;
     }
+
     if (!this!.contains(pattern)) {
       return '';
     }
