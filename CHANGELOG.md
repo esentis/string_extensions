@@ -1,4 +1,8 @@
-# [0.5.0] - Breaking Changes & New extensions
+# [0.5.1] - Bug fix
+
+- Fixes `titleCase` not trimming whitespaces.
+
+## [0.5.0] - Breaking Changes & New extensions
 
 - All methods will now trim the `String` before operations.
 - `toSnakeCase` : Converts a `String` to snake case format.
