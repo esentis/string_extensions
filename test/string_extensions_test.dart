@@ -8,7 +8,8 @@ void main() {
     () {
       String? string = 'Hello world ! dear 4asd';
       expect(string.countWords, 4);
-
+      expect('despoina '.countWords, 1);
+      expect('despoina    '.countWords, 1);
       expect(null.countWords, 0);
       expect(''.countWords, 0);
       expect(' '.countWords, 0);
@@ -34,7 +35,8 @@ void main() {
       expect(string.capitalize, 'Hackerrr');
       expect(string2.capitalize, 'Για 5 ημέρες');
       expect(string3.capitalize, 'Για 5 ημέρες ολα θα πάνε καλά ');
-
+      expect('despoina '.capitalize, 'Despoina ');
+      expect('despoina    '.capitalize, 'Despoina    ');
       expect(null.capitalize, null);
       expect(''.capitalize, '');
       expect(' '.capitalize, ' ');
@@ -48,6 +50,7 @@ void main() {
       expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
       expect('G'.toTitleCase, 'G');
       expect('despoina '.toTitleCase, 'Despoina');
+      expect('despoina    '.toTitleCase, 'Despoina');
       expect('g'.toTitleCase, 'G');
       expect('gg'.toTitleCase, 'Gg');
       expect(''.toTitleCase, '');
