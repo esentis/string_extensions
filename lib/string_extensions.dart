@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:string_extensions/string_helpers.dart';
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
@@ -1744,11 +1745,12 @@ extension MiscExtensions on String? {
 
   /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
   bool isOpenWrapChar() =>
-      this.isNotNull ? "`<{(['\"".toArray.contains(this) : false;
+      this.isNotNull &&  StringHelpers.openWrappers.contains(this);
 
   /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   bool isCloseWrapChar() =>
-      this.isNotNull ? "`>})]'\"".toArray.contains(this) : false;
+      this.isNotNull &&  StringHelpers.closeWrappers.contains(this);
+ 
 
   /// Continuously removes from the beginning of a `String` any string contained in a `List` of [patterns].
   String? removeFirstAny(List<String?> patterns) {
