@@ -1400,6 +1400,7 @@ extension MiscExtensions on String? {
 
   /// Returns the left side of the `String` starting from [char].
   ///
+  /// If [char] doesn't exist, `null` is returned.
   /// ### Example
   ///
   /// ```dart
@@ -1412,10 +1413,16 @@ extension MiscExtensions on String? {
     }
 
     int index = this!.indexOf(char);
+    if (index == -1) {
+      return null;
+    }
+
     return this!.substring(0, index);
   }
 
   /// Returns the right side of the `String` starting from [char].
+  ///
+  /// If [char] doesn't exist, `null` is returned.
   ///
   /// ### Example
   ///
@@ -1429,6 +1436,10 @@ extension MiscExtensions on String? {
     }
 
     int index = this!.indexOf(char);
+
+    if (index == -1) {
+      return null;
+    }
     return this!.substring(index + char.length, this!.length);
   }
 

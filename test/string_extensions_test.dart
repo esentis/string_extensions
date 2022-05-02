@@ -945,6 +945,8 @@ void main() {
       String t1 = 'peanut-10-butter';
       String t2 = 'peanut is the best of the best';
       expect(t1.rightOf('-10-'), 'butter');
+      expect(t1.rightOf('-'), '10-butter');
+      expect(t1.rightOf(' -'), null);
       expect(t2.rightOf('the'), ' best of the best');
     },
   );
