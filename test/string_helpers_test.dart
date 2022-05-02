@@ -13,4 +13,10 @@ void main() {
   test('LowerConsonants', () => expect(StringHelpers.lowerConsonants, "bcdfghjklmnpqrstvwxz".toArray.toList()));
   test('Consonants', () => expect(StringHelpers.consonants, "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz".toArray.toList()));
   test('Numbers', () => expect(StringHelpers.numberChars, "0123456789".toArray.toList()));
+  test('MidSentence', () => expect(StringHelpers.midSentenceChars, [":", ";", ","]));
+  test('EndOfSentence', () => expect(StringHelpers.endOfSentenceChars, [".", "?", "!"]));
+  test('Quotes', () => expect(StringHelpers.quotes, ['"', '\'', '`',]));
+  test('Ident', () => expect(StringHelpers.identChars, ["\t"]));
+  test('BreakLines', () => expect(StringHelpers.breakLineChars, ["\n", "\r", "\r\n"]));
+  test('Wrappers', () => expect(StringHelpers.wrappers, ['(', '{', '[', '<', '"', '\'', '`', ')', '}', ']', '>', '"', '\'', '`']));
 }
