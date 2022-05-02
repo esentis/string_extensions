@@ -1757,7 +1757,7 @@ extension MiscExtensions on String? {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
-        if (pattern.isNotBlank) {
+        if (pattern != null && pattern.isNotEmpty) {
           while (from!.startsWith(pattern!)) {
             from = from.removeFirst(pattern.length);
           }
@@ -1772,7 +1772,7 @@ extension MiscExtensions on String? {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
-        if (pattern.isNotBlank) {
+        if (pattern != null && pattern.isNotEmpty) {
           while (from!.endsWith(pattern!)) {
             from = from.removeLast(pattern.length);
           }
