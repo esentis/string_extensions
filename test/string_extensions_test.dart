@@ -1189,4 +1189,8 @@ void main() {
         'hello big brother what a day today');
     expect('world'.addBefore('w', 'hello '), 'hello world');
   });
+  test('md5 - returns a MD5 hash of current string',
+      () {
+    expect('123456'.md5,"e10adc3949ba59abbe56e057f20f883e");
+  });
 }
