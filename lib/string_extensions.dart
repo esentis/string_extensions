@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:string_extensions/string_helpers.dart';
+import 'package:convert/convert.dart';
+
+
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
@@ -1946,5 +1951,17 @@ extension MiscExtensions on String? {
       }
     }
     return true;
+  }
+  
+  /// Return a MD5 hash of current `String`
+  String? get md5 {
+    String? data = this;
+    if (data.isNotBlank) {
+      var content = const Utf8Encoder().convert(data!);
+      var md5 = crypto.md5;
+      var digest = md5.convert(content);
+      data = hex.encode(digest.bytes);
+    }
+    return data;
   }
 }
