@@ -1,8 +1,14 @@
-# [0.5.1] - Bug fix
+# [0.5.2] - Breaking Changes, New Extensions & Bug Fixes
+
+- Project depends on `crypto` due to new `md5` method wich returns the MD5 hash of the `String`.
+- Bug fixes for various methods, `after`, `before`, `toTitleCase`, `openCloseWrappers`, `removeFirstAndLastAny`.
+- Various improvements.
+
+## [0.5.1] - Bug fix
 
 - Fixes `titleCase` not trimming whitespaces.
 
-## [0.5.0] - Breaking Changes & New extensions
+## [0.5.0] - Breaking Changes & New Extensions
 
 - All methods will now trim the `String` before operations.
 - `toSnakeCase` : Converts a `String` to snake case format.
