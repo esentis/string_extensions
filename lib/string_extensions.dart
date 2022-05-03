@@ -1,7 +1,13 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:string_extensions/string_helpers.dart';
+import 'package:convert/convert.dart';
+
+
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
@@ -1744,19 +1750,20 @@ extension MiscExtensions on String? {
 
   /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
   bool isOpenWrapChar() =>
-      this.isNotNull ? "`<{(['\"".toArray.contains(this) : false;
+      this.isNotNull &&  StringHelpers.openWrappers.contains(this);
 
   /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   bool isCloseWrapChar() =>
-      this.isNotNull ? "`>})]'\"".toArray.contains(this) : false;
+      this.isNotNull &&  StringHelpers.closeWrappers.contains(this);
+ 
 
   /// Continuously removes from the beginning of a `String` any string contained in a `List` of [patterns].
   String? removeFirstAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
-        if (pattern.isNotBlank) {
-          while (from!.startsWith(pattern!)) {
+        if (pattern != null && pattern.isNotEmpty) {
+          while (from!.startsWith(pattern)) {
             from = from.removeFirst(pattern.length);
           }
         }
@@ -1770,8 +1777,8 @@ extension MiscExtensions on String? {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
-        if (pattern.isNotBlank) {
-          while (from!.endsWith(pattern!)) {
+        if (pattern != null && pattern.isNotEmpty) {
+          while (from!.endsWith(pattern)) {
             from = from.removeLast(pattern.length);
           }
         }
@@ -1944,5 +1951,17 @@ extension MiscExtensions on String? {
       }
     }
     return true;
+  }
+  
+  /// Return a MD5 hash of current `String`
+  String? get md5 {
+    String? data = this;
+    if (data.isNotBlank) {
+      var content = const Utf8Encoder().convert(data!);
+      var md5 = crypto.md5;
+      var digest = md5.convert(content);
+      data = hex.encode(digest.bytes);
+    }
+    return data;
   }
 }
