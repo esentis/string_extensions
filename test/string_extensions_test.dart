@@ -8,7 +8,8 @@ void main() {
     () {
       String? string = 'Hello world ! dear 4asd';
       expect(string.countWords, 4);
-
+      expect('despoina '.countWords, 1);
+      expect('despoina    '.countWords, 1);
       expect(null.countWords, 0);
       expect(''.countWords, 0);
       expect(' '.countWords, 0);
@@ -34,7 +35,8 @@ void main() {
       expect(string.capitalize, 'Hackerrr');
       expect(string2.capitalize, 'Για 5 ημέρες');
       expect(string3.capitalize, 'Για 5 ημέρες ολα θα πάνε καλά ');
-
+      expect('despoina '.capitalize, 'Despoina ');
+      expect('despoina    '.capitalize, 'Despoina    ');
       expect(null.capitalize, null);
       expect(''.capitalize, '');
       expect(' '.capitalize, ' ');
@@ -47,6 +49,8 @@ void main() {
       String? string = 'Hello dear friend how you doing ?';
       expect(string.toTitleCase, 'Hello Dear Friend How You Doing ?');
       expect('G'.toTitleCase, 'G');
+      expect('despoina '.toTitleCase, 'Despoina');
+      expect('despoina    '.toTitleCase, 'Despoina');
       expect('g'.toTitleCase, 'G');
       expect('gg'.toTitleCase, 'Gg');
       expect(''.toTitleCase, '');
@@ -941,6 +945,8 @@ void main() {
       String t1 = 'peanut-10-butter';
       String t2 = 'peanut is the best of the best';
       expect(t1.rightOf('-10-'), 'butter');
+      expect(t1.rightOf('-'), '10-butter');
+      expect(t1.rightOf(' -'), null);
       expect(t2.rightOf('the'), ' best of the best');
     },
   );
@@ -1182,5 +1188,9 @@ void main() {
     expect('hello brother what a day today'.addBefore('brother', 'big '),
         'hello big brother what a day today');
     expect('world'.addBefore('w', 'hello '), 'hello world');
+  });
+  test('md5 - returns a MD5 hash of current string',
+      () {
+    expect('123456'.md5,"e10adc3949ba59abbe56e057f20f883e");
   });
 }

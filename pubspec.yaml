@@ -1,7 +1,7 @@
 name: string_extensions
 description: Useful String extensions to save you time in production. Feel free
   to contribute with PR.
-version: 0.5.0
+version: 0.6.0
 homepage: "https://github.com/esentis/string_extensions"
 
 environment:
@@ -9,6 +9,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  convert: ^3.0.1
+  crypto: ^3.0.2
   flutter:
     sdk: flutter
   intl: ^0.17.0
