@@ -1,6 +1,6 @@
 # [0.6.0] - Breaking Changes, New Extensions & Bug Fixes
 
-- Project depends on `crypto` due to new `md5` method wich returns the MD5 hash of the `String`.
+- Project depends on `crypto` (`3.0.2`) due to new `md5` method wich returns the MD5 hash of the `String`.
 - Bug fixes for various methods, `after`, `before`, `toTitleCase`, `openCloseWrappers`, `removeFirstAndLastAny`.
 - Various improvements.
 
