@@ -1189,8 +1189,15 @@ void main() {
         'hello big brother what a day today');
     expect('world'.addBefore('w', 'hello '), 'hello world');
   });
-  test('md5 - returns a MD5 hash of current string',
-      () {
-    expect('123456'.md5,"e10adc3949ba59abbe56e057f20f883e");
+  test('md5 - returns a MD5 hash of current string', () {
+    expect('123456'.md5, "e10adc3949ba59abbe56e057f20f883e");
+  });
+
+  test('Formats file size to "bytes", "KB", "MB", "GB"', () {
+    expect('1024'.formatFileSize, "1 KB");
+    expect('1025'.formatFileSize, "1 KB");
+    expect('1048576'.formatFileSize, "1 MB");
+    expect('3145728'.formatFileSize, "3 MB");
+    expect('24117248'.formatFileSize, "23 MB");
   });
 }

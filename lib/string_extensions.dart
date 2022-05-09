@@ -1961,4 +1961,32 @@ extension MiscExtensions on String? {
     }
     return data;
   }
+
+  /// Formats the `String` to show proper file size.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = '24117248';
+  /// String formatted = foo.formatFileSize; // returns '23 MB'
+  /// ```
+  String? get formatFileSize {
+    if (this.isBlank) {
+      return this;
+    }
+    var number = this.toInt();
+    if (number == null) {
+      return this;
+    }
+
+    List<String> suffix = ["bytes", "KB", "MB", "GB"];
+
+    int j = 0;
+
+    while (number! >= 1024 && j < 4) {
+      number = (number / 1024).floor();
+      j++;
+    }
+    return "$number ${suffix[j]}";
+  }
 }
