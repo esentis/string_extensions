@@ -1200,4 +1200,10 @@ void main() {
     expect('3145728'.formatFileSize, "3 MB");
     expect('24117248'.formatFileSize, "23 MB");
   });
+
+  test('Replaces the character at index of the String', () {
+    expect('esentis'.replaceAtIndex(index: 0, replacement: '1'), '1sentis');
+    expect('es'.replaceAtIndex(index: 3, replacement: '1'), 'es');
+    expect('es'.replaceAtIndex(index: 1, replacement: ''), 'e');
+  });
 }

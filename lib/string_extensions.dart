@@ -855,6 +855,27 @@ extension MiscExtensions on String? {
     return normalizedWord;
   }
 
+  /// Add a [replacement] character at [index] of the `String`.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'hello';
+  /// String replaced = foo.replaceAtIndex(index:2,replacement:''); // returns 'helo';
+  /// ```
+  String? replaceAtIndex({required int index, required String replacement}) {
+    if (this.isBlank) {
+      return this;
+    }
+    if (index > this!.length) {
+      return this;
+    }
+    if (index < 0) {
+      return this;
+    }
+
+    return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
+  }
+
   /// Given a pattern returns the starting indices of all occurences of the pattern in the `String`.
   ///
   /// ### Example
