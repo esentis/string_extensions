@@ -1,6 +1,7 @@
 # [0.6.1] - New Extensions
 
 - `formatFileSize` : Formats a `String` representing bytes to show the proper file size.
+- `replaceAtIndex(index,replacement)` : Adds a [replacement] at the [index] of the `String`.
 
 ```dart
 String foo = '24117248';
