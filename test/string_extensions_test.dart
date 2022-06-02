@@ -88,6 +88,29 @@ void main() {
     },
   );
   test(
+    'Removes everything but characters',
+    () {
+      String? string = '*%^/ese?:"///nt12323is';
+      String? string2 = '%^7777ελα 23232323ρε φιλε τι λε^ει';
+
+      expect(string.onlyLetters, 'esentis');
+      expect(string2.onlyLetters, 'ελα ρε φιλε τι λεει');
+      expect('ελα ρε φιλε τι λεει%^^@@@@@@'.onlyLetters, 'ελα ρε φιλε τι λεει');
+      expect('ελα ρε bro τι λεει%^^@@@@@@'.onlyLetters, 'ελα ρε bro τι λεει');
+      expect('είσαι ο number 1%^^@@@@@@'.onlyLetters, 'είσαι ο number ');
+    },
+  );
+  test(
+    'Removes special characters',
+    () {
+      String? string =
+          '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
+
+      expect(string.removeSpecial, 'esentis');
+      expect("Μαρία@ t!he 3\$rd!!!!".removeSpecial, 'Μαρία the 3rd');
+    },
+  );
+  test(
     'Removes everything but greek characters',
     () {
       String? string = '4*%^σοφ55ία/es4e55?:"///23nt1is';
@@ -1189,8 +1212,21 @@ void main() {
         'hello big brother what a day today');
     expect('world'.addBefore('w', 'hello '), 'hello world');
   });
-  test('md5 - returns a MD5 hash of current string',
-      () {
-    expect('123456'.md5,"e10adc3949ba59abbe56e057f20f883e");
+  test('md5 - returns a MD5 hash of current string', () {
+    expect('123456'.md5, "e10adc3949ba59abbe56e057f20f883e");
+  });
+
+  test('Formats file size to "bytes", "KB", "MB", "GB"', () {
+    expect('1024'.formatFileSize, "1 KB");
+    expect('1025'.formatFileSize, "1 KB");
+    expect('1048576'.formatFileSize, "1 MB");
+    expect('3145728'.formatFileSize, "3 MB");
+    expect('24117248'.formatFileSize, "23 MB");
+  });
+
+  test('Replaces the character at index of the String', () {
+    expect('esentis'.replaceAtIndex(index: 0, replacement: '1'), '1sentis');
+    expect('es'.replaceAtIndex(index: 3, replacement: '1'), 'es');
+    expect('es'.replaceAtIndex(index: 1, replacement: ''), 'e');
   });
 }

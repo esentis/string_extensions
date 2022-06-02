@@ -1,4 +1,17 @@
-# [0.6.0] - Breaking Changes, New Extensions & Bug Fixes
+# [0.6.1] - New Extensions
+
+- `formatFileSize` : Formats a `String` representing bytes to show the proper file size.
+
+```dart
+String foo = '24117248';
+String formatted = foo.formatFileSize; // returns '23 MB'
+```
+
+- `replaceAtIndex(index,replacement)` : Adds a [replacement] at the [index] of the `String`.
+- `removeSpecial` : Removes all special characters from the `String`. [Issue #22](https://github.com/esentis/string_extensions/issues/22)
+- `onlyLetters` : Removes everything but characters from the `String`.[Issue #21](https://github.com/esentis/string_extensions/issues/21)
+
+## [0.6.0] - Breaking Changes, New Extensions & Bug Fixes
 
 - Project depends on `crypto` (`3.0.2`) due to new `md5` method wich returns the MD5 hash of the `String`.
 - Bug fixes for various methods, `after`, `before`, `toTitleCase`, `openCloseWrappers`, `removeFirstAndLastAny`.

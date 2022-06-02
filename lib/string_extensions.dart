@@ -120,6 +120,21 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
+  /// Returns only the numbers from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/es4e5523nt1is';
+  /// String onyNumbers = foo.onlyNumbers; // returns '455455231'
+  /// ```
+  String? get onlyNumbers {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^0-9]+)');
+    return this!.replaceAll(regex, '');
+  }
+
   /// Returns only the Latin characters from the `String`.
   /// ### Example
   /// ```dart
@@ -149,6 +164,38 @@ extension MiscExtensions on String? {
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Returns only the Latin OR Greek characters from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/σοφ4e5523ια';
+  /// String onlyL1 = foo.onlyLetters; // returns 'σοφια'
+  /// String foo2 = '4*%^55/es4e5523nt1is';
+  /// String onlyL2 = foo2.onlyLetters; // returns 'esentis'
+  /// ```
+  String? get onlyLetters {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏa-zA-Z\s]+)');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Returns all special characters from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
+  /// String removed = foo.removeSpecial; // returns 'esentis'
+  /// ```
+  String? get removeSpecial {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'[/!@#$%^\-&*()+",.?":{}|<>~_-`]');
     return this!.replaceAll(regex, '');
   }
 
@@ -395,21 +442,6 @@ extension MiscExtensions on String? {
     return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
   }
 
-  /// Returns only the numbers from the `String`.
-  /// ### Example
-  /// ```dart
-  /// String foo = '4*%^55/es4e5523nt1is';
-  /// String onyNumbers = foo.onlyNumbers; // returns '455455231'
-  /// ```
-  String? get onlyNumbers {
-    if (this.isBlank) {
-      return this;
-    }
-    // ignore: unnecessary_raw_strings
-    var regex = RegExp(r'([^0-9]+)');
-    return this!.replaceAll(regex, '');
-  }
-
   /// Removes only the letters from the `String`.
   /// ### Example 1
   /// ```dart
@@ -591,7 +623,7 @@ extension MiscExtensions on String? {
     return this!.substring(this!.length - n, this!.length);
   }
 
-  /// Returns the `String` to slug case
+  /// Returns the `String` to slug case.
   ///
   /// ### Example
   /// ```dart
@@ -853,6 +885,27 @@ extension MiscExtensions on String? {
         .replaceAll(RegExp(r'\Ω'), 'o')
         .replaceAll(RegExp(r'\Ώ'), 'o');
     return normalizedWord;
+  }
+
+  /// Add a [replacement] character at [index] of the `String`.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = 'hello';
+  /// String replaced = foo.replaceAtIndex(index:2,replacement:''); // returns 'helo';
+  /// ```
+  String? replaceAtIndex({required int index, required String replacement}) {
+    if (this.isBlank) {
+      return this;
+    }
+    if (index > this!.length) {
+      return this;
+    }
+    if (index < 0) {
+      return this;
+    }
+
+    return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
   }
 
   /// Given a pattern returns the starting indices of all occurences of the pattern in the `String`.
@@ -1676,22 +1729,22 @@ extension MiscExtensions on String? {
         3.0;
   }
 
-  /// Check if a string is Blank (null, empty or only white spaces)
+  /// Check if a string is Blank (null, empty or only white spaces).
   bool get isBlank => this?.trim().isEmpty ?? true;
 
-  /// Check if a string is  not Blank (null, empty or only white spaces)
+  /// Check if a string is  not Blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
-  /// Return [this] if not blank. Otherwise return [newString]
+  /// Return [this] if not blank. Otherwise return [newString].
   String? ifBlank(String? newString) =>
       asIf((s) => s.isNotBlank, this, newString);
 
-  /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString]
+  /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString].
   String? asIf(bool Function(String?) comparison, String? trueString,
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar]
+  /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
   String wrap(String? before, {String? after}) {
     before = before.ifBlank("");
     if (after.isBlank) {
@@ -1960,5 +2013,33 @@ extension MiscExtensions on String? {
       data = hex.encode(digest.bytes);
     }
     return data;
+  }
+
+  /// Formats the `String` to show proper file size.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = '24117248';
+  /// String formatted = foo.formatFileSize; // returns '23 MB'
+  /// ```
+  String? get formatFileSize {
+    if (this.isBlank) {
+      return this;
+    }
+    var number = this.toInt();
+    if (number == null) {
+      return this;
+    }
+
+    List<String> suffix = ["bytes", "KB", "MB", "GB"];
+
+    int j = 0;
+
+    while (number! >= 1024 && j < 4) {
+      number = (number / 1024).floor();
+      j++;
+    }
+    return "$number ${suffix[j]}";
   }
 }
