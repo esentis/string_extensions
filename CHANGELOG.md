@@ -1,12 +1,15 @@
 # [0.6.1] - New Extensions
 
 - `formatFileSize` : Formats a `String` representing bytes to show the proper file size.
-- `replaceAtIndex(index,replacement)` : Adds a [replacement] at the [index] of the `String`.
 
 ```dart
 String foo = '24117248';
 String formatted = foo.formatFileSize; // returns '23 MB'
 ```
+
+- `replaceAtIndex(index,replacement)` : Adds a [replacement] at the [index] of the `String`.
+- `removeSpecial` : Removes all special characters from the `String`. [Issue #22](https://github.com/esentis/string_extensions/issues/22)
+- `onlyLetters` : Removes everything but characters from the `String`.[Issue #21](https://github.com/esentis/string_extensions/issues/21)
 
 ## [0.6.0] - Breaking Changes, New Extensions & Bug Fixes
 
