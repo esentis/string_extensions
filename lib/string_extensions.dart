@@ -120,6 +120,21 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
+  /// Returns only the numbers from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/es4e5523nt1is';
+  /// String onyNumbers = foo.onlyNumbers; // returns '455455231'
+  /// ```
+  String? get onlyNumbers {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^0-9]+)');
+    return this!.replaceAll(regex, '');
+  }
+
   /// Returns only the Latin characters from the `String`.
   /// ### Example
   /// ```dart
@@ -149,6 +164,38 @@ extension MiscExtensions on String? {
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Returns only the Latin OR Greek characters from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '4*%^55/σοφ4e5523ια';
+  /// String onlyL1 = foo.onlyLetters; // returns 'σοφια'
+  /// String foo2 = '4*%^55/es4e5523nt1is';
+  /// String onlyL2 = foo2.onlyLetters; // returns 'esentis'
+  /// ```
+  String? get onlyLetters {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏa-zA-Z\s]+)');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Returns all special characters from the `String`.
+  /// ### Example
+  /// ```dart
+  /// String foo = '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
+  /// String removed = foo.removeSpecial; // returns 'esentis'
+  /// ```
+  String? get removeSpecial {
+    if (this.isBlank) {
+      return this;
+    }
+    // ignore: unnecessary_raw_strings
+    var regex = RegExp(r'[/!@#$%^\-&*()+",.?":{}|<>~_-`]');
     return this!.replaceAll(regex, '');
   }
 
@@ -393,21 +440,6 @@ extension MiscExtensions on String? {
     }
 
     return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
-  }
-
-  /// Returns only the numbers from the `String`.
-  /// ### Example
-  /// ```dart
-  /// String foo = '4*%^55/es4e5523nt1is';
-  /// String onyNumbers = foo.onlyNumbers; // returns '455455231'
-  /// ```
-  String? get onlyNumbers {
-    if (this.isBlank) {
-      return this;
-    }
-    // ignore: unnecessary_raw_strings
-    var regex = RegExp(r'([^0-9]+)');
-    return this!.replaceAll(regex, '');
   }
 
   /// Removes only the letters from the `String`.

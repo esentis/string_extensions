@@ -88,6 +88,29 @@ void main() {
     },
   );
   test(
+    'Removes everything but characters',
+    () {
+      String? string = '*%^/ese?:"///nt12323is';
+      String? string2 = '%^7777ελα 23232323ρε φιλε τι λε^ει';
+
+      expect(string.onlyLetters, 'esentis');
+      expect(string2.onlyLetters, 'ελα ρε φιλε τι λεει');
+      expect('ελα ρε φιλε τι λεει%^^@@@@@@'.onlyLetters, 'ελα ρε φιλε τι λεει');
+      expect('ελα ρε bro τι λεει%^^@@@@@@'.onlyLetters, 'ελα ρε bro τι λεει');
+      expect('είσαι ο number 1%^^@@@@@@'.onlyLetters, 'είσαι ο number ');
+    },
+  );
+  test(
+    'Removes special characters',
+    () {
+      String? string =
+          '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
+
+      expect(string.removeSpecial, 'esentis');
+      expect("Μαρία@ t!he 3\$rd!!!!".removeSpecial, 'Μαρία the 3rd');
+    },
+  );
+  test(
     'Removes everything but greek characters',
     () {
       String? string = '4*%^σοφ55ία/es4e55?:"///23nt1is';
