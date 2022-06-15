@@ -2042,4 +2042,31 @@ extension MiscExtensions on String? {
     }
     return "$number ${suffix[j]}";
   }
+
+  /// Transforms the `String` to 1337 alphabet.
+  ///
+  /// The letters are randomized since each letter can have multiple variations.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'esentis';
+  /// String leet = foo.toLeet ; // returns '€5£п+!$'
+  /// ```
+  String? get toLeet {
+    if (this.isBlank) {
+      return this;
+    }
+    final letters = this!.split('');
+
+    final leetLetters = [];
+    letters.forEach((e) {
+      final count = StringHelpers.leetAlphabet[e].length;
+      final random = Random().nextInt(count);
+      print(StringHelpers.leetAlphabet[e][random]);
+      leetLetters.add(StringHelpers.leetAlphabet[e][random]);
+    });
+
+    return leetLetters.join();
+  }
 }
