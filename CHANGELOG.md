@@ -1,4 +1,13 @@
-# [0.6.1] - New Extensions
+# [0.6.2] - New Extensions
+
+- `toLeet` : Transform the `String` to 1337 alphabet. The letters are randomized since each letter can have multiple variations.
+
+```dart
+String foo = 'esentis';
+String leet = foo.toLeet ; // returns '€5£п+!$'
+```
+
+## [0.6.1] - New Extensions
 
 - `formatFileSize` : Formats a `String` representing bytes to show the proper file size.
 
