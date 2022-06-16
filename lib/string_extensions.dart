@@ -2069,4 +2069,38 @@ extension MiscExtensions on String? {
 
     return leetLetters.join();
   }
+
+  /// Checks if the `String` provided is a valid credit card number using Luhn Algorithm.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String cc = '5104 4912 8031 9406';
+  /// bool isCreditCard = cc.isCreditCard ; returns true;
+  /// ```
+  bool? get isCreditCard {
+    if (this.isBlank) {
+      return false;
+    }
+
+    String trimmed = this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+
+    int sum = 0;
+    bool alternate = false;
+    for (int i = trimmed.length - 1; i >= 0; i--) {
+      List<String> nx = trimmed.toArray;
+      int n = int.parse(nx[i]);
+
+      if (alternate) {
+        n *= 2;
+
+        if (n > 9) {
+          n = (n % 10) + 1;
+        }
+      }
+      sum += n;
+      alternate = !alternate;
+    }
+    return (sum % 10 == 0);
+  }
 }
