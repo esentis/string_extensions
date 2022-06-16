@@ -7,6 +7,8 @@ String foo = 'esentis';
 String leet = foo.toLeet ; // returns '€5£п+!$'
 ```
 
+- `isCreditCard` : Checks if the provided `String` is a valid credit card number using Luhn algorithm
+
 ## [0.6.1] - New Extensions
 
 - `formatFileSize` : Formats a `String` representing bytes to show the proper file size.
