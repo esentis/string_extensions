@@ -2103,4 +2103,19 @@ extension MiscExtensions on String? {
     }
     return (sum % 10 == 0);
   }
+
+  /// Removes all whitespaces from the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = '   Hel l o W   orld';
+  /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld'
+  /// ```
+  String? get removeWhiteSpace {
+    if (this.isBlank) {
+      return this;
+    }
+    return this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+  }
 }

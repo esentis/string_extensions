@@ -1230,9 +1230,13 @@ void main() {
     expect('es'.replaceAtIndex(index: 1, replacement: ''), 'e');
   });
 
-  test('Chechs if given String is a valid credit card number', () {
+  test('Checks if given String is a valid credit card number', () {
     expect('5104 4912 8031 9406'.isCreditCard, true);
     expect('5104 4912 5001 0654'.isCreditCard, true);
     expect('4101898959978716'.isCreditCard, true);
+  });
+
+  test('Remove all whitespace from the String', () {
+    expect('     H    e ll o    Wo    rl d'.removeWhiteSpace, 'HelloWorld');
   });
 }
