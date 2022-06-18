@@ -2083,7 +2083,7 @@ extension MiscExtensions on String? {
       return false;
     }
 
-    String trimmed = this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+    String trimmed = this!.removeWhiteSpace!;
 
     int sum = 0;
     bool alternate = false;
