@@ -1,4 +1,4 @@
-# [0.6.2] - New Extensions
+# [0.6.2] - New Extensions & Documentation improvements
 
 - `toLeet` : Transform the `String` to 1337 alphabet. The letters are randomized since each letter can have multiple variations.
 
