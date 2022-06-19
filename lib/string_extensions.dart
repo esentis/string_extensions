@@ -1740,11 +1740,23 @@ extension MiscExtensions on String? {
       asIf((s) => s.isNotBlank, this, newString);
 
   /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK"
+  /// ```
   String? asIf(bool Function(String?) comparison, String? trueString,
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
   /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB"
+  /// ```
   String wrap(String? before, {String? after}) {
     before = before.ifBlank("");
     if (after.isBlank) {
@@ -1756,7 +1768,7 @@ extension MiscExtensions on String? {
     return "$before${this}${after.ifBlank(before)}";
   }
 
-  /// Return the opposite wrap char of a `String` if possible, otherwise returns the same `String`.
+  /// Return the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
   ///
   /// ## Example
   ///
@@ -1800,14 +1812,31 @@ extension MiscExtensions on String? {
   }
 
   /// Check if `String` is a open wrap char: `<`, `{`, `[`, `"`, `'`.
+  /// ### Example
+  ///
+  /// ```dart
+  /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true
+  /// ```
   bool isOpenWrapChar() =>
       this.isNotNull && StringHelpers.openWrappers.contains(this);
 
-  /// Check if `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
+  /// Check if the `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true
+  /// ```
   bool isCloseWrapChar() =>
       this.isNotNull && StringHelpers.closeWrappers.contains(this);
 
-  /// Continuously removes from the beginning of a `String` any string contained in a `List` of [patterns].
+  /// Continuously removes from the beginning of the `String` any match in [patterns].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis"
+  /// ```
   String? removeFirstAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
@@ -1822,7 +1851,13 @@ extension MiscExtensions on String? {
     return from;
   }
 
-  /// Continuously removes from the end of a `String` any `String` contained in a `List` of [patterns].
+  /// Continuously removes from the end of the `String`, any match in [patterns].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis"
+  /// ```
   String? removeLastAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
@@ -1837,21 +1872,39 @@ extension MiscExtensions on String? {
     return from;
   }
 
-  /// Continuously removes from the beggining and end of a `String` any `String` contained in a `List` of [patterns].
+  /// Continuously removes from the beginning & the end of the `String`, any match in [patterns].
   String? removeFirstAndLastAny(List<String?> patterns) =>
       removeFirstAny(patterns).removeLastAny(patterns);
 
-  /// Removes a `String` from the end of other `String` if equal to the [pattern].
+  /// Removes a [pattern] from the end of the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo"
+  /// ```
   String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
-  /// Removes a `String` in the beginning of other `String` if equal to the [pattern].
+  /// Removes any [pattern] match from the beginning of the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "djing".removeFirstEqual("dj"); // returns "ing"
+  /// ```
   String? removeFirstEqual(String? pattern) => removeFirstAny([pattern]);
 
-  /// Removes a `String` from the beginning and the end of `String` if equal to the [pattern].
+  /// Removes any [pattern] match from the beginning & the end of the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr"
+  /// ```
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
 
-  /// Removes everything in the `String` after the first occurence of a specific pattern.
+  /// Removes everything in the `String` after the first match of [pattern].
   ///
   /// ### Example
   /// ```dart
@@ -1881,7 +1934,7 @@ extension MiscExtensions on String? {
     return this!.substring(0, indexOfLastPatternWord);
   }
 
-  /// Removes everything in the `String` before the first occurence of a specific pattern.
+  /// Removes everything in the `String` before the match of the [pattern].
   ///
   /// ### Example
   /// ```dart
@@ -1914,7 +1967,9 @@ extension MiscExtensions on String? {
     );
   }
 
-  /// Adds a `String` after the first occurence of a specific pattern. Pattern should not be empty.
+  /// Adds a `String` after the first match of the [pattern]. The [pattern] should not be `null`.
+  ///
+  /// If there is no match, the `String` is returned unchanged.
   ///
   /// ### Example
   /// ```dart
@@ -1927,7 +1982,7 @@ extension MiscExtensions on String? {
     }
 
     if (!this!.contains(pattern)) {
-      return '';
+      return this;
     }
 
     List<String> patternWords = pattern.split(' ');
@@ -1946,7 +2001,9 @@ extension MiscExtensions on String? {
         this!.substring(indexOfLastPatternWord + 1, this!.length);
   }
 
-  /// Adds a `String` before the first occurence of a specific pattern. Pattern should not be empty.
+  /// Adds a `String` before the first match of the [pattern]. The [pattern] should not be `null`.
+  ///
+  /// If there is no match, the `String` is returned unchanged.
   ///
   /// ### Example
   /// ```dart
@@ -1959,7 +2016,7 @@ extension MiscExtensions on String? {
     }
 
     if (!this!.contains(pattern)) {
-      return '';
+      return this;
     }
 
     List<String> patternWords = pattern.split(' ');
@@ -1981,10 +2038,16 @@ extension MiscExtensions on String? {
         );
   }
 
-  /// Check if `String` contains any `String`s of [list]
-  bool containsAny(List<String?> list) {
+  /// Check if the `String` matches **ANY** of the given [patterns].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// bool contains = "abracadabra".containsAny(["a", "p"]); // returns true
+  /// ```
+  bool containsAny(List<String?> patterns) {
     if (this.isNotBlank) {
-      for (String? item in list.where((element) => element.isNotBlank)) {
+      for (String? item in patterns.where((element) => element.isNotBlank)) {
         if (this!.contains(item!)) {
           return true;
         }
@@ -1993,9 +2056,15 @@ extension MiscExtensions on String? {
     return false;
   }
 
-  /// Check if a `String` contains all `String`s in a [List] of `String`s.
-  bool containsAll(List<String?> list) {
-    for (String? item in list.where((element) => element.isNotBlank)) {
+  /// Check if the `String` matches **ALL** given [patterns].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// bool contains = "abracadabra".containsAll(["abra", "cadabra"]; // returns true;
+  /// ```
+  bool containsAll(List<String?> patterns) {
+    for (String? item in patterns.where((element) => element.isNotBlank)) {
       if (this.isBlank || this!.contains(item!) == false) {
         return false;
       }
@@ -2003,7 +2072,13 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Return a MD5 hash of current `String`
+  /// Return the MD5 hash of the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e"
+  /// ```
   String? get md5 {
     String? data = this;
     if (data.isNotBlank) {
@@ -2015,7 +2090,9 @@ extension MiscExtensions on String? {
     return data;
   }
 
-  /// Formats the `String` to show proper file size.
+  /// Formats the `String` to show its proper file size.
+  ///
+  /// If the `String` is not a valid integer, it is returned unchanged.
   ///
   /// ### Example
   ///
@@ -2104,7 +2181,7 @@ extension MiscExtensions on String? {
     return (sum % 10 == 0);
   }
 
-  /// Removes all whitespaces from the `String`.
+  /// Removes all whitespace from the `String`.
   ///
   /// ### Example
   ///
