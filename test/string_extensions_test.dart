@@ -1095,11 +1095,9 @@ void main() {
   test(
       'asIf - compares a string using a function and returns first string if true, otherwise return second string',
       () {
-    String? s1 = "OK";
-    String? s2 = "ERROR";
-    expect(s1.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
-    expect(
-        s2.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
+    expect('OK'.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
+    expect('ERROR'.asIf((s) => s == "OK", "is OK", "is not OK"),
+        equals("is not OK"));
   });
 
   test('ifBlank - check if string is blank give it a default value.', () {
@@ -1151,37 +1149,47 @@ void main() {
   test(
       'removeLastEqual - Remove a string from the end of other string if equal [pattern]',
       () {
-    expect("string".removeLastEqual("ing"), "str");
+    expect("coolboy".removeLastEqual("y"), "coolbo");
   });
   test(
       'removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]',
       () {
-    expect("string".removeFirstEqual("str"), "ing");
+    expect("djing".removeFirstEqual("dj"), "ing");
   });
 
   test(
-      'removeLastAny - Continuously removes from the end of a `string` any string contained in [patterns]',
+      'removeLastAny - Continuously removes from the end of the String any [patterns]',
       () {
-    expect("string".removeLastAny(["s", "ng"]), "stri");
+    expect(
+        "esentisfs12".removeLastAny([
+          "12",
+          "s",
+          "ng",
+          "f",
+        ]),
+        "esentis");
   });
 
   test(
       'removeFirstAny - Continuously removes from the beginning of a `string` any string contained in [patterns]',
       () {
-    expect("string".removeFirstAny(["s", "ng"]), "tring");
+    expect("esentis".removeFirstAny(["s", "ng"]), "esentis");
   });
   test(
       'removeFirstAndLastEqual - Continuously removes from the beginning and end of a `string` if equal [pattern]',
       () {
     expect("abracadabra".removeFirstAndLastEqual("a"), "bracadabr");
+    expect("esentis".removeFirstAndLastEqual("s"), "esenti");
   });
-  test('containsAny - Check if `String` contains all `String`s of [list]', () {
+
+  test('containsAny - Check if the String contains all Strings of a [list]',
+      () {
     expect("abracadabra".containsAny(["a", "p"]), true);
     expect("string".containsAny(["str", "int"]), true);
     expect("string".containsAny(["abra", "cadabra"]), false);
   });
 
-  test('containsAll - Check if `String` contains all `String`s of [list]', () {
+  test('containsAll - Check if the String contains all String of a [list]', () {
     expect("abracadabra".containsAll(["abra", "cadabra"]), true);
     expect("abracadabra".containsAll(["a", "c"]), true);
     expect("abracadabra".containsAll(["abra", "kazan"]), false);
@@ -1204,6 +1212,7 @@ void main() {
       () {
     expect("0:00:00.11".addAfter('.', '5'), '0:00:00.511');
     expect("hello".addAfter('o', ' there'), 'hello there');
+    expect('esentis'.addAfter('x', 'pro'), 'esentis');
   }); // expect('hello brother what a day today', matcher)
 
   test('addBefore - Adds a String before first occurence of a specific pattern',
@@ -1228,5 +1237,15 @@ void main() {
     expect('esentis'.replaceAtIndex(index: 0, replacement: '1'), '1sentis');
     expect('es'.replaceAtIndex(index: 3, replacement: '1'), 'es');
     expect('es'.replaceAtIndex(index: 1, replacement: ''), 'e');
+  });
+
+  test('Checks if given String is a valid credit card number', () {
+    expect('5104 4912 8031 9406'.isCreditCard, true);
+    expect('5104 4912 5001 0654'.isCreditCard, true);
+    expect('4101898959978716'.isCreditCard, true);
+  });
+
+  test('Remove all whitespace from the String', () {
+    expect('     H    e ll o    Wo    rl d'.removeWhiteSpace, 'HelloWorld');
   });
 }
