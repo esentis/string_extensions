@@ -229,7 +229,7 @@ extension MiscExtensions on String? {
     return isNull == false;
   }
 
-  /// Checks whether the `String` is valid IPv4.
+  /// Checks whether the `String` is a valid IPv4.
   /// ### Example 1
   /// ```dart
   /// String foo = '192.168.1.14';
@@ -249,7 +249,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid IPv6.
+  /// Checks whether the `String` is a valid IPv6.
   /// ### Example 1
   /// ```dart
   /// String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
@@ -270,7 +270,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid URL.
+  /// Checks whether the `String` is a valid URL.
   /// ### Example 1
   /// ```dart
   /// String foo = 'foo.1com';
@@ -290,7 +290,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid Date:
+  /// Checks whether the `String` is a valid Date:
   ///
   /// ### Valid formats
   ///
@@ -354,7 +354,7 @@ extension MiscExtensions on String? {
     return num.tryParse(this!) != null;
   }
 
-  /// Checks whether the `String` is a "strong" password which complies to below rules :
+  /// Checks whether the `String` complies to below rules :
   ///  * At least 1 uppercase
   ///  * At least 1 special character
   ///  * At least 1 number
@@ -462,7 +462,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Finds all character ooccurences and returns count as:
+  /// Finds all character occurences and returns count as:
   /// ```dart
   /// List<Map<dynamic,dynamic>>
   /// ```
@@ -496,7 +496,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Finds a specific's character occurence in a `String`.
+  /// Finds a specific's character occurence in the `String`.
   ///
   /// ### Example
   /// ```dart
