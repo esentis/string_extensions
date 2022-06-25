@@ -1008,7 +1008,7 @@ extension MiscExtensions on String? {
     return defautlValue;
   }
 
-  /// Repeats a `String` [count] times.
+  /// Repeats the `String` [count] times.
   ///
   /// ### Example
   /// ```dart
@@ -1077,7 +1077,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Shuffles the given `String` characters.
+  /// Shuffles the given `String`'s characters.
   ///
   /// ### Example
   /// ```dart
@@ -1130,8 +1130,9 @@ extension MiscExtensions on String? {
     return costs[b.length];
   }
 
-  /// Inspired from Vincent van Proosdij
-  /// Formats a `String` with a specific mask.
+  /// Inspired from Vincent van Proosdij.
+  ///
+  /// Formats the `String` with a specific mask.
   ///
   /// You can assign your own [specialChar], defaults to '#'.
   ///
@@ -1163,7 +1164,7 @@ extension MiscExtensions on String? {
     return out;
   }
 
-  /// Removes the first [n] characters of the `String`.
+  /// Removes the first [n] characters from the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1184,7 +1185,7 @@ extension MiscExtensions on String? {
     return this!.substring(n, this!.length);
   }
 
-  /// Removes the last [n] characters of the `String`.
+  /// Removes the last [n] characters from the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1335,7 +1336,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the day name of the date provided in `String` format..
+  /// Returns the day name of the date provided in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1500,7 +1501,7 @@ extension MiscExtensions on String? {
     return this!.substring(index + char.length, this!.length);
   }
 
-  /// Truncates a `String` with more than `length` characters.
+  /// Truncates the `String` when more than `length` characters exist.
   ///
   /// [length] must be more than 0.
   ///
@@ -1668,7 +1669,7 @@ extension MiscExtensions on String? {
 
   /// The Jaro distance is a measure of edit distance between two strings
   ///
-  /// its inverse, called the Jaro similarity, is a measure of two strings' similarity:
+  /// its inverse, called the Jaro similarity, is a measure of two `String`'s similarity:
   ///
   /// the higher the value, the more similar the strings are.
   ///
@@ -1729,10 +1730,10 @@ extension MiscExtensions on String? {
         3.0;
   }
 
-  /// Check if a string is Blank (null, empty or only white spaces).
+  /// Check if the string is Blank (null, empty or only white spaces).
   bool get isBlank => this?.trim().isEmpty ?? true;
 
-  /// Check if a string is  not Blank (null, empty or only white spaces).
+  /// Check if the string is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
   /// Return [this] if not blank. Otherwise return [newString].
@@ -1750,7 +1751,7 @@ extension MiscExtensions on String? {
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
+  /// Wrap the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
   ///
   /// ### Example
   ///
