@@ -887,7 +887,7 @@ extension MiscExtensions on String? {
     return normalizedWord;
   }
 
-  /// Add a [replacement] character at [index] of the `String`.
+  /// Adds a [replacement] character at [index] of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -908,7 +908,7 @@ extension MiscExtensions on String? {
     return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
   }
 
-  /// Given a pattern returns the starting indices of all occurences of the pattern in the `String`.
+  /// Given a pattern returns the starting indices of all occurences of the [pattern] in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1730,10 +1730,10 @@ extension MiscExtensions on String? {
         3.0;
   }
 
-  /// Check if the string is Blank (null, empty or only white spaces).
+  /// Checks if the `String` is Blank (null, empty or only white spaces).
   bool get isBlank => this?.trim().isEmpty ?? true;
 
-  /// Check if the string is not blank (null, empty or only white spaces).
+  /// Checks if the `String` is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
   /// Return [this] if not blank. Otherwise return [newString].
@@ -1751,7 +1751,7 @@ extension MiscExtensions on String? {
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// Wrap the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
+  /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
   ///
   /// ### Example
   ///
@@ -1769,7 +1769,7 @@ extension MiscExtensions on String? {
     return "$before${this}${after.ifBlank(before)}";
   }
 
-  /// Return the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
+  /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
   ///
   /// ## Example
   ///
@@ -2039,7 +2039,7 @@ extension MiscExtensions on String? {
         );
   }
 
-  /// Check if the `String` matches **ANY** of the given [patterns].
+  /// Checks if the `String` matches **ANY** of the given [patterns].
   ///
   /// ### Example
   ///
@@ -2057,7 +2057,7 @@ extension MiscExtensions on String? {
     return false;
   }
 
-  /// Check if the `String` matches **ALL** given [patterns].
+  /// Checks if the `String` matches **ALL** given [patterns].
   ///
   /// ### Example
   ///
@@ -2073,7 +2073,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Return the MD5 hash of the `String`.
+  /// Returns the MD5 hash of the `String`.
   ///
   /// ### Example
   ///
