@@ -40,7 +40,7 @@ extension MiscExtensions on String? {
     return this!.length <= s.length;
   }
 
-  /// Subtracts-removes a text from a `String`.
+  /// Removes a text from the `String`.
   String operator -(String? s) {
     if (this.isBlank) {
       return '';
