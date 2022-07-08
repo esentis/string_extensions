@@ -1877,7 +1877,7 @@ extension MiscExtensions on String? {
   String? removeFirstAndLastAny(List<String?> patterns) =>
       removeFirstAny(patterns).removeLastAny(patterns);
 
-  /// Removes a [pattern] from the end of the `String`.
+  /// Removes the [pattern] from the end of the `String`.
   ///
   /// ### Example
   ///
@@ -1905,7 +1905,7 @@ extension MiscExtensions on String? {
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
 
-  /// Removes everything in the `String` after the first match of [pattern].
+  /// Removes everything in the `String` after the first match of the [pattern].
   ///
   /// ### Example
   /// ```dart
