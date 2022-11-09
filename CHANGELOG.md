@@ -1,4 +1,6 @@
-# [0.6.3] - New Extensions & Documentation improvements
+# [0.6.3] - Bug Fixes & Documentation improvements
+
+- Fixes `truncate(length)` method. If the `String` is equal to `length` then the `String` should be returned as it is.
 
 ## [0.6.2] - New Extensions & Documentation improvements
 
