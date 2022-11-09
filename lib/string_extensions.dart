@@ -40,7 +40,7 @@ extension MiscExtensions on String? {
     return this!.length <= s.length;
   }
 
-  /// Subtracts-removes a text from a `String`.
+  /// Removes a text from the `String`.
   String operator -(String? s) {
     if (this.isBlank) {
       return '';
@@ -229,7 +229,7 @@ extension MiscExtensions on String? {
     return isNull == false;
   }
 
-  /// Checks whether the `String` is valid IPv4.
+  /// Checks whether the `String` is a valid IPv4.
   /// ### Example 1
   /// ```dart
   /// String foo = '192.168.1.14';
@@ -249,7 +249,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid IPv6.
+  /// Checks whether the `String` is a valid IPv6.
   /// ### Example 1
   /// ```dart
   /// String foo = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
@@ -270,7 +270,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid URL.
+  /// Checks whether the `String` is a valid URL.
   /// ### Example 1
   /// ```dart
   /// String foo = 'foo.1com';
@@ -290,7 +290,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is valid Date:
+  /// Checks whether the `String` is a valid Date:
   ///
   /// ### Valid formats
   ///
@@ -354,7 +354,7 @@ extension MiscExtensions on String? {
     return num.tryParse(this!) != null;
   }
 
-  /// Checks whether the `String` is a "strong" password which complies to below rules :
+  /// Checks whether the `String` complies to below rules :
   ///  * At least 1 uppercase
   ///  * At least 1 special character
   ///  * At least 1 number
@@ -462,7 +462,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Finds all character ooccurences and returns count as:
+  /// Finds all character occurences and returns count as:
   /// ```dart
   /// List<Map<dynamic,dynamic>>
   /// ```
@@ -496,7 +496,7 @@ extension MiscExtensions on String? {
     return occurences;
   }
 
-  /// Finds a specific's character occurence in a `String`.
+  /// Finds a specific's character occurence in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -887,7 +887,7 @@ extension MiscExtensions on String? {
     return normalizedWord;
   }
 
-  /// Add a [replacement] character at [index] of the `String`.
+  /// Adds a [replacement] character at [index] of the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -908,7 +908,7 @@ extension MiscExtensions on String? {
     return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
   }
 
-  /// Given a pattern returns the starting indices of all occurences of the pattern in the `String`.
+  /// Given a pattern returns the starting indices of all occurences of the [pattern] in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1008,7 +1008,7 @@ extension MiscExtensions on String? {
     return defautlValue;
   }
 
-  /// Repeats a `String` [count] times.
+  /// Repeats the `String` [count] times.
   ///
   /// ### Example
   /// ```dart
@@ -1077,7 +1077,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Shuffles the given `String` characters.
+  /// Shuffles the given `String`'s characters.
   ///
   /// ### Example
   /// ```dart
@@ -1130,8 +1130,9 @@ extension MiscExtensions on String? {
     return costs[b.length];
   }
 
-  /// Inspired from Vincent van Proosdij
-  /// Formats a `String` with a specific mask.
+  /// Inspired from Vincent van Proosdij.
+  ///
+  /// Formats the `String` with a specific mask.
   ///
   /// You can assign your own [specialChar], defaults to '#'.
   ///
@@ -1163,7 +1164,7 @@ extension MiscExtensions on String? {
     return out;
   }
 
-  /// Removes the first [n] characters of the `String`.
+  /// Removes the first [n] characters from the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1184,7 +1185,7 @@ extension MiscExtensions on String? {
     return this!.substring(n, this!.length);
   }
 
-  /// Removes the last [n] characters of the `String`.
+  /// Removes the last [n] characters from the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -1335,7 +1336,7 @@ extension MiscExtensions on String? {
     }
   }
 
-  /// Returns the day name of the date provided in `String` format..
+  /// Returns the day name of the date provided in `String` format.
   ///
   /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
   ///
@@ -1500,7 +1501,7 @@ extension MiscExtensions on String? {
     return this!.substring(index + char.length, this!.length);
   }
 
-  /// Truncates a `String` with more than `length` characters.
+  /// Truncates the `String` when more than `length` characters exist.
   ///
   /// [length] must be more than 0.
   ///
@@ -1513,7 +1514,7 @@ extension MiscExtensions on String? {
   /// String truncated = f.truncate(3); // Returns 'con...'
   /// ```
   String? truncate(int length) {
-    if (this.isBlank || length <= 0 || length > this!.length) {
+    if (this.isBlank || length <= 0 || length >= this!.length) {
       return this;
     }
 
@@ -1668,7 +1669,7 @@ extension MiscExtensions on String? {
 
   /// The Jaro distance is a measure of edit distance between two strings
   ///
-  /// its inverse, called the Jaro similarity, is a measure of two strings' similarity:
+  /// its inverse, called the Jaro similarity, is a measure of two `String`'s similarity:
   ///
   /// the higher the value, the more similar the strings are.
   ///
@@ -1729,10 +1730,10 @@ extension MiscExtensions on String? {
         3.0;
   }
 
-  /// Check if a string is Blank (null, empty or only white spaces).
+  /// Checks if the `String` is Blank (null, empty or only white spaces).
   bool get isBlank => this?.trim().isEmpty ?? true;
 
-  /// Check if a string is  not Blank (null, empty or only white spaces).
+  /// Checks if the `String` is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
   /// Return [this] if not blank. Otherwise return [newString].
@@ -1750,7 +1751,7 @@ extension MiscExtensions on String? {
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// Wrap a string between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
+  /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
   ///
   /// ### Example
   ///
@@ -1768,7 +1769,7 @@ extension MiscExtensions on String? {
     return "$before${this}${after.ifBlank(before)}";
   }
 
-  /// Return the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
+  /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
   ///
   /// ## Example
   ///
@@ -1876,7 +1877,7 @@ extension MiscExtensions on String? {
   String? removeFirstAndLastAny(List<String?> patterns) =>
       removeFirstAny(patterns).removeLastAny(patterns);
 
-  /// Removes a [pattern] from the end of the `String`.
+  /// Removes the [pattern] from the end of the `String`.
   ///
   /// ### Example
   ///
@@ -1904,7 +1905,7 @@ extension MiscExtensions on String? {
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
 
-  /// Removes everything in the `String` after the first match of [pattern].
+  /// Removes everything in the `String` after the first match of the [pattern].
   ///
   /// ### Example
   /// ```dart
@@ -2038,7 +2039,7 @@ extension MiscExtensions on String? {
         );
   }
 
-  /// Check if the `String` matches **ANY** of the given [patterns].
+  /// Checks if the `String` matches **ANY** of the given [patterns].
   ///
   /// ### Example
   ///
@@ -2056,7 +2057,7 @@ extension MiscExtensions on String? {
     return false;
   }
 
-  /// Check if the `String` matches **ALL** given [patterns].
+  /// Checks if the `String` matches **ALL** given [patterns].
   ///
   /// ### Example
   ///
@@ -2072,7 +2073,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
-  /// Return the MD5 hash of the `String`.
+  /// Returns the MD5 hash of the `String`.
   ///
   /// ### Example
   ///
