@@ -1514,7 +1514,7 @@ extension MiscExtensions on String? {
   /// String truncated = f.truncate(3); // Returns 'con...'
   /// ```
   String? truncate(int length) {
-    if (this.isBlank || length <= 0 || length > this!.length) {
+    if (this.isBlank || length <= 0 || length >= this!.length) {
       return this;
     }
 
