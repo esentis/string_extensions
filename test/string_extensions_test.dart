@@ -1214,4 +1214,10 @@ void main() {
   test('Remove all whitespace from the String', () {
     expect('     H    e ll o    Wo    rl d'.removeWhiteSpace, 'HelloWorld');
   });
+
+  test('Properly uppercases greek letters', () {
+    expect('Έλα ρε φίλε τι γίνεται πώς είσαι'.toGreekUpperCase(), 'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
+    expect('Έλα ρε φίλε Τι ΓίΝΕΤαι πώς είσαι'.toGreekUpperCase(), 'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
+    expect('hey brother τι κάνεις πως είσαι αγαπητέ'.toGreekUpperCase(), 'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
+  });
 }

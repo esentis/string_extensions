@@ -1,4 +1,14 @@
-# [0.6.3] - Bug Fixes & Documentation improvements
+# [0.6.4] - New Extensions
+
+- `toGreekUpperCase()` : Properly uppercases Greek letters, removing the tones.
+
+```dart
+String greek = 'Τι κάνεις πώς τα περνάς φίλτατέ μου';
+String wrongUpperCase = greek.toUpperCase(); // returns 'ΤΙ ΚΆΝΕΙΣ ΠΏΣ ΤΑ ΠΕΡΝΆΣ ΦΊΛΤΑΤΈ ΜΟΥ'
+String correctUpperCase = greek.toGreekUpperCase(); // returns 'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ'
+```
+
+## [0.6.3] - Bug Fixes & Documentation improvements
 
 - Fixes `truncate(length)` method. If the `String` is equal to `length` then the `String` should be returned as it is.
 
