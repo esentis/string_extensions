@@ -285,8 +285,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return false;
     }
-    var regex = RegExp(
-        r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
+    var regex = RegExp(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
     return regex.hasMatch(this!);
   }
 
@@ -372,8 +371,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return false;
     }
-    var regex = RegExp(
-        r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
+    var regex = RegExp(r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
     return regex.hasMatch(this!);
   }
 
@@ -392,8 +390,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return false;
     }
-    var regex = RegExp(
-        r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
+    var regex = RegExp(r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
     return regex.hasMatch(this!);
   }
 
@@ -507,8 +504,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return 0;
     }
-    return this!.split('').fold<int>(
-        0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
+    return this!.split('').fold<int>(0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
   }
 
   /// Finds the most frequent character in the `String`.
@@ -693,8 +689,7 @@ extension MiscExtensions on String? {
     var words = this!.trim().split(RegExp(r'(\s+)'));
     var result = words[0].toLowerCase();
     for (var i = 1; i < words.length; i++) {
-      result += words[i].substring(0, 1).toUpperCase() +
-          words[i].substring(1).toLowerCase();
+      result += words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
     }
     return result;
   }
@@ -800,6 +795,38 @@ extension MiscExtensions on String? {
     }
 
     return double.tryParse(this!);
+  }
+
+  /// Properly upper cases Greek letters removing their tones.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String greek = 'Τι κάνεις πώς τα περνάς φίλτατέ μου';
+  /// String greekUpper = greek.toGreekUpperCase(); // returns 'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ'
+  /// ```
+  String? toGreekUpperCase() {
+    if (this.isBlank) {
+      return this;
+    }
+    final Map<String, String> upperWords = {
+      'Ά': 'Α',
+      'Έ': 'Ε',
+      'Ή': 'Η',
+      'Ί': 'Ι',
+      'Ό': 'Ο',
+      'Ύ': 'Υ',
+      'Ώ': 'Ω',
+    };
+
+    String normalizedWord = '';
+    for (final String letter in this!.toUpperCase().split('')) {
+      if (upperWords.containsKey(letter)) {
+        normalizedWord += upperWords[letter]!;
+      } else {
+        normalizedWord += letter;
+      }
+    }
+    return normalizedWord;
   }
 
   /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
@@ -1040,9 +1067,7 @@ extension MiscExtensions on String? {
 
     var sb = '';
     for (var i = 0; i < this!.length; i++) {
-      if (i == 0 ||
-          this![i - 1] != this![i] ||
-          (this![i - 1] == this![i] && this![i] != char)) {
+      if (i == 0 || this![i - 1] != this![i] || (this![i - 1] == this![i] && this![i] != char)) {
         sb += this![i];
       }
     }
@@ -1121,8 +1146,7 @@ extension MiscExtensions on String? {
       var nw = i - 1;
       for (var j = 1; j <= b.length; j++) {
         // ignore: omit_local_variable_types
-        int cj = min(1 + min(costs[j], costs[j - 1]),
-            a[i - 1] == b[j - 1] ? nw : nw + 1);
+        int cj = min(1 + min(costs[j], costs[j - 1]), a[i - 1] == b[j - 1] ? nw : nw + 1);
         nw = costs[j];
         costs[j] = cj;
       }
@@ -1417,9 +1441,7 @@ extension MiscExtensions on String? {
     if (date == null) {
       return null;
     }
-    return DateFormat('EEEE', locale)
-        .format(DateTime(date.year, date.month, 1))
-        .toString();
+    return DateFormat('EEEE', locale).format(DateTime(date.year, date.month, 1)).toString();
   }
 
   /// Returns the last day of the month from the provided `DateTime` in `String` format.
@@ -1629,8 +1651,7 @@ extension MiscExtensions on String? {
       return '';
     }
 
-    return this!.substring(
-        indexOfLastPatternWord + patternWords.last.length, this!.length);
+    return this!.substring(indexOfLastPatternWord + patternWords.last.length, this!.length);
   }
 
   /// Returns the `String` before a specific character
@@ -1724,10 +1745,7 @@ extension MiscExtensions on String? {
       k++;
     }
 
-    return ((matches / sLen) +
-            (matches / tLen) +
-            ((matches - transpositions / 2.0) / matches)) /
-        3.0;
+    return ((matches / sLen) + (matches / tLen) + ((matches - transpositions / 2.0) / matches)) / 3.0;
   }
 
   /// Checks if the `String` is Blank (null, empty or only white spaces).
@@ -1737,8 +1755,7 @@ extension MiscExtensions on String? {
   bool get isNotBlank => isBlank == false;
 
   /// Return [this] if not blank. Otherwise return [newString].
-  String? ifBlank(String? newString) =>
-      asIf((s) => s.isNotBlank, this, newString);
+  String? ifBlank(String? newString) => asIf((s) => s.isNotBlank, this, newString);
 
   /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString].
   ///
@@ -1747,9 +1764,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK"
   /// ```
-  String? asIf(bool Function(String?) comparison, String? trueString,
-          String? falseString) =>
-      comparison(this) ? trueString : falseString;
+  String? asIf(bool Function(String?) comparison, String? trueString, String? falseString) => comparison(this) ? trueString : falseString;
 
   /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
   ///
@@ -1818,8 +1833,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true
   /// ```
-  bool isOpenWrapChar() =>
-      this.isNotNull && StringHelpers.openWrappers.contains(this);
+  bool isOpenWrapChar() => this.isNotNull && StringHelpers.openWrappers.contains(this);
 
   /// Check if the `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   ///
@@ -1828,8 +1842,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true
   /// ```
-  bool isCloseWrapChar() =>
-      this.isNotNull && StringHelpers.closeWrappers.contains(this);
+  bool isCloseWrapChar() => this.isNotNull && StringHelpers.closeWrappers.contains(this);
 
   /// Continuously removes from the beginning of the `String` any match in [patterns].
   ///
@@ -1874,8 +1887,7 @@ extension MiscExtensions on String? {
   }
 
   /// Continuously removes from the beginning & the end of the `String`, any match in [patterns].
-  String? removeFirstAndLastAny(List<String?> patterns) =>
-      removeFirstAny(patterns).removeLastAny(patterns);
+  String? removeFirstAndLastAny(List<String?> patterns) => removeFirstAny(patterns).removeLastAny(patterns);
 
   /// Removes the [pattern] from the end of the `String`.
   ///
@@ -1902,8 +1914,7 @@ extension MiscExtensions on String? {
   /// ```dart
   /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr"
   /// ```
-  String? removeFirstAndLastEqual(String? pattern) =>
-      removeFirstEqual(pattern).removeLastEqual(pattern);
+  String? removeFirstAndLastEqual(String? pattern) => removeFirstEqual(pattern).removeLastEqual(pattern);
 
   /// Removes everything in the `String` after the first match of the [pattern].
   ///
@@ -1997,9 +2008,7 @@ extension MiscExtensions on String? {
       return '';
     }
 
-    return this!.substring(0, indexOfLastPatternWord + 1) +
-        adition +
-        this!.substring(indexOfLastPatternWord + 1, this!.length);
+    return this!.substring(0, indexOfLastPatternWord + 1) + adition + this!.substring(indexOfLastPatternWord + 1, this!.length);
   }
 
   /// Adds a `String` before the first match of the [pattern]. The [pattern] should not be `null`.
