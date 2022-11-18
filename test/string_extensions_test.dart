@@ -103,7 +103,8 @@ void main() {
   test(
     'Removes special characters',
     () {
-      String? string = '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
+      String? string =
+          '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
 
       expect(string.removeSpecial, 'esentis');
       expect("Μαρία@ t!he 3\$rd!!!!".removeSpecial, 'Μαρία the 3rd');
@@ -536,7 +537,8 @@ void main() {
     'Transforms string to string array',
     () {
       String? string = 'abracadabra';
-      expect(string.toArray, ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
+      expect(string.toArray,
+          ['a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a']);
 
       expect(null.toArray, []);
       expect(''.toArray, []);
@@ -557,7 +559,8 @@ void main() {
   test(
     'Strips all html code',
     () {
-      String? string = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
+      String? string =
+          '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold.</span></p>';
       expect(string.stripHtml, 'Hacky hacky. Here is some text. This is bold.');
 
       expect(null.stripHtml, null);
@@ -605,7 +608,8 @@ void main() {
       String? string3 = '8recommmmmmendation';
       expect(string3.squeeze('8'), '8recommmmmmendation');
 
-      String? string4 = '8recommmmmmendation                                     ';
+      String? string4 =
+          '8recommmmmmendation                                     ';
       expect(string4.squeeze(' '), '8recommmmmmendation ');
 
       expect(null.squeeze('8'), null);
@@ -706,7 +710,8 @@ void main() {
     () {
       String? string1 = 'aaaaaaaabbbbccccddddeeeeeeeeeeee';
       String? mask1 = 'Hello ########-#A###-####-####-############ Oww';
-      expect(string1.formatWithMask(mask1), 'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
+      expect(string1.formatWithMask(mask1),
+          'Hello aaaaaaaa-bAbbb-cccc-dddd-eeeeeeeeeeee Oww');
 
       String? string2 = 'esenti';
       String? mask2 = 'Hello #######';
@@ -714,11 +719,13 @@ void main() {
 
       String? string3 = 'esentisgreece';
       String? mask3 = 'Hello ####### you are from ######';
-      expect(string3.formatWithMask(mask3), 'Hello esentis you are from greece');
+      expect(
+          string3.formatWithMask(mask3), 'Hello esentis you are from greece');
 
       String? string4 = '1234567812345678';
       String? mask4 = '**** **** **** ****';
-      expect(string4.formatWithMask(mask4, specialChar: '*'), '1234 5678 1234 5678');
+      expect(string4.formatWithMask(mask4, specialChar: '*'),
+          '1234 5678 1234 5678');
 
       expect(null.formatWithMask(mask4, specialChar: '*'), null);
       expect(''.formatWithMask(mask4, specialChar: '*'), '');
@@ -851,11 +858,15 @@ void main() {
     'Appends a specific text to string',
     () {
       String? string1 = 'esentis';
-      expect(string1.append(' is trying to be a developer'), 'esentis is trying to be a developer');
+      expect(string1.append(' is trying to be a developer'),
+          'esentis is trying to be a developer');
 
-      expect(null.append(' is trying to be a developer'), ' is trying to be a developer');
-      expect(''.append(' is trying to be a developer'), ' is trying to be a developer');
-      expect(' '.append(' is trying to be a developer'), ' is trying to be a developer');
+      expect(null.append(' is trying to be a developer'),
+          ' is trying to be a developer');
+      expect(''.append(' is trying to be a developer'),
+          ' is trying to be a developer');
+      expect(' '.append(' is trying to be a developer'),
+          ' is trying to be a developer');
     },
   );
   test(
@@ -1053,7 +1064,8 @@ void main() {
     expect(t1.getJaro(t2), 0.8571428571428571);
   });
 
-  test('isBlank - check if string is null, empty or contains only whitespaces ', () {
+  test('isBlank - check if string is null, empty or contains only whitespaces ',
+      () {
     String? string1 = "   ";
     String? string2;
     String? string3 = "not blank";
@@ -1066,7 +1078,9 @@ void main() {
     expect(string5.isBlank, true);
   });
 
-  test('isNotBlank - check if string is not null, empty or contains only whitespaces ', () {
+  test(
+      'isNotBlank - check if string is not null, empty or contains only whitespaces ',
+      () {
     String? string1 = "   ";
     String? string2;
     String? string3 = "not blank";
@@ -1079,9 +1093,12 @@ void main() {
     expect(string5.isNotBlank, false);
   });
 
-  test('asIf - compares a string using a function and returns first string if true, otherwise return second string', () {
+  test(
+      'asIf - compares a string using a function and returns first string if true, otherwise return second string',
+      () {
     expect('OK'.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is OK"));
-    expect('ERROR'.asIf((s) => s == "OK", "is OK", "is not OK"), equals("is not OK"));
+    expect('ERROR'.asIf((s) => s == "OK", "is OK", "is not OK"),
+        equals("is not OK"));
   });
 
   test('ifBlank - check if string is blank give it a default value.', () {
@@ -1130,14 +1147,20 @@ void main() {
     expect("string".wrap("AA", after: "BB"), "AAstringBB");
   });
 
-  test('removeLastEqual - Remove a string from the end of other string if equal [pattern]', () {
+  test(
+      'removeLastEqual - Remove a string from the end of other string if equal [pattern]',
+      () {
     expect("coolboy".removeLastEqual("y"), "coolbo");
   });
-  test('removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]', () {
+  test(
+      'removeFirstEqual - Remove a string from the beginning of other string if equal [pattern]',
+      () {
     expect("djing".removeFirstEqual("dj"), "ing");
   });
 
-  test('removeLastAny - Continuously removes from the end of the String any [patterns]', () {
+  test(
+      'removeLastAny - Continuously removes from the end of the String any [patterns]',
+      () {
     expect(
         "esentisfs12".removeLastAny([
           "12",
@@ -1148,15 +1171,20 @@ void main() {
         "esentis");
   });
 
-  test('removeFirstAny - Continuously removes from the beginning of a `string` any string contained in [patterns]', () {
+  test(
+      'removeFirstAny - Continuously removes from the beginning of a `string` any string contained in [patterns]',
+      () {
     expect("esentis".removeFirstAny(["s", "ng"]), "esentis");
   });
-  test('removeFirstAndLastEqual - Continuously removes from the beginning and end of a `string` if equal [pattern]', () {
+  test(
+      'removeFirstAndLastEqual - Continuously removes from the beginning and end of a `string` if equal [pattern]',
+      () {
     expect("abracadabra".removeFirstAndLastEqual("a"), "bracadabr");
     expect("esentis".removeFirstAndLastEqual("s"), "esenti");
   });
 
-  test('containsAny - Check if the String contains all Strings of a [list]', () {
+  test('containsAny - Check if the String contains all Strings of a [list]',
+      () {
     expect("abracadabra".containsAny(["a", "p"]), true);
     expect("string".containsAny(["str", "int"]), true);
     expect("string".containsAny(["abra", "cadabra"]), false);
@@ -1168,23 +1196,30 @@ void main() {
     expect("abracadabra".containsAll(["abra", "kazan"]), false);
   });
 
-  test('removeAfter - Removes everything after first occurence of a specific pattern', () {
+  test(
+      'removeAfter - Removes everything after first occurence of a specific pattern',
+      () {
     expect("0:00:00.11".removeAfter('.'), '0:00:00');
     expect("0.:00:00.11".removeAfter('.'), '0');
   });
 
-  test('removeBefore - Removes everything before first occurence of a specific pattern', () {
+  test(
+      'removeBefore - Removes everything before first occurence of a specific pattern',
+      () {
     expect("0:00:00.11".removeBefore('.'), '11');
     expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
   });
-  test('addAfter - Adds a String after first occurence of a specific pattern', () {
+  test('addAfter - Adds a String after first occurence of a specific pattern',
+      () {
     expect("0:00:00.11".addAfter('.', '5'), '0:00:00.511');
     expect("hello".addAfter('o', ' there'), 'hello there');
     expect('esentis'.addAfter('x', 'pro'), 'esentis');
   }); // expect('hello brother what a day today', matcher)
 
-  test('addBefore - Adds a String before first occurence of a specific pattern', () {
-    expect('hello brother what a day today'.addBefore('brother', 'big '), 'hello big brother what a day today');
+  test('addBefore - Adds a String before first occurence of a specific pattern',
+      () {
+    expect('hello brother what a day today'.addBefore('brother', 'big '),
+        'hello big brother what a day today');
     expect('world'.addBefore('w', 'hello '), 'hello world');
   });
   test('md5 - returns a MD5 hash of current string', () {
@@ -1216,9 +1251,13 @@ void main() {
   });
 
   test('Properly uppercases greek letters', () {
-    expect('Έλα ρε φίλε τι γίνεται πώς είσαι'.toGreekUpperCase(), 'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
-    expect('Έλα ρε φίλε Τι ΓίΝΕΤαι πώς είσαι'.toGreekUpperCase(), 'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
-    expect('hey brother τι κάνεις πως είσαι αγαπητέ'.toGreekUpperCase(), 'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
-    expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(), 'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
+    expect('Έλα ρε φίλε τι γίνεται πώς είσαι'.toGreekUpperCase(),
+        'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
+    expect('Έλα ρε φίλε Τι ΓίΝΕΤαι πώς είσαι'.toGreekUpperCase(),
+        'ΕΛΑ ΡΕ ΦΙΛΕ ΤΙ ΓΙΝΕΤΑΙ ΠΩΣ ΕΙΣΑΙ');
+    expect('hey brother τι κάνεις πως είσαι αγαπητέ'.toGreekUpperCase(),
+        'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
+    expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(),
+        'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
   });
 }
