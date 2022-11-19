@@ -1,6 +1,6 @@
 # [0.6.5] - Code Improvements
 
-Updates project dependencies.
+Updates project dependencies, to improve pub.dev score.
 
 ## [0.6.4] - New Extensions
 
