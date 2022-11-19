@@ -1,4 +1,8 @@
-# [0.6.4] - New Extensions
+# [0.6.5] - Code Improvements
+
+Updates project dependencies, to improve pub.dev score.
+
+## [0.6.4] - New Extensions
 
 - `toGreekUpperCase()` : Properly uppercases Greek letters, removing the tones.
 
