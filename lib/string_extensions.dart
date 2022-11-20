@@ -813,25 +813,17 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-    final Map<String, String> upperWords = {
-      'Ά': 'Α',
-      'Έ': 'Ε',
-      'Ή': 'Η',
-      'Ί': 'Ι',
-      'Ό': 'Ο',
-      'Ύ': 'Υ',
-      'Ώ': 'Ω',
-    };
 
-    String normalizedWord = '';
-    for (final String letter in this!.toUpperCase().split('')) {
-      if (upperWords.containsKey(letter)) {
-        normalizedWord += upperWords[letter]!;
-      } else {
-        normalizedWord += letter;
-      }
-    }
-    return normalizedWord;
+    return this!
+        .toUpperCase()
+        .replaceAll(RegExp(r'\ευ'), 'ef')
+        .replaceAll(RegExp(r'\Ά'), 'Α')
+        .replaceAll(RegExp(r'\Έ'), 'Ε')
+        .replaceAll(RegExp(r'\Ή'), 'Η')
+        .replaceAll(RegExp(r'\Ί'), 'Ι')
+        .replaceAll(RegExp(r'\Ύ'), 'Υ')
+        .replaceAll(RegExp(r'\Ώ'), 'Ω');
+    // return normalizedWord;
   }
 
   /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
