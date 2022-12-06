@@ -1769,7 +1769,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK"
+  /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK";
   /// ```
   String? asIf(bool Function(String?) comparison, String? trueString,
           String? falseString) =>
@@ -1780,7 +1780,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB"
+  /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB";
   /// ```
   String wrap(String? before, {String? after}) {
     before = before.ifBlank("");
@@ -1840,7 +1840,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true
+  /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true;
   /// ```
   bool isOpenWrapChar() =>
       this.isNotNull && StringHelpers.openWrappers.contains(this);
@@ -1850,7 +1850,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true
+  /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true;
   /// ```
   bool isCloseWrapChar() =>
       this.isNotNull && StringHelpers.closeWrappers.contains(this);
@@ -1860,7 +1860,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis"
+  /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis";
   /// ```
   String? removeFirstAny(List<String?> patterns) {
     var from = this;
@@ -1881,7 +1881,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis"
+  /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis";
   /// ```
   String? removeLastAny(List<String?> patterns) {
     var from = this;
@@ -1906,7 +1906,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo"
+  /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo";
   /// ```
   String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
@@ -1924,7 +1924,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr"
+  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr";
   /// ```
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
@@ -1934,7 +1934,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.removeAfter('brother'); // returns 'hello '
+  /// String afterString = test.removeAfter('brother'); // returns 'hello ';
   /// ```
   String? removeAfter(String pattern) {
     if (this.isBlank) {
@@ -1964,7 +1964,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today'
+  /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today';
   /// ```
   String? removeBefore(String pattern) {
     if (this.isBlank) {
@@ -1999,7 +1999,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today '
+  /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
   /// ```
   String? addAfter(String pattern, String adition) {
     if (this.isBlank) {
@@ -2033,7 +2033,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today'
+  /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today';
   /// ```
   String? addBefore(String pattern, String adition) {
     if (this.isBlank) {
@@ -2068,7 +2068,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool contains = "abracadabra".containsAny(["a", "p"]); // returns true
+  /// bool contains = "abracadabra".containsAny(["a", "p"]); // returns true;
   /// ```
   bool containsAny(List<String?> patterns) {
     if (this.isNotBlank) {
@@ -2102,7 +2102,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e"
+  /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e";
   /// ```
   String? get md5 {
     String? data = this;
@@ -2123,7 +2123,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = '24117248';
-  /// String formatted = foo.formatFileSize; // returns '23 MB'
+  /// String formatted = foo.formatFileSize; // returns '23 MB';
   /// ```
   String? get formatFileSize {
     if (this.isBlank) {
@@ -2153,7 +2153,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = 'esentis';
-  /// String leet = foo.toLeet ; // returns '€5£п+!$'
+  /// String leet = foo.toLeet ; // returns '€5£п+!$';
   /// ```
   String? get toLeet {
     if (this.isBlank) {
@@ -2212,7 +2212,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = '   Hel l o W   orld';
-  /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld'
+  /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld';
   /// ```
   String? get removeWhiteSpace {
     if (this.isBlank) {
