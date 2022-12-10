@@ -2221,6 +2221,7 @@ extension MiscExtensions on String? {
     return this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
   }
 
+  /// Checks whether the `String` is a valid IBAN.
   bool get isIban {
     if (this.isBlank) {
       return false;
@@ -2246,6 +2247,7 @@ extension MiscExtensions on String? {
       "HR": 21,
       "LI": 21,
       "LV": 21,
+      "MA": 28,
       "BG": 22,
       "BH": 22,
       "DE": 22,
@@ -2290,6 +2292,48 @@ extension MiscExtensions on String? {
       "KW": 30,
       "MU": 30,
       "MT": 31,
+      "DZ": 26,
+      "AO": 25,
+      "BJ": 28,
+      "BF": 28,
+      "CM": 27,
+      "CV": 25,
+      "CF": 27,
+      "TD": 27,
+      "KM": 27,
+      "CG": 27,
+      "GQ": 27,
+      "GA": 27,
+      "GW": 25,
+      "HN": 28,
+      "IR": 26,
+      "CI": 28,
+      "MG": 27,
+      "ML": 28,
+      "MN": 20,
+      "MZ": 28,
+      "NI": 32,
+      "NE": 28,
+      "SN": 28,
+      "TG": 28,
+      "BY": 28,
+      "BI": 27,
+      "DJ": 27,
+      "EG": 29,
+      "SV": 28,
+      "VA": 22,
+      "IQ": 23,
+      "JO": 30,
+      "XK": 20,
+      "LY": 25,
+      "QA": 29,
+      "RU": 33,
+      "LC": 32,
+      "ST": 25,
+      "SC": 31,
+      "SD": 18,
+      "TL": 23,
+      "UA": 29,
     };
 
     if (this!.length <= 2) {

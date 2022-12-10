@@ -1263,5 +1263,13 @@ void main() {
 
   test('Checks if the String is a valid IBAN', () {
     expect('GR7601087934297122812795672'.isIban, true);
+    expect('GR6001011981275693319989994'.isIban, true);
+    expect('KW92RPNS2681922467176944898824'.isIban, true);
+    expect('MA10745769541838288465855969'.isIban, true);
+    expect('SE1971441872123675319313'.isIban, true);
+    expect('GB15BARC20039571136321'.isIban, true);
+    expect('SK7431252943564435863722'.isIban, true);
+    expect('AL17134113213912334137941422'.isIban, true);
+    expect('DZ580002100001113000000570'.isIban, true);
   });
 }
