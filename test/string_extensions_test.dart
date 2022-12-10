@@ -1260,4 +1260,8 @@ void main() {
     expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(),
         'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
   });
+
+  test('Checks if the String is a valid IBAN', () {
+    expect('GR7601087934297122812795672'.isIban, true);
+  });
 }
