@@ -2353,4 +2353,76 @@ extension MiscExtensions on String? {
         r'(^[a-zA-Z]{2}(?:0[2-9]|[1-8][0-9]|9[0-8])[a-zA-Z0-9]{4}[0-9]{6}[a-zA-Z0-9]{0,20}$)');
     return regex.hasMatch(this!);
   }
+
+  /// Checks whether the provided `String` is a valid Greek ID number.
+  ///
+  /// The number should be of format XX999999, where XX are letters from both the Greek and the Latin alphabet (ABEZHIKMNOPTYX).
+  bool get isGreekId {
+    if (this.isBlank) {
+      return false;
+    }
+
+    if (this!.length != 8) {
+      return false;
+    }
+
+    final List<String> firstTwoLetters = this.first(n: 2)!.split('');
+    final String restLetters = this!.last(n: 6)!;
+
+    // Besides the first two letters, the rest of the ID should be a 6digit number.
+    if (!restLetters.isNumber) {
+      return false;
+    }
+    List<String> validLetters = [
+      // GREEK VARIATION
+      "Α",
+      "A",
+      // GREEK VARIATION
+      "Β",
+      "B",
+      // GREEK VARIATION
+      "Ε",
+      "E",
+      // GREEK VARIATION
+      "Ζ",
+      "Z",
+      // GREEK VARIATION
+      "Η",
+      "H",
+      // GREEK VARIATION
+      "Ι",
+      "I",
+      // GREEK VARIATION
+      "Κ",
+      "K",
+      // GREEK VARIATION
+      "Μ",
+      "M",
+      // GREEK VARIATION
+      "Ν",
+      "N",
+      // GREEK VARIATION
+      "Ο",
+      "O",
+      // GREEK VARIATION
+      "Ρ",
+      "P",
+      // GREEK VARIATION
+      "Τ",
+      "T",
+      // GREEK VARIATION
+      "Υ",
+      "Y",
+      // GREEK VARIATION
+      "Χ",
+      "X"
+    ];
+
+    // If the first two letters of the provided String are not valid ones.
+    if (!validLetters.contains(firstTwoLetters.first) ||
+        !validLetters.contains(firstTwoLetters.last)) {
+      return false;
+    }
+    return true;
+  }
 }

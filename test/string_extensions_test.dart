@@ -252,6 +252,7 @@ void main() {
       expect(null.isNumber, false);
       expect(''.isNumber, false);
       expect(' '.isNumber, false);
+      expect('166373'.isNumber, true);
     },
   );
   test(
@@ -1271,5 +1272,9 @@ void main() {
     expect('SK7431252943564435863722'.isIban, true);
     expect('AL17134113213912334137941422'.isIban, true);
     expect('DZ580002100001113000000570'.isIban, true);
+  });
+
+  test('Checks if the String is a valid Greek Identity number', () {
+    expect('ΑΒ166373'.isGreekId, true);
   });
 }
