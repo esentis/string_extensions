@@ -1,4 +1,9 @@
-# [0.6.5] - Code Improvements
+# [0.6.6] - New Extensions
+
+- `isIban` : A static method to check whether the provided `String` is a valid IBAN. [Source](https://www.iban.com/structure)
+- `isGreekId` : A static method to check whether the provided `String` is a valid Greek Identification Number. [Source](https://en.wikipedia.org/wiki/National_identification_number#Greece)
+
+## [0.6.5] - Code Improvements
 
 Updates project dependencies, to improve pub.dev score.
 
