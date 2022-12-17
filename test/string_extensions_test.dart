@@ -1277,4 +1277,11 @@ void main() {
   test('Checks if the String is a valid Greek Identity number', () {
     expect('ΑΒ166373'.isGreekId, true);
   });
+
+  test('Checks if the String is in uppercase', () {
+    expect('ΑΒ166373'.isUpperCase, true);
+  });
+  test('Checks if the String is in lowercase', () {
+    expect('ΑΒ166373'.isLowerCase, false);
+  });
 }

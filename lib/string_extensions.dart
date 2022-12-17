@@ -2423,6 +2423,21 @@ extension MiscExtensions on String? {
         !validLetters.contains(firstTwoLetters.last)) {
       return false;
     }
+
     return true;
+  }
+
+  bool? get isLowerCase {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this!.toLowerCase();
+  }
+
+  bool? get isUpperCase {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this!.toGreekUpperCase();
   }
 }
