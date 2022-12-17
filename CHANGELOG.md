@@ -2,6 +2,8 @@
 
 - `isIban` : A static method to check whether the provided `String` is a valid IBAN. [Source](https://www.iban.com/structure)
 - `isGreekId` : A static method to check whether the provided `String` is a valid Greek Identification Number. [Source](https://en.wikipedia.org/wiki/National_identification_number#Greece)
+- `isLowerCase` : Checks whether the `String` is in upper case
+- `isUpperCase` : Checks whether the `String` is in lower case
 
 ## [0.6.5] - Code Improvements
 
