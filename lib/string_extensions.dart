@@ -813,25 +813,17 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-    final Map<String, String> upperWords = {
-      'Ά': 'Α',
-      'Έ': 'Ε',
-      'Ή': 'Η',
-      'Ί': 'Ι',
-      'Ό': 'Ο',
-      'Ύ': 'Υ',
-      'Ώ': 'Ω',
-    };
 
-    String normalizedWord = '';
-    for (final String letter in this!.toUpperCase().split('')) {
-      if (upperWords.containsKey(letter)) {
-        normalizedWord += upperWords[letter]!;
-      } else {
-        normalizedWord += letter;
-      }
-    }
-    return normalizedWord;
+    return this!
+        .toUpperCase()
+        .replaceAll(RegExp(r'\ευ'), 'ef')
+        .replaceAll(RegExp(r'\Ά'), 'Α')
+        .replaceAll(RegExp(r'\Έ'), 'Ε')
+        .replaceAll(RegExp(r'\Ή'), 'Η')
+        .replaceAll(RegExp(r'\Ί'), 'Ι')
+        .replaceAll(RegExp(r'\Ύ'), 'Υ')
+        .replaceAll(RegExp(r'\Ώ'), 'Ω');
+    // return normalizedWord;
   }
 
   /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
@@ -1777,7 +1769,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK"
+  /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK";
   /// ```
   String? asIf(bool Function(String?) comparison, String? trueString,
           String? falseString) =>
@@ -1788,7 +1780,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB"
+  /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB";
   /// ```
   String wrap(String? before, {String? after}) {
     before = before.ifBlank("");
@@ -1848,7 +1840,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true
+  /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true;
   /// ```
   bool isOpenWrapChar() =>
       this.isNotNull && StringHelpers.openWrappers.contains(this);
@@ -1858,7 +1850,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true
+  /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true;
   /// ```
   bool isCloseWrapChar() =>
       this.isNotNull && StringHelpers.closeWrappers.contains(this);
@@ -1868,7 +1860,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis"
+  /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis";
   /// ```
   String? removeFirstAny(List<String?> patterns) {
     var from = this;
@@ -1889,7 +1881,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis"
+  /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis";
   /// ```
   String? removeLastAny(List<String?> patterns) {
     var from = this;
@@ -1914,7 +1906,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo"
+  /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo";
   /// ```
   String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
@@ -1932,7 +1924,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr"
+  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr";
   /// ```
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
@@ -1942,7 +1934,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.removeAfter('brother'); // returns 'hello '
+  /// String afterString = test.removeAfter('brother'); // returns 'hello ';
   /// ```
   String? removeAfter(String pattern) {
     if (this.isBlank) {
@@ -1972,7 +1964,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today'
+  /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today';
   /// ```
   String? removeBefore(String pattern) {
     if (this.isBlank) {
@@ -2007,7 +1999,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today '
+  /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
   /// ```
   String? addAfter(String pattern, String adition) {
     if (this.isBlank) {
@@ -2041,7 +2033,7 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String test = 'hello brother what a day today';
-  /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today'
+  /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today';
   /// ```
   String? addBefore(String pattern, String adition) {
     if (this.isBlank) {
@@ -2076,7 +2068,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// bool contains = "abracadabra".containsAny(["a", "p"]); // returns true
+  /// bool contains = "abracadabra".containsAny(["a", "p"]); // returns true;
   /// ```
   bool containsAny(List<String?> patterns) {
     if (this.isNotBlank) {
@@ -2110,7 +2102,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e"
+  /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e";
   /// ```
   String? get md5 {
     String? data = this;
@@ -2131,7 +2123,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = '24117248';
-  /// String formatted = foo.formatFileSize; // returns '23 MB'
+  /// String formatted = foo.formatFileSize; // returns '23 MB';
   /// ```
   String? get formatFileSize {
     if (this.isBlank) {
@@ -2161,7 +2153,7 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = 'esentis';
-  /// String leet = foo.toLeet ; // returns '€5£п+!$'
+  /// String leet = foo.toLeet ; // returns '€5£п+!$';
   /// ```
   String? get toLeet {
     if (this.isBlank) {
@@ -2220,12 +2212,261 @@ extension MiscExtensions on String? {
   ///
   /// ```dart
   /// String foo = '   Hel l o W   orld';
-  /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld'
+  /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld';
   /// ```
   String? get removeWhiteSpace {
     if (this.isBlank) {
       return this;
     }
     return this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+  }
+
+  /// Checks whether the `String` is a valid IBAN.
+  bool get isIban {
+    if (this.isBlank) {
+      return false;
+    }
+    final ibanLen = {
+      "NO": 15,
+      "BE": 16,
+      "DK": 18,
+      "FI": 18,
+      "FO": 18,
+      "GL": 18,
+      "NL": 18,
+      "MK": 19,
+      "SI": 19,
+      "AT": 20,
+      "BA": 20,
+      "EE": 20,
+      "KZ": 20,
+      "LT": 20,
+      "LU": 20,
+      "CR": 21,
+      "CH": 21,
+      "HR": 21,
+      "LI": 21,
+      "LV": 21,
+      "MA": 28,
+      "BG": 22,
+      "BH": 22,
+      "DE": 22,
+      "GB": 22,
+      "GE": 22,
+      "IE": 22,
+      "ME": 22,
+      "RS": 22,
+      "AE": 23,
+      "GI": 23,
+      "IL": 23,
+      "AD": 24,
+      "CZ": 24,
+      "ES": 24,
+      "MD": 24,
+      "PK": 24,
+      "RO": 24,
+      "SA": 24,
+      "SE": 24,
+      "SK": 24,
+      "VG": 24,
+      "TN": 24,
+      "PT": 25,
+      "IS": 26,
+      "TR": 26,
+      "FR": 27,
+      "GR": 27,
+      "IT": 27,
+      "MC": 27,
+      "MR": 27,
+      "SM": 27,
+      "AL": 28,
+      "AZ": 28,
+      "CY": 28,
+      "DO": 28,
+      "GT": 28,
+      "HU": 28,
+      "LB": 28,
+      "PL": 28,
+      "BR": 29,
+      "PS": 29,
+      "KW": 30,
+      "MU": 30,
+      "MT": 31,
+      "DZ": 26,
+      "AO": 25,
+      "BJ": 28,
+      "BF": 28,
+      "CM": 27,
+      "CV": 25,
+      "CF": 27,
+      "TD": 27,
+      "KM": 27,
+      "CG": 27,
+      "GQ": 27,
+      "GA": 27,
+      "GW": 25,
+      "HN": 28,
+      "IR": 26,
+      "CI": 28,
+      "MG": 27,
+      "ML": 28,
+      "MN": 20,
+      "MZ": 28,
+      "NI": 32,
+      "NE": 28,
+      "SN": 28,
+      "TG": 28,
+      "BY": 28,
+      "BI": 27,
+      "DJ": 27,
+      "EG": 29,
+      "SV": 28,
+      "VA": 22,
+      "IQ": 23,
+      "JO": 30,
+      "XK": 20,
+      "LY": 25,
+      "QA": 29,
+      "RU": 33,
+      "LC": 32,
+      "ST": 25,
+      "SC": 31,
+      "SD": 18,
+      "TL": 23,
+      "UA": 29,
+    };
+
+    if (this!.length <= 2) {
+      return false;
+    }
+    final countryCode = this.first(n: 2);
+
+    if (!ibanLen.containsKey(countryCode)) {
+      return false;
+    }
+
+    if (ibanLen[countryCode] != this!.length) {
+      return false;
+    }
+
+    var regex = RegExp(
+        r'(^[a-zA-Z]{2}(?:0[2-9]|[1-8][0-9]|9[0-8])[a-zA-Z0-9]{4}[0-9]{6}[a-zA-Z0-9]{0,20}$)');
+    return regex.hasMatch(this!);
+  }
+
+  /// Checks whether the provided `String` is a valid Greek ID number.
+  ///
+  /// The number should be of format XX999999, where XX are letters from both the Greek and the Latin alphabet (ABEZHIKMNOPTYX).
+  bool get isGreekId {
+    if (this.isBlank) {
+      return false;
+    }
+
+    if (this!.length != 8) {
+      return false;
+    }
+
+    final List<String> firstTwoLetters = this.first(n: 2)!.split('');
+    final String restLetters = this!.last(n: 6)!;
+
+    // Besides the first two letters, the rest of the ID should be a 6digit number.
+    if (!restLetters.isNumber) {
+      return false;
+    }
+    List<String> validLetters = [
+      // GREEK VARIATION
+      "Α",
+      "A",
+      // GREEK VARIATION
+      "Β",
+      "B",
+      // GREEK VARIATION
+      "Ε",
+      "E",
+      // GREEK VARIATION
+      "Ζ",
+      "Z",
+      // GREEK VARIATION
+      "Η",
+      "H",
+      // GREEK VARIATION
+      "Ι",
+      "I",
+      // GREEK VARIATION
+      "Κ",
+      "K",
+      // GREEK VARIATION
+      "Μ",
+      "M",
+      // GREEK VARIATION
+      "Ν",
+      "N",
+      // GREEK VARIATION
+      "Ο",
+      "O",
+      // GREEK VARIATION
+      "Ρ",
+      "P",
+      // GREEK VARIATION
+      "Τ",
+      "T",
+      // GREEK VARIATION
+      "Υ",
+      "Y",
+      // GREEK VARIATION
+      "Χ",
+      "X"
+    ];
+
+    // If the first two letters of the provided String are not valid ones.
+    if (!validLetters.contains(firstTwoLetters.first) ||
+        !validLetters.contains(firstTwoLetters.last)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /// Checks whether the `String` is in lowercase.
+  bool? get isLowerCase {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this!.toLowerCase();
+  }
+
+  /// Checks whether the `String` is in uppercase.
+  bool? get isUpperCase {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this!.toGreekUpperCase();
+  }
+
+  /// Swaps the case in the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String swapped = foo.swapCase(); // returns 'hELLO wORLD';
+  /// ```
+  String? swapCase() {
+    if (this.isBlank) {
+      return this;
+    }
+
+    List<String> letters = this!.toArray;
+
+    String swapped = '';
+
+    for (final l in letters) {
+      if (l.isUpperCase!) {
+        swapped += l.toLowerCase();
+      } else {
+        swapped += l.toUpperCase();
+      }
+    }
+    return swapped;
   }
 }

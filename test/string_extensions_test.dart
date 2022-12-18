@@ -252,6 +252,7 @@ void main() {
       expect(null.isNumber, false);
       expect(''.isNumber, false);
       expect(' '.isNumber, false);
+      expect('166373'.isNumber, true);
     },
   );
   test(
@@ -1259,5 +1260,41 @@ void main() {
         'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
     expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(),
         'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
+  });
+
+  test('Checks if the String is a valid IBAN', () {
+    expect('GR7601087934297122812795672'.isIban, true);
+    expect('GR6001011981275693319989994'.isIban, true);
+    expect('KW92RPNS2681922467176944898824'.isIban, true);
+    expect('MA10745769541838288465855969'.isIban, true);
+    expect('SE1971441872123675319313'.isIban, true);
+    expect('GB15BARC20039571136321'.isIban, true);
+    expect('SK7431252943564435863722'.isIban, true);
+    expect('AL17134113213912334137941422'.isIban, true);
+    expect('DZ580002100001113000000570'.isIban, true);
+  });
+
+  test('Checks if the String is a valid Greek Identity number', () {
+    expect('ΑΒ166373'.isGreekId, true);
+  });
+
+  test('Checks if the String is in uppercase', () {
+    expect('ΑΒ166373'.isUpperCase, true);
+    expect('abcDeFgg'.isUpperCase, false);
+    expect('AVV FFF AA 551 ! 22 a A'.isUpperCase, false);
+    expect('aaa Aaaa'.isUpperCase, false);
+  });
+  test('Checks if the String is in lowercase', () {
+    expect('ΑΒ166373'.isLowerCase, false);
+    expect('abcDeFgg'.isLowerCase, false);
+    expect('abcded f ga a'.isLowerCase, true);
+    expect('aaa Aaaa'.isLowerCase, false);
+  });
+
+  test('Swaps the case of the String', () {
+    expect('abCDefGH'.swapCase(), 'ABcdEFgh');
+    expect('abCDefGH123'.swapCase(), 'ABcdEFgh123');
+    expect('ab CD ef GH'.swapCase(), 'AB cd EF gh');
+    expect('! ab CD ef GH1 F'.swapCase(), '! AB cd EF gh1 f');
   });
 }
