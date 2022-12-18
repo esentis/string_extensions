@@ -1280,8 +1280,21 @@ void main() {
 
   test('Checks if the String is in uppercase', () {
     expect('ΑΒ166373'.isUpperCase, true);
+    expect('abcDeFgg'.isUpperCase, false);
+    expect('AVV FFF AA 551 ! 22 a A'.isUpperCase, false);
+    expect('aaa Aaaa'.isUpperCase, false);
   });
   test('Checks if the String is in lowercase', () {
     expect('ΑΒ166373'.isLowerCase, false);
+    expect('abcDeFgg'.isLowerCase, false);
+    expect('abcded f ga a'.isLowerCase, true);
+    expect('aaa Aaaa'.isLowerCase, false);
+  });
+
+  test('Swaps the case of the String', () {
+    expect('abCDefGH'.swapCase(), 'ABcdEFgh');
+    expect('abCDefGH123'.swapCase(), 'ABcdEFgh123');
+    expect('ab CD ef GH'.swapCase(), 'AB cd EF gh');
+    expect('! ab CD ef GH1 F'.swapCase(), '! AB cd EF gh1 f');
   });
 }

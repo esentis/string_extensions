@@ -2427,6 +2427,7 @@ extension MiscExtensions on String? {
     return true;
   }
 
+  /// Checks whether the `String` is in lowercase.
   bool? get isLowerCase {
     if (this.isBlank) {
       return false;
@@ -2434,10 +2435,38 @@ extension MiscExtensions on String? {
     return this == this!.toLowerCase();
   }
 
+  /// Checks whether the `String` is in uppercase.
   bool? get isUpperCase {
     if (this.isBlank) {
       return false;
     }
     return this == this!.toGreekUpperCase();
+  }
+
+  /// Swaps the case in the `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// String swapped = foo.swapCase(); // returns 'hELLO wORLD';
+  /// ```
+  String? swapCase() {
+    if (this.isBlank) {
+      return this;
+    }
+
+    List<String> letters = this!.toArray;
+
+    String swapped = '';
+
+    for (final l in letters) {
+      if (l.isUpperCase!) {
+        swapped += l.toLowerCase();
+      } else {
+        swapped += l.toUpperCase();
+      }
+    }
+    return swapped;
   }
 }
