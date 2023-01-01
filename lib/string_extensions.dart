@@ -2469,4 +2469,9 @@ extension MiscExtensions on String? {
     }
     return swapped;
   }
+
+  bool? get isSwiftCode {
+    var regex = RegExp(r'(^[A-Za-z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$)');
+    return regex.hasMatch(this!);
+  }
 }

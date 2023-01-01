@@ -204,6 +204,9 @@ void main() {
       String? string2 = 'esentisesentis.com';
       expect(string2.isMail, false);
 
+      String? string3 = 'esentis@esentis.com esentis@esentis.com';
+      expect(string3.isMail, false);
+
       expect(null.isMail, false);
       expect(''.isMail, false);
       expect(' '.isMail, false);
@@ -1296,5 +1299,13 @@ void main() {
     expect('abCDefGH123'.swapCase(), 'ABcdEFgh123');
     expect('ab CD ef GH'.swapCase(), 'AB cd EF gh');
     expect('! ab CD ef GH1 F'.swapCase(), '! AB cd EF gh1 f');
+  });
+  test('Checkes whether the String is a Swift code', () {
+    expect('CRBAGRAAI01'.isSwiftCode, true);
+    expect('CSRBAGRAAI01'.isSwiftCode, false);
+    expect('CRBAGRAA'.isSwiftCode, true);
+    expect('AEBAGRAA'.isSwiftCode, true);
+    expect('	PMFAUS66'.isSwiftCode, false);
+    expect('PMFAUS66'.isSwiftCode, true);
   });
 }
