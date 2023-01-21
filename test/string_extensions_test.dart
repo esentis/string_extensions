@@ -515,14 +515,31 @@ void main() {
     },
   );
   test(
-    'Normalizes greek word',
+    'Normalizes greek word, replacing all Greek characters to their latin equivelent',
     () {
       String? string = 'Αριστοτέλης';
       expect(string.replaceGreek, 'aristotelis');
-
       expect(null.replaceGreek, null);
       expect(''.replaceGreek, '');
       expect(' '.replaceGreek, ' ');
+      expect('λοπάς'.replaceGreek, 'lopas');
+      expect('υπότριμμα'.replaceGreek, 'ypotrimma');
+      expect('σίλφιον'.replaceGreek, 'silfion');
+      expect('κατακεχυμένος'.replaceGreek, 'katakexymenos');
+      expect('κίγκλος'.replaceGreek, 'kigklos');
+      expect('λαγώος'.replaceGreek, 'lagoos');
+      expect('πτέρυξ'.replaceGreek, 'pteryks');
+      expect('τραγανός'.replaceGreek, 'traganos');
+      expect('πέλεια'.replaceGreek, 'peleia');
+      expect('κεφάλιον'.replaceGreek, 'kefalion');
+      expect('αλεκτρυών'.replaceGreek, 'alektryon');
+      expect('ηλεκτροεγκεφαλογράφημα'.replaceGreek, 'ilektroegkefalografima');
+      expect('αβυσσαλέος'.replaceGreek, 'avyssaleos');
+      expect('άτεγκτος'.replaceGreek, 'ategktos');
+      expect('απερίγραπτος'.replaceGreek, 'aperigraptos');
+      expect('αχλός'.replaceGreek, 'axlos');
+      expect('αμετροέπεια'.replaceGreek, 'ametroepeia');
+      expect('αλώβητος'.replaceGreek, 'alovitos');
     },
   );
   test(
