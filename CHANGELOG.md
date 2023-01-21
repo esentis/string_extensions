@@ -1,8 +1,14 @@
 # [0.6.7] - New Extensions & Optimizations
 
+#### New methods
+
 - `isSwiftCode` : A static method to check whether the provided `String` is a valid Swift code. [Source](https://en.wikipedia.org/wiki/ISO_9362#:~:text=The%20SWIFT%20code%20is%208,institution%20code%20or%20bank%20code.&text=if%20the%20second%20character%20is,used%20on%20the%20live%20network.)
 
+#### Optimized methods
+
 - Optimizes `replaceGreek` method
+- Optimizes `toGreekUppercase` method
+- Optimizes `getLevenshtein` by using Wagner-Fisher algorithm
 
 ## [0.6.6] - New Extensions
 

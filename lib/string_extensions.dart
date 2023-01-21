@@ -813,17 +813,26 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-
-    return this!
-        .toUpperCase()
-        .replaceAll(RegExp(r'\ευ'), 'ef')
-        .replaceAll(RegExp(r'\Ά'), 'Α')
-        .replaceAll(RegExp(r'\Έ'), 'Ε')
-        .replaceAll(RegExp(r'\Ή'), 'Η')
-        .replaceAll(RegExp(r'\Ί'), 'Ι')
-        .replaceAll(RegExp(r'\Ύ'), 'Υ')
-        .replaceAll(RegExp(r'\Ώ'), 'Ω');
-    // return normalizedWord;
+    return this!.toUpperCase().replaceAllMapped(RegExp(r'[ΆΈΉΊΎΏΌ]'), (match) {
+      switch (match.group(0)) {
+        case 'Ά':
+          return 'Α';
+        case 'Έ':
+          return 'Ε';
+        case 'Ή':
+          return 'Η';
+        case 'Ί':
+          return 'Ι';
+        case 'Ύ':
+          return 'Υ';
+        case 'Ώ':
+          return 'Ω';
+        case 'Ο':
+          return 'Ο';
+        default:
+          return match.group(0) ?? this!.toUpperCase();
+      }
+    });
   }
 
   /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
@@ -1070,23 +1079,25 @@ extension MiscExtensions on String? {
 
     var a = this!.toLowerCase();
     b = b.toLowerCase();
-    // i == 0
-    var costs = List.filled(b.length + 1, 0);
-    for (var j = 0; j < costs.length; j++) {
+
+    List<int> costs = List<int>.filled(b.length + 1, 0);
+
+    for (var j = 0; j <= b.length; j++) {
       costs[j] = j;
     }
+
     for (var i = 1; i <= a.length; i++) {
-      // j == 0; nw = lev(i - 1, j)
+      int nw = costs[0];
       costs[0] = i;
-      var nw = i - 1;
+
       for (var j = 1; j <= b.length; j++) {
-        // ignore: omit_local_variable_types
         int cj = min(1 + min(costs[j], costs[j - 1]),
             a[i - 1] == b[j - 1] ? nw : nw + 1);
         nw = costs[j];
         costs[j] = cj;
       }
     }
+
     return costs[b.length];
   }
 
