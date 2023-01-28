@@ -948,7 +948,7 @@ void main() {
       expect(date1.getMonthFromDate(), 'August');
       expect(date1.getMonthFromDate(locale: 'el'), 'Αυγούστου');
       expect(date1.getMonthFromDate(locale: 'es'), 'agosto');
-      expect(date1.getMonthFromDate(locale: 'az'), 'Avqust');
+      expect(date1.getMonthFromDate(locale: 'az'), 'avqust');
       expect(date1.getMonthFromDate(locale: 'ka'), 'აგვისტო');
     },
   );
