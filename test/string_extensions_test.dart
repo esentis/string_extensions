@@ -204,6 +204,9 @@ void main() {
       String? string2 = 'esentisesentis.com';
       expect(string2.isMail, false);
 
+      String? string3 = 'esentis@esentis.com esentis@esentis.com';
+      expect(string3.isMail, false);
+
       expect(null.isMail, false);
       expect(''.isMail, false);
       expect(' '.isMail, false);
@@ -512,14 +515,31 @@ void main() {
     },
   );
   test(
-    'Normalizes greek word',
+    'Normalizes greek word, replacing all Greek characters to their latin equivelent',
     () {
       String? string = 'Αριστοτέλης';
       expect(string.replaceGreek, 'aristotelis');
-
       expect(null.replaceGreek, null);
       expect(''.replaceGreek, '');
       expect(' '.replaceGreek, ' ');
+      expect('λοπάς'.replaceGreek, 'lopas');
+      expect('υπότριμμα'.replaceGreek, 'ypotrimma');
+      expect('σίλφιον'.replaceGreek, 'silfion');
+      expect('κατακεχυμένος'.replaceGreek, 'katakexymenos');
+      expect('κίγκλος'.replaceGreek, 'kigklos');
+      expect('λαγώος'.replaceGreek, 'lagoos');
+      expect('πτέρυξ'.replaceGreek, 'pteryks');
+      expect('τραγανός'.replaceGreek, 'traganos');
+      expect('πέλεια'.replaceGreek, 'peleia');
+      expect('κεφάλιον'.replaceGreek, 'kefalion');
+      expect('αλεκτρυών'.replaceGreek, 'alektryon');
+      expect('ηλεκτροεγκεφαλογράφημα'.replaceGreek, 'ilektroegkefalografima');
+      expect('αβυσσαλέος'.replaceGreek, 'avyssaleos');
+      expect('άτεγκτος'.replaceGreek, 'ategktos');
+      expect('απερίγραπτος'.replaceGreek, 'aperigraptos');
+      expect('αχλός'.replaceGreek, 'axlos');
+      expect('αμετροέπεια'.replaceGreek, 'ametroepeia');
+      expect('αλώβητος'.replaceGreek, 'alovitos');
     },
   );
   test(
@@ -1296,5 +1316,57 @@ void main() {
     expect('abCDefGH123'.swapCase(), 'ABcdEFgh123');
     expect('ab CD ef GH'.swapCase(), 'AB cd EF gh');
     expect('! ab CD ef GH1 F'.swapCase(), '! AB cd EF gh1 f');
+  });
+  test('Checkes whether the String is a Swift code', () {
+    expect('CRBAGRAAI01'.isSwiftCode, true);
+    expect('CSRBAGRAAI01'.isSwiftCode, false);
+    expect('CRBAGRAA'.isSwiftCode, true);
+    expect('AEBAGRAA'.isSwiftCode, true);
+    expect('	PMFAUS66'.isSwiftCode, false);
+    expect('PMFAUS66'.isSwiftCode, true);
+  });
+  test('Returns the digits count in the String', () {
+    expect('CRBAGRAAI01'.digitCount, 2);
+    expect('CRBAGRAAI'.digitCount, 0);
+    expect(null.digitCount, 0);
+    expect(''.digitCount, 0);
+  });
+
+  test('Checks if the String is consisted of valid ASCII characters', () {
+    expect("hello world".isAscii, true);
+    expect("Hello, 世界".isAscii, false);
+    expect("".isAscii, true);
+    expect("123".isAscii, true);
+    expect("!@#\$%".isAscii, true);
+    expect("œ∑´®†¥¨ˆøπ".isAscii, false);
+    expect("Hello World 123".isAscii, true);
+  });
+
+  test("Checks if a String is an anagram of another one", () {
+    expect("listen".isAnagramOf("silent"), true);
+    expect("elbow".isAnagramOf("below"), true);
+    expect("triangle".isAnagramOf("integral"), true);
+    expect("funeral".isAnagramOf("real fun"), true);
+    expect("deified".isAnagramOf("died if"), false);
+    expect("roast".isAnagramOf("sorta"), true);
+    expect("dormitory".isAnagramOf("dirty room"), true);
+    expect("poultry outwits an ant".isAnagramOf("antitoxin word pluck"), false);
+  });
+  test("Checks if a String is palindrome", () {
+    expect("racecar".isPalindrome, true);
+    expect("level".isPalindrome, true);
+    expect("deified".isPalindrome, true);
+    expect("died if".isPalindrome, false);
+    expect("sorta".isPalindrome, false);
+    expect("dirty room".isPalindrome, false);
+    expect("antitoxin word pluck".isPalindrome, false);
+  });
+
+  test("Checks if a String is mixed case", () {
+    expect("Hello World!".isMixedCase(), equals(true));
+    expect("HELLO WORLD!".isMixedCase(), equals(false));
+    expect("hello world!".isMixedCase(), equals(false));
+    expect("HELLOworld!".isMixedCase(), equals(true));
+    expect("HelloWORLD!".isMixedCase(), equals(true));
   });
 }

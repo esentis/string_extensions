@@ -9,6 +9,15 @@ import 'package:string_extensions/string_helpers.dart';
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isMore = foo > 'Hi'; // returns true.
+  /// ```
   bool operator >(String s) {
     if (this.isBlank) {
       return false;
@@ -17,6 +26,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is more or equal than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isMoreOrEqual = foo >= 'Hi'; // returns true.
+  /// ```
   bool operator >=(String s) {
     if (this.isBlank) {
       return false;
@@ -25,6 +43,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isLess = foo < 'Hi'; // returns false.
+  /// ```
   bool operator <(String s) {
     if (this.isBlank) {
       return false;
@@ -33,6 +60,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less or equal than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isLessOrEqual = foo <= 'Hi'; // returns false.
+  /// ```
   bool operator <=(String s) {
     if (this.isBlank) {
       return false;
@@ -813,17 +849,26 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-
-    return this!
-        .toUpperCase()
-        .replaceAll(RegExp(r'\ευ'), 'ef')
-        .replaceAll(RegExp(r'\Ά'), 'Α')
-        .replaceAll(RegExp(r'\Έ'), 'Ε')
-        .replaceAll(RegExp(r'\Ή'), 'Η')
-        .replaceAll(RegExp(r'\Ί'), 'Ι')
-        .replaceAll(RegExp(r'\Ύ'), 'Υ')
-        .replaceAll(RegExp(r'\Ώ'), 'Ω');
-    // return normalizedWord;
+    return this!.toUpperCase().replaceAllMapped(RegExp(r'[ΆΈΉΊΎΏΌ]'), (match) {
+      switch (match.group(0)) {
+        case 'Ά':
+          return 'Α';
+        case 'Έ':
+          return 'Ε';
+        case 'Ή':
+          return 'Η';
+        case 'Ί':
+          return 'Ι';
+        case 'Ύ':
+          return 'Υ';
+        case 'Ώ':
+          return 'Ω';
+        case 'Ο':
+          return 'Ο';
+        default:
+          return match.group(0) ?? this!.toUpperCase();
+      }
+    });
   }
 
   /// Replaces all greek characters with latin. Comes handy when you want to normalize text for search.
@@ -834,80 +879,16 @@ extension MiscExtensions on String? {
   /// String fooReplaced = foo.replaceGreek; // returns 'aristotelis'
   /// ```
   String? get replaceGreek {
-    if (this.isBlank) {
-      return this;
+    if (this.isBlank) return this;
+    var normalizedWord = '';
+    for (var i = 0; i < this!.length; i++) {
+      var character = this![i];
+      if (StringHelpers.greekToLatin.containsKey(character)) {
+        normalizedWord += StringHelpers.greekToLatin[character]!;
+      } else {
+        normalizedWord += character;
+      }
     }
-
-    var normalizedWord = this!
-        .replaceAll(RegExp(r'\ευ'), 'ef')
-        .replaceAll(RegExp(r'\εύ'), 'ef')
-        .replaceAll(RegExp(r'\αυ'), 'av')
-        .replaceAll(RegExp(r'\αύ'), 'av')
-        .replaceAll(RegExp(r'\α'), 'a')
-        .replaceAll(RegExp(r'\ά'), 'a')
-        .replaceAll(RegExp(r'\Α'), 'a')
-        .replaceAll(RegExp(r'\Ά'), 'a')
-        .replaceAll(RegExp(r'\β'), 'v')
-        .replaceAll(RegExp(r'\Β'), 'v')
-        .replaceAll(RegExp(r'\γ'), 'g')
-        .replaceAll(RegExp(r'\Γ'), 'g')
-        .replaceAll(RegExp(r'\δ'), 'd')
-        .replaceAll(RegExp(r'\Δ'), 'd')
-        .replaceAll(RegExp(r'\ε'), 'e')
-        .replaceAll(RegExp(r'\έ'), 'e')
-        .replaceAll(RegExp(r'\Έ'), 'e')
-        .replaceAll(RegExp(r'\Ε'), 'e')
-        .replaceAll(RegExp(r'\ζ'), 'z')
-        .replaceAll(RegExp(r'\Ζ'), 'z')
-        .replaceAll(RegExp(r'\ι'), 'i')
-        .replaceAll(RegExp(r'\Η'), 'i')
-        .replaceAll(RegExp(r'\Ή'), 'i')
-        .replaceAll(RegExp(r'\η'), 'i')
-        .replaceAll(RegExp(r'\ή'), 'i')
-        .replaceAll(RegExp(r'\ί'), 'i')
-        .replaceAll(RegExp(r'\ϊ'), 'i')
-        .replaceAll(RegExp(r'\ΐ'), 'i')
-        .replaceAll(RegExp(r'\Ι'), 'i')
-        .replaceAll(RegExp(r'\Ί'), 'i')
-        .replaceAll(RegExp(r'\Ϊ'), 'i')
-        .replaceAll(RegExp(r'\κ'), 'k')
-        .replaceAll(RegExp(r'\Κ'), 'k')
-        .replaceAll(RegExp(r'\λ'), 'l')
-        .replaceAll(RegExp(r'\Λ'), 'l')
-        .replaceAll(RegExp(r'\μ'), 'm')
-        .replaceAll(RegExp(r'\Μ'), 'm')
-        .replaceAll(RegExp(r'\ξ'), 'ks')
-        .replaceAll(RegExp(r'\Ξ'), 'ks')
-        .replaceAll(RegExp(r'\ο'), 'o')
-        .replaceAll(RegExp(r'\ό'), 'o')
-        .replaceAll(RegExp(r'\Ό'), 'o')
-        .replaceAll(RegExp(r'\Ο'), 'o')
-        .replaceAll(RegExp(r'\π'), 'p')
-        .replaceAll(RegExp(r'\Π'), 'p')
-        .replaceAll(RegExp(r'\ρ'), 'r')
-        .replaceAll(RegExp(r'\Ρ'), 'r')
-        .replaceAll(RegExp(r'\σ'), 's')
-        .replaceAll(RegExp(r'\Σ'), 's')
-        .replaceAll(RegExp(r'\ς'), 's')
-        .replaceAll(RegExp(r'\τ'), 't')
-        .replaceAll(RegExp(r'\Τ'), 't')
-        .replaceAll(RegExp(r'\υ'), 'y')
-        .replaceAll(RegExp(r'\ύ'), 'y')
-        .replaceAll(RegExp(r'\ϋ'), 'y')
-        .replaceAll(RegExp(r'\ΰ'), 'y')
-        .replaceAll(RegExp(r'\Υ'), 'y')
-        .replaceAll(RegExp(r'\Ύ'), 'y')
-        .replaceAll(RegExp(r'\Ϋ'), 'y')
-        .replaceAll(RegExp(r'\φ'), 'f')
-        .replaceAll(RegExp(r'\Φ'), 'f')
-        .replaceAll(RegExp(r'\χ'), 'ch')
-        .replaceAll(RegExp(r'\Χ'), 'ch')
-        .replaceAll(RegExp(r'\ψ'), 'ps')
-        .replaceAll(RegExp(r'\Ψ'), 'ps')
-        .replaceAll(RegExp(r'\ω'), 'o')
-        .replaceAll(RegExp(r'\ώ'), 'o')
-        .replaceAll(RegExp(r'\Ω'), 'o')
-        .replaceAll(RegExp(r'\Ώ'), 'o');
     return normalizedWord;
   }
 
@@ -1134,23 +1115,25 @@ extension MiscExtensions on String? {
 
     var a = this!.toLowerCase();
     b = b.toLowerCase();
-    // i == 0
-    var costs = List.filled(b.length + 1, 0);
-    for (var j = 0; j < costs.length; j++) {
+
+    List<int> costs = List<int>.filled(b.length + 1, 0);
+
+    for (var j = 0; j <= b.length; j++) {
       costs[j] = j;
     }
+
     for (var i = 1; i <= a.length; i++) {
-      // j == 0; nw = lev(i - 1, j)
+      int nw = costs[0];
       costs[0] = i;
-      var nw = i - 1;
+
       for (var j = 1; j <= b.length; j++) {
-        // ignore: omit_local_variable_types
         int cj = min(1 + min(costs[j], costs[j - 1]),
             a[i - 1] == b[j - 1] ? nw : nw + 1);
         nw = costs[j];
         costs[j] = cj;
       }
     }
+
     return costs[b.length];
   }
 
@@ -1790,7 +1773,7 @@ extension MiscExtensions on String? {
       }
       after = before.getOppositeChar();
     }
-    return "$before${this}${after.ifBlank(before)}";
+    return "$before$this${after.ifBlank(before)}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
@@ -1962,6 +1945,7 @@ extension MiscExtensions on String? {
   /// Removes everything in the `String` before the match of the [pattern].
   ///
   /// ### Example
+  ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today';
@@ -1997,6 +1981,7 @@ extension MiscExtensions on String? {
   /// If there is no match, the `String` is returned unchanged.
   ///
   /// ### Example
+  ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
@@ -2222,130 +2207,33 @@ extension MiscExtensions on String? {
   }
 
   /// Checks whether the `String` is a valid IBAN.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String iban = 'GR1601101250000000012300695';
+  /// bool isIban = iban.isIban; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String iban = 'GR01250000000012300695';
+  /// bool isIban = iban.isIban; // returns false;
+  /// ```
   bool get isIban {
     if (this.isBlank) {
       return false;
     }
-    final ibanLen = {
-      "NO": 15,
-      "BE": 16,
-      "DK": 18,
-      "FI": 18,
-      "FO": 18,
-      "GL": 18,
-      "NL": 18,
-      "MK": 19,
-      "SI": 19,
-      "AT": 20,
-      "BA": 20,
-      "EE": 20,
-      "KZ": 20,
-      "LT": 20,
-      "LU": 20,
-      "CR": 21,
-      "CH": 21,
-      "HR": 21,
-      "LI": 21,
-      "LV": 21,
-      "MA": 28,
-      "BG": 22,
-      "BH": 22,
-      "DE": 22,
-      "GB": 22,
-      "GE": 22,
-      "IE": 22,
-      "ME": 22,
-      "RS": 22,
-      "AE": 23,
-      "GI": 23,
-      "IL": 23,
-      "AD": 24,
-      "CZ": 24,
-      "ES": 24,
-      "MD": 24,
-      "PK": 24,
-      "RO": 24,
-      "SA": 24,
-      "SE": 24,
-      "SK": 24,
-      "VG": 24,
-      "TN": 24,
-      "PT": 25,
-      "IS": 26,
-      "TR": 26,
-      "FR": 27,
-      "GR": 27,
-      "IT": 27,
-      "MC": 27,
-      "MR": 27,
-      "SM": 27,
-      "AL": 28,
-      "AZ": 28,
-      "CY": 28,
-      "DO": 28,
-      "GT": 28,
-      "HU": 28,
-      "LB": 28,
-      "PL": 28,
-      "BR": 29,
-      "PS": 29,
-      "KW": 30,
-      "MU": 30,
-      "MT": 31,
-      "DZ": 26,
-      "AO": 25,
-      "BJ": 28,
-      "BF": 28,
-      "CM": 27,
-      "CV": 25,
-      "CF": 27,
-      "TD": 27,
-      "KM": 27,
-      "CG": 27,
-      "GQ": 27,
-      "GA": 27,
-      "GW": 25,
-      "HN": 28,
-      "IR": 26,
-      "CI": 28,
-      "MG": 27,
-      "ML": 28,
-      "MN": 20,
-      "MZ": 28,
-      "NI": 32,
-      "NE": 28,
-      "SN": 28,
-      "TG": 28,
-      "BY": 28,
-      "BI": 27,
-      "DJ": 27,
-      "EG": 29,
-      "SV": 28,
-      "VA": 22,
-      "IQ": 23,
-      "JO": 30,
-      "XK": 20,
-      "LY": 25,
-      "QA": 29,
-      "RU": 33,
-      "LC": 32,
-      "ST": 25,
-      "SC": 31,
-      "SD": 18,
-      "TL": 23,
-      "UA": 29,
-    };
 
     if (this!.length <= 2) {
       return false;
     }
     final countryCode = this.first(n: 2);
 
-    if (!ibanLen.containsKey(countryCode)) {
+    if (!StringHelpers.ibanLen.containsKey(countryCode)) {
       return false;
     }
 
-    if (ibanLen[countryCode] != this!.length) {
+    if (StringHelpers.ibanLen[countryCode] != this!.length) {
       return false;
     }
 
@@ -2357,6 +2245,18 @@ extension MiscExtensions on String? {
   /// Checks whether the provided `String` is a valid Greek ID number.
   ///
   /// The number should be of format XX999999, where XX are letters from both the Greek and the Latin alphabet (ABEZHIKMNOPTYX).
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'AB123456';
+  /// bool isGreekId = foo.isGreekId; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'AB1234567';
+  /// bool isGreekId = foo.isGreekId; // returns false;
+  /// ```
   bool get isGreekId {
     if (this.isBlank) {
       return false;
@@ -2373,54 +2273,10 @@ extension MiscExtensions on String? {
     if (!restLetters.isNumber) {
       return false;
     }
-    List<String> validLetters = [
-      // GREEK VARIATION
-      "Α",
-      "A",
-      // GREEK VARIATION
-      "Β",
-      "B",
-      // GREEK VARIATION
-      "Ε",
-      "E",
-      // GREEK VARIATION
-      "Ζ",
-      "Z",
-      // GREEK VARIATION
-      "Η",
-      "H",
-      // GREEK VARIATION
-      "Ι",
-      "I",
-      // GREEK VARIATION
-      "Κ",
-      "K",
-      // GREEK VARIATION
-      "Μ",
-      "M",
-      // GREEK VARIATION
-      "Ν",
-      "N",
-      // GREEK VARIATION
-      "Ο",
-      "O",
-      // GREEK VARIATION
-      "Ρ",
-      "P",
-      // GREEK VARIATION
-      "Τ",
-      "T",
-      // GREEK VARIATION
-      "Υ",
-      "Y",
-      // GREEK VARIATION
-      "Χ",
-      "X"
-    ];
 
     // If the first two letters of the provided String are not valid ones.
-    if (!validLetters.contains(firstTwoLetters.first) ||
-        !validLetters.contains(firstTwoLetters.last)) {
+    if (!StringHelpers.validLetters.contains(firstTwoLetters.first) ||
+        !StringHelpers.validLetters.contains(firstTwoLetters.last)) {
       return false;
     }
 
@@ -2468,5 +2324,134 @@ extension MiscExtensions on String? {
       }
     }
     return swapped;
+  }
+
+  /// Checks whether the provided `String` is a valid Swift code.
+  bool? get isSwiftCode {
+    var regex = RegExp(r'(^[A-Za-z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$)');
+    return regex.hasMatch(this!);
+  }
+
+  /// Returns the digit count of the `String`.
+  ///
+  ///### Example
+  ///
+  ///```dart
+  ///String foo = 'Hello World';
+  ///int digitCount = foo.getDigitCount(); // returns 0;
+  ///```
+  ///
+  ///```dart
+  ///String foo = 'Hello World 123';
+  ///int digitCount = foo.getDigitCount(); // returns 3;
+  ///```
+  int get digitCount {
+    if (this.isBlank) {
+      return 0;
+    }
+    RegExp digitsOnly = RegExp(r'\d');
+    return digitsOnly.allMatches(this!).length;
+  }
+
+  /// Checks whether the `String` is a valid ASCII string.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAscii = foo.isAscii; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'œ∑´®†¥¨ˆøπ';
+  /// bool isAscii = foo.isAscii; // returns false;
+  /// ```
+  bool get isAscii {
+    if (this == null) {
+      return false;
+    }
+    if (this!.isEmpty) {
+      return true;
+    }
+    final ascii = new RegExp(r'^[\x00-\x7F]+$');
+    return ascii.hasMatch(this!);
+  }
+
+  /// Checks whether the `String` is an anagram of the provided `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAnagram = foo.isAnagram('World Hello'); // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAnagram = foo.isAnagram('World Hello!'); // returns false;
+  /// ```
+  bool isAnagramOf(String s) {
+    if (this.isBlank || s.isBlank) {
+      return false;
+    }
+    final String word1 = this!.removeWhiteSpace!;
+
+    final String word2 = s.removeWhiteSpace!;
+
+    if (word1.length != word2.length) {
+      return false;
+    }
+
+    Map<String, int> charCount = {};
+
+    word1
+        .split('')
+        .forEach((char) => charCount[char] = (charCount[char] ?? 0) + 1);
+
+    word2
+        .split('')
+        .forEach((char) => charCount[char] = (charCount[char] ?? 0) - 1);
+
+    return charCount.values.every((count) => count == 0);
+  }
+
+  /// Checks whether the `String` is a palindrome.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isPalindrome = foo.isPalindrome; // returns false;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'racecar';
+  /// bool isPalindrome = foo.isPalindrome; // returns true;
+  /// ```
+  bool get isPalindrome {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this.reverse;
+  }
+
+  /// Checks whether the `String` is consisted of both upper and lower case letters.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isMixedCase = foo.isMixedCase; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'hello world';
+  /// bool isMixedCase = foo.isMixedCase; // returns false;
+  ///
+  bool isMixedCase() {
+    if (this.isBlank) {
+      return false;
+    }
+    return this!.toUpperCase() != this && this!.toLowerCase() != this;
   }
 }
