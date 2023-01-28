@@ -1,4 +1,6 @@
-# [0.6.7] - New Extensions & Optimizations
+# [0.6.8] - Fixes failing test
+
+## [0.6.7] - New Extensions & Optimizations
 
 #### New methods
 
