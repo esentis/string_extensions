@@ -3,6 +3,11 @@
 #### New methods
 
 - `isSwiftCode` : A static method to check whether the provided `String` is a valid Swift code. [Source](https://en.wikipedia.org/wiki/ISO_9362#:~:text=The%20SWIFT%20code%20is%208,institution%20code%20or%20bank%20code.&text=if%20the%20second%20character%20is,used%20on%20the%20live%20network.)
+- `digitCount` : A static method to count (if any) digits in the `String`
+- `isAscii` : A static method to check whether a `String` is consisted only from ASCII characters
+- `isAnagramOf(String s)` : A static method to check whether the provided `s` `String` is anagram of the extended `String`
+- `isPalindrome` : A static method to check whether the `String` is palindrome
+- `isMixedCase` : A static method to check whether the `String` is consisted of both upper & lower case letters
 
 #### Optimized methods
 
