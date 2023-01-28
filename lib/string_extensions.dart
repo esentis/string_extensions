@@ -9,6 +9,15 @@ import 'package:string_extensions/string_helpers.dart';
 
 extension MiscExtensions on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isMore = foo > 'Hi'; // returns true.
+  /// ```
   bool operator >(String s) {
     if (this.isBlank) {
       return false;
@@ -17,6 +26,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is more or equal than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isMoreOrEqual = foo >= 'Hi'; // returns true.
+  /// ```
   bool operator >=(String s) {
     if (this.isBlank) {
       return false;
@@ -25,6 +43,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isLess = foo < 'Hi'; // returns false.
+  /// ```
   bool operator <(String s) {
     if (this.isBlank) {
       return false;
@@ -33,6 +60,15 @@ extension MiscExtensions on String? {
   }
 
   /// Checks if the [length!] of the `String` is less or equal than the length of [s].
+  ///
+  /// If the `String` is null or empty, it returns false.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello';
+  /// bool isLessOrEqual = foo <= 'Hi'; // returns false.
+  /// ```
   bool operator <=(String s) {
     if (this.isBlank) {
       return false;
@@ -1737,7 +1773,7 @@ extension MiscExtensions on String? {
       }
       after = before.getOppositeChar();
     }
-    return "$before${this}${after.ifBlank(before)}";
+    return "$before$this${after.ifBlank(before)}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
@@ -1909,6 +1945,7 @@ extension MiscExtensions on String? {
   /// Removes everything in the `String` before the match of the [pattern].
   ///
   /// ### Example
+  ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today';
@@ -1944,6 +1981,7 @@ extension MiscExtensions on String? {
   /// If there is no match, the `String` is returned unchanged.
   ///
   /// ### Example
+  ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
@@ -2169,6 +2207,18 @@ extension MiscExtensions on String? {
   }
 
   /// Checks whether the `String` is a valid IBAN.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String iban = 'GR1601101250000000012300695';
+  /// bool isIban = iban.isIban; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String iban = 'GR01250000000012300695';
+  /// bool isIban = iban.isIban; // returns false;
+  /// ```
   bool get isIban {
     if (this.isBlank) {
       return false;
@@ -2195,6 +2245,18 @@ extension MiscExtensions on String? {
   /// Checks whether the provided `String` is a valid Greek ID number.
   ///
   /// The number should be of format XX999999, where XX are letters from both the Greek and the Latin alphabet (ABEZHIKMNOPTYX).
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'AB123456';
+  /// bool isGreekId = foo.isGreekId; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'AB1234567';
+  /// bool isGreekId = foo.isGreekId; // returns false;
+  /// ```
   bool get isGreekId {
     if (this.isBlank) {
       return false;
@@ -2268,5 +2330,128 @@ extension MiscExtensions on String? {
   bool? get isSwiftCode {
     var regex = RegExp(r'(^[A-Za-z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$)');
     return regex.hasMatch(this!);
+  }
+
+  /// Returns the digit count of the `String`.
+  ///
+  ///### Example
+  ///
+  ///```dart
+  ///String foo = 'Hello World';
+  ///int digitCount = foo.getDigitCount(); // returns 0;
+  ///```
+  ///
+  ///```dart
+  ///String foo = 'Hello World 123';
+  ///int digitCount = foo.getDigitCount(); // returns 3;
+  ///```
+  int get digitCount {
+    if (this.isBlank) {
+      return 0;
+    }
+    RegExp digitsOnly = RegExp(r'\d');
+    return digitsOnly.allMatches(this!).length;
+  }
+
+  /// Checks whether the `String` is a valid ASCII string.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAscii = foo.isAscii; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'œ∑´®†¥¨ˆøπ';
+  /// bool isAscii = foo.isAscii; // returns false;
+  /// ```
+  bool get isAscii {
+    if (this == null) {
+      return false;
+    }
+    if (this!.isEmpty) {
+      return true;
+    }
+    final ascii = new RegExp(r'^[\x00-\x7F]+$');
+    return ascii.hasMatch(this!);
+  }
+
+  /// Checks whether the `String` is an anagram of the provided `String`.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAnagram = foo.isAnagram('World Hello'); // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isAnagram = foo.isAnagram('World Hello!'); // returns false;
+  /// ```
+  bool isAnagramOf(String s) {
+    if (this.isBlank || s.isBlank) {
+      return false;
+    }
+    final String word1 = this!.removeWhiteSpace!;
+
+    final String word2 = s.removeWhiteSpace!;
+
+    if (word1.length != word2.length) {
+      return false;
+    }
+
+    Map<String, int> charCount = {};
+
+    word1
+        .split('')
+        .forEach((char) => charCount[char] = (charCount[char] ?? 0) + 1);
+
+    word2
+        .split('')
+        .forEach((char) => charCount[char] = (charCount[char] ?? 0) - 1);
+
+    return charCount.values.every((count) => count == 0);
+  }
+
+  /// Checks whether the `String` is a palindrome.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isPalindrome = foo.isPalindrome; // returns false;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'racecar';
+  /// bool isPalindrome = foo.isPalindrome; // returns true;
+  /// ```
+  bool get isPalindrome {
+    if (this.isBlank) {
+      return false;
+    }
+    return this == this.reverse;
+  }
+
+  /// Checks whether the `String` is consisted of both upper and lower case letters.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isMixedCase = foo.isMixedCase; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'hello world';
+  /// bool isMixedCase = foo.isMixedCase; // returns false;
+  ///
+  bool isMixedCase() {
+    if (this.isBlank) {
+      return false;
+    }
+    return this!.toUpperCase() != this && this!.toLowerCase() != this;
   }
 }

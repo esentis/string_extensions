@@ -1325,4 +1325,48 @@ void main() {
     expect('	PMFAUS66'.isSwiftCode, false);
     expect('PMFAUS66'.isSwiftCode, true);
   });
+  test('Returns the digits count in the String', () {
+    expect('CRBAGRAAI01'.digitCount, 2);
+    expect('CRBAGRAAI'.digitCount, 0);
+    expect(null.digitCount, 0);
+    expect(''.digitCount, 0);
+  });
+
+  test('Checks if the String is consisted of valid ASCII characters', () {
+    expect("hello world".isAscii, true);
+    expect("Hello, 世界".isAscii, false);
+    expect("".isAscii, true);
+    expect("123".isAscii, true);
+    expect("!@#\$%".isAscii, true);
+    expect("œ∑´®†¥¨ˆøπ".isAscii, false);
+    expect("Hello World 123".isAscii, true);
+  });
+
+  test("Checks if a String is an anagram of another one", () {
+    expect("listen".isAnagramOf("silent"), true);
+    expect("elbow".isAnagramOf("below"), true);
+    expect("triangle".isAnagramOf("integral"), true);
+    expect("funeral".isAnagramOf("real fun"), true);
+    expect("deified".isAnagramOf("died if"), false);
+    expect("roast".isAnagramOf("sorta"), true);
+    expect("dormitory".isAnagramOf("dirty room"), true);
+    expect("poultry outwits an ant".isAnagramOf("antitoxin word pluck"), false);
+  });
+  test("Checks if a String is palindrome", () {
+    expect("racecar".isPalindrome, true);
+    expect("level".isPalindrome, true);
+    expect("deified".isPalindrome, true);
+    expect("died if".isPalindrome, false);
+    expect("sorta".isPalindrome, false);
+    expect("dirty room".isPalindrome, false);
+    expect("antitoxin word pluck".isPalindrome, false);
+  });
+
+  test("Checks if a String is mixed case", () {
+    expect("Hello World!".isMixedCase(), equals(true));
+    expect("HELLO WORLD!".isMixedCase(), equals(false));
+    expect("hello world!".isMixedCase(), equals(false));
+    expect("HELLOworld!".isMixedCase(), equals(true));
+    expect("HelloWORLD!".isMixedCase(), equals(true));
+  });
 }
