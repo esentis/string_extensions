@@ -1773,7 +1773,7 @@ extension MiscExtensions on String? {
       }
       after = before.getOppositeChar();
     }
-    return "$before$this${after.ifBlank(before)}";
+    return "$before${this as String}${after.ifBlank(before)}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
