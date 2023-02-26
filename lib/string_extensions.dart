@@ -2203,7 +2203,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-    return this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+    return this!.replaceAll(RegExp(r'\s+'), '');
   }
 
   /// Checks whether the `String` is a valid IBAN.

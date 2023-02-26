@@ -1269,6 +1269,7 @@ void main() {
 
   test('Remove all whitespace from the String', () {
     expect('     H    e ll o    Wo    rl d'.removeWhiteSpace, 'HelloWorld');
+    expect(' . . . . . . . .'.removeWhiteSpace, '........');
   });
 
   test('Properly uppercases greek letters', () {
