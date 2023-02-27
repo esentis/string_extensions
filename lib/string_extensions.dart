@@ -553,38 +553,41 @@ extension MiscExtensions on String? {
   /// String foo = 'Hello World';
   /// String mostFrequent = foo.mostFrequent; // returns 'l'
   /// ```
-  String? get mostFrequent {
+  String? mostFrequent({bool ignoreSpaces = false}) {
     if (this.isBlank) {
       return this;
     }
-
-    var occurences = [];
+    if (ignoreSpaces) {
+      return this!.replaceAll(' ', '').mostFrequent();
+    }
+    var occurrences = <String, int>{};
     var letters = this!.split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
-    for (var i = 0; i < letters.length; i++) {
+
+    for (var i = 0, len = letters.length; i < len; i++) {
       if (letters[i] == checkingLetter) {
         count++;
-        if (i == letters.length - 1) {
-          occurences.add({checkingLetter: count});
-          checkingLetter = letters[i];
+        if (i == len - 1) {
+          occurrences[checkingLetter] = count;
         }
       } else {
-        occurences.add({checkingLetter: count});
+        occurrences[checkingLetter] = count;
         checkingLetter = letters[i];
         count = 1;
       }
     }
+
     var mostFrequent = '';
     var occursCount = -1;
-    occurences.forEach((element) {
-      element.forEach((character, occurs) {
-        if (occurs > occursCount) {
-          mostFrequent = character;
-          occursCount = occurs;
-        }
-      });
+
+    occurrences.forEach((character, occurs) {
+      if (occurs > occursCount) {
+        mostFrequent = character;
+        occursCount = occurs;
+      }
     });
+
     return mostFrequent;
   }
 
