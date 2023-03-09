@@ -866,7 +866,7 @@ extension MiscExtensions on String? {
           return 'Υ';
         case 'Ώ':
           return 'Ω';
-        case 'Ο':
+        case 'Ό':
           return 'Ο';
         default:
           return match.group(0) ?? this!.toUpperCase();

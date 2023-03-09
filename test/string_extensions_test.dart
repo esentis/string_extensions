@@ -1284,6 +1284,8 @@ void main() {
         'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
     expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(),
         'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
+
+    expect('ορισμός'.toGreekUpperCase(), 'ΟΡΙΣΜΟΣ');
   });
 
   test('Checks if the String is a valid IBAN', () {
