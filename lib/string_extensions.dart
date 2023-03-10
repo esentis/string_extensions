@@ -553,38 +553,41 @@ extension MiscExtensions on String? {
   /// String foo = 'Hello World';
   /// String mostFrequent = foo.mostFrequent; // returns 'l'
   /// ```
-  String? get mostFrequent {
+  String? mostFrequent({bool ignoreSpaces = false}) {
     if (this.isBlank) {
       return this;
     }
-
-    var occurences = [];
+    if (ignoreSpaces) {
+      return this!.replaceAll(' ', '').mostFrequent();
+    }
+    var occurrences = <String, int>{};
     var letters = this!.split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
-    for (var i = 0; i < letters.length; i++) {
+
+    for (var i = 0, len = letters.length; i < len; i++) {
       if (letters[i] == checkingLetter) {
         count++;
-        if (i == letters.length - 1) {
-          occurences.add({checkingLetter: count});
-          checkingLetter = letters[i];
+        if (i == len - 1) {
+          occurrences[checkingLetter] = count;
         }
       } else {
-        occurences.add({checkingLetter: count});
+        occurrences[checkingLetter] = count;
         checkingLetter = letters[i];
         count = 1;
       }
     }
+
     var mostFrequent = '';
     var occursCount = -1;
-    occurences.forEach((element) {
-      element.forEach((character, occurs) {
-        if (occurs > occursCount) {
-          mostFrequent = character;
-          occursCount = occurs;
-        }
-      });
+
+    occurrences.forEach((character, occurs) {
+      if (occurs > occursCount) {
+        mostFrequent = character;
+        occursCount = occurs;
+      }
     });
+
     return mostFrequent;
   }
 
@@ -863,7 +866,7 @@ extension MiscExtensions on String? {
           return 'Υ';
         case 'Ώ':
           return 'Ω';
-        case 'Ο':
+        case 'Ό':
           return 'Ο';
         default:
           return match.group(0) ?? this!.toUpperCase();
@@ -1773,7 +1776,7 @@ extension MiscExtensions on String? {
       }
       after = before.getOppositeChar();
     }
-    return "$before$this${after.ifBlank(before)}";
+    return "$before${this as String}${after.ifBlank(before)}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
@@ -2203,7 +2206,7 @@ extension MiscExtensions on String? {
     if (this.isBlank) {
       return this;
     }
-    return this!.replaceAll(RegExp(r"\s+\b|\b\s"), '');
+    return this!.replaceAll(RegExp(r'\s+'), '');
   }
 
   /// Checks whether the `String` is a valid IBAN.

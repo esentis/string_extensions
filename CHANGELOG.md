@@ -1,4 +1,10 @@
-# [0.6.8] - Fixes failing test
+## [0.6.9] - Bug fixes & Optimisations
+
+- Improves `mostFrequent()` method's performance. Also adds `ignoreSpaces` flag to ignore whitespace from character count
+- Fixes `removeWhitespace` method to properly remove all spaces
+- Fixes `toGreekUppercase` method missing letter "omicron - Ό" from mapping
+
+## [0.6.8] - Fixes failing test
 
 ## [0.6.7] - New Extensions & Optimizations
 

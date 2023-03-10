@@ -177,11 +177,14 @@ void main() {
     'Finds the most frequent character',
     () {
       String? string = 'esssssentis';
-      expect(string.mostFrequent, 's');
+      expect(string.mostFrequent(), 's');
 
-      expect(null.mostFrequent, null);
-      expect(''.mostFrequent, '');
-      expect(' '.mostFrequent, ' ');
+      expect(null.mostFrequent(), null);
+      expect(''.mostFrequent(), '');
+      expect(' '.mostFrequent(), ' ');
+      expect('aaaaa'.mostFrequent(), 'a');
+      expect('aabcd  a fff a a a'.mostFrequent(ignoreSpaces: true), 'a');
+      expect('aabcd  a fff a a a'.mostFrequent(), ' ');
     },
   );
   test(
@@ -1269,6 +1272,7 @@ void main() {
 
   test('Remove all whitespace from the String', () {
     expect('     H    e ll o    Wo    rl d'.removeWhiteSpace, 'HelloWorld');
+    expect(' . . . . . . . .'.removeWhiteSpace, '........');
   });
 
   test('Properly uppercases greek letters', () {
@@ -1280,6 +1284,8 @@ void main() {
         'HEY BROTHER ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΕΙΣΑΙ ΑΓΑΠΗΤΕ');
     expect('Τι κάνεις πώς τα περνάς φίλτατέ μου'.toGreekUpperCase(),
         'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ');
+
+    expect('ορισμός'.toGreekUpperCase(), 'ΟΡΙΣΜΟΣ');
   });
 
   test('Checks if the String is a valid IBAN', () {
