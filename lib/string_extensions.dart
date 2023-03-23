@@ -1466,6 +1466,39 @@ extension MiscExtensions on String? {
         .toString();
   }
 
+  /// Replaces the Greek 12-hour time literals with the English 12-hour time literals.
+  /// πμ -> pm -> AM (ante meridiem / before mesembria / before noon)
+  /// μμ -> mm -> PM (post meridiem / after mesembria / after noon)
+  ///
+  /// For example:
+  /// ```
+  /// 05/12/2023 05:45:17 μ.μ.
+  /// ```
+  /// will return
+  /// ```
+  /// 05/12/2023 05:45:17 PM
+  /// ```
+  String get greekTimeLiteralToEnglish {
+    // If the String does not contain any Greek characters, return it as is.
+    String onlyGreek = this.onlyGreek!.replaceAll(" ", "");
+    if (onlyGreek.length <= 0) {
+      return this!;
+    }
+
+    // Translate all the Greek letters to the equivalent English ones.
+    String onlyEnglishCharacters = this.replaceGreek!.trim();
+
+    // Transform to the equivalent English time literals.
+    onlyEnglishCharacters =
+        onlyEnglishCharacters.replaceAll(".", "").toLowerCase();
+
+    onlyEnglishCharacters = onlyEnglishCharacters.contains("pm")
+        ? onlyEnglishCharacters.replaceAll("pm", "AM")
+        : onlyEnglishCharacters.replaceAll("mm", "PM");
+
+    return onlyEnglishCharacters;
+  }
+
   /// Returns the left side of the `String` starting from [char].
   ///
   /// If [char] doesn't exist, `null` is returned.
