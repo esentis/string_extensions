@@ -1490,8 +1490,7 @@ extension MiscExtensions on String? {
   /// ```
   String get greekTimeLiteralToEnglish {
     // If the String does not contain any Greek characters, return it as is.
-    String onlyGreek = this.onlyGreek!.replaceAll(" ", "");
-    if (onlyGreek.length <= 0) {
+    if (!this.containsAnyGreekCharacter) {
       return this!;
     }
 
