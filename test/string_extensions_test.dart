@@ -979,32 +979,26 @@ void main() {
   );
   test(
     'Transforms the Greek μ.μ. time literal to the equivalent English PM',
-        () {
+    () {
       String greekAfterNoonTimeLiteral = "09:30:00 μ.μ.";
       expect(
-          greekAfterNoonTimeLiteral
-              .greekTimeLiteralToEnglish,
-          "09:30:00 PM");
+          greekAfterNoonTimeLiteral.greekTimeLiteralToEnglish, "09:30:00 PM");
     },
   );
   test(
     'Transforms the Greek π.μ. time literal to the equivalent English AM',
-        () {
+    () {
       String greekBeforeNoonTimeLiteral = "09:30:00 π.μ.";
       expect(
-          greekBeforeNoonTimeLiteral
-              .greekTimeLiteralToEnglish,
-          "09:30:00 AM");
+          greekBeforeNoonTimeLiteral.greekTimeLiteralToEnglish, "09:30:00 AM");
     },
   );
   test(
     'Will return the same string if there is not any Greek time literal',
-        () {
+    () {
       String greekAfterNoonTimeLiteral = "09:30:00 mm";
       expect(
-          greekAfterNoonTimeLiteral
-              .greekTimeLiteralToEnglish,
-          "09:30:00 mm");
+          greekAfterNoonTimeLiteral.greekTimeLiteralToEnglish, "09:30:00 mm");
     },
   );
   test(
