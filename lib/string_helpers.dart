@@ -383,4 +383,12 @@ class StringHelpers {
     'Ώ': 'o',
     'ώ': 'o',
   };
+
+  static Map<String, String> lettersToSymbols = {
+    ' ': ' ',
+    '!': 'i',
+    '@': 'a',
+    '\$': 's',
+    '#': 'e'
+  };
 }
