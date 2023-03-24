@@ -124,6 +124,19 @@ void main() {
       expect(' '.onlyGreek, ' ');
     },
   );
+  test('Checks whether a string contains any Greek character', () {
+    String stringWithoutGreekCharacters = "ABcdE#h*j klM";
+    expect(stringWithoutGreekCharacters.containsAnyGreekCharacter, false);
+
+    String stringWithGreekCharacters = " ABcdE#hα*jklM ";
+    expect(stringWithGreekCharacters.containsAnyGreekCharacter, true);
+
+    String emptyString = " ";
+    expect(emptyString.containsAnyGreekCharacter, false);
+
+    String none = "";
+    expect(none.containsAnyGreekCharacter, false);
+  });
   test(
     'Converts the string to camel case',
     () {

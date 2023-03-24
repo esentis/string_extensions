@@ -203,6 +203,16 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
+  /// Checks whether the supplied string contains any Greek character.
+  bool get containsAnyGreekCharacter {
+    if (this.isBlank) {
+      return false;
+    }
+
+    String onlyGreekLetters = this.onlyGreek!.replaceAll(" ", "");
+    return onlyGreekLetters.isNotEmpty;
+  }
+
   /// Returns only the Latin OR Greek characters from the `String`.
   /// ### Example
   /// ```dart
