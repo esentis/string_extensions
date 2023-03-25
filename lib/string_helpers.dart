@@ -384,20 +384,4 @@ class StringHelpers {
     'Ώ': 'o',
     'ώ': 'o',
   };
-
-  static Map<String, String> englishSymbolsToLetters = {
-    ' ': ' ',
-    '!': 'i',
-    '@': 'a',
-    '\$': 's',
-    '#': 'e'
-  };
-
-  static Map<String, String> greekSymbolsToLetters = {
-    ' ': ' ',
-    '!': 'ι',
-    '@': 'α',
-    '\$': 'σ',
-    '#': 'ε'
-  };
 }

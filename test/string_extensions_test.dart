@@ -1412,11 +1412,4 @@ void main() {
     expect("HELLOworld!".isMixedCase(), equals(true));
     expect("HelloWORLD!".isMixedCase(), equals(true));
   });
-
-  test("Replaces the symbols of a string to their equivalent letters", () {
-    expect(
-        "Th!s !s just @ t#st".symbolsToLetters, equals("This is just a test"));
-    expect(
-        "Αυτό #ίναι #ν@ τ#στ".symbolsToLetters, equals("Αυτό είναι ενα τεστ"));
-  });
 }
