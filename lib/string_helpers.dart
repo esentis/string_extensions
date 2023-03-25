@@ -311,6 +311,7 @@ class StringHelpers {
     "Χ",
     "X"
   ];
+
   static Map<String, String> greekToLatin = {
     'ά': 'a',
     'Α': 'a',
@@ -382,13 +383,5 @@ class StringHelpers {
     'Ω': 'o',
     'Ώ': 'o',
     'ώ': 'o',
-  };
-
-  static Map<String, String> lettersToSymbols = {
-    ' ': ' ',
-    '!': 'i',
-    '@': 'a',
-    '\$': 's',
-    '#': 'e'
   };
 }
