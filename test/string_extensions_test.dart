@@ -1412,4 +1412,13 @@ void main() {
     expect("HELLOworld!".isMixedCase(), equals(true));
     expect("HelloWORLD!".isMixedCase(), equals(true));
   });
+
+  test(
+      "Transforms a string with leet symbols to a string with their equivalent letters",
+      () {
+    expect("th!s !s just @ t3st".fromLeet, "this is just a test");
+    expect("this is just a test".fromLeet, "this is just a test");
+    expect("".fromLeet, "");
+    expect(" ".fromLeet, " ");
+  });
 }
