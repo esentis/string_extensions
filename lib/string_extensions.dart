@@ -2202,6 +2202,41 @@ extension MiscExtensions on String? {
     return leetLetters.join();
   }
 
+  /// Transforms the leet symbols of a string to their equivalent letters.
+  ///
+  /// For example:
+  /// ```
+  /// th!s !s just @ t3st
+  /// ```
+  /// will produce:
+  /// ```
+  /// this is just a test
+  /// ```
+  String? get fromLeet {
+    List<String> stringWithSymbols = this!.split('');
+    List<String> letters = [];
+
+    for (int i = 0; i < stringWithSymbols.length; i++) {
+      String currentCharacter = stringWithSymbols[i].toLowerCase().trim();
+      if (currentCharacter.isEmpty) {
+        letters.add(" ");
+      }
+
+      if (StringHelpers.leetAlphabet.containsKey(currentCharacter)) {
+        letters.add(currentCharacter);
+      } else {
+        // The current character is a leet symbol - find it's equivalent letter.
+        StringHelpers.leetAlphabet.forEach((key, value) {
+          if (value.contains(currentCharacter)) {
+            letters.add(key);
+          }
+        });
+      }
+    }
+
+    return letters.join();
+  }
+
   /// Checks if the `String` provided is a valid credit card number using Luhn Algorithm.
   ///
   /// ### Example
