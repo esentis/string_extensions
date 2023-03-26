@@ -508,21 +508,21 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// Finds all character occurences and returns count as:
+  /// Finds all character occurrences and returns count as:
   /// ```dart
   /// List<Map<dynamic,dynamic>>
   /// ```
   /// ### Example 1
   /// ```dart
   /// String foo = 'esentis';
-  /// List occurences = foo.charOccurences; // returns '[{e:2},{i:1},{n:1},{s:2},]'
+  /// List occurrences = foo.charOccurrences; // returns '[{e:2},{i:1},{n:1},{s:2},]'
   /// ```
   List<Map<String, int>> get charOccurences {
     if (this.isBlank) {
       return [];
     }
     // ignore: omit_local_variable_types
-    List<Map<String, int>> occurences = [];
+    List<Map<String, int>> occurrences = [];
     var letters = this!.split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
@@ -530,19 +530,19 @@ extension MiscExtensions on String? {
       if (letters[i] == checkingLetter) {
         count++;
         if (i == letters.length - 1) {
-          occurences.add({checkingLetter: count});
+          occurrences.add({checkingLetter: count});
           checkingLetter = letters[i];
         }
       } else {
-        occurences.add({checkingLetter: count});
+        occurrences.add({checkingLetter: count});
         checkingLetter = letters[i];
         count = 1;
       }
     }
-    return occurences;
+    return occurrences;
   }
 
-  /// Finds a specific's character occurence in the `String`.
+  /// Finds a specific's character occurrence in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -926,7 +926,7 @@ extension MiscExtensions on String? {
     return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
   }
 
-  /// Given a pattern returns the starting indices of all occurences of the [pattern] in the `String`.
+  /// Given a pattern returns the starting indices of all occurrences of the [pattern] in the `String`.
   ///
   /// ### Example
   /// ```dart
@@ -939,7 +939,7 @@ extension MiscExtensions on String? {
     }
 
     // ignore: omit_local_variable_types
-    List<int> occurences = [];
+    List<int> occurrences = [];
     // How many times the pattern can fit the text provided
     var fitCount = (this!.length / pattern.length).truncate().toInt();
 
@@ -955,14 +955,14 @@ extension MiscExtensions on String? {
 
     for (var i = 0; i <= this!.length; i++) {
       if (i + pattern.length > this!.length) {
-        return occurences;
+        return occurrences;
       }
       if (this!.substring(i, i + pattern.length) == pattern) {
-        occurences.add(i);
+        occurrences.add(i);
       }
     }
 
-    return occurences;
+    return occurrences;
   }
 
   /// Strips all HTML code from `String`.
@@ -1019,11 +1019,11 @@ extension MiscExtensions on String? {
   /// String? foo = null;
   /// foo.ifNull('dont be null'); // returns 'dont be null'
   /// ```
-  String? defaultValue(String defautlValue) {
+  String? defaultValue(String defaultValue) {
     if (this != null) {
       return this;
     }
-    return defautlValue;
+    return defaultValue;
   }
 
   /// Repeats the `String` [count] times.
@@ -1803,7 +1803,7 @@ extension MiscExtensions on String? {
           String? falseString) =>
       comparison(this) ? trueString : falseString;
 
-  /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is ommited, the method resolve [after] using [getOppositeChar].
+  /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is omitted, the method resolve [after] using [getOppositeChar].
   ///
   /// ### Example
   ///
@@ -1952,7 +1952,7 @@ extension MiscExtensions on String? {
   /// ### Example
   ///
   /// ```dart
-  /// String editted = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr";
+  /// String edited = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr";
   /// ```
   String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
@@ -2031,7 +2031,7 @@ extension MiscExtensions on String? {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
   /// ```
-  String? addAfter(String pattern, String adition) {
+  String? addAfter(String pattern, String addition) {
     if (this.isBlank) {
       return this;
     }
@@ -2052,7 +2052,7 @@ extension MiscExtensions on String? {
     }
 
     return this!.substring(0, indexOfLastPatternWord + 1) +
-        adition +
+        addition +
         this!.substring(indexOfLastPatternWord + 1, this!.length);
   }
 
