@@ -2499,4 +2499,155 @@ extension MiscExtensions on String? {
     }
     return this!.toUpperCase() != this && this!.toLowerCase() != this;
   }
+
+  /// Checks whether the `String` is consisted of only unique characters.
+  ///
+  /// Returns true `String` if the `String` is empty.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool isUnique = foo.isUnique; // returns false;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'hello world';
+  /// bool isUnique = foo.isUnique; // returns true;
+  /// ```
+  bool isUnique() {
+    if (this.isBlank) {
+      return true;
+    }
+    final word = this;
+    final wordSplit = word.toGreekUpperCase()!.split('').toSet();
+    return word!.length == wordSplit.length;
+  }
+
+  /// Returns a Set of the common characters between the two `String`s.
+  ///
+  /// The `String` is case sensitive & sorted by default.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// List<String> commonLetters = foo.commonCharacters('World Hello'); // returns ['H', 'e', 'l', 'o', 'r', 'w', 'd'];
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// List<String> commonLetters = foo.commonCharacters('World Hello!'); // returns ['H', 'e', 'l', 'o', 'r', 'w', 'd'];
+  /// ```
+  Set<String> commonCharacters(
+    String otherString, {
+    bool caseSensitive = true,
+    bool sort = true,
+    bool includeSpaces = false,
+  }) {
+    if (this.isBlank) {
+      return {};
+    }
+
+    String processString(String input) {
+      return (caseSensitive ? input : input.toLowerCase())
+          .split('')
+          .where((char) => includeSpaces || char != ' ')
+          .join('');
+    }
+
+    final Set<String> commonLettersSet = {};
+    final Set<String> otherStringSet =
+        processString(otherString).split('').toSet();
+
+    for (final letter in processString(this!).split('')) {
+      if (otherStringSet.contains(letter)) {
+        commonLettersSet.add(letter);
+      }
+    }
+
+    if (sort) {
+      final List<String> sortedList = commonLettersSet.toList()..sort();
+      return sortedList.toSet();
+    } else {
+      return commonLettersSet;
+    }
+  }
+
+  /// Returns a Set of the uncommon characters between the two `String`s.
+  ///
+  /// The `String` is case sensitive & sorted by default.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// List<String> uncommonLetters = foo.uncommonCharacters('World Hello'); // returns {};
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// List<String> uncommonLetters = foo.uncommonCharacters('World Hello!'); // returns {'!'};
+  /// ```
+  Set<String> uncommonCharacters(
+    String otherString, {
+    bool caseSensitive = true,
+    bool includeSpaces = false,
+  }) {
+    if (this.isBlank) {
+      return {};
+    }
+
+    String processString(String input) {
+      return (caseSensitive ? input : input.toLowerCase())
+          .split('')
+          .where((char) => includeSpaces || char != ' ')
+          .join('');
+    }
+
+    final Set<String> thisSet = processString(this!).split('').toSet();
+    final Set<String> otherStringSet =
+        processString(otherString).split('').toSet();
+
+    final Set<String> uncommonSet = thisSet
+        .union(otherStringSet)
+        .difference(thisSet.intersection(otherStringSet));
+
+    return uncommonSet;
+  }
+
+  /// Checks whether all characters are contained in the `String`.
+  ///
+  /// The method is case sensitive by default.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool containsAll = foo.containsAllCharacters('Hello'); // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool containsAll = foo.containsAllCharacters('Hello!'); // returns false;
+  /// ```
+  bool containsAllCharacters(String characters) {
+    if (this.isBlank) {
+      return false;
+    }
+    final Map<String, int> letterCounts = {};
+
+    this!.split('').forEach((letter) {
+      letterCounts[letter] = (letterCounts[letter] ?? 0) + 1;
+    });
+
+    for (final letter in characters.split('')) {
+      if (letterCounts[letter] == null || letterCounts[letter]! <= 0) {
+        return false;
+      }
+      letterCounts[letter] = letterCounts[letter]! - 1;
+    }
+
+    return true;
+  }
 }

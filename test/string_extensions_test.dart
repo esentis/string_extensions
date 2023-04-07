@@ -1412,4 +1412,105 @@ void main() {
     expect("HELLOworld!".isMixedCase(), equals(true));
     expect("HelloWORLD!".isMixedCase(), equals(true));
   });
+
+  test("Checks whether the String is consisted of unique characters", () {
+    expect("hello".isUnique(), equals(false));
+    expect("world".isUnique(), equals(true));
+    expect("".isUnique(), equals(true));
+    expect(" ".isUnique(), equals(true));
+    expect("a".isUnique(), equals(true));
+    expect("aa".isUnique(), equals(false));
+    expect("ab".isUnique(), equals(true));
+    expect("abc".isUnique(), equals(true));
+  });
+
+  test(
+      "Finds and returns the common characters between two Strings the return type is Set<String>",
+      () {
+    expect("hello".commonCharacters("world"), equals({"l", "o"}));
+    expect("great 2".commonCharacters("Street 2", includeSpaces: false),
+        equals({"2", "e", "r", "t"}));
+    expect("great 2".commonCharacters("Street 2", includeSpaces: true),
+        equals({"2", " ", "e", "r", "t"}));
+    expect(
+        "great 2".commonCharacters("Street 2"), equals({"2", "e", "r", "t"}));
+    expect("great 2".commonCharacters("Street 2", includeSpaces: false),
+        equals({"2", "e", "r", "t"}));
+  });
+
+  group('uncommonCharacters', () {
+    test('Basic test', () {
+      final String baseString = 'hello';
+      final String otherString = 'world';
+
+      final Set<String> result = baseString.uncommonCharacters(otherString);
+
+      expect(result, {'h', 'e', 'w', 'r', 'd'});
+    });
+
+    test('Case sensitivity', () {
+      final String baseString = 'Hello';
+      final String otherString = 'World';
+
+      final Set<String> result =
+          baseString.uncommonCharacters(otherString, caseSensitive: false);
+
+      expect(result, {'h', 'e', 'w', 'r', 'd'});
+    });
+
+    test('Including spaces', () {
+      final String baseString = 'helloworld';
+      final String otherString = 'world peace';
+
+      final Set<String> result =
+          baseString.uncommonCharacters(otherString, includeSpaces: true);
+
+      expect(result, {'h', 'p', 'a', 'c', ' '});
+    });
+
+    test('Empty string', () {
+      final String baseString = '';
+      final String otherString = 'world';
+
+      final Set<String> result = baseString.uncommonCharacters(otherString);
+
+      expect(result, Set());
+    });
+  });
+
+  group('containsAllCharacters', () {
+    test('Basic test', () {
+      final String baseString = 'hello world';
+
+      expect(baseString.containsAllCharacters('helloworld'), true);
+      expect(baseString.containsAllCharacters('worldhello'), true);
+      expect(baseString.containsAllCharacters('helloworldz'), false);
+    });
+
+    test('Case sensitivity', () {
+      final String baseString = 'Hello World';
+
+      expect(baseString.containsAllCharacters('hello world'), false);
+      expect(baseString.containsAllCharacters('Hello World'), true);
+    });
+
+    test('Empty characters string', () {
+      final String baseString = 'hello world';
+
+      expect(baseString.containsAllCharacters(''), true);
+    });
+
+    test('Empty base string', () {
+      final String baseString = '';
+
+      expect(baseString.containsAllCharacters('hello world'), false);
+    });
+
+    test('Repeating characters', () {
+      final String baseString = 'hello world';
+
+      expect(baseString.containsAllCharacters('ll'), true);
+      expect(baseString.containsAllCharacters('lll'), true);
+    });
+  });
 }
