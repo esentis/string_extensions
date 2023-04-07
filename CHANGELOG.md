@@ -1,3 +1,14 @@
+## [0.6.10] - Bug fixes & New Extensions
+
+#### New methods
+
+- `greekTimeLiteralToEnglish` : Transforms the Greek μ.μ. time literal to the equivalent English PM
+- `containsAnyGreekCharacters` : Checks whether a `String` contains any Greek character
+- `isUnique` : Checks whether the `String` is consisted of unique characters
+- `commonCharacters` : Returns a Set of common characters between two `Strings`
+- `uncommonCharacters`: Returns a Set of uncommon characters between two `Strings`
+- `containsAllCharacters` : Checks whether the `String` contains all characters
+
 ## [0.6.9] - Bug fixes & Optimisations
 
 - Improves `mostFrequent()` method's performance. Also adds `ignoreSpaces` flag to ignore whitespace from character count
