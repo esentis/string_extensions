@@ -311,6 +311,7 @@ class StringHelpers {
     "Χ",
     "X"
   ];
+
   static Map<String, String> greekToLatin = {
     'ά': 'a',
     'Α': 'a',
