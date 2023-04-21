@@ -476,9 +476,9 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'this is a τεστ';
-  /// bool isLatin = foo.isGreek; // returns false
+  /// bool isGreek = foo.isGreek; // returns false
   /// String foo2 = 'Τα αγαθά κόποις κτώνται';
-  /// bool isLatin2 = foo2.isGreek; // returns true
+  /// bool isGreek2 = foo2.isGreek; // returns true
   /// ```
   bool? get isGreek {
     if (this.isBlank) {
