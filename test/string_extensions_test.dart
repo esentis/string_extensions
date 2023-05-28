@@ -1512,5 +1512,30 @@ void main() {
       expect(baseString.containsAllCharacters('ll'), true);
       expect(baseString.containsAllCharacters('lll'), true);
     });
+
+    test('Check if a string has any whitespace', () {
+      final String s1 = 'hello   world';
+      final String s2 = 'helloworld';
+
+      expect(s1.hasWhitespace(), true);
+      expect(s2.hasWhitespace(), false);
+    });
+  });
+
+  group('isLettersOnly', () {
+    test('returns true if the string contains only letters', () {
+      expect('hello'.isLettersOnly(), isTrue);
+      expect('HELLO'.isLettersOnly(), isTrue);
+      expect('hello   world '.isLettersOnly(), isTrue);
+      expect('Hello'.isLettersOnly(), isTrue);
+      expect('hElLo'.isLettersOnly(), isTrue);
+      expect('Γειά σου κόσμε'.isLettersOnly(), isTrue);
+    });
+    test('returns false if the string contains non-letter characters', () {
+      expect('hello   world !'.isLettersOnly(), isFalse);
+      expect('123'.isLettersOnly(), isFalse);
+      expect('hello123'.isLettersOnly(), isFalse);
+      expect(''.isLettersOnly(), isFalse);
+    });
   });
 }
