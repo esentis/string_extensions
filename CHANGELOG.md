@@ -1,3 +1,13 @@
+## [0.6.11] - New Extensions & SDK Version constraints bump
+
+- Bumps SDK constraint from 3.0.0 to 4.0.0
+- Adds screenshots in project
+
+#### New methods
+
+- `hasWhitespace` : Checks whether the `String` has any whitespace
+- `isLettersOnly` : Checks whether the `String` is consisted of only letters (Latin & Greek atm)
+
 ## [0.6.10] - Bug fixes & New Extensions
 
 #### New methods
