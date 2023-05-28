@@ -2650,4 +2650,41 @@ extension MiscExtensions on String? {
 
     return true;
   }
+
+  /// Checks whether the `String` has any whitespace characters.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool hasWhitespace = foo.hasWhitespace; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'HelloWorld';
+  /// bool hasWhitespace = foo.hasWhitespace; // returns false;
+  /// ```
+  bool hasWhitespace() {
+    if (this.isBlank) {
+      return false;
+    }
+    return this!.contains(RegExp(r'\s'));
+  }
+
+  /// Returns `true` if the `String` contains only letters (Latin or Greek).
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello world';
+  /// bool isLettersOnly = text.isLettersOnly(); // Returns true
+  /// ```
+  bool isLettersOnly() {
+    if (this.isBlank) {
+      return false;
+    }
+    final onlyLetters = this!.onlyLetters;
+
+    return onlyLetters!.length == this!.length;
+  }
 }
