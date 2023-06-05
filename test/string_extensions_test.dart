@@ -1538,4 +1538,29 @@ void main() {
       expect(''.isLettersOnly(), isFalse);
     });
   });
+
+  group('insertAt', () {
+    test('InsertAt adds value in the middle of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(7, 'beautiful '), 'Hello, beautiful world!');
+    });
+
+    test('InsertAt adds value at the beginning of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(0, 'Wow, '), 'Wow, Hello, world!');
+    });
+
+    test('InsertAt adds value at the end of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(s.length, ' It is a nice day.'),
+          'Hello, world! It is a nice day.');
+    });
+
+    test('InsertAt throws error if index is out of range', () {
+      final s = 'Hello, world!';
+      expect(() => s.insertAt(-1, 'Nope, '), throwsA(isA<RangeError>()));
+      expect(
+          () => s.insertAt(s.length + 1, 'Nope, '), throwsA(isA<RangeError>()));
+    });
+  });
 }

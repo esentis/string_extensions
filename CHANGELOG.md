@@ -1,3 +1,7 @@
+## [0.6.12] - New Extensions
+
+- `insertAt` : Inserts a `String` at a specified index
+
 ## [0.6.11] - New Extensions & SDK Version constraints bump
 
 - Bumps SDK constraint from 3.0.0 to 4.0.0

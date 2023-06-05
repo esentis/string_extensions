@@ -2687,4 +2687,25 @@ extension MiscExtensions on String? {
 
     return onlyLetters!.length == this!.length;
   }
+
+  /// Inserts a `String` at the specified index.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello world';
+  /// String newText = text.insertAt(5, '!');
+  /// print(newText); // prints 'hello! world'
+  /// ```
+  String insertAt(int i, String value) {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    if (i < 0 || i > this!.length) {
+      throw RangeError('Index out of range');
+    }
+    final start = this!.substring(0, i);
+    final end = this!.substring(i);
+    return start + value + end;
+  }
 }
