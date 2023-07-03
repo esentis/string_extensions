@@ -1512,5 +1512,72 @@ void main() {
       expect(baseString.containsAllCharacters('ll'), true);
       expect(baseString.containsAllCharacters('lll'), true);
     });
+
+    test('Check if a string has any whitespace', () {
+      final String s1 = 'hello   world';
+      final String s2 = 'helloworld';
+
+      expect(s1.hasWhitespace(), true);
+      expect(s2.hasWhitespace(), false);
+    });
+  });
+
+  group('isLettersOnly', () {
+    test('returns true if the string contains only letters', () {
+      expect('hello'.isLettersOnly(), isTrue);
+      expect('HELLO'.isLettersOnly(), isTrue);
+      expect('hello   world '.isLettersOnly(), isTrue);
+      expect('Hello'.isLettersOnly(), isTrue);
+      expect('hElLo'.isLettersOnly(), isTrue);
+      expect('Γειά σου κόσμε'.isLettersOnly(), isTrue);
+    });
+    test('returns false if the string contains non-letter characters', () {
+      expect('hello   world !'.isLettersOnly(), isFalse);
+      expect('123'.isLettersOnly(), isFalse);
+      expect('hello123'.isLettersOnly(), isFalse);
+      expect(''.isLettersOnly(), isFalse);
+    });
+  });
+
+  group('insertAt', () {
+    test('InsertAt adds value in the middle of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(7, 'beautiful '), 'Hello, beautiful world!');
+    });
+
+    test('InsertAt adds value at the beginning of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(0, 'Wow, '), 'Wow, Hello, world!');
+    });
+
+    test('InsertAt adds value at the end of the string', () {
+      final s = 'Hello, world!';
+      expect(s.insertAt(s.length, ' It is a nice day.'),
+          'Hello, world! It is a nice day.');
+    });
+
+    test('InsertAt throws error if index is out of range', () {
+      final s = 'Hello, world!';
+      expect(() => s.insertAt(-1, 'Nope, '), throwsA(isA<RangeError>()));
+      expect(
+          () => s.insertAt(s.length + 1, 'Nope, '), throwsA(isA<RangeError>()));
+    });
+  });
+
+  test('Splits the string into a list of lines', () {
+    expect('Line 1\nLine 2\r\nLine 3'.splitLines(),
+        ['Line 1', 'Line 2', 'Line 3']);
+    expect(''.splitLines(), ['']);
+    expect('Line 1'.splitLines(), ['Line 1']);
+    expect('Line 1\n'.splitLines(), ['Line 1', '']);
+    expect('\nLine 1'.splitLines(), ['', 'Line 1']);
+  });
+
+  test('Returns true if the string is a valid JSON string', () {
+    expect('{"name":"John","age":30,"cars":null}'.isJson(), true);
+    expect('[1, 2, 3]'.isJson(), true);
+    expect('{"name":"John","age":30,"cars":null'.isJson(), false);
+    expect(''.isJson(), false);
+    expect('Hello, world!'.isJson(), false);
   });
 }

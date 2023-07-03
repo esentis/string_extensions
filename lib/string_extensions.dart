@@ -476,9 +476,9 @@ extension MiscExtensions on String? {
   /// ### Example
   /// ```dart
   /// String foo = 'this is a τεστ';
-  /// bool isLatin = foo.isGreek; // returns false
+  /// bool isGreek = foo.isGreek; // returns false
   /// String foo2 = 'Τα αγαθά κόποις κτώνται';
-  /// bool isLatin2 = foo2.isGreek; // returns true
+  /// bool isGreek2 = foo2.isGreek; // returns true
   /// ```
   bool? get isGreek {
     if (this.isBlank) {
@@ -486,6 +486,26 @@ extension MiscExtensions on String? {
     }
 
     return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
+  }
+
+  /// Checks if the `String` is a valid `json` format.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = '{"name":"John","age":30,"cars":null}';
+  /// bool isJson = foo.isJson; // returns true
+  /// ```
+  bool isJson() {
+    if (this.isBlank) {
+      return false;
+    }
+    try {
+      jsonDecode(this!);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   /// Removes only the letters from the `String`.
@@ -2649,5 +2669,83 @@ extension MiscExtensions on String? {
     }
 
     return true;
+  }
+
+  /// Checks whether the `String` has any whitespace characters.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = 'Hello World';
+  /// bool hasWhitespace = foo.hasWhitespace; // returns true;
+  /// ```
+  ///
+  /// ```dart
+  /// String foo = 'HelloWorld';
+  /// bool hasWhitespace = foo.hasWhitespace; // returns false;
+  /// ```
+  bool hasWhitespace() {
+    if (this.isBlank) {
+      return false;
+    }
+    return this!.contains(RegExp(r'\s'));
+  }
+
+  /// Returns `true` if the `String` contains only letters (Latin or Greek).
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello world';
+  /// bool isLettersOnly = text.isLettersOnly(); // Returns true
+  /// ```
+  bool isLettersOnly() {
+    if (this.isBlank) {
+      return false;
+    }
+    final onlyLetters = this!.onlyLetters;
+
+    return onlyLetters!.length == this!.length;
+  }
+
+  /// Inserts a `String` at the specified index.
+  ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello world';
+  /// String newText = text.insertAt(5, '!');
+  /// print(newText); // prints 'hello! world'
+  /// ```
+  String insertAt(int i, String value) {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    if (i < 0 || i > this!.length) {
+      throw RangeError('Index out of range');
+    }
+    final start = this!.substring(0, i);
+    final end = this!.substring(i);
+    return start + value + end;
+  }
+
+  /// Splits the `String` into a `List` of lines ('\r\n' or '\n').
+  ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello\nworld';
+  /// List<String> lines = text.splitLines();
+  /// print(lines); // prints ['hello', 'world']
+  /// ```
+  List<String> splitLines() {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    return this!.split(RegExp(r'\r?\n'));
   }
 }

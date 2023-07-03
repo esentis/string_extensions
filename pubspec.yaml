@@ -1,11 +1,19 @@
 name: string_extensions
 description: Useful String extensions to save you time in production. Feel free
   to contribute with PR.
-version: 0.6.10
+version: 0.6.12
 homepage: "https://github.com/esentis/string_extensions"
-
+screenshots:
+  - description: "after() before()' to get the substring after or before a given substring"
+    path: screenshots/afterBefore.png
+  - description: "containsAny() to check if a string contains any of the given substrings"
+    path: screenshots/containsAny.png
+  - description: "replaceGreek to replace greek characters with latin"
+    path: screenshots/replaceGreek.png    
+  - description: "stripHtml to remove all html tags from a string"
+    path: screenshots/stripHtml.png
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

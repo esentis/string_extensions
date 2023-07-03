@@ -1,3 +1,19 @@
+## [0.6.12] - New Extensions
+
+- `insertAt` : Inserts a `String` at a specified index
+- `splitLines` : Splits the `String` into a `List` of lines ('\r\n' or '\n')
+- `isJson` : Returns true if the `String` is a valid JSON string
+
+## [0.6.11] - New Extensions & SDK Version constraints bump
+
+- Bumps SDK constraint from 3.0.0 to 4.0.0
+- Adds screenshots in project
+
+#### New methods
+
+- `hasWhitespace` : Checks whether the `String` has any whitespace
+- `isLettersOnly` : Checks whether the `String` is consisted of only letters (Latin & Greek atm)
+
 ## [0.6.10] - Bug fixes & New Extensions
 
 #### New methods
