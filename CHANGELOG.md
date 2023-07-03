@@ -1,6 +1,8 @@
 ## [0.6.12] - New Extensions
 
 - `insertAt` : Inserts a `String` at a specified index
+- `splitLines` : Splits the `String` into a `List` of lines ('\r\n' or '\n')
+- `isJson` : Returns true if the `String` is a valid JSON string
 
 ## [0.6.11] - New Extensions & SDK Version constraints bump
 
