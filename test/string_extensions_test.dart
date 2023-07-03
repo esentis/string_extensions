@@ -1563,4 +1563,21 @@ void main() {
           () => s.insertAt(s.length + 1, 'Nope, '), throwsA(isA<RangeError>()));
     });
   });
+
+  test('Splits the string into a list of lines', () {
+    expect('Line 1\nLine 2\r\nLine 3'.splitLines(),
+        ['Line 1', 'Line 2', 'Line 3']);
+    expect(''.splitLines(), ['']);
+    expect('Line 1'.splitLines(), ['Line 1']);
+    expect('Line 1\n'.splitLines(), ['Line 1', '']);
+    expect('\nLine 1'.splitLines(), ['', 'Line 1']);
+  });
+
+  test('Returns true if the string is a valid JSON string', () {
+    expect('{"name":"John","age":30,"cars":null}'.isJson(), true);
+    expect('[1, 2, 3]'.isJson(), true);
+    expect('{"name":"John","age":30,"cars":null'.isJson(), false);
+    expect(''.isJson(), false);
+    expect('Hello, world!'.isJson(), false);
+  });
 }

@@ -488,6 +488,26 @@ extension MiscExtensions on String? {
     return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
   }
 
+  /// Checks if the `String` is a valid `json` format.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String foo = '{"name":"John","age":30,"cars":null}';
+  /// bool isJson = foo.isJson; // returns true
+  /// ```
+  bool isJson() {
+    if (this.isBlank) {
+      return false;
+    }
+    try {
+      jsonDecode(this!);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /// Removes only the letters from the `String`.
   /// ### Example 1
   /// ```dart
@@ -2690,6 +2710,8 @@ extension MiscExtensions on String? {
 
   /// Inserts a `String` at the specified index.
   ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
   /// ### Example
   ///
   /// ```dart
@@ -2707,5 +2729,23 @@ extension MiscExtensions on String? {
     final start = this!.substring(0, i);
     final end = this!.substring(i);
     return start + value + end;
+  }
+
+  /// Splits the `String` into a `List` of lines ('\r\n' or '\n').
+  ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String text = 'hello\nworld';
+  /// List<String> lines = text.splitLines();
+  /// print(lines); // prints ['hello', 'world']
+  /// ```
+  List<String> splitLines() {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    return this!.split(RegExp(r'\r?\n'));
   }
 }
