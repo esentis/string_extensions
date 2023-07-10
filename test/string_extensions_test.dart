@@ -1529,7 +1529,12 @@ void main() {
   test('Return a empty String if [this] equals [comparisonString]. Otherwise return [this].', () {
     expect('yes'.emptyIf("yes") == "", true);
     expect('no'.emptyIf("yes") == "no", true);
-    expect(''.emptyIf("") == "", true);
-    expect("".emptyIf(null) == "", true);
+    expect(''.emptyIf("") == "", true);  
+  });
+
+    test('Return a null String if [this] equals [comparisonString]. Otherwise return [this].', () {
+    expect('yes'.nullIf("yes") == null, true);
+    expect('no'.nullIf("yes") == 'no', true);
+    expect(''.nullIf("") == null, true);
   });
 }

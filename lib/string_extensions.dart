@@ -1819,7 +1819,21 @@ extension MiscExtensions on String? {
    /// ```
    
   String? emptyIf(String? comparisonString) =>  
-     "$this" == "$comparisonString" ? "" : this;
+      asIf((s) => s == comparisonString,"",this);
+
+
+   /// Return null if [this] equals [comparisonString]. Otherwise return [this].
+   ///
+   /// ### Example
+   ///
+   /// ```dart
+   /// String t = 'OK'.emptyIf("OK"); // returns null;
+   /// String f = 'NO'.emptyIf("YES"); // returns "NO";
+   /// ```
+   
+  String? nullIf(String? comparisonString) =>  
+      asIf((s) => s == comparisonString,null,this);
+   
 
 
   /// Return [this] if not blank. Otherwise return [newString].
