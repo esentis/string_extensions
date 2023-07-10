@@ -1808,6 +1808,20 @@ extension MiscExtensions on String? {
   /// Checks if the `String` is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
+
+   /// Return a empty `String` if [this] equals [comparisonString]. Otherwise return [this].
+   ///
+   /// ### Example
+   ///
+   /// ```dart
+   /// String t = 'OK'.emptyIf("OK"); // returns "";
+   /// String f = 'NO'.emptyIf("YES"); // returns "NO";
+   /// ```
+   
+  String? emptyIf(String? comparisonString) =>  
+     "$this" == "$comparisonString" ? "" : this;
+
+
   /// Return [this] if not blank. Otherwise return [newString].
   String? ifBlank(String? newString) =>
       asIf((s) => s.isNotBlank, this, newString);
