@@ -1808,27 +1808,27 @@ extension MiscExtensions on String? {
   /// Checks if the `String` is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
 
-   /// Return a empty `String` if [this] equals [comparisonString]. Otherwise return [this].
-   ///
-   /// ### Example
-   ///
-   /// ```dart
-   /// String t = 'OK'.emptyIf("OK"); // returns "";
-   /// String f = 'NO'.emptyIf("YES"); // returns "NO";
-   /// ```
-   String? emptyIf(String? comparisonString) =>  
-      asIf((s) => s == comparisonString,"",this);
+  /// Return a empty `String` if [this] equals [comparisonString]. Otherwise return [this].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String t = 'OK'.emptyIf("OK"); // returns "";
+  /// String f = 'NO'.emptyIf("YES"); // returns "NO";
+  /// ```
+  String? emptyIf(String? comparisonString) =>
+      asIf((s) => s == comparisonString, "", this);
 
-   /// Return null if [this] equals [comparisonString]. Otherwise return [this].
-   ///
-   /// ### Example
-   ///
-   /// ```dart
-   /// String t = 'OK'.emptyIf("OK"); // returns null;
-   /// String f = 'NO'.emptyIf("YES"); // returns "NO";
-   /// ```   
-   String? nullIf(String? comparisonString) =>  
-      asIf((s) => s == comparisonString,null,this);
+  /// Return null if [this] equals [comparisonString]. Otherwise return [this].
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String t = 'OK'.nullIf("OK"); // returns null;
+  /// String f = 'NO'.nullIf("YES"); // returns "NO";
+  /// ```
+  String? nullIf(String? comparisonString) =>
+      asIf((s) => s == comparisonString, null, this);
 
   /// Return [this] if not blank. Otherwise return [newString].
   String? ifBlank(String? newString) =>
