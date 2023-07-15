@@ -1,3 +1,8 @@
+## [0.6.13] - New Extensions
+
+- `nullIf(String? comparisonString)` : Returns `null` if `String` equals `comparisonString`. Otherwise return the `String` as is.
+- `emptyIf(String? comparisonString)` : Returns empty `String` if it equalts to `comparisonString`. Otherwise return the `String` as is.
+
 ## [0.6.12] - New Extensions
 
 - `insertAt` : Inserts a `String` at a specified index
