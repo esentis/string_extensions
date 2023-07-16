@@ -2566,7 +2566,7 @@ extension MiscExtensions on String? {
     return word!.length == wordSplit.length;
   }
 
-  /// Returns a Set of the common characters between the two `String`s.
+  /// Returns a `Set` of the common characters between the two `String`s.
   ///
   /// The `String` is case sensitive & sorted by default.
   ///
