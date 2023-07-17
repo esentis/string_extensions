@@ -2770,4 +2770,28 @@ extension MiscExtensions on String? {
     }
     return this!.split(RegExp(r'\r?\n'));
   }
+
+  // Returns a new string with the first occurrence of the given pattern replaced with the replacement string.
+  String replaceFirst(String pattern, String replacement) {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    int index = this!.indexOf(pattern);
+    if (index == -1) {
+      return this!;
+    }
+    return this!.replaceRange(index, index + pattern.length, replacement);
+  }
+
+  // Returns a new string with the last occurrence of the given pattern replaced with the replacement string.
+  String replaceLast(String pattern, String replacement) {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    int index = this!.lastIndexOf(pattern);
+    if (index == -1) {
+      return this!;
+    }
+    return this!.replaceRange(index, index + pattern.length, replacement);
+  }
 }
