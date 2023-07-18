@@ -2771,7 +2771,15 @@ extension MiscExtensions on String? {
     return this!.split(RegExp(r'\r?\n'));
   }
 
-  // Returns a new string with the first occurrence of the given pattern replaced with the replacement string.
+  /// Returns a new string with the first occurrence of the given pattern replaced with the replacement string.
+  ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "esentis".replaceFirst("s", "S"); // returns "eSentis";
+  /// ```
   String replaceFirst(String pattern, String replacement) {
     if (this == null) {
       throw ArgumentError('String is null');
@@ -2783,7 +2791,15 @@ extension MiscExtensions on String? {
     return this!.replaceRange(index, index + pattern.length, replacement);
   }
 
-  // Returns a new string with the last occurrence of the given pattern replaced with the replacement string.
+  /// Returns a new string with the last occurrence of the given pattern replaced with the replacement string.
+  ///
+  /// If the `String` is `null`, an `ArgumentError` is thrown.
+  ///
+  /// ### Example
+  ///
+  /// ```dart
+  /// String s = "esentis".replaceLast("s", "S"); // returns "esentiS";
+  /// ```
   String replaceLast(String pattern, String replacement) {
     if (this == null) {
       throw ArgumentError('String is null');
