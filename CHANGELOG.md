@@ -1,3 +1,8 @@
+## [0.6.14] - New Extensions
+
+- `replaceFirst(String pattern, String replacement)` : Returns a new string with the first occurrence of the given pattern replaced with the replacement string.
+- `replaceLast(String pattern, String replacement)` : Returns a new string with the last occurrence of the given pattern replaced with the replacement string.
+
 ## [0.6.13] - New Extensions
 
 - `nullIf(String? comparisonString)` : Returns `null` if `String` equals `comparisonString`. Otherwise return the `String` as is.
