@@ -336,7 +336,7 @@ extension MiscExtensions on String? {
     return regex.hasMatch(this!);
   }
 
-  /// Checks whether the `String` is a valid Date:
+  /// Checks whether the `String` is a valid `DateTime`:
   ///
   /// ### Valid formats
   ///
@@ -2771,7 +2771,7 @@ extension MiscExtensions on String? {
     return this!.split(RegExp(r'\r?\n'));
   }
 
-  /// Returns a new string with the first occurrence of the given pattern replaced with the replacement string.
+  /// Returns a new `String` with the first occurrence of the given pattern replaced with the replacement `String`.
   ///
   /// If the `String` is `null`, an `ArgumentError` is thrown.
   ///
@@ -2791,7 +2791,7 @@ extension MiscExtensions on String? {
     return this!.replaceRange(index, index + pattern.length, replacement);
   }
 
-  /// Returns a new string with the last occurrence of the given pattern replaced with the replacement string.
+  /// Returns a new `String` with the last occurrence of the given pattern replaced with the replacement `String`.
   ///
   /// If the `String` is `null`, an `ArgumentError` is thrown.
   ///
