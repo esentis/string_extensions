@@ -1,3 +1,7 @@
+## [0.6.14] - Code clean up
+
+- Removes Flutter from dependencies
+- Improves documentation
 
 ## [0.6.13] - New Extensions
 
