@@ -1,7 +1,7 @@
 name: string_extensions
 description: Useful String extensions to save you time in production. Feel free
   to contribute with PR.
-version: 0.6.14
+version: 0.6.13
 homepage: "https://github.com/esentis/string_extensions"
 screenshots:
   - description: "after() before()' to get the substring after or before a given substring"
