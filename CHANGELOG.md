@@ -1,3 +1,8 @@
+## [0.7.0]
+
+- Library now also extends `String` so there is no need of using the bang operator on `String`s that are not `null`
+- Bumps dependencies
+
 ## [0.6.14] - Code clean up
 
 - Removes Flutter from dependencies
