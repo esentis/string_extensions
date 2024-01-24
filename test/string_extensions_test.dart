@@ -1580,4 +1580,37 @@ void main() {
     expect(''.isJson(), false);
     expect('Hello, world!'.isJson(), false);
   });
+
+  test(
+      'Return a empty String if [this] equals [comparisonString]. Otherwise return [this].',
+      () {
+    expect('yes'.emptyIf("yes") == "", true);
+    expect('no'.emptyIf("yes") == "no", true);
+    expect(''.emptyIf("") == "", true);
+  });
+
+  test(
+      'Return a null String if [this] equals [comparisonString]. Otherwise return [this].',
+      () {
+    expect('yes'.nullIf("yes"), null);
+    expect('no'.nullIf("yes"), 'no');
+    String? test = '';
+    expect(test.nullIf(""), null);
+  });
+  test('replaceFirst replaces first occurrence of pattern', () {
+    String s = 'hello world';
+    expect(s.replaceFirst('l', 'L'), equals('heLlo world'));
+
+    String s2 = 'esentis';
+
+    expect(s2.replaceFirst('s', 'S'), equals('eSentis'));
+  });
+
+  test('replaceLast replaces last occurrence of pattern', () {
+    String s = 'hello world';
+    expect(s.replaceLast('l', 'L'), equals('hello worLd'));
+
+    String s2 = 'esentis';
+    expect(s2.replaceLast('s', 'S'), equals('esentiS'));
+  });
 }

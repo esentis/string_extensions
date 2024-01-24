@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/irnKSr0.png" height="160" alt="Feelm" /><br/>
+  <img src="https://i.imgur.com/irnKSr0.png" height="160" alt="String Extensions" /><br/>
 </p>
 
 <p align="center">
