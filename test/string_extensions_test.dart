@@ -1592,9 +1592,10 @@ void main() {
   test(
       'Return a null String if [this] equals [comparisonString]. Otherwise return [this].',
       () {
-    expect('yes'.nullIf("yes") == null, true);
-    expect('no'.nullIf("yes") == 'no', true);
-    expect(''.nullIf("") == null, true);
+    expect('yes'.nullIf("yes"), null);
+    expect('no'.nullIf("yes"), 'no');
+    String? test = '';
+    expect(test.nullIf(""), null);
   });
   test('replaceFirst replaces first occurrence of pattern', () {
     String s = 'hello world';

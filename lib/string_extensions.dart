@@ -2257,7 +2257,7 @@ extension MiscExtensionsNullable on String? {
       return false;
     }
 
-    String trimmed = this!.removeWhiteSpace!;
+    String trimmed = this!.removeWhiteSpace;
 
     int sum = 0;
     bool alternate = false;
@@ -2404,7 +2404,7 @@ extension MiscExtensionsNullable on String? {
     String swapped = '';
 
     for (final l in letters) {
-      if (l.isUpperCase!) {
+      if (l.isUpperCase) {
         swapped += l.toLowerCase();
       } else {
         swapped += l.toUpperCase();
@@ -2481,9 +2481,9 @@ extension MiscExtensionsNullable on String? {
     if (this.isBlank || s.isBlank) {
       return false;
     }
-    final String word1 = this!.removeWhiteSpace!;
+    final String word1 = this!.removeWhiteSpace;
 
-    final String word2 = s.removeWhiteSpace!;
+    final String word2 = s.removeWhiteSpace;
 
     if (word1.length != word2.length) {
       return false;
@@ -4565,8 +4565,8 @@ extension MiscExtensionsNonNullable on String {
   /// String t = 'OK'.nullIf("OK"); // returns null;
   /// String f = 'NO'.nullIf("YES"); // returns "NO";
   /// ```
-  String nullIf(String? comparisonString) =>
-      asIf((s) => s == comparisonString, '', this);
+  String? nullIf(String? comparisonString) =>
+      asIf((s) => s == comparisonString, null, this);
 
   /// Return [this] if not blank. Otherwise return [newString].
   String ifBlank(String newString) =>
@@ -4579,9 +4579,9 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK";
   /// ```
-  String asIf(bool Function(String) comparison, String trueString,
+  String asIf(bool Function(String) comparison, String? trueString,
           String falseString) =>
-      comparison(this) ? trueString : falseString;
+      comparison(this) ? (trueString ?? '') : falseString;
 
   /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is omitted, the method resolve [after] using [getOppositeChar].
   ///
