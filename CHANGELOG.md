@@ -1,3 +1,7 @@
+## [0.7.1]
+
+- Changes `intl` version constraints from `0.19.0` to `>=0.18.1`
+
 ## [0.7.0]
 
 - Library now also extends `String` so there is no need of using the bang operator on `String`s that are not `null`
