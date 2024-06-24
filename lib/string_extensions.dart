@@ -1675,30 +1675,34 @@ extension MiscExtensionsNullable on String? {
 
   /// Returns the `String` after a specific character.
   ///
+  /// If no pattern is found, by default it returns an empty `String`.
+  ///
+  /// If you want to return the original pass the [defaultToBlank] as `false`.
+  ///
   /// ### Example
   ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.after('brother'); // returns ' what a day today'
   /// ```
-  String? after(String pattern) {
+  String? after(String pattern, {bool defaultToBlank = true}) {
     if (this.isBlank) {
       return this;
     }
 
     if (!this!.contains(pattern)) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     List<String> patternWords = pattern.split(' ');
 
     if (patternWords.isEmpty) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
     int indexOfLastPatternWord = this!.indexOf(patternWords.last);
 
     if (patternWords.last.length == 0) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     return this!.substring(
@@ -1707,30 +1711,34 @@ extension MiscExtensionsNullable on String? {
 
   /// Returns the `String` before a specific character
   ///
+  /// If no pattern is found, by default it returns an empty `String`.
+  ///
+  /// If you want to return the original pass the [defaultToBlank] as `false`.
+  ///
   /// ### Example
   ///
   /// ```dart
   /// String test = 'brother what a day today';
   /// String beforeString = test.before('brother'); // returns 'hello '
   /// ```
-  String? before(String pattern) {
+  String? before(String pattern, {bool defaultToBlank = true}) {
     if (this.isBlank) {
       return this;
     }
 
     if (!this!.contains(pattern)) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     List<String> patternWords = pattern.split(' ');
 
     if (patternWords.isEmpty) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
     int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
 
     if (patternWords.last.length == 0) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     return this!.substring(
@@ -4413,30 +4421,34 @@ extension MiscExtensionsNonNullable on String {
 
   /// Returns the `String` after a specific character.
   ///
+  /// If no pattern is found, by default it returns an empty `String`.
+  ///
+  /// If you want to return the original pass the [defaultToBlank] as `false`.
+  ///
   /// ### Example
   ///
   /// ```dart
   /// String test = 'hello brother what a day today';
   /// String afterString = test.after('brother'); // returns ' what a day today'
   /// ```
-  String after(String pattern) {
+  String after(String pattern, {bool defaultToBlank = true}) {
     if (this.isBlank) {
       return this;
     }
 
     if (!this.contains(pattern)) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     List<String> patternWords = pattern.split(' ');
 
     if (patternWords.isEmpty) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
     int indexOfLastPatternWord = this.indexOf(patternWords.last);
 
     if (patternWords.last.length == 0) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     return this.substring(
@@ -4445,30 +4457,34 @@ extension MiscExtensionsNonNullable on String {
 
   /// Returns the `String` before a specific character
   ///
+  /// If no pattern is found, by default it returns an empty `String`.
+  ///
+  /// If you want to return the original pass the [defaultToBlank] as `false`.
+  ///
   /// ### Example
   ///
   /// ```dart
   /// String test = 'brother what a day today';
   /// String beforeString = test.before('brother'); // returns 'hello '
   /// ```
-  String before(String pattern) {
+  String before(String pattern, {bool defaultToBlank = true}) {
     if (this.isBlank) {
       return this;
     }
 
     if (!this.contains(pattern)) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     List<String> patternWords = pattern.split(' ');
 
     if (patternWords.isEmpty) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
     int indexOfFirstPatternWord = this.indexOf(patternWords.first);
 
     if (patternWords.last.length == 0) {
-      return '';
+      return defaultToBlank ? '' : this;
     }
 
     return this.substring(

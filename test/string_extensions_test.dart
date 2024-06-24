@@ -1104,6 +1104,16 @@ void main() {
     expect(t1.after(' b'), 'rother what a wonderful day');
     expect(t1.after('wonderful'), ' day');
     expect(t1.after('12345'), '');
+
+    expect(t1.after('  ', defaultToBlank: false),
+        'Hello brother what a wonderful day');
+    expect(t1.after('', defaultToBlank: false),
+        'Hello brother what a wonderful day');
+
+    expect(t1.after('hat', defaultToBlank: false), ' a wonderful day');
+
+    expect(t1.after('hatx', defaultToBlank: false),
+        'Hello brother what a wonderful day');
   });
 
   test('Returns the string before a specific character / word', () {
@@ -1116,6 +1126,13 @@ void main() {
     expect(t1.before('b'), 'Hello ');
     expect(t1.before('wonderful'), 'Hello brother what a ');
     expect(t1.before('12345'), '');
+
+    expect(t1.before('  ', defaultToBlank: false),
+        'Hello brother what a wonderful day');
+
+    expect(t1.before('brother', defaultToBlank: false), 'Hello ');
+    expect(t1.before('zro', defaultToBlank: false),
+        'Hello brother what a wonderful day');
   });
 
   test('Returns the Jaro distance', () {
