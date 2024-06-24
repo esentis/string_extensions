@@ -1,3 +1,7 @@
+## [0.7.2] - New parameter
+
+- Adds a new optional parameter, `defaultToBlank`, to the `after` and `before` methods. The `defaultToBlank` parameter allows the user to specify whether to return an empty string or the original string when no pattern is found. By default, it is set to `true`, meaning an empty string is returned. This enhancement improves the flexibility and usability of the methods.
+
 ## [0.7.1]
 
 - Changes `intl` version constraints from `0.19.0` to `>=0.18.1`
