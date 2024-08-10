@@ -3,6 +3,11 @@ description: Useful String extensions to save you time in production. Feel free
   to contribute with PR.
 version: 0.7.2
 homepage: "https://github.com/esentis/string_extensions"
+topics:
+  - extensions
+  - string
+  - string_validator
+  - string_extensions
 screenshots:
   - description: "after() before()' to get the substring after or before a given substring"
     path: screenshots/afterBefore.png
