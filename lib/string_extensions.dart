@@ -4314,7 +4314,7 @@ extension MiscExtensionsNonNullable on String {
     int index = this.indexOf(char);
 
     if (index == -1) {
-      throw Exception('Character not found');
+      return '';
     }
     return this.substring(index + char.length, this.length);
   }
@@ -4432,27 +4432,17 @@ extension MiscExtensionsNonNullable on String {
   /// String afterString = test.after('brother'); // returns ' what a day today'
   /// ```
   String after(String pattern, {bool defaultToBlank = true}) {
-    if (this.isBlank) {
+    if (this.isEmpty) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    int index = this.indexOf(pattern);
+
+    if (index == -1) {
       return defaultToBlank ? '' : this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return defaultToBlank ? '' : this;
-    }
-    int indexOfLastPatternWord = this.indexOf(patternWords.last);
-
-    if (patternWords.last.length == 0) {
-      return defaultToBlank ? '' : this;
-    }
-
-    return this.substring(
-        indexOfLastPatternWord + patternWords.last.length, this.length);
+    return this.substring(index + pattern.length);
   }
 
   /// Returns the `String` before a specific character
@@ -4468,29 +4458,17 @@ extension MiscExtensionsNonNullable on String {
   /// String beforeString = test.before('brother'); // returns 'hello '
   /// ```
   String before(String pattern, {bool defaultToBlank = true}) {
-    if (this.isBlank) {
+    if (this.isEmpty) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    int index = this.indexOf(pattern);
+
+    if (index == -1) {
       return defaultToBlank ? '' : this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return defaultToBlank ? '' : this;
-    }
-    int indexOfFirstPatternWord = this.indexOf(patternWords.first);
-
-    if (patternWords.last.length == 0) {
-      return defaultToBlank ? '' : this;
-    }
-
-    return this.substring(
-      0,
-      indexOfFirstPatternWord,
-    );
+    return this.substring(0, index);
   }
 
   /// The Jaro distance is a measure of edit distance between two strings

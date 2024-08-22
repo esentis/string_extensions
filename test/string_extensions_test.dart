@@ -691,8 +691,8 @@ void main() {
       expect(string4.getLevenshtein('employee'), 9);
 
       expect(null.getLevenshtein('employee'), null);
-      expect(''.getLevenshtein('employee'), null);
-      expect(' '.getLevenshtein('employee'), null);
+      expect(''.getLevenshtein('employee'), 'employee'.length);
+      expect(' '.getLevenshtein('employee'), 'employee'.length);
     },
   );
   test(
@@ -882,9 +882,9 @@ void main() {
       String? string1 = 'esentis';
       expect(string1.charAt(0), 'e');
       expect(string1.charAt(1), 's');
-      expect(string1.charAt(-5), null);
+      expect(string1.charAt(-5), '');
       expect(string1.charAt(6), 's');
-      expect(string1.charAt(12), null);
+      expect(string1.charAt(12), '');
 
       expect(null.charAt(12), null);
       expect(''.charAt(12), '');
@@ -929,13 +929,13 @@ void main() {
       String? s4;
       expect(s4.toPriceAmount(currencySymbol: '€'), null);
       String? s5 = '044ff1231234566123';
-      expect(s5.toPriceAmount(currencySymbol: '€'), null);
+      expect(s5.toPriceAmount(currencySymbol: '€'), '');
       String? s6 = '45.225422';
       expect(s6.toPriceAmount(currencySymbol: '€'), '45,23 €');
       String? s7 = '45,225422';
       expect(s7.toPriceAmount(), '45,23');
       String? s8 = '45,2254,22';
-      expect(s8.toPriceAmount(currencySymbol: '€'), null);
+      expect(s8.toPriceAmount(currencySymbol: '€'), '');
       String? s9 = '-1245';
       expect(s9.toPriceAmount(currencySymbol: '€'), '-1.245,00 €');
       String? s10 = '-01245';
@@ -1030,7 +1030,7 @@ void main() {
       String t2 = 'peanut is the best of the best';
       expect(t1.rightOf('-10-'), 'butter');
       expect(t1.rightOf('-'), '10-butter');
-      expect(t1.rightOf(' -'), null);
+      expect(t1.rightOf(' -'), '');
       expect(t2.rightOf('the'), ' best of the best');
     },
   );
@@ -1100,7 +1100,7 @@ void main() {
     expect(t1.after('brother'), ' what a wonderful day');
     expect(t1.after('what'), ' a wonderful day');
     expect(t1.after('  '), '');
-    expect(t1.after(''), '');
+    expect(t1.after(''), 'Hello brother what a wonderful day');
     expect(t1.after(' b'), 'rother what a wonderful day');
     expect(t1.after('wonderful'), ' day');
     expect(t1.after('12345'), '');
@@ -1114,6 +1114,9 @@ void main() {
 
     expect(t1.after('hatx', defaultToBlank: false),
         'Hello brother what a wonderful day');
+
+    String t2 = 'John Doe';
+    expect(t2.after(' '), 'Doe');
   });
 
   test('Returns the string before a specific character / word', () {
@@ -1133,6 +1136,8 @@ void main() {
     expect(t1.before('brother', defaultToBlank: false), 'Hello ');
     expect(t1.before('zro', defaultToBlank: false),
         'Hello brother what a wonderful day');
+    String t2 = 'John Doe';
+    expect(t2.before(' '), 'John');
   });
 
   test('Returns the Jaro distance', () {
