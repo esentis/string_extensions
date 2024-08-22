@@ -6,8 +6,8 @@ homepage: "https://github.com/esentis/string_extensions"
 topics:
   - extensions
   - string
-  - string_validator
-  - string_extensions
+  - string-validator
+  - string-extensions
 screenshots:
   - description: "after() before()' to get the substring after or before a given substring"
     path: screenshots/afterBefore.png
