@@ -1,5 +1,5 @@
+import 'package:string_extensions/src/string_helpers.dart';
 import 'package:string_extensions/string_extensions.dart';
-import 'package:string_extensions/string_helpers.dart';
 import 'package:test/test.dart';
 
 void main() {
