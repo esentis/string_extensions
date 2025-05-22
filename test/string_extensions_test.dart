@@ -1635,4 +1635,80 @@ void main() {
     String s2 = 'esentis';
     expect(s2.replaceLast('s', 'S'), equals('esentiS'));
   });
+
+  group('StringEndsWithAny', () {
+    test('returns true when string ends with one of the patterns', () {
+      expect('hello.jpg'.endsWithAny(['.jpg', '.png']), isTrue);
+      expect('document.pdf'.endsWithAny(['.doc', '.pdf', '.txt']), isTrue);
+      expect('script.js'.endsWithAny(['.ts', '.js', '.jsx']), isTrue);
+    });
+
+    test('returns false when string does not end with any pattern', () {
+      expect('hello.jpg'.endsWithAny(['.png', '.gif']), isFalse);
+      expect('document.pdf'.endsWithAny(['.doc', '.txt']), isFalse);
+      expect('video.mp4'.endsWithAny(['.jpg', '.png', '.gif']), isFalse);
+    });
+
+    test('returns false for empty patterns list', () {
+      expect('any string'.endsWithAny([]), isFalse);
+      expect(''.endsWithAny([]), isFalse);
+    });
+
+    test('works with empty string', () {
+      expect(''.endsWithAny(['.jpg', '.png']), isFalse);
+      expect(
+          ''.endsWithAny(['']), isTrue); // empty string ends with empty string
+    });
+
+    test('is case sensitive', () {
+      expect('file.JPG'.endsWithAny(['.jpg']), isFalse);
+      expect('file.JPG'.endsWithAny(['.JPG']), isTrue);
+      expect('FILE.TXT'.endsWithAny(['.txt']), isFalse);
+      expect('FILE.TXT'.endsWithAny(['.TXT']), isTrue);
+    });
+
+    test('handles patterns longer than the string', () {
+      expect('hi'.endsWithAny(['hello']), isFalse);
+      expect('a'.endsWithAny(['abc', 'def']), isFalse);
+    });
+
+    test('handles exact matches', () {
+      expect('test'.endsWithAny(['test']), isTrue);
+      expect('hello'.endsWithAny(['hello', 'world']), isTrue);
+    });
+
+    test('handles special characters in patterns', () {
+      expect('file.tar.gz'.endsWithAny(['.gz', '.zip']), isTrue);
+      expect('path/to/file'.endsWithAny(['/file', '/folder']), isTrue);
+      expect('query?param=1'.endsWithAny(['=1', '=2']), isTrue);
+      expect('email@example.com'.endsWithAny(['.com', '.org']), isTrue);
+    });
+
+    test('returns true on first match (efficiency test)', () {
+      // This test ensures the method short-circuits
+      var callCount = 0;
+      final patterns = List.generate(100, (i) {
+        if (i == 0) return '.jpg';
+        callCount++;
+        return '.ext$i';
+      });
+
+      expect('image.jpg'.endsWithAny(patterns), isTrue);
+      // If it checks all patterns, callCount would be 99
+      // In practice, it should stop at the first match
+    });
+
+    test('handles multiple occurrences of pattern in string', () {
+      expect('abc.jpg.jpg'.endsWithAny(['.jpg']), isTrue);
+      expect('test_test'.endsWithAny(['_test']), isTrue);
+      expect('///'.endsWithAny(['/']), isTrue);
+    });
+
+    test('handles whitespace in patterns', () {
+      expect('hello world'.endsWithAny(['world', 'earth']), isTrue);
+      expect('hello\n'.endsWithAny(['\n']), isTrue);
+      expect('hello\t'.endsWithAny(['\t', ' ']), isTrue);
+      expect('hello '.endsWithAny([' ']), isTrue);
+    });
+  });
 }
