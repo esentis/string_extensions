@@ -5,9 +5,10 @@ import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:string_extensions/src/string_extensions.dart';
 import 'package:string_extensions/src/string_helpers.dart';
 
-extension MiscExtensionsNonNullable on String {
+extension MiscExtensionsNullable on String? {
   /// Checks if the [length!] of the `String` is more than the length of [s].
   ///
   /// If the `String` is null or empty, it returns false.
@@ -22,7 +23,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length > s.length;
+    return this!.length > s.length;
   }
 
   /// Checks if the [length!] of the `String` is more or equal than the length of [s].
@@ -39,7 +40,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length >= s.length;
+    return this!.length >= s.length;
   }
 
   /// Checks if the [length!] of the `String` is less than the length of [s].
@@ -56,7 +57,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length < s.length;
+    return this!.length < s.length;
   }
 
   /// Checks if the [length!] of the `String` is less or equal than the length of [s].
@@ -73,7 +74,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length <= s.length;
+    return this!.length <= s.length;
   }
 
   /// Removes a text from the `String`.
@@ -81,10 +82,10 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return '';
     }
-    if (s?.isBlank == true) {
-      return this;
+    if (s.isBlank) {
+      return this!;
     }
-    return this.replaceAll(s!, '');
+    return this!.replaceAll(s!, '');
   }
 
   /// Returns the average read time duration of the given `String` in seconds.
@@ -101,7 +102,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return 0;
     }
-    var words = this.trim().split(RegExp(r'(\s+)'));
+    var words = this!.trim().split(RegExp(r'(\s+)'));
     var magicalNumber = words.length / wordsPerMinute;
     return (magicalNumber * 100).toInt();
   }
@@ -112,11 +113,11 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'hAckErrR';
   /// String cFoo = foo.capitalize; // returns 'Hackerrr'.
   /// ```
-  String get capitalize {
+  String? get capitalize {
     if (this.isBlank) {
       return this;
     }
-    return '${this[0].toUpperCase()}${this.substring(1).toLowerCase()}';
+    return '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}';
   }
 
   /// Returns the word count in the given `String`.
@@ -131,9 +132,9 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return 0;
     }
-    var words = this.trim().split(RegExp(r'(\s+)'));
+    var words = this!.trim().split(RegExp(r'(\s+)'));
     // We filter out symbols and numbers from the word count
-    var filteredWords = words.where((e) => e.onlyLatin.isNotEmpty);
+    var filteredWords = words.where((e) => e.onlyLatin.isNotEmpty == true);
     return filteredWords.length;
   }
 
@@ -148,12 +149,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '1244e*s*4e*5523n*t*1i*s';
   /// String noNumbers = foo.removeNumbers; // returns 'e*s*e*n*t*i*s'
   /// ```
-  String get removeNumbers {
+  String? get removeNumbers {
     if (this.isBlank) {
       return this;
     }
     var regex = RegExp(r'(\d+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Returns only the numbers from the `String`.
@@ -162,13 +163,13 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '4*%^55/es4e5523nt1is';
   /// String onyNumbers = foo.onlyNumbers; // returns '455455231'
   /// ```
-  String get onlyNumbers {
+  String? get onlyNumbers {
     if (this.isBlank) {
       return this;
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^0-9]+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Returns only the Latin characters from the `String`.
@@ -177,13 +178,13 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '4*%^55/es4e5523nt1is';
   /// String onlyLatin = foo.onlyLatin; // returns 'esentis'
   /// ```
-  String get onlyLatin {
+  String? get onlyLatin {
     if (this.isBlank) {
       return this;
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^a-zA-Z\s]+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Returns only the Greek characters from the `String`.
@@ -194,13 +195,13 @@ extension MiscExtensionsNonNullable on String {
   /// String foo2 = '4*%^55/σοφ4e5523ια aaggαγάπ112η';
   /// String onlyGreek2 = foo2.onlyGreek; // returns 'σοφια αγάπη'
   /// ```
-  String get onlyGreek {
+  String? get onlyGreek {
     if (this.isBlank) {
       return this;
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Checks whether the supplied string contains any Greek character.
@@ -209,7 +210,7 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    String onlyGreekLetters = this.onlyGreek.replaceAll(" ", "");
+    String onlyGreekLetters = this.onlyGreek!.replaceAll(" ", "");
     return onlyGreekLetters.isNotEmpty;
   }
 
@@ -221,13 +222,13 @@ extension MiscExtensionsNonNullable on String {
   /// String foo2 = '4*%^55/es4e5523nt1is';
   /// String onlyL2 = foo2.onlyLetters; // returns 'esentis'
   /// ```
-  String get onlyLetters {
+  String? get onlyLetters {
     if (this.isBlank) {
       return this;
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([^α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏa-zA-Z\s]+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Returns all special characters from the `String`.
@@ -236,13 +237,43 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '/!@#\$%^\-&*()+",.?":{}|<>~_-`*%^/ese?:"///ntis/!@#\$%^&*(),.?":{}|<>~_-`';
   /// String removed = foo.removeSpecial; // returns 'esentis'
   /// ```
-  String get removeSpecial {
+  String? get removeSpecial {
     if (this.isBlank) {
       return this;
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'[/!@#$%^\-&*()+",.?":{}|<>~_-`]');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
+  }
+
+  /// Checks whether the `String` is `null`.
+  /// ### Example 1
+  /// ```dart
+  /// String? foo;
+  /// bool isNull = foo.isNull; // returns true
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'fff';
+  /// bool isNull = foo.isNull; // returns false
+  /// ```
+  bool get isNull {
+    return this == null;
+  }
+
+  /// Checks whether the `String` is not `null`.
+  /// ### Example 1
+  /// ```dart
+  /// String? foo;
+  /// bool isNull = foo.isNotNull; // returns false
+  /// ```
+  /// ### Example 2
+  /// ```dart
+  /// String foo = 'fff';
+  /// bool isNull = foo.isNotNull; // returns true
+  /// ```
+  bool get isNotNull {
+    return isNull == false;
   }
 
   /// Checks whether the `String` is a valid IPv4.
@@ -262,7 +293,7 @@ extension MiscExtensionsNonNullable on String {
     }
     var regex = RegExp(
         r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the `String` is a valid IPv6.
@@ -280,10 +311,10 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    this.substring(0, 1);
+    this!.substring(0, 1);
     var regex = RegExp(
         r'(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the `String` is a valid URL.
@@ -303,7 +334,7 @@ extension MiscExtensionsNonNullable on String {
     }
     var regex = RegExp(
         r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the `String` is a valid `DateTime`:
@@ -329,11 +360,11 @@ extension MiscExtensionsNonNullable on String {
     }
     var regex = RegExp(
         r'^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$');
-    if (regex.hasMatch(this)) {
+    if (regex.hasMatch(this!)) {
       return true;
     }
     try {
-      DateTime.parse(this);
+      DateTime.parse(this!);
       return true;
     } on FormatException {
       return false;
@@ -351,7 +382,7 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
     var regex = RegExp(r"(^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)");
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the `String` is a number.
@@ -367,7 +398,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return num.tryParse(this) != null;
+    return num.tryParse(this!) != null;
   }
 
   /// Checks whether the `String` complies to below rules :
@@ -390,7 +421,7 @@ extension MiscExtensionsNonNullable on String {
     }
     var regex = RegExp(
         r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the `String` is a valid Guid.
@@ -410,7 +441,7 @@ extension MiscExtensionsNonNullable on String {
     }
     var regex = RegExp(
         r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks if the `String` exists in a given `Iterable<String>`
@@ -439,7 +470,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return RegExp(r'^[a-zA-Z\s]+$').hasMatch(this);
+    return RegExp(r'^[a-zA-Z\s]+$').hasMatch(this!);
   }
 
   /// Checks if the `String` has only Greek characters.
@@ -455,7 +486,7 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this);
+    return RegExp(r'^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]+$').hasMatch(this!);
   }
 
   /// Checks if the `String` is a valid `json` format.
@@ -471,7 +502,7 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
     try {
-      jsonDecode(this);
+      jsonDecode(this!);
       return true;
     } catch (e) {
       return false;
@@ -495,7 +526,7 @@ extension MiscExtensionsNonNullable on String {
     }
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'([a-zA-Z]+)');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// Finds all character occurrences and returns count as:
@@ -513,7 +544,7 @@ extension MiscExtensionsNonNullable on String {
     }
     // ignore: omit_local_variable_types
     List<Map<String, int>> occurrences = [];
-    var letters = this.split('')..sort();
+    var letters = this!.split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
     for (var i = 0; i < letters.length; i++) {
@@ -543,7 +574,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return 0;
     }
-    return this.split('').fold<int>(
+    return this!.split('').fold<int>(
         0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
   }
 
@@ -553,15 +584,15 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Hello World';
   /// String mostFrequent = foo.mostFrequent; // returns 'l'
   /// ```
-  String mostFrequent({bool ignoreSpaces = false}) {
+  String? mostFrequent({bool ignoreSpaces = false}) {
     if (this.isBlank) {
       return this;
     }
     if (ignoreSpaces) {
-      return this.replaceAll(' ', '').mostFrequent();
+      return this!.replaceAll(' ', '').mostFrequent();
     }
     var occurrences = <String, int>{};
-    var letters = this.split('')..sort();
+    var letters = this!.split('')..sort();
     var checkingLetter = letters[0];
     var count = 0;
 
@@ -597,12 +628,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Hello World';
   /// String reversed = foo.reverse; // returns 'dlrow olleH'
   /// ```
-  String get reverse {
+  String? get reverse {
     if (this.isBlank) {
       return this;
     }
 
-    var letters = this.split('').toList().reversed;
+    var letters = this!.split('').toList().reversed;
     return letters.reduce((current, next) => current + next);
   }
 
@@ -626,12 +657,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'hello world';
   /// bool firstChars = foo.first(3); // returns 'hel'
   /// ```
-  String first({int n = 1}) {
-    if (this.isBlank || this.length < n || n < 0) {
+  String? first({int n = 1}) {
+    if (this.isBlank || this!.length < n || n < 0) {
       return this;
     }
 
-    return this.substring(0, n);
+    return this!.substring(0, n);
   }
 
   /// Returns the last [n] characters of the `String`.
@@ -654,12 +685,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'hello world';
   /// bool firstChars = foo.last(3); // returns 'rld'
   /// ```
-  String last({int n = 1}) {
-    if (this.isBlank || this.length < n || n < 0) {
+  String? last({int n = 1}) {
+    if (this.isBlank || this!.length < n || n < 0) {
       return this;
     }
 
-    return this.substring(this.length - n, this.length);
+    return this!.substring(this!.length - n, this!.length);
   }
 
   /// Returns the `String` to slug case.
@@ -669,15 +700,15 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'sLuG Case';
   /// String fooSlug = foo.toSlug; // returns 'sLuG_Case'
   /// ```
-  String get toSlug {
+  String? get toSlug {
     if (this.isBlank) {
       return this;
     }
 
-    var words = this.trim().split(RegExp(r'(\s+)'));
+    var words = this!.trim().split(RegExp(r'(\s+)'));
     var slugWord = '';
 
-    if (this.length == 1) {
+    if (this!.length == 1) {
       return this;
     }
     for (var i = 0; i <= words.length - 1; i++) {
@@ -697,15 +728,15 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'SNAKE CASE';
   /// String fooSNake = foo.toSnakeCase; // returns 'snake_case'
   /// ```
-  String get toSnakeCase {
+  String? get toSnakeCase {
     if (this.isBlank) {
       return this;
     }
 
-    var words = this.toLowerCase().trim().split(RegExp(r'(\s+)'));
+    var words = this!.toLowerCase().trim().split(RegExp(r'(\s+)'));
     var snakeWord = '';
 
-    if (this.length == 1) {
+    if (this!.length == 1) {
       return this;
     }
     for (var i = 0; i <= words.length - 1; i++) {
@@ -724,12 +755,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Find max of array';
   /// String camelCase = foo.toCamelCase; // returns 'findMaxOfArray'
   /// ```
-  String get toCamelCase {
+  String? get toCamelCase {
     if (this.isBlank) {
       return this;
     }
 
-    var words = this.trim().split(RegExp(r'(\s+)'));
+    var words = this!.trim().split(RegExp(r'(\s+)'));
     var result = words[0].toLowerCase();
     for (var i = 1; i < words.length; i++) {
       result += words[i].substring(0, 1).toUpperCase() +
@@ -744,12 +775,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Hello dear friend how you doing ?';
   /// Sting titleCased = foo.toTitleCase; // returns 'Hello Dear Friend How You Doing'.
   /// ```
-  String get toTitleCase {
+  String? get toTitleCase {
     if (this.isBlank) {
       return this;
     }
 
-    var words = this.trim().toLowerCase().split(' ');
+    var words = this!.trim().toLowerCase().split(' ');
     for (var i = 0; i < words.length; i++) {
       words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
     }
@@ -771,7 +802,7 @@ extension MiscExtensionsNonNullable on String {
       return [];
     }
 
-    return this.split('');
+    return this!.split('');
   }
 
   /// Converts a `String` to a numeric value if possible.
@@ -792,7 +823,7 @@ extension MiscExtensionsNonNullable on String {
       return null;
     }
 
-    return num.tryParse(this);
+    return num.tryParse(this!);
   }
 
   /// Converts a `String` to`int` if possible.
@@ -817,7 +848,7 @@ extension MiscExtensionsNonNullable on String {
       return null;
     }
 
-    return int.tryParse(this) ?? double.tryParse(this)?.floor();
+    return int.tryParse(this!) ?? double.tryParse(this!)?.floor();
   }
 
   /// Converts a `String` to`double` if possible.
@@ -838,7 +869,7 @@ extension MiscExtensionsNonNullable on String {
       return null;
     }
 
-    return double.tryParse(this);
+    return double.tryParse(this!);
   }
 
   /// Properly upper cases Greek letters removing their tones.
@@ -848,11 +879,11 @@ extension MiscExtensionsNonNullable on String {
   /// String greek = 'Τι κάνεις πώς τα περνάς φίλτατέ μου';
   /// String greekUpper = greek.toGreekUpperCase(); // returns 'ΤΙ ΚΑΝΕΙΣ ΠΩΣ ΤΑ ΠΕΡΝΑΣ ΦΙΛΤΑΤΕ ΜΟΥ'
   /// ```
-  String toGreekUpperCase() {
+  String? toGreekUpperCase() {
     if (this.isBlank) {
       return this;
     }
-    return this.toUpperCase().replaceAllMapped(RegExp(r'[ΆΈΉΊΎΏΌ]'), (match) {
+    return this!.toUpperCase().replaceAllMapped(RegExp(r'[ΆΈΉΊΎΏΌ]'), (match) {
       switch (match.group(0)) {
         case 'Ά':
           return 'Α';
@@ -869,7 +900,7 @@ extension MiscExtensionsNonNullable on String {
         case 'Ό':
           return 'Ο';
         default:
-          return match.group(0) ?? this.toUpperCase();
+          return match.group(0) ?? this!.toUpperCase();
       }
     });
   }
@@ -881,11 +912,11 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Αριστοτέλης';
   /// String fooReplaced = foo.replaceGreek; // returns 'aristotelis'
   /// ```
-  String get replaceGreek {
+  String? get replaceGreek {
     if (this.isBlank) return this;
     var normalizedWord = '';
-    for (var i = 0; i < this.length; i++) {
-      var character = this[i];
+    for (var i = 0; i < this!.length; i++) {
+      var character = this![i];
       if (StringHelpers.greekToLatin.containsKey(character)) {
         normalizedWord += StringHelpers.greekToLatin[character]!;
       } else {
@@ -902,18 +933,18 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'hello';
   /// String replaced = foo.replaceAtIndex(index:2,replacement:''); // returns 'helo';
   /// ```
-  String replaceAtIndex({required int index, required String replacement}) {
+  String? replaceAtIndex({required int index, required String replacement}) {
     if (this.isBlank) {
       return this;
     }
-    if (index > this.length) {
+    if (index > this!.length) {
       return this;
     }
     if (index < 0) {
       return this;
     }
 
-    return '${this.substring(0, index)}$replacement${this.substring(index + 1, this.length)}';
+    return '${this!.substring(0, index)}$replacement${this!.substring(index + 1, this!.length)}';
   }
 
   /// Given a pattern returns the starting indices of all occurrences of the [pattern] in the `String`.
@@ -931,9 +962,9 @@ extension MiscExtensionsNonNullable on String {
     // ignore: omit_local_variable_types
     List<int> occurrences = [];
     // How many times the pattern can fit the text provided
-    var fitCount = (this.length / pattern.length).truncate().toInt();
+    var fitCount = (this!.length / pattern.length).truncate().toInt();
 
-    if (fitCount > this.length) {
+    if (fitCount > this!.length) {
       return [];
     }
     if (fitCount == 1) {
@@ -943,11 +974,11 @@ extension MiscExtensionsNonNullable on String {
       return [];
     }
 
-    for (var i = 0; i <= this.length; i++) {
-      if (i + pattern.length > this.length) {
+    for (var i = 0; i <= this!.length; i++) {
+      if (i + pattern.length > this!.length) {
         return occurrences;
       }
-      if (this.substring(i, i + pattern.length) == pattern) {
+      if (this!.substring(i, i + pattern.length) == pattern) {
         occurrences.add(i);
       }
     }
@@ -962,14 +993,14 @@ extension MiscExtensionsNonNullable on String {
   /// String html = '<script>Hacky hacky.</script> <p>Here is some text. <span class="bold">This is bold. </span></p>';
   /// String stripped = foo.stripHtml; // returns 'Hacky hacky. Here is some text. This is bold.';
   /// ```
-  String get stripHtml {
+  String? get stripHtml {
     if (this.isBlank) {
       return this;
     }
 
     // ignore: unnecessary_raw_strings
     var regex = RegExp(r'<[^>]*>');
-    return this.replaceAll(regex, '');
+    return this!.replaceAll(regex, '');
   }
 
   /// If the provided `String` is empty do something.
@@ -979,8 +1010,41 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '';
   /// foo.ifEmpty(()=>print('String is empty'));
   /// ```
-  String ifEmpty(Function act) {
-    return this.trim().isEmpty ? act() : this;
+  String? ifEmpty(Function act) {
+    if (this == null) {
+      return null;
+    }
+
+    return this!.trim().isEmpty ? act() : this;
+  }
+
+  /// If the provided `String` is `null` do something.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String foo = ''
+  /// foo.ifEmpty(()=>print('String is null'));
+  /// ```
+  String ifNull(Function act) {
+    if (this != null) {
+      return this!;
+    }
+
+    return act();
+  }
+
+  /// Provide default value if the `String` is `null`.
+  ///
+  /// ### Example
+  /// ```dart
+  /// String? foo = null;
+  /// foo.ifNull('dont be null'); // returns 'dont be null'
+  /// ```
+  String? defaultValue(String defaultValue) {
+    if (this != null) {
+      return this;
+    }
+    return defaultValue;
   }
 
   /// Repeats the `String` [count] times.
@@ -990,13 +1054,13 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'foo';
   /// String fooRepeated = foo.repeat(5); // 'foofoofoofoofoo'
   /// ```
-  String repeat(int count) {
+  String? repeat(int count) {
     if (this.isBlank || count <= 0) {
       return this;
     }
-    var repeated = this;
+    var repeated = this!;
     for (var i = 0; i < count - 1; i++) {
-      repeated += this;
+      repeated += this!;
     }
     return repeated;
   }
@@ -1008,17 +1072,17 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'foofoofoofoofoo';
   /// String fooSqueezed = foo.squeeze('o'); // 'fofofofofo';
   /// ```
-  String squeeze(String char) {
+  String? squeeze(String char) {
     if (this.isBlank) {
       return this;
     }
 
     var sb = '';
-    for (var i = 0; i < this.length; i++) {
+    for (var i = 0; i < this!.length; i++) {
       if (i == 0 ||
-          this[i - 1] != this[i] ||
-          (this[i - 1] == this[i] && this[i] != char)) {
-        sb += this[i];
+          this![i - 1] != this![i] ||
+          (this![i - 1] == this![i] && this![i] != char)) {
+        sb += this![i];
       }
     }
     return sb;
@@ -1040,10 +1104,10 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    if (this.length > 1) {
-      var b = this[0].toLowerCase();
-      for (var i = 1; i < this.length; i++) {
-        var c = this[i].toLowerCase();
+    if (this!.length > 1) {
+      var b = this![0].toLowerCase();
+      for (var i = 1; i < this!.length; i++) {
+        var c = this![i].toLowerCase();
         if (c != b) {
           return false;
         }
@@ -1059,7 +1123,7 @@ extension MiscExtensionsNonNullable on String {
   /// String foo1 = 'esentis';
   /// String shuffled = foo.shuffle; // 'tsniees'
   /// ```
-  String get shuffle {
+  String? get shuffle {
     if (this.isBlank) {
       return this;
     }
@@ -1078,8 +1142,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo1 = 'esentis';
   /// int dist = foo.getLevenshtein('esentis2'); // 1
   /// ```
-  int getLevenshtein(String b) {
-    var a = this.toLowerCase();
+  int? getLevenshtein(String b) {
+    if (this.isBlank) {
+      return null;
+    }
+
+    var a = this!.toLowerCase();
     b = b.toLowerCase();
 
     List<int> costs = List<int>.filled(b.length + 1, 0);
@@ -1115,7 +1183,7 @@ extension MiscExtensionsNonNullable on String {
   ///var mask3 = 'Hello ####### you are from ######';
   ///var masked3 = string3.formatWithMask(mask3); // returns 'Hello esentis you are from greece'
   /// ```
-  String formatWithMask(String mask, {String specialChar = '#'}) {
+  String? formatWithMask(String mask, {String specialChar = '#'}) {
     if (this.isBlank) {
       return this;
     }
@@ -1126,8 +1194,8 @@ extension MiscExtensionsNonNullable on String {
     var out = '';
     for (var m in maskChars) {
       if (m == specialChar) {
-        if (index < this.length) {
-          out += this[index];
+        if (index < this!.length) {
+          out += this![index];
           index++;
         }
       } else {
@@ -1144,7 +1212,7 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'esentis'
   /// String newFoo = foo.removeFirst(3) // 'ntis';
   /// ```
-  String removeFirst(int n) {
+  String? removeFirst(int n) {
     if (this.isBlank) {
       return this;
     }
@@ -1152,10 +1220,10 @@ extension MiscExtensionsNonNullable on String {
     if (n <= 0) {
       return this;
     }
-    if (n >= this.length) {
+    if (n >= this!.length) {
       return '';
     }
-    return this.substring(n, this.length);
+    return this!.substring(n, this!.length);
   }
 
   /// Removes the last [n] characters from the `String`.
@@ -1165,15 +1233,15 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'esentis';
   /// String newFoo = foo.removeLast(3); // 'esen';
   /// ```
-  String removeLast(int n) {
+  String? removeLast(int n) {
     if (this.isBlank || n <= 0) {
       return this;
     }
 
-    if (n >= this.length) {
+    if (n >= this!.length) {
       return '';
     }
-    return this.substring(0, this.length - n);
+    return this!.substring(0, this!.length - n);
   }
 
   /// Trims the `String` to have maximum [n] characters.
@@ -1184,7 +1252,7 @@ extension MiscExtensionsNonNullable on String {
   /// String newFoo = foo.maxChars(3); // 'esen';
   /// ```
   String? maxChars(int n) {
-    if (this.isBlank || n >= this.length) {
+    if (this.isBlank || n >= this!.length) {
       return this;
     }
 
@@ -1192,7 +1260,7 @@ extension MiscExtensionsNonNullable on String {
       return '';
     }
 
-    return this.substring(0, n);
+    return this!.substring(0, n);
   }
 
   /// Reverses slash in the `String`, by providing [direction],
@@ -1209,16 +1277,16 @@ extension MiscExtensionsNonNullable on String {
   /// String foo2 = 'C:\\Documents\\user\\test';
   /// String revFoo2 = foo1.reverseSlash(1); // returns 'C:/Documents/user/test'
   /// ```
-  String reverseSlash(int direction) {
+  String? reverseSlash(int direction) {
     if (this.isBlank) {
       return this;
     }
 
     switch (direction) {
       case 0:
-        return this.replaceAll('/', '\\');
+        return this!.replaceAll('/', '\\');
       case 1:
-        return this.replaceAll('\\', '/');
+        return this!.replaceAll('\\', '/');
       default:
         return this;
     }
@@ -1232,21 +1300,21 @@ extension MiscExtensionsNonNullable on String {
   /// String foo1 = 'esentis';
   /// String char1 = foo1.charAt(0); // returns 'e'
   /// String char2 = foo1.charAt(4); // returns 'n'
-  /// String? char3 = foo1.charAt(-20); // returns ''
-  /// String? char4 = foo1.charAt(20); // returns ''
+  /// String? char3 = foo1.charAt(-20); // returns null
+  /// String? char4 = foo1.charAt(20); // returns null
   /// ```
-  String charAt(int index) {
+  String? charAt(int index) {
     if (this.isBlank) {
       return this;
     }
 
-    if (index > this.length) {
-      return '';
+    if (index > this!.length) {
+      return null;
     }
     if (index < 0) {
-      return '';
+      return null;
     }
-    return this.split('')[index];
+    return this!.split('')[index];
   }
 
   /// Appends a [suffix] to the `String`.
@@ -1262,7 +1330,7 @@ extension MiscExtensionsNonNullable on String {
       return suffix;
     }
 
-    return this + suffix;
+    return this! + suffix;
   }
 
   /// Prepends a [prefix] to the `String`.
@@ -1278,7 +1346,7 @@ extension MiscExtensionsNonNullable on String {
       return prefix;
     }
 
-    return prefix + this;
+    return prefix + this!;
   }
 
   /// Tries to format the current `String` to price amount.
@@ -1291,7 +1359,7 @@ extension MiscExtensionsNonNullable on String {
   /// String price = '1234567';
   /// String formattedPrice = foo1.toPriceAmount(currencySymbol: '€'); // returns '12.345,67 €'
   /// ```
-  String toPriceAmount({String? currencySymbol}) {
+  String? toPriceAmount({String? currencySymbol}) {
     if (this.isBlank) {
       return this;
     }
@@ -1300,12 +1368,12 @@ extension MiscExtensionsNonNullable on String {
       var f = NumberFormat.currency(locale: 'el_GR');
 
       return f
-          .format(double.tryParse(this.replaceAll(',', '.')))
+          .format(double.tryParse(this!.replaceAll(',', '.')))
           .replaceAll('EUR', '')
           .trim()
           .append(currencySymbol == null ? '' : ' $currencySymbol');
     } catch (e) {
-      return '';
+      return null;
     }
   }
 
@@ -1324,15 +1392,15 @@ extension MiscExtensionsNonNullable on String {
   /// String day = date.getDayFromDate(); // returns 'Saturday'
   /// String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
   /// ```
-  String getDayFromDate({String locale = 'en'}) {
+  String? getDayFromDate({String locale = 'en'}) {
     initializeDateFormatting(locale);
     if (this.isBlank) {
       return this;
     }
 
-    var date = DateTime.tryParse(this);
+    var date = DateTime.tryParse(this!);
     if (date == null) {
-      return '';
+      return null;
     }
     return DateFormat('EEEE', locale).format(date).toString();
   }
@@ -1352,15 +1420,15 @@ extension MiscExtensionsNonNullable on String {
   /// String month = date.getMonthFromDate(); // returns 'August'
   /// String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Αυγούστου'
   /// ```
-  String getMonthFromDate({String locale = 'en'}) {
+  String? getMonthFromDate({String locale = 'en'}) {
     initializeDateFormatting(locale);
     if (this.isBlank) {
       return this;
     }
 
-    var date = DateTime.tryParse(this);
+    var date = DateTime.tryParse(this!);
     if (date == null) {
-      return '';
+      return null;
     }
     return DateFormat('MMMM', locale).format(date).toString();
   }
@@ -1380,15 +1448,15 @@ extension MiscExtensionsNonNullable on String {
   /// String day = date.firstDayOfDate(); // returns 'Friday'
   /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
   /// ```
-  String firstDayOfMonth({String locale = 'en'}) {
+  String? firstDayOfMonth({String locale = 'en'}) {
     initializeDateFormatting(locale);
     if (this.isBlank) {
       return this;
     }
 
-    var date = DateTime.tryParse(this);
+    var date = DateTime.tryParse(this!);
     if (date == null) {
-      return '';
+      return null;
     }
     return DateFormat('EEEE', locale)
         .format(DateTime(date.year, date.month, 1))
@@ -1416,7 +1484,7 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    var date = DateTime.tryParse(this);
+    var date = DateTime.tryParse(this!);
     if (date == null) {
       return null;
     }
@@ -1444,11 +1512,11 @@ extension MiscExtensionsNonNullable on String {
   String get greekTimeLiteralToEnglish {
     // If the String does not contain any Greek characters, return it as is.
     if (!this.containsAnyGreekCharacter) {
-      return this;
+      return this!;
     }
 
     // Translate all the Greek letters to the equivalent English ones.
-    String onlyEnglishCharacters = this.replaceGreek.trim();
+    String onlyEnglishCharacters = this.replaceGreek!.trim();
 
     // Transform to the equivalent English time literals.
     onlyEnglishCharacters =
@@ -1470,17 +1538,17 @@ extension MiscExtensionsNonNullable on String {
   ///  String s = 'peanutbutter';
   ///  String foo = s.leftOf('butter'); // returns 'peanut'
   /// ```
-  String leftOf(String char) {
+  String? leftOf(String char) {
     if (this.isBlank) {
       return this;
     }
 
-    int index = this.indexOf(char);
+    int index = this!.indexOf(char);
     if (index == -1) {
-      throw Exception('Character not found');
+      return null;
     }
 
-    return this.substring(0, index);
+    return this!.substring(0, index);
   }
 
   /// Returns the right side of the `String` starting from [char].
@@ -1493,17 +1561,17 @@ extension MiscExtensionsNonNullable on String {
   ///  String s = 'peanutbutter';
   ///  String foo = s.rightOf('peanut'); // returns 'butter'
   /// ```
-  String rightOf(String char) {
+  String? rightOf(String char) {
     if (this.isBlank) {
       return this;
     }
 
-    int index = this.indexOf(char);
+    int index = this!.indexOf(char);
 
     if (index == -1) {
-      return '';
+      return null;
     }
-    return this.substring(index + char.length, this.length);
+    return this!.substring(index + char.length, this!.length);
   }
 
   /// Truncates the `String` when more than `length` characters exist.
@@ -1518,12 +1586,12 @@ extension MiscExtensionsNonNullable on String {
   /// String f = 'congratulations';
   /// String truncated = f.truncate(3); // Returns 'con...'
   /// ```
-  String truncate(int length) {
-    if (this.isBlank || length <= 0 || length >= this.length) {
+  String? truncate(int length) {
+    if (this.isBlank || length <= 0 || length >= this!.length) {
       return this;
     }
 
-    return '${this.substring(0, length)}...';
+    return '${this!.substring(0, length)}...';
   }
 
   /// Truncates a long `String` in the middle while retaining the beginning and the end.
@@ -1538,14 +1606,14 @@ extension MiscExtensionsNonNullable on String {
   /// String f = 'congratulations';
   /// String truncated = f.truncateMiddle(5); // Returns 'con...ns'
   /// ```
-  String truncateMiddle(int maxChars) {
-    if (this.isBlank || maxChars <= 0 || maxChars > this.length) {
+  String? truncateMiddle(int maxChars) {
+    if (this.isBlank || maxChars <= 0 || maxChars > this!.length) {
       return this;
     }
 
     int leftChars = (maxChars / 2).ceil();
     int rightChars = maxChars - leftChars;
-    return '${this.first(n: leftChars)}...${this.last(n: rightChars)}';
+    return '${this!.first(n: leftChars)}...${this!.last(n: rightChars)}';
   }
 
   /// Quotes the `String` adding "" at the start & at the end.
@@ -1558,12 +1626,12 @@ extension MiscExtensionsNonNullable on String {
   /// String text = '"""Is this real"';
   /// String quote = text.quote; // "Is this real"
   /// ```
-  String get quote {
+  String? get quote {
     if (this.isBlank) {
       return this;
     }
 
-    String normalizedString = this.replaceAll('"', '');
+    String normalizedString = this!.replaceAll('"', '');
 
     return normalizedString.append('"').prepend('"');
   }
@@ -1576,12 +1644,12 @@ extension MiscExtensionsNonNullable on String {
   /// String text = '    esentis    thinks   ';
   /// String trimmed = text.trimAll ; // returns 'esentis thinks'
   /// ```
-  String get trimAll {
+  String? get trimAll {
     if (this.isBlank) {
       return this;
     }
 
-    return this.trim().replaceAll(RegExp(' +'), ' ');
+    return this!.trim().replaceAll(RegExp(' +'), ' ');
   }
 
   /// Checks the `String` and maps the value to a `bool` if possible.
@@ -1592,18 +1660,18 @@ extension MiscExtensionsNonNullable on String {
   /// String text = 'yes';
   /// bool? textBool = text.toBool ; // returns true
   /// ```
-  bool get toBool {
+  bool? get toBool {
     if (this.isBlank) {
-      throw Exception("Can't convert empty string to bool");
+      return null;
     }
 
-    if (this.toLowerCase() == 'true' || this.toLowerCase() == 'yes') {
+    if (this?.toLowerCase() == 'true' || this?.toLowerCase() == 'yes') {
       return true;
     }
-    if (this.toLowerCase() == 'false' || this.toLowerCase() == 'no') {
+    if (this?.toLowerCase() == 'false' || this?.toLowerCase() == 'no') {
       return false;
     }
-    throw Exception("Can't convert string to bool");
+    return null;
   }
 
   /// Returns the `String` after a specific character.
@@ -1618,18 +1686,28 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.after('brother'); // returns ' what a day today'
   /// ```
-  String after(String pattern, {bool defaultToBlank = true}) {
-    if (this.isEmpty) {
+  String? after(String pattern, {bool defaultToBlank = true}) {
+    if (this.isBlank) {
       return this;
     }
 
-    int index = this.indexOf(pattern);
-
-    if (index == -1) {
+    if (!this!.contains(pattern)) {
       return defaultToBlank ? '' : this;
     }
 
-    return this.substring(index + pattern.length);
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return defaultToBlank ? '' : this;
+    }
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
+
+    if (patternWords.last.length == 0) {
+      return defaultToBlank ? '' : this;
+    }
+
+    return this!.substring(
+        indexOfLastPatternWord + patternWords.last.length, this!.length);
   }
 
   /// Returns the `String` before a specific character
@@ -1644,18 +1722,30 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'brother what a day today';
   /// String beforeString = test.before('brother'); // returns 'hello '
   /// ```
-  String before(String pattern, {bool defaultToBlank = true}) {
-    if (this.isEmpty) {
+  String? before(String pattern, {bool defaultToBlank = true}) {
+    if (this.isBlank) {
       return this;
     }
 
-    int index = this.indexOf(pattern);
-
-    if (index == -1) {
+    if (!this!.contains(pattern)) {
       return defaultToBlank ? '' : this;
     }
 
-    return this.substring(0, index);
+    List<String> patternWords = pattern.split(' ');
+
+    if (patternWords.isEmpty) {
+      return defaultToBlank ? '' : this;
+    }
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
+
+    if (patternWords.last.length == 0) {
+      return defaultToBlank ? '' : this;
+    }
+
+    return this!.substring(
+      0,
+      indexOfFirstPatternWord,
+    );
   }
 
   /// The Jaro distance is a measure of edit distance between two strings
@@ -1676,7 +1766,7 @@ extension MiscExtensionsNonNullable on String {
       return 1;
     }
 
-    final int sLen = this.length;
+    final int sLen = this!.length;
     final int tLen = t.length;
 
     if (sLen == 0 && tLen == 0) return 1;
@@ -1695,7 +1785,7 @@ extension MiscExtensionsNonNullable on String {
 
       for (int j = start; j < end; j++) {
         if (tMatches[j]) continue;
-        if (this.charAt(i) != t.charAt(j)) continue;
+        if (this!.charAt(i) != t.charAt(j)) continue;
         sMatches[i] = true;
         tMatches[j] = true;
         matches++;
@@ -1711,7 +1801,7 @@ extension MiscExtensionsNonNullable on String {
       while (!tMatches[k]) {
         k++;
       }
-      if (this.charAt(i) != t.charAt(k)) transpositions++;
+      if (this!.charAt(i) != t.charAt(k)) transpositions++;
       k++;
     }
 
@@ -1722,7 +1812,7 @@ extension MiscExtensionsNonNullable on String {
   }
 
   /// Checks if the `String` is Blank (null, empty or only white spaces).
-  bool get isBlank => this.trim().isEmpty;
+  bool get isBlank => this?.trim().isEmpty ?? true;
 
   /// Checks if the `String` is not blank (null, empty or only white spaces).
   bool get isNotBlank => isBlank == false;
@@ -1735,7 +1825,7 @@ extension MiscExtensionsNonNullable on String {
   /// String t = 'OK'.emptyIf("OK"); // returns "";
   /// String f = 'NO'.emptyIf("YES"); // returns "NO";
   /// ```
-  String emptyIf(String? comparisonString) =>
+  String? emptyIf(String? comparisonString) =>
       asIf((s) => s == comparisonString, "", this);
 
   /// Return null if [this] equals [comparisonString]. Otherwise return [this].
@@ -1750,7 +1840,7 @@ extension MiscExtensionsNonNullable on String {
       asIf((s) => s == comparisonString, null, this);
 
   /// Return [this] if not blank. Otherwise return [newString].
-  String ifBlank(String newString) =>
+  String? ifBlank(String? newString) =>
       asIf((s) => s.isNotBlank, this, newString);
 
   /// Compares [this] using [comparison] and returns [trueString] if true, otherwise return [falseString].
@@ -1760,9 +1850,9 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = 'OK'.asIf((s) => s == "OK", "is OK", "is not OK"); // returns "is OK";
   /// ```
-  String asIf(bool Function(String) comparison, String? trueString,
-          String falseString) =>
-      comparison(this) ? (trueString ?? '') : falseString;
+  String? asIf(bool Function(String?) comparison, String? trueString,
+          String? falseString) =>
+      comparison(this) ? trueString : falseString;
 
   /// Wraps the `String` between two strings. If [before] is a wrap char and [after] is omitted, the method resolve [after] using [getOppositeChar].
   ///
@@ -1772,14 +1862,14 @@ extension MiscExtensionsNonNullable on String {
   /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB";
   /// ```
   String wrap(String? before, {String? after}) {
-    before = before?.ifBlank("");
-    if (after?.isBlank == true) {
-      if (before?.isCloseWrapChar() == true) {
-        before = before?.getOppositeChar();
+    before = before.ifBlank("");
+    if (after.isBlank) {
+      if (before.isCloseWrapChar()) {
+        before = before.getOppositeChar();
       }
-      after = before?.getOppositeChar();
+      after = before.getOppositeChar();
     }
-    return "$before${this}${after?.ifBlank(before ?? "") ?? before}";
+    return "$before${this as String}${after.ifBlank(before)}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
@@ -1790,7 +1880,7 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '(';
   /// String oppositeFood = foo.getOppositeChar(); // returns ')';
   /// ```
-  String getOppositeChar() {
+  String? getOppositeChar() {
     switch (this) {
       case "(":
         return ")";
@@ -1831,7 +1921,8 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// bool isOpenWrap = "(".isOpenWrapChar(); // returns true;
   /// ```
-  bool isOpenWrapChar() => StringHelpers.openWrappers.contains(this);
+  bool isOpenWrapChar() =>
+      this.isNotNull && StringHelpers.openWrappers.contains(this);
 
   /// Check if the `String` is a close wrap char: `>`, `}`, `]`, `"`, `'`.
   ///
@@ -1840,7 +1931,8 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// bool isCloseWrap = ")".isCloseWrapChar(); // returns true;
   /// ```
-  bool isCloseWrapChar() => StringHelpers.closeWrappers.contains(this);
+  bool isCloseWrapChar() =>
+      this.isNotNull && StringHelpers.closeWrappers.contains(this);
 
   /// Continuously removes from the beginning of the `String` any match in [patterns].
   ///
@@ -1849,12 +1941,12 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = "esentis".removeFirstAny(["s", "ng"]);// returns "esentis";
   /// ```
-  String removeFirstAny(List<String?> patterns) {
+  String? removeFirstAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
         if (pattern != null && pattern.isNotEmpty) {
-          while (from.startsWith(pattern)) {
+          while (from!.startsWith(pattern)) {
             from = from.removeFirst(pattern.length);
           }
         }
@@ -1870,12 +1962,12 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = "esentisfs12".removeLastAny(["12","s","ng","f",]); // returns "esentis";
   /// ```
-  String removeLastAny(List<String?> patterns) {
+  String? removeLastAny(List<String?> patterns) {
     var from = this;
     if (from.isNotBlank) {
       for (var pattern in patterns) {
         if (pattern != null && pattern.isNotEmpty) {
-          while (from.endsWith(pattern)) {
+          while (from!.endsWith(pattern)) {
             from = from.removeLast(pattern.length);
           }
         }
@@ -1885,7 +1977,7 @@ extension MiscExtensionsNonNullable on String {
   }
 
   /// Continuously removes from the beginning & the end of the `String`, any match in [patterns].
-  String removeFirstAndLastAny(List<String?> patterns) =>
+  String? removeFirstAndLastAny(List<String?> patterns) =>
       removeFirstAny(patterns).removeLastAny(patterns);
 
   /// Removes the [pattern] from the end of the `String`.
@@ -1895,7 +1987,7 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = "coolboy".removeLastEqual("y"); // returns "coolbo";
   /// ```
-  String removeLastEqual(String? pattern) => removeLastAny([pattern]);
+  String? removeLastEqual(String? pattern) => removeLastAny([pattern]);
 
   /// Removes any [pattern] match from the beginning of the `String`.
   ///
@@ -1904,7 +1996,7 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String s = "djing".removeFirstEqual("dj"); // returns "ing"
   /// ```
-  String removeFirstEqual(String? pattern) => removeFirstAny([pattern]);
+  String? removeFirstEqual(String? pattern) => removeFirstAny([pattern]);
 
   /// Removes any [pattern] match from the beginning & the end of the `String`.
   ///
@@ -1913,7 +2005,7 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String edited = "abracadabra".removeFirstAndLastEqual("a"); // returns "bracadabr";
   /// ```
-  String removeFirstAndLastEqual(String? pattern) =>
+  String? removeFirstAndLastEqual(String? pattern) =>
       removeFirstEqual(pattern).removeLastEqual(pattern);
 
   /// Removes everything in the `String` after the first match of the [pattern].
@@ -1923,12 +2015,12 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.removeAfter('brother'); // returns 'hello ';
   /// ```
-  String removeAfter(String pattern) {
+  String? removeAfter(String pattern) {
     if (this.isBlank) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (!this!.contains(pattern)) {
       return '';
     }
 
@@ -1937,13 +2029,13 @@ extension MiscExtensionsNonNullable on String {
     if (patternWords.isEmpty) {
       return '';
     }
-    int indexOfLastPatternWord = this.indexOf(patternWords.last);
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
 
     if (patternWords.last.length == 0) {
       return '';
     }
 
-    return this.substring(0, indexOfLastPatternWord);
+    return this!.substring(0, indexOfLastPatternWord);
   }
 
   /// Removes everything in the `String` before the match of the [pattern].
@@ -1954,12 +2046,12 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.removeBefore('brother'); // returns 'brother what a day today';
   /// ```
-  String removeBefore(String pattern) {
+  String? removeBefore(String pattern) {
     if (this.isBlank) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (!this!.contains(pattern)) {
       return '';
     }
 
@@ -1968,15 +2060,15 @@ extension MiscExtensionsNonNullable on String {
     if (patternWords.isEmpty) {
       return '';
     }
-    int indexOfFirstPatternWord = this.indexOf(patternWords.first);
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
 
     if (patternWords.last.length == 0) {
       return '';
     }
 
-    return this.substring(
+    return this!.substring(
       indexOfFirstPatternWord + 1,
-      this.length,
+      this!.length,
     );
   }
 
@@ -1990,12 +2082,12 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.addAfter('brother', ' sam '); // returns 'hello brother sam what a day today ';
   /// ```
-  String addAfter(String pattern, String addition) {
+  String? addAfter(String pattern, String addition) {
     if (this.isBlank) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (!this!.contains(pattern)) {
       return this;
     }
 
@@ -2004,15 +2096,15 @@ extension MiscExtensionsNonNullable on String {
     if (patternWords.isEmpty) {
       return '';
     }
-    int indexOfLastPatternWord = this.indexOf(patternWords.last);
+    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
 
     if (patternWords.last.length == 0) {
       return '';
     }
 
-    return this.substring(0, indexOfLastPatternWord + 1) +
+    return this!.substring(0, indexOfLastPatternWord + 1) +
         addition +
-        this.substring(indexOfLastPatternWord + 1, this.length);
+        this!.substring(indexOfLastPatternWord + 1, this!.length);
   }
 
   /// Adds a `String` before the first match of the [pattern]. The [pattern] should not be `null`.
@@ -2024,12 +2116,12 @@ extension MiscExtensionsNonNullable on String {
   /// String test = 'hello brother what a day today';
   /// String afterString = test.addBefore('brother', 'big '); // returns 'hello big brother what a day today';
   /// ```
-  String addBefore(String pattern, String adition) {
+  String? addBefore(String pattern, String adition) {
     if (this.isBlank) {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (!this!.contains(pattern)) {
       return this;
     }
 
@@ -2038,17 +2130,17 @@ extension MiscExtensionsNonNullable on String {
     if (patternWords.isEmpty) {
       return '';
     }
-    int indexOfFirstPatternWord = this.indexOf(patternWords.first);
+    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
 
     if (patternWords.last.length == 0) {
       return '';
     }
 
-    return this.substring(0, indexOfFirstPatternWord) +
+    return this!.substring(0, indexOfFirstPatternWord) +
         adition +
-        this.substring(
+        this!.substring(
           indexOfFirstPatternWord,
-          this.length,
+          this!.length,
         );
   }
 
@@ -2061,9 +2153,8 @@ extension MiscExtensionsNonNullable on String {
   /// ```
   bool containsAny(List<String?> patterns) {
     if (this.isNotBlank) {
-      for (String? item
-          in patterns.where((element) => element?.isNotBlank == true)) {
-        if (this.contains(item!)) {
+      for (String? item in patterns.where((element) => element.isNotBlank)) {
+        if (this!.contains(item!)) {
           return true;
         }
       }
@@ -2079,9 +2170,8 @@ extension MiscExtensionsNonNullable on String {
   /// bool contains = "abracadabra".containsAll(["abra", "cadabra"]; // returns true;
   /// ```
   bool containsAll(List<String?> patterns) {
-    for (String? item
-        in patterns.where((element) => element?.isNotBlank == true)) {
-      if (this.isBlank || this.contains(item!) == false) {
+    for (String? item in patterns.where((element) => element.isNotBlank)) {
+      if (this.isBlank || this!.contains(item!) == false) {
         return false;
       }
     }
@@ -2095,10 +2185,10 @@ extension MiscExtensionsNonNullable on String {
   /// ```dart
   /// String md5 = '123456'.md5; // returns "e10adc3949ba59abbe56e057f20f883e";
   /// ```
-  String get md5 {
+  String? get md5 {
     String? data = this;
     if (data.isNotBlank) {
-      var content = const Utf8Encoder().convert(data);
+      var content = const Utf8Encoder().convert(data!);
       var md5 = crypto.md5;
       var digest = md5.convert(content);
       data = hex.encode(digest.bytes);
@@ -2116,7 +2206,7 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '24117248';
   /// String formatted = foo.formatFileSize; // returns '23 MB';
   /// ```
-  String get formatFileSize {
+  String? get formatFileSize {
     if (this.isBlank) {
       return this;
     }
@@ -2146,11 +2236,11 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'esentis';
   /// String leet = foo.toLeet ; // returns '€5£п+!$';
   /// ```
-  String get toLeet {
+  String? get toLeet {
     if (this.isBlank) {
       return this;
     }
-    final letters = this.split('');
+    final letters = this!.split('');
 
     final leetLetters = [];
     letters.forEach((e) {
@@ -2171,12 +2261,16 @@ extension MiscExtensionsNonNullable on String {
   /// String cc = '5104 4912 8031 9406';
   /// bool isCreditCard = cc.isCreditCard ; returns true;
   /// ```
-  bool get isCreditCard {
+  bool? get isCreditCard {
     if (this.isBlank) {
       return false;
     }
 
-    String trimmed = this.removeWhiteSpace;
+    String trimmed = this!.removeWhiteSpace;
+
+    if (trimmed.isEmpty) {
+      return false;
+    }
 
     int sum = 0;
     bool alternate = false;
@@ -2205,11 +2299,11 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = '   Hel l o W   orld';
   /// String striped = foo.removeWhiteSpace; // returns 'HelloWorld';
   /// ```
-  String get removeWhiteSpace {
+  String? get removeWhiteSpace {
     if (this.isBlank) {
       return this;
     }
-    return this.replaceAll(RegExp(r'\s+'), '');
+    return this!.replaceAll(RegExp(r'\s+'), '');
   }
 
   /// Checks whether the `String` is a valid IBAN.
@@ -2230,7 +2324,7 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    if (this.length <= 2) {
+    if (this!.length <= 2) {
       return false;
     }
     final countryCode = this.first(n: 2);
@@ -2239,13 +2333,13 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    if (StringHelpers.ibanLen[countryCode] != this.length) {
+    if (StringHelpers.ibanLen[countryCode] != this!.length) {
       return false;
     }
 
     var regex = RegExp(
         r'(^[a-zA-Z]{2}(?:0[2-9]|[1-8][0-9]|9[0-8])[a-zA-Z0-9]{4}[0-9]{6}[a-zA-Z0-9]{0,20}$)');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Checks whether the provided `String` is a valid Greek ID number.
@@ -2268,12 +2362,12 @@ extension MiscExtensionsNonNullable on String {
       return false;
     }
 
-    if (this.length != 8) {
+    if (this!.length != 8) {
       return false;
     }
 
-    final List<String> firstTwoLetters = this.first(n: 2).split('');
-    final String restLetters = this.last(n: 6);
+    final List<String> firstTwoLetters = this.first(n: 2)!.split('');
+    final String restLetters = this!.last(n: 6);
 
     // Besides the first two letters, the rest of the ID should be a 6digit number.
     if (!restLetters.isNumber) {
@@ -2290,19 +2384,19 @@ extension MiscExtensionsNonNullable on String {
   }
 
   /// Checks whether the `String` is in lowercase.
-  bool get isLowerCase {
+  bool? get isLowerCase {
     if (this.isBlank) {
       return false;
     }
-    return this == this.toLowerCase();
+    return this == this!.toLowerCase();
   }
 
   /// Checks whether the `String` is in uppercase.
-  bool get isUpperCase {
+  bool? get isUpperCase {
     if (this.isBlank) {
       return false;
     }
-    return this == this.toGreekUpperCase();
+    return this == this!.toGreekUpperCase();
   }
 
   /// Swaps the case in the `String`.
@@ -2313,12 +2407,12 @@ extension MiscExtensionsNonNullable on String {
   /// String foo = 'Hello World';
   /// String swapped = foo.swapCase(); // returns 'hELLO wORLD';
   /// ```
-  String swapCase() {
+  String? swapCase() {
     if (this.isBlank) {
       return this;
     }
 
-    List<String> letters = this.toArray;
+    List<String> letters = this!.toArray;
 
     String swapped = '';
 
@@ -2333,9 +2427,9 @@ extension MiscExtensionsNonNullable on String {
   }
 
   /// Checks whether the provided `String` is a valid Swift code.
-  bool get isSwiftCode {
+  bool? get isSwiftCode {
     var regex = RegExp(r'(^[A-Za-z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$)');
-    return regex.hasMatch(this);
+    return regex.hasMatch(this!);
   }
 
   /// Returns the digit count of the `String`.
@@ -2356,7 +2450,7 @@ extension MiscExtensionsNonNullable on String {
       return 0;
     }
     RegExp digitsOnly = RegExp(r'\d');
-    return digitsOnly.allMatches(this).length;
+    return digitsOnly.allMatches(this!).length;
   }
 
   /// Checks whether the `String` is a valid ASCII string.
@@ -2373,11 +2467,14 @@ extension MiscExtensionsNonNullable on String {
   /// bool isAscii = foo.isAscii; // returns false;
   /// ```
   bool get isAscii {
-    if (this.isEmpty) {
+    if (this == null) {
+      return false;
+    }
+    if (this!.isEmpty) {
       return true;
     }
     final ascii = new RegExp(r'^[\x00-\x7F]+$');
-    return ascii.hasMatch(this);
+    return ascii.hasMatch(this!);
   }
 
   /// Checks whether the `String` is an anagram of the provided `String`.
@@ -2397,7 +2494,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank || s.isBlank) {
       return false;
     }
-    final String word1 = this.removeWhiteSpace;
+    final String word1 = this!.removeWhiteSpace;
 
     final String word2 = s.removeWhiteSpace;
 
@@ -2455,7 +2552,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.toUpperCase() != this && this.toLowerCase() != this;
+    return this!.toUpperCase() != this && this!.toLowerCase() != this;
   }
 
   /// Checks whether the `String` is consisted of only unique characters.
@@ -2478,8 +2575,8 @@ extension MiscExtensionsNonNullable on String {
       return true;
     }
     final word = this;
-    final wordSplit = word.toGreekUpperCase().split('').toSet();
-    return word.length == wordSplit.length;
+    final wordSplit = word.toGreekUpperCase()!.split('').toSet();
+    return word!.length == wordSplit.length;
   }
 
   /// Returns a `Set` of the common characters between the two `String`s.
@@ -2518,7 +2615,7 @@ extension MiscExtensionsNonNullable on String {
     final Set<String> otherStringSet =
         processString(otherString).split('').toSet();
 
-    for (final letter in processString(this).split('')) {
+    for (final letter in processString(this!).split('')) {
       if (otherStringSet.contains(letter)) {
         commonLettersSet.add(letter);
       }
@@ -2563,7 +2660,7 @@ extension MiscExtensionsNonNullable on String {
           .join('');
     }
 
-    final Set<String> thisSet = processString(this).split('').toSet();
+    final Set<String> thisSet = processString(this!).split('').toSet();
     final Set<String> otherStringSet =
         processString(otherString).split('').toSet();
 
@@ -2595,7 +2692,7 @@ extension MiscExtensionsNonNullable on String {
     }
     final Map<String, int> letterCounts = {};
 
-    this.split('').forEach((letter) {
+    this!.split('').forEach((letter) {
       letterCounts[letter] = (letterCounts[letter] ?? 0) + 1;
     });
 
@@ -2626,7 +2723,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.contains(RegExp(r'\s'));
+    return this!.contains(RegExp(r'\s'));
   }
 
   /// Returns `true` if the `String` contains only letters (Latin or Greek).
@@ -2641,9 +2738,9 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    final onlyLetters = this.onlyLetters;
+    final onlyLetters = this!.onlyLetters;
 
-    return onlyLetters.length == this.length;
+    return onlyLetters.length == this!.length;
   }
 
   /// Inserts a `String` at the specified index.
@@ -2658,11 +2755,14 @@ extension MiscExtensionsNonNullable on String {
   /// print(newText); // prints 'hello! world'
   /// ```
   String insertAt(int i, String value) {
-    if (i < 0 || i > this.length) {
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    if (i < 0 || i > this!.length) {
       throw RangeError('Index out of range');
     }
-    final start = this.substring(0, i);
-    final end = this.substring(i);
+    final start = this!.substring(0, i);
+    final end = this!.substring(i);
     return start + value + end;
   }
 
@@ -2678,7 +2778,10 @@ extension MiscExtensionsNonNullable on String {
   /// print(lines); // prints ['hello', 'world']
   /// ```
   List<String> splitLines() {
-    return this.split(RegExp(r'\r?\n'));
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    return this!.split(RegExp(r'\r?\n'));
   }
 
   /// Returns a new `String` with the first occurrence of the given pattern replaced with the replacement `String`.
@@ -2691,11 +2794,14 @@ extension MiscExtensionsNonNullable on String {
   /// String s = "esentis".replaceFirst("s", "S"); // returns "eSentis";
   /// ```
   String replaceFirst(String pattern, String replacement) {
-    int index = this.indexOf(pattern);
-    if (index == -1) {
-      return this;
+    if (this == null) {
+      throw ArgumentError('String is null');
     }
-    return this.replaceRange(index, index + pattern.length, replacement);
+    int index = this!.indexOf(pattern);
+    if (index == -1) {
+      return this!;
+    }
+    return this!.replaceRange(index, index + pattern.length, replacement);
   }
 
   /// Returns a new `String` with the last occurrence of the given pattern replaced with the replacement `String`.
@@ -2708,33 +2814,13 @@ extension MiscExtensionsNonNullable on String {
   /// String s = "esentis".replaceLast("s", "S"); // returns "esentiS";
   /// ```
   String replaceLast(String pattern, String replacement) {
-    int index = this.lastIndexOf(pattern);
+    if (this == null) {
+      throw ArgumentError('String is null');
+    }
+    int index = this!.lastIndexOf(pattern);
     if (index == -1) {
-      return this;
+      return this!;
     }
-    return this.replaceRange(index, index + pattern.length, replacement);
-  }
-
-  /// Checks if this string ends with any of the provided patterns.
-  ///
-  /// Returns true if the string ends with at least one of the patterns,
-  /// false otherwise.
-  ///
-  /// Example:
-  /// ```dart
-  /// final text = "hello.jpg";
-  /// print(text.endsWithAny(['.jpg', '.png', '.gif'])); // true
-  /// print(text.endsWithAny(['.mp4', '.avi'])); // false
-  /// ```
-  bool endsWithAny(List<String> patterns) {
-    if (patterns.isEmpty) return false;
-
-    for (final pattern in patterns) {
-      if (endsWith(pattern)) {
-        return true;
-      }
-    }
-
-    return false;
+    return this!.replaceRange(index, index + pattern.length, replacement);
   }
 }
