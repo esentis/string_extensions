@@ -1685,11 +1685,9 @@ void main() {
     });
 
     test('returns true on first match (efficiency test)', () {
-      // This test ensures the method short-circuits
-      var callCount = 0;
       final patterns = List.generate(100, (i) {
         if (i == 0) return '.jpg';
-        callCount++;
+
         return '.ext$i';
       });
 
