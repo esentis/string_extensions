@@ -1,3 +1,7 @@
+## [0.7.4]
+
+- Adds `endsWithAny` method to check whether a `String` ends with any pattern provided in a `List`
+
 ## [0.7.3] Improvements
 
 - Improves `after` & `before` methods to include whitespace in patterns
