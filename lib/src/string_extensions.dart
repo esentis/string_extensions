@@ -101,6 +101,9 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return 0;
     }
+    if (wordsPerMinute <= 0) {
+      throw ArgumentError('wordsPerMinute must be greater than 0');
+    }
     var words = this.trim().split(RegExp(r'(\s+)'));
     var magicalNumber = words.length / wordsPerMinute;
     return (magicalNumber * 100).toInt();
@@ -280,10 +283,16 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    this.substring(0, 1);
-    var regex = RegExp(
-        r'(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))');
-    return regex.hasMatch(this);
+    
+    // Simple IPv6 validation using Uri.tryParse for security
+    try {
+      var uri = Uri.tryParse('http://[$this]');
+      return uri != null && uri.host.isNotEmpty;
+    } catch (e) {
+      // Additional simple regex check for basic IPv6 format
+      var regex = RegExp(r'^[0-9a-fA-F:]+$');
+      return regex.hasMatch(this) && this.contains(':') && this.length <= 39;
+    }
   }
 
   /// Checks whether the `String` is a valid URL.
@@ -301,9 +310,23 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    var regex = RegExp(
-        r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
-    return regex.hasMatch(this);
+    
+    // Use Uri.tryParse for secure URL validation
+    try {
+      var uri = Uri.tryParse(this);
+      if (uri == null) return false;
+      
+      // Check for valid schemes and prevent dangerous ones
+      var validSchemes = ['http', 'https', 'ftp', 'ftps'];
+      if (!validSchemes.contains(uri.scheme.toLowerCase())) {
+        return false;
+      }
+      
+      // Must have a valid host
+      return uri.hasAuthority && uri.host.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
   }
 
   /// Checks whether the `String` is a valid `DateTime`:
@@ -514,6 +537,9 @@ extension MiscExtensionsNonNullable on String {
     // ignore: omit_local_variable_types
     List<Map<String, int>> occurrences = [];
     var letters = this.split('')..sort();
+    if (letters.isEmpty) {
+      return [];
+    }
     var checkingLetter = letters[0];
     var count = 0;
     for (var i = 0; i < letters.length; i++) {
@@ -562,6 +588,9 @@ extension MiscExtensionsNonNullable on String {
     }
     var occurrences = <String, int>{};
     var letters = this.split('')..sort();
+    if (letters.isEmpty) {
+      return this;
+    }
     var checkingLetter = letters[0];
     var count = 0;
 
@@ -730,6 +759,9 @@ extension MiscExtensionsNonNullable on String {
     }
 
     var words = this.trim().split(RegExp(r'(\s+)'));
+    if (words.isEmpty) {
+      return this;
+    }
     var result = words[0].toLowerCase();
     for (var i = 1; i < words.length; i++) {
       result += words[i].substring(0, 1).toUpperCase() +
