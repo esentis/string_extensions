@@ -1,6 +1,10 @@
-## [0.7.4]
+## [0.7.4] - Security & Bug fixes
 
 - Adds `endsWithAny` method to check whether a `String` ends with any pattern provided in a `List`
+- Fixes division by zero vulnerability in `readTime` method by adding parameter validation
+- Fixes array index out of bounds issues in `charOccurences`, `mostFrequent`, and `toCamelCase` methods
+- Improves `isIpv6` validation security by replacing complex regex with `Uri.tryParse()` to prevent ReDoS attacks
+- Improves `isUrl` validation security by replacing regex with `Uri.tryParse()` and adding scheme validation
 
 ## [0.7.3] Improvements
 
