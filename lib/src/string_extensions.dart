@@ -1779,7 +1779,7 @@ extension MiscExtensionsNonNullable on String {
   /// String f = 'NO'.nullIf("YES"); // returns "NO";
   /// ```
   String? nullIf(String? comparisonString) =>
-      asIf((s) => s == comparisonString, null, this);
+      this == comparisonString ? null : this;
 
   /// Return [this] if not blank. Otherwise return [newString].
   String ifBlank(String newString) =>
