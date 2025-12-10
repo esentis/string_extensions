@@ -1,3 +1,7 @@
+## [0.8.0] - Breaking change
+
+- Updates `<`, `>`, `<=`, and `>=` string operators to use lexicographic ordering (mirroring `compareTo`) instead of string length
+
 ## [0.7.4] - Security & Bug fixes
 
 - Adds `endsWithAny` method to check whether a `String` ends with any pattern provided in a `List`
