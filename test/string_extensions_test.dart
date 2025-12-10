@@ -772,14 +772,20 @@ void main() {
   test(
     'String operator tests',
     () {
-      String? string1 = 'three';
-      String? string2 = 'two';
+      String? string1 = 'banana';
+      String? string2 = 'apple';
       String? string3 = 'esentis is the best';
+      String? string4 = 'grape';
+      String? string5 = 'apple';
 
       expect(string1 > string2, true);
+      expect(string2 > string1, false);
       expect(string1 < string2, false);
-      expect(string1 >= string2, true);
-      expect(string1 <= string2, false);
+      expect(string2 < string1, true);
+      expect(string1 >= 'banana', true);
+      expect(string2 <= string1, true);
+      expect(string4 <= string5, false);
+      expect(string5 <= string4, true);
       expect(string3 - 'esentis', ' is the best');
       expect('esentis' - 'esen', 'tis');
       expect('esen' - 'esentis', 'esen');

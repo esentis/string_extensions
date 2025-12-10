@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:string_extensions/src/string_helpers.dart';
 
 extension MiscExtensionsNonNullable on String {
-  /// Checks if the [length!] of the `String` is more than the length of [s].
+  /// Checks if the `String` comes after [s] lexicographically.
   ///
   /// If the `String` is null or empty, it returns false.
   ///
@@ -22,10 +22,10 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length > s.length;
+    return this.compareTo(s) > 0;
   }
 
-  /// Checks if the [length!] of the `String` is more or equal than the length of [s].
+  /// Checks if the `String` comes after or is equal to [s] lexicographically.
   ///
   /// If the `String` is null or empty, it returns false.
   ///
@@ -39,10 +39,10 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length >= s.length;
+    return this.compareTo(s) >= 0;
   }
 
-  /// Checks if the [length!] of the `String` is less than the length of [s].
+  /// Checks if the `String` comes before [s] lexicographically.
   ///
   /// If the `String` is null or empty, it returns false.
   ///
@@ -56,10 +56,10 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length < s.length;
+    return this.compareTo(s) < 0;
   }
 
-  /// Checks if the [length!] of the `String` is less or equal than the length of [s].
+  /// Checks if the `String` comes before or is equal to [s] lexicographically.
   ///
   /// If the `String` is null or empty, it returns false.
   ///
@@ -73,7 +73,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    return this.length <= s.length;
+    return this.compareTo(s) <= 0;
   }
 
   /// Removes a text from the `String`.
