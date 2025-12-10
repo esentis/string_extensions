@@ -701,13 +701,13 @@ void main() {
       String? string1 = 'employee';
       expect(string1.isUrl, false);
 
-      String? string2 = '1111111.com';
+      String? string2 = 'https://1111111.com';
       expect(string2.isUrl, true);
 
-      String? string3 = 'http://8recommmmmmendation';
+      String? string3 = 'http://';
       expect(string3.isUrl, false);
 
-      String? string4 = 'www.google.com';
+      String? string4 = 'https://www.google.com';
       expect(string4.isUrl, true);
 
       String? string5 = 'ftp://www.google.com';

@@ -82,10 +82,10 @@ extension MiscExtensionsNullable on String? {
     if (this.isBlank) {
       return '';
     }
-    if (s.isBlank) {
+    if (s == null || s.isBlank) {
       return this!;
     }
-    return this!.replaceAll(s!, '');
+    return this!.replaceAll(s, '');
   }
 
   /// Returns the average read time duration of the given `String` in seconds.
@@ -1894,14 +1894,20 @@ extension MiscExtensionsNullable on String? {
   /// String s = "esentis".wrap("AA", after: "BB"); // returns "AAesentisBB";
   /// ```
   String wrap(String? before, {String? after}) {
-    before = before.ifBlank("");
-    if (after.isBlank) {
-      if (before.isCloseWrapChar()) {
-        before = before.getOppositeChar();
+    var resolvedBefore = before?.ifBlank("") ?? "";
+    var resolvedAfter = after?.ifBlank("");
+
+    if (resolvedAfter == null) {
+      if (resolvedBefore.isEmpty) {
+        return "${this ?? ''}";
       }
-      after = before.getOppositeChar();
+      if (resolvedBefore.isCloseWrapChar()) {
+        resolvedBefore = resolvedBefore.getOppositeChar() ?? resolvedBefore;
+      }
+      resolvedAfter = resolvedBefore.getOppositeChar();
     }
-    return "$before${this as String}${after.ifBlank(before)}";
+
+    return "$resolvedBefore${this ?? ''}${resolvedAfter}";
   }
 
   /// Returns the opposite wrap char of the `String` if possible, otherwise returns the same `String`.
