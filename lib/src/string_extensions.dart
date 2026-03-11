@@ -781,7 +781,7 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    var words = this.trim().toLowerCase().split(' ');
+    var words = this.trim().toLowerCase().split(RegExp(r'\s+'));
     for (var i = 0; i < words.length; i++) {
       words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
     }
