@@ -57,7 +57,8 @@ void main() {
       expect(' '.toTitleCase, ' ');
       expect('  '.toTitleCase, '  ');
       expect(null.toTitleCase, null);
-      expect('title  case'.toTitleCase, 'Title Case');
+      expect('title  case'.toTitleCase, 'Title  Case');
+      expect('title      case'.toTitleCase, 'Title      Case');
     },
   );
   test(
