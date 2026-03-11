@@ -1,3 +1,7 @@
+## [0.8.1] - Bug fixes
+
+- Fixes `toTitleCase` failing on strings with consecutive whitespace, such as `"title  case"`
+
 ## [0.8.0] - Breaking change
 
 - Updates `<`, `>`, `<=`, and `>=` string operators to use lexicographic ordering (mirroring `compareTo`) instead of string length
