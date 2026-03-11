@@ -1,3 +1,7 @@
+## [0.8.2] - Bug fixes
+
+- Updates `toTitleCase` to preserve consecutive internal whitespace instead of collapsing it, such as `"title  case"` -> `"Title  Case"`
+
 ## [0.8.1] - Bug fixes
 
 - Fixes `toTitleCase` failing on strings with consecutive whitespace, such as `"title  case"`
