@@ -1,3 +1,12 @@
+## [0.8.3] - Bug fixes, performance, and docs
+
+- Fixes `charAt` and `replaceAtIndex` so they no longer throw when the index points to the end of the string
+- Fixes `removeAfter`, `removeBefore`, `addAfter`, and `addBefore` so they handle full multi-character patterns correctly
+- Fixes `toLeet` so it works with uppercase letters, keeps unsupported characters unchanged, and no longer prints debug output
+- Fixes `isCreditCard` so invalid characters return `false` instead of throwing an exception
+- Improves `isCreditCard` performance by avoiding extra allocations inside the validation loop
+- Clarifies the `isUrl` documentation to make it clear that a supported scheme such as `https://` is required
+
 ## [0.8.2] - Bug fixes
 
 - Updates `toTitleCase` to preserve consecutive internal whitespace instead of collapsing it, such as `"title  case"` -> `"Title  Case"`
