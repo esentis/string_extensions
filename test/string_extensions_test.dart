@@ -702,6 +702,7 @@ void main() {
     () {
       String? string1 = 'employee';
       expect(string1.isUrl, false);
+      expect('google.com'.isUrl, false);
 
       String? string2 = 'https://1111111.com';
       expect(string2.isUrl, true);
@@ -892,6 +893,7 @@ void main() {
       expect(string1.charAt(1), 's');
       expect(string1.charAt(-5), '');
       expect(string1.charAt(6), 's');
+      expect(string1.charAt(7), '');
       expect(string1.charAt(12), '');
 
       expect(null.charAt(12), null);
@@ -1299,11 +1301,15 @@ void main() {
       () {
     expect("0:00:00.11".removeBefore('.'), '11');
     expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
+    expect('hello brother what a day today'.removeBefore('brother'),
+        'brother what a day today');
   });
   test('addAfter - Adds a String after first occurence of a specific pattern',
       () {
     expect("0:00:00.11".addAfter('.', '5'), '0:00:00.511');
     expect("hello".addAfter('o', ' there'), 'hello there');
+    expect('hello brother what a day today'.addAfter('brother', ' sam'),
+        'hello brother sam what a day today');
     expect('esentis'.addAfter('x', 'pro'), 'esentis');
   }); // expect('hello brother what a day today', matcher)
 
@@ -1327,6 +1333,7 @@ void main() {
 
   test('Replaces the character at index of the String', () {
     expect('esentis'.replaceAtIndex(index: 0, replacement: '1'), '1sentis');
+    expect('es'.replaceAtIndex(index: 2, replacement: '1'), 'es');
     expect('es'.replaceAtIndex(index: 3, replacement: '1'), 'es');
     expect('es'.replaceAtIndex(index: 1, replacement: ''), 'e');
   });
@@ -1335,6 +1342,21 @@ void main() {
     expect('5104 4912 8031 9406'.isCreditCard, true);
     expect('5104 4912 5001 0654'.isCreditCard, true);
     expect('4101898959978716'.isCreditCard, true);
+
+    String? invalidFormattedCard = '5104-4912-8031-9406';
+    expect(invalidFormattedCard.isCreditCard, false);
+  });
+
+  test('Transforms uppercase letters to leet and preserves unsupported chars',
+      () {
+    final upperResult = 'A'.toLeet;
+    expect(upperResult, isNotEmpty);
+    expect(upperResult, isNot('A'));
+
+    String? nullableMixedValue = 'A!';
+    final nullableResult = nullableMixedValue.toLeet;
+    expect(nullableResult, isNotNull);
+    expect(nullableResult.endsWith('!'), isTrue);
   });
 
   test('Remove all whitespace from the String', () {

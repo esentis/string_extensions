@@ -283,7 +283,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return false;
     }
-    
+
     // Simple IPv6 validation using Uri.tryParse for security
     try {
       var uri = Uri.tryParse('http://[$this]');
@@ -295,7 +295,7 @@ extension MiscExtensionsNonNullable on String {
     }
   }
 
-  /// Checks whether the `String` is a valid URL.
+  /// Checks whether the `String` is a valid URL with a supported scheme.
   /// ### Example 1
   /// ```dart
   /// String foo = 'foo.1com';
@@ -303,25 +303,25 @@ extension MiscExtensionsNonNullable on String {
   /// ```
   /// ### Example 2
   /// ```dart
-  /// String foo = 'google.com';
+  /// String foo = 'https://google.com';
   /// bool isUrl = foo.isUrl; // returns true
   /// ```
   bool get isUrl {
     if (this.isBlank) {
       return false;
     }
-    
+
     // Use Uri.tryParse for secure URL validation
     try {
       var uri = Uri.tryParse(this);
       if (uri == null) return false;
-      
+
       // Check for valid schemes and prevent dangerous ones
       var validSchemes = ['http', 'https', 'ftp', 'ftps'];
       if (!validSchemes.contains(uri.scheme.toLowerCase())) {
         return false;
       }
-      
+
       // Must have a valid host
       return uri.hasAuthority && uri.host.isNotEmpty;
     } catch (e) {
@@ -936,7 +936,7 @@ extension MiscExtensionsNonNullable on String {
     if (this.isBlank) {
       return this;
     }
-    if (index > this.length) {
+    if (index >= this.length) {
       return this;
     }
     if (index < 0) {
@@ -1270,7 +1270,7 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    if (index > this.length) {
+    if (index >= this.length) {
       return '';
     }
     if (index < 0) {
@@ -1964,22 +1964,16 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (pattern.isEmpty) {
       return '';
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return '';
-    }
-    int indexOfLastPatternWord = this.indexOf(patternWords.last);
-
-    if (patternWords.last.length == 0) {
+    int index = this.indexOf(pattern);
+    if (index == -1) {
       return '';
     }
 
-    return this.substring(0, indexOfLastPatternWord);
+    return this.substring(0, index);
   }
 
   /// Removes everything in the `String` before the match of the [pattern].
@@ -1995,25 +1989,17 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (pattern.isEmpty) {
       return '';
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return '';
-    }
-    int indexOfFirstPatternWord = this.indexOf(patternWords.first);
-
-    if (patternWords.last.length == 0) {
+    int index = this.indexOf(pattern);
+    if (index == -1) {
       return '';
     }
 
-    return this.substring(
-      indexOfFirstPatternWord + 1,
-      this.length,
-    );
+    final startIndex = pattern.length == 1 ? index + pattern.length : index;
+    return this.substring(startIndex);
   }
 
   /// Adds a `String` after the first match of the [pattern]. The [pattern] should not be `null`.
@@ -2031,24 +2017,19 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (pattern.isEmpty) {
+      return '';
+    }
+
+    int index = this.indexOf(pattern);
+    if (index == -1) {
       return this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return '';
-    }
-    int indexOfLastPatternWord = this.indexOf(patternWords.last);
-
-    if (patternWords.last.length == 0) {
-      return '';
-    }
-
-    return this.substring(0, indexOfLastPatternWord + 1) +
+    final insertionIndex = index + pattern.length;
+    return this.substring(0, insertionIndex) +
         addition +
-        this.substring(indexOfLastPatternWord + 1, this.length);
+        this.substring(insertionIndex, this.length);
   }
 
   /// Adds a `String` before the first match of the [pattern]. The [pattern] should not be `null`.
@@ -2065,27 +2046,18 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
 
-    if (!this.contains(pattern)) {
+    if (pattern.isEmpty) {
+      return '';
+    }
+
+    int index = this.indexOf(pattern);
+    if (index == -1) {
       return this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return '';
-    }
-    int indexOfFirstPatternWord = this.indexOf(patternWords.first);
-
-    if (patternWords.last.length == 0) {
-      return '';
-    }
-
-    return this.substring(0, indexOfFirstPatternWord) +
+    return this.substring(0, index) +
         adition +
-        this.substring(
-          indexOfFirstPatternWord,
-          this.length,
-        );
+        this.substring(index, this.length);
   }
 
   /// Checks if the `String` matches **ANY** of the given [patterns].
@@ -2187,14 +2159,18 @@ extension MiscExtensionsNonNullable on String {
       return this;
     }
     final letters = this.split('');
+    final random = Random();
+    final leetLetters = <String>[];
 
-    final leetLetters = [];
-    letters.forEach((e) {
-      final count = StringHelpers.leetAlphabet[e].length;
-      final random = Random().nextInt(count);
-      print(StringHelpers.leetAlphabet[e][random]);
-      leetLetters.add(StringHelpers.leetAlphabet[e][random]);
-    });
+    for (final letter in letters) {
+      final replacements = StringHelpers.leetAlphabet[letter.toLowerCase()];
+      if (replacements is List && replacements.isNotEmpty) {
+        leetLetters
+            .add(replacements[random.nextInt(replacements.length)].toString());
+      } else {
+        leetLetters.add(letter);
+      }
+    }
 
     return leetLetters.join();
   }
@@ -2213,18 +2189,25 @@ extension MiscExtensionsNonNullable on String {
     }
 
     String trimmed = this.removeWhiteSpace;
+    if (trimmed.isEmpty) {
+      return false;
+    }
 
     int sum = 0;
     bool alternate = false;
     for (int i = trimmed.length - 1; i >= 0; i--) {
-      List<String> nx = trimmed.toArray;
-      int n = int.parse(nx[i]);
+      final codeUnit = trimmed.codeUnitAt(i);
+      if (codeUnit < 48 || codeUnit > 57) {
+        return false;
+      }
+
+      int n = codeUnit - 48;
 
       if (alternate) {
         n *= 2;
 
         if (n > 9) {
-          n = (n % 10) + 1;
+          n -= 9;
         }
       }
       sum += n;
