@@ -578,12 +578,14 @@ extension MiscExtensionsNullable on String? {
         count++;
         if (i == letters.length - 1) {
           occurrences.add({checkingLetter: count});
-          checkingLetter = letters[i];
         }
       } else {
         occurrences.add({checkingLetter: count});
         checkingLetter = letters[i];
         count = 1;
+        if (i == letters.length - 1) {
+          occurrences.add({checkingLetter: count});
+        }
       }
     }
     return occurrences;
@@ -662,8 +664,7 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    var letters = this!.split('').toList().reversed;
-    return letters.reduce((current, next) => current + next);
+    return this!.split('').reversed.join();
   }
 
   /// Returns the first [n] characters of the `String`.
@@ -735,19 +736,11 @@ extension MiscExtensionsNullable on String? {
     }
 
     var words = this!.trim().split(RegExp(r'(\s+)'));
-    var slugWord = '';
 
     if (this!.length == 1) {
       return this;
     }
-    for (var i = 0; i <= words.length - 1; i++) {
-      if (i == words.length - 1) {
-        slugWord += words[i];
-      } else {
-        slugWord += words[i] + '_';
-      }
-    }
-    return slugWord;
+    return words.join('_');
   }
 
   /// Returns the `String` to snake_case.
@@ -763,19 +756,11 @@ extension MiscExtensionsNullable on String? {
     }
 
     var words = this!.toLowerCase().trim().split(RegExp(r'(\s+)'));
-    var snakeWord = '';
 
     if (this!.length == 1) {
       return this;
     }
-    for (var i = 0; i <= words.length - 1; i++) {
-      if (i == words.length - 1) {
-        snakeWord += words[i];
-      } else {
-        snakeWord += words[i] + '_';
-      }
-    }
-    return snakeWord;
+    return words.join('_');
   }
 
   /// Returns the `String` in camelcase.
@@ -944,16 +929,16 @@ extension MiscExtensionsNullable on String? {
   /// ```
   String? get replaceGreek {
     if (this.isBlank) return this;
-    var normalizedWord = '';
+    var sb = StringBuffer();
     for (var i = 0; i < this!.length; i++) {
       var character = this![i];
       if (StringHelpers.greekToLatin.containsKey(character)) {
-        normalizedWord += StringHelpers.greekToLatin[character]!;
+        sb.write(StringHelpers.greekToLatin[character]!);
       } else {
-        normalizedWord += character;
+        sb.write(character);
       }
     }
-    return normalizedWord;
+    return sb.toString();
   }
 
   /// Adds a [replacement] character at [index] of the `String`.
@@ -1088,11 +1073,11 @@ extension MiscExtensionsNullable on String? {
     if (this.isBlank || count <= 0) {
       return this;
     }
-    var repeated = this!;
-    for (var i = 0; i < count - 1; i++) {
-      repeated += this!;
+    var sb = StringBuffer();
+    for (var i = 0; i < count; i++) {
+      sb.write(this!);
     }
-    return repeated;
+    return sb.toString();
   }
 
   /// Squeezes the `String` by removing repeats of a given character.
@@ -1107,15 +1092,15 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    var sb = '';
+    var sb = StringBuffer();
     for (var i = 0; i < this!.length; i++) {
       if (i == 0 ||
           this![i - 1] != this![i] ||
           (this![i - 1] == this![i] && this![i] != char)) {
-        sb += this![i];
+        sb.write(this![i]);
       }
     }
-    return sb;
+    return sb.toString();
   }
 
   /// Checks if the `String` is consisted of same characters (ignores cases).
@@ -1218,21 +1203,20 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    //var buffer = StringBuffer();
     var maskChars = mask.toArray;
     var index = 0;
-    var out = '';
+    var sb = StringBuffer();
     for (var m in maskChars) {
       if (m == specialChar) {
         if (index < this!.length) {
-          out += this![index];
+          sb.write(this![index]);
           index++;
         }
       } else {
-        out += m;
+        sb.write(m);
       }
     }
-    return out;
+    return sb.toString();
   }
 
   /// Removes the first [n] characters from the `String`.
@@ -1344,7 +1328,7 @@ extension MiscExtensionsNullable on String? {
     if (index < 0) {
       return null;
     }
-    return this!.split('')[index];
+    return this![index];
   }
 
   /// Appends a [suffix] to the `String`.
@@ -1575,7 +1559,7 @@ extension MiscExtensionsNullable on String? {
 
     int index = this!.indexOf(char);
     if (index == -1) {
-      return null;
+      return '';
     }
 
     return this!.substring(0, index);
@@ -1721,23 +1705,13 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    if (!this!.contains(pattern)) {
+    int index = this!.indexOf(pattern);
+
+    if (index == -1) {
       return defaultToBlank ? '' : this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return defaultToBlank ? '' : this;
-    }
-    int indexOfLastPatternWord = this!.indexOf(patternWords.last);
-
-    if (patternWords.last.length == 0) {
-      return defaultToBlank ? '' : this;
-    }
-
-    return this!.substring(
-        indexOfLastPatternWord + patternWords.last.length, this!.length);
+    return this!.substring(index + pattern.length);
   }
 
   /// Returns the `String` before a specific character
@@ -1757,25 +1731,13 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    if (!this!.contains(pattern)) {
+    int index = this!.indexOf(pattern);
+
+    if (index == -1) {
       return defaultToBlank ? '' : this;
     }
 
-    List<String> patternWords = pattern.split(' ');
-
-    if (patternWords.isEmpty) {
-      return defaultToBlank ? '' : this;
-    }
-    int indexOfFirstPatternWord = this!.indexOf(patternWords.first);
-
-    if (patternWords.last.length == 0) {
-      return defaultToBlank ? '' : this;
-    }
-
-    return this!.substring(
-      0,
-      indexOfFirstPatternWord,
-    );
+    return this!.substring(0, index);
   }
 
   /// The Jaro distance is a measure of edit distance between two strings
@@ -2090,8 +2052,7 @@ extension MiscExtensionsNullable on String? {
       return '';
     }
 
-    final startIndex = pattern.length == 1 ? index + pattern.length : index;
-    return this!.substring(startIndex);
+    return this!.substring(index);
   }
 
   /// Adds a `String` after the first match of the [pattern]. The [pattern] should not be `null`.
@@ -2223,11 +2184,11 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    List<String> suffix = ["bytes", "KB", "MB", "GB"];
+    List<String> suffix = ["bytes", "KB", "MB", "GB", "TB"];
 
     int j = 0;
 
-    while (number! >= 1024 && j < 4) {
+    while (number! >= 1024 && j < suffix.length - 1) {
       number = (number / 1024).floor();
       j++;
     }
@@ -2428,18 +2389,16 @@ extension MiscExtensionsNullable on String? {
       return this;
     }
 
-    List<String> letters = this!.toArray;
+    var sb = StringBuffer();
 
-    String swapped = '';
-
-    for (final l in letters) {
+    for (final l in this!.toArray) {
       if (l.isUpperCase) {
-        swapped += l.toLowerCase();
+        sb.write(l.toLowerCase());
       } else {
-        swapped += l.toUpperCase();
+        sb.write(l.toUpperCase());
       }
     }
-    return swapped;
+    return sb.toString();
   }
 
   /// Checks whether the provided `String` is a valid Swift code.

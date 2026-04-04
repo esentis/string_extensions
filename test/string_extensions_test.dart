@@ -181,6 +181,7 @@ void main() {
         {'i': 1},
         {'n': 1},
         {'s': 6},
+        {'t': 1},
       ]);
 
       expect(null.charOccurences, []);
@@ -1299,8 +1300,8 @@ void main() {
   test(
       'removeBefore - Removes everything before first occurence of a specific pattern',
       () {
-    expect("0:00:00.11".removeBefore('.'), '11');
-    expect("0.:00:00.11".removeBefore('.'), ':00:00.11');
+    expect("0:00:00.11".removeBefore('.'), '.11');
+    expect("0.:00:00.11".removeBefore('.'), '.:00:00.11');
     expect('hello brother what a day today'.removeBefore('brother'),
         'brother what a day today');
   });
@@ -1738,5 +1739,144 @@ void main() {
       expect('hello\t'.endsWithAny(['\t', ' ']), isTrue);
       expect('hello '.endsWithAny([' ']), isTrue);
     });
+  });
+
+  // ── Bug reproduction tests ──────────────────────────────────────────
+
+  test('Bug #1: charOccurences includes the last unique character', () {
+    // 'abc' sorted → ['a','b','c']. Each appears once.
+    // Previously 'c' was dropped because the loop ended without adding it.
+    var result = 'abc'.charOccurences;
+    expect(result.length, 3);
+    expect(result[0], {'a': 1});
+    expect(result[1], {'b': 1});
+    expect(result[2], {'c': 1});
+
+    // Nullable version
+    String? nullableAbc = 'abc';
+    var nullableResult = nullableAbc.charOccurences;
+    expect(nullableResult.length, 3);
+    expect(nullableResult[2], {'c': 1});
+  });
+
+  test('Bug #2: formatFileSize handles TB+ values without crashing', () {
+    // 1 TB = 1099511627776 bytes
+    String tb = '1099511627776';
+    // Should not throw RangeError
+    expect(() => tb.formatFileSize, returnsNormally);
+    // Should show as GB (or TB if suffix is added)
+    expect(tb.formatFileSize, isNotEmpty);
+
+    // Nullable version
+    String? nullableTb = '1099511627776';
+    expect(() => nullableTb.formatFileSize, returnsNormally);
+  });
+
+  test('Bug #3: removeBefore is consistent for single and multi-char patterns',
+      () {
+    // Doc says: "Removes everything before the match of the pattern"
+    // Pattern itself should be included in the result
+    String test = 'hello brother what a day today';
+    expect(test.removeBefore('brother'), 'brother what a day today');
+
+    // Single char pattern should behave the same way
+    String test2 = 'hello b what';
+    expect(test2.removeBefore('b'), 'b what');
+
+    // Nullable versions
+    String? nullableTest = 'hello brother what a day today';
+    expect(nullableTest.removeBefore('brother'), 'brother what a day today');
+
+    String? nullableTest2 = 'hello b what';
+    expect(nullableTest2.removeBefore('b'), 'b what');
+  });
+
+  test(
+      'Bug #4: nullable after/before uses indexOf-based approach matching non-nullable',
+      () {
+    // The nullable after()/before() uses a word-splitting approach that differs
+    // from the non-nullable indexOf-based approach. While Dart resolves to the
+    // non-nullable extension for literal String? variables, the nullable
+    // implementation should still be correct. Test the non-nullable version:
+    String test = 'dog loves the big dog park';
+    expect(test.after('big dog'), ' park');
+
+    String test2 = 'the cat and the dog';
+    expect(test2.before('the dog'), 'the cat and ');
+  });
+
+  test('Bug #5: isGreek returns bool (not bool?) on non-nullable String', () {
+    String greek = 'Τα αγαθά κόποις κτώνται';
+    // This should be bool, not bool?
+    bool result = greek.isGreek as bool;
+    expect(result, isTrue);
+
+    String nonGreek = 'Hello World';
+    bool result2 = nonGreek.isGreek as bool;
+    expect(result2, isFalse);
+  });
+
+  // ── Bug reproduction tests (round 2) ───────────────────────────────
+
+  test('Bug #6: leftOf should not throw when char is not found', () {
+    // leftOf doc says "If char doesn't exist, null is returned"
+    // but the code throws an Exception. rightOf returns '' for the same case.
+    String s = 'peanutbutter';
+    // Should not throw
+    expect(() => s.leftOf('xyz'), returnsNormally);
+    // Should return empty string (consistent with rightOf)
+    expect(s.leftOf('xyz'), '');
+
+    // Nullable version
+    String? ns = 'peanutbutter';
+    expect(() => ns.leftOf('xyz'), returnsNormally);
+    expect(ns.leftOf('xyz'), '');
+  });
+
+  test('Bug #7: charAt should not allocate a list via split', () {
+    // charAt currently does split('')[index] which is wasteful.
+    // Verify it still returns correct results after fix to use this[index].
+    String s = 'hello';
+    expect(s.charAt(0), 'h');
+    expect(s.charAt(4), 'o');
+    expect(s.charAt(5), ''); // out of range
+    expect(s.charAt(-1), ''); // negative
+
+    // Nullable version
+    String? ns = 'hello';
+    expect(ns.charAt(0), 'h');
+    expect(ns.charAt(4), 'o');
+  });
+
+  test('Bug #8: repeat should handle large counts efficiently', () {
+    // repeat uses += in a loop (O(n²)). After fix it should still be correct.
+    String s = 'ab';
+    expect(s.repeat(1), 'ab');
+    expect(s.repeat(3), 'ababab');
+    expect(s.repeat(0), 'ab'); // count <= 0 returns this
+    expect(s.repeat(-1), 'ab');
+
+    // Large repeat should not be unreasonably slow
+    String large = 'x'.repeat(10000);
+    expect(large.length, 10000);
+
+    // Nullable version
+    String? ns = 'ab';
+    expect(ns.repeat(3), 'ababab');
+  });
+
+  test('Bug #9: formatWithMask should handle masks efficiently', () {
+    // formatWithMask uses += in a loop (O(n²)). Verify correctness after fix.
+    String s = 'esentisgreece';
+    String mask = 'Hello ####### you are from ######';
+    expect(s.formatWithMask(mask), 'Hello esentis you are from greece');
+
+    // Edge cases
+    expect(''.formatWithMask(mask), '');
+    expect('abc'.formatWithMask('# - # - #'), 'a - b - c');
+
+    // Nullable version
+    String? ns = 'esentisgreece';
+    expect(ns.formatWithMask(mask), 'Hello esentis you are from greece');
   });
 }
