@@ -1,3 +1,20 @@
+## [0.8.4] - Bug fixes and performance improvements
+
+### Bug Fixes
+
+- Fixes `charOccurences` dropping the last character when it was unique (different from its predecessor)
+- Fixes `formatFileSize` throwing `RangeError` for TB+ values by adding "TB" suffix and correcting the loop guard
+- Fixes `removeBefore` inconsistent behavior between single-char and multi-char patterns single-char now includes the pattern in the result, matching multi-char behavior
+- Fixes nullable `after` and `before` methods using fragile word-splitting logic that could match wrong positions replaced with the same `indexOf` approach used in the non-nullable version
+- Fixes `isGreek` returning `bool?` instead of `bool` on non-nullable `String`
+- Fixes `leftOf` throwing `Exception` when the character is not found now returns empty string, consistent with `rightOf`
+- Fixes `charAt` using `split('')[index]` which allocated a full list on every call now uses direct index access
+
+### Performance Improvements
+
+- Improves `reverse` from O(n²) to O(n) by replacing `reduce` with `split('').reversed.join()`
+- Replaces O(n²) `+=` string concatenation with `StringBuffer` in: `toSlug`, `toSnakeCase`, `squeeze`, `swapCase`, `replaceGreek`, `repeat`, and `formatWithMask`
+
 ## [0.8.3] - Bug fixes, performance, and docs
 
 - Fixes `charAt` and `replaceAtIndex` so they no longer throw when the index points to the end of the string
